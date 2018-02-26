@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
 
@@ -42,14 +44,17 @@ public class Server {
     public static void main(String[] argv) throws InterruptedException, IOException {
 
         serverData = new ServerData();
+        System.out.println("ServerData is initialised");
 
         PrimaryLoop:
         while (true) {
 
-            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(int.class), new FormalField(String.class), new FormalField(String.class));
+            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
 
-            Thread tempReqHandler = new Thread(new RequestHandlerThread(serverData, tuple));
-            tempReqHandler.start();
+            ExecutorService executor = Executors.newFixedThreadPool(5);//creating a pool of 5 threads
+
+            Runnable tempReqHandler = new RequestHandlerThread(serverData, tuple);
+            serverData.executor.execute(tempReqHandler);//calling execute method of ExecutorService
 
         }
     }

@@ -4,6 +4,8 @@ import org.jspace.ActualField;
 import org.jspace.SequentialSpace;
 import org.jspace.Space;
 import org.jspace.SpaceRepository;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import java.util.UUID;
 
@@ -28,7 +30,9 @@ public class Lobby implements Runnable {
         lobbySpace = new SequentialSpace();
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
+        //Run lobbyConnectionManager here!
 
+        System.out.println("Lobby is now running\n");
 
         BeginLoop:
         while(true) {

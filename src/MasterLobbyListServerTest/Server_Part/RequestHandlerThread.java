@@ -2,6 +2,8 @@ package MasterLobbyListServerTest.Server_Part;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RequestHandlerThread implements Runnable {
 
@@ -18,27 +20,24 @@ public class RequestHandlerThread implements Runnable {
         if ((int) tuple[1] == Server.CREATE_LOBBY_REQ){
             System.out.println("Trying to create a lobby with the name : " + tuple[2] + "\n");
 
-            if (serverData.lobbyThreads.size() < serverData.MAXIMUM_LOBBIES) {
+            //System.out.println("(Add Thread to lobbyThreads)");
 
-                System.out.println("(Add Thread to lobbyThreads)");
+            UUID idForLobby = UUID.randomUUID();
 
-                UUID idForLobby = UUID.randomUUID();
-                Thread lobby = new Thread(new Lobby(idForLobby, serverData.requestSpace, serverData.serverRepos));
+            Runnable lobby = new Lobby(idForLobby,serverData.requestSpace,serverData.serverRepos);
+            serverData.executor.execute(lobby);//calling execute method of ExecutorService
 
-                lobby.start();
-                serverData.lobbyThreads.add(lobby);
+            //System.out.println("(Put Tuple with information about the lobbyID to the user)");
 
-                System.out.println("(Put Tuple with information about the lobbyID to the user)");
+            serverData.requestSpace.put("Response",tuple[3],idForLobby);
 
-                serverData.requestSpace.put("Response",tuple[3],idForLobby);
+            //System.out.println("(Add Server information to entrySpace)");
 
-                System.out.println("(Add Server information to entrySpace)");
+            serverData.lobbyOverviewSpace.put("Lobby", tuple[2], idForLobby);
 
-                serverData.lobbyOverviewSpace.put("Lobby", tuple[2], idForLobby);
-
-            } else {
-                System.out.println("Too many lobbies at once \n Deny request");
-            }
+            System.out.println("LobbyRequest has now been handled");
+        } else {
+            System.out.println("Too many lobbies at once \n Deny request");
         }
     }
 
