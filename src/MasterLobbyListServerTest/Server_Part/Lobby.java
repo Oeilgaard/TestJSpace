@@ -52,6 +52,8 @@ public class Lobby implements Runnable {
             }
         }
 
+        lobbyConnectionManager.interrupt();
+
         Gameplay gp = new Gameplay(playerInfo);
 
         gp.RunGamePlay();

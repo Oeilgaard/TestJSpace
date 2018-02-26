@@ -16,6 +16,7 @@ public class PlayerInfo {
             if(playerNames[i] == username){
                 playerNames[i] = null;
                 nrOfPlayers--;
+                System.out.println("Removed Player : " + username);
                 return;
             }
         }
@@ -26,6 +27,7 @@ public class PlayerInfo {
             if(playerNames[i] == null){
                 playerNames[i] = username;
                 nrOfPlayers++;
+                System.out.println("Added Player : " + username);
                 return;
             }
         }

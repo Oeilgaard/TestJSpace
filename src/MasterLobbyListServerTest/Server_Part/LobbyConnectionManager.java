@@ -23,16 +23,17 @@ public class LobbyConnectionManager implements Runnable{
 
             try {
                 tuple = lobbySpace.get(new ActualField("Connection"),new FormalField(Boolean.class),new FormalField(String.class));
+
+                if(tuple != null && tuple[0].equals("Connection")){
+                    if(tuple[1].equals(true)){
+                        playerInfo.addPlayer((String)tuple[2]);
+                    } else if (tuple[1].equals(false)){
+                        playerInfo.removePlayer((String)tuple[2]);
+                    }
+                }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-
-            if(tuple != null && tuple[0].equals("Connection")){
-                if(tuple[1].equals(true)){
-
-                } else if (tuple[1].equals(false)){
-
-                }
             }
 
 
