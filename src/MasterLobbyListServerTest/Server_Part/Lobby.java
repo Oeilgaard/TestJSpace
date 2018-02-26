@@ -2,11 +2,7 @@ package MasterLobbyListServerTest.Server_Part;
 
 import org.jspace.ActualField;
 import org.jspace.SequentialSpace;
-import org.jspace.Space;
 import org.jspace.SpaceRepository;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import java.util.UUID;
 
 public class Lobby implements Runnable {
@@ -16,12 +12,15 @@ public class Lobby implements Runnable {
     private SpaceRepository serverRepos;
     private SequentialSpace lobbySpace;
 
-    private int nrOfPlayer = 0;
+    private PlayerInfo playerInfo;
+
+    private final static int MAX_PLAYER_PR_LOBBY = 5;
 
     public Lobby(UUID lobbyID, SequentialSpace requestSpace, SpaceRepository serverRepos){
         this.lobbyID = lobbyID;
         this.requestSpace = requestSpace;
         this.serverRepos = serverRepos;
+        playerInfo = new PlayerInfo(MAX_PLAYER_PR_LOBBY);
     }
 
     @Override
@@ -31,6 +30,8 @@ public class Lobby implements Runnable {
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
         //Run lobbyConnectionManager here!
+        Thread lobbyConnectionManager = new Thread(new LobbyConnectionManager(lobbySpace, playerInfo));
+        lobbyConnectionManager.start();
 
         System.out.println("Lobby is now running\n");
 
@@ -43,7 +44,7 @@ public class Lobby implements Runnable {
                 e.printStackTrace();
             }
 
-            if(nrOfPlayer >= 2){
+            if(playerInfo.nrOfPlayers >= 2){
                 System.out.println("Ready to begin!");
                 break BeginLoop;
             } else {
@@ -51,7 +52,7 @@ public class Lobby implements Runnable {
             }
         }
 
-        Gameplay gp = new Gameplay();
+        Gameplay gp = new Gameplay(playerInfo);
 
         gp.RunGamePlay();
     }

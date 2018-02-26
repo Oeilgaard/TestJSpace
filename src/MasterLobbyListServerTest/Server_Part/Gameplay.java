@@ -2,8 +2,10 @@ package MasterLobbyListServerTest.Server_Part;
 
 public class Gameplay {
 
-    public Gameplay(){
+    private PlayerInfo playerInfo;
 
+    public Gameplay(PlayerInfo playerInfo){
+        this.playerInfo = playerInfo;
     }
 
     public void RunGamePlay(){

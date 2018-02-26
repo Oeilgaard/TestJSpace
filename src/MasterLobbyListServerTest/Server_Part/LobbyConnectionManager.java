@@ -7,9 +7,11 @@ import org.jspace.SequentialSpace;
 public class LobbyConnectionManager implements Runnable{
 
     private SequentialSpace lobbySpace;
+    private PlayerInfo playerInfo;
 
-    public LobbyConnectionManager(SequentialSpace lobbySpace){
+    public LobbyConnectionManager(SequentialSpace lobbySpace, PlayerInfo playerInfo){
         this.lobbySpace = lobbySpace;
+        this.playerInfo = playerInfo;
     }
 
     @Override
@@ -17,11 +19,22 @@ public class LobbyConnectionManager implements Runnable{
 
         while (true){
 
+            Object[] tuple = null;
+
             try {
-                lobbySpace.get(new ActualField("Connection"),new FormalField(String.class),new FormalField(String.class));
+                tuple = lobbySpace.get(new ActualField("Connection"),new FormalField(Boolean.class),new FormalField(String.class));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            if(tuple != null && tuple[0].equals("Connection")){
+                if(tuple[1].equals(true)){
+
+                } else if (tuple[1].equals(false)){
+
+                }
+            }
+
 
         }
 
