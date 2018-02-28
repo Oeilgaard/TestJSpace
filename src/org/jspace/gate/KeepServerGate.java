@@ -25,9 +25,7 @@ package org.jspace.gate;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.Socket;
 
 import org.jspace.io.jSpaceMarshaller;
 
@@ -35,44 +33,22 @@ import org.jspace.io.jSpaceMarshaller;
  * @author loreti
  *
  */
-public class KeepServerGate implements ServerGate {
-	
-	private jSpaceMarshaller marshaller;
-	private static final String KEEP_CODE = "KEEP";
-	private InetSocketAddress address;
-	private int backlog;
-	private ServerSocket ssocket;
-	
+public class KeepServerGate extends TcpServerGate implements ServerGate {
+
+	private static final String KEEP_CODE = "keep";
+
 	public KeepServerGate(jSpaceMarshaller marshaller, InetSocketAddress address, int backlog) {
-		this.address = address;
-		this.backlog = backlog;
-		this.marshaller = marshaller;
-	}
-	
-
-	@Override
-	public void open() throws IOException {
-		this.ssocket = new ServerSocket(address.getPort(), backlog, address.getAddress());
+		super(marshaller,address,backlog);
 	}
 
 	@Override
-	public ClientHandler accept() throws IOException {		
-		return new KeepClientHandler(marshaller,ssocket.accept());
+	protected ClientHandler getClientHandler(Socket socket) throws IOException {
+		return new KeepClientHandler(marshaller,socket);
 	}
 
 	@Override
-	public void close() throws IOException {
-		this.ssocket.close();
-	}
-
-	@Override
-	public URI getURI() {
-		try {
-			return new URI("socket://"+address+"/"+"?"+KEEP_CODE);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-			return null;
-		}
+	protected String getConnectionCode() {
+		return KEEP_CODE;
 	}
 
 }

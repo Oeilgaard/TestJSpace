@@ -44,6 +44,7 @@ public class ConnClientHandler implements ClientHandler {
 	private BufferedReader reader;
 	private PrintWriter writer;
 	private boolean isActive = true;
+	private boolean isClosed = false;
 
 	public ConnClientHandler(jSpaceMarshaller marshaller, Socket client) throws IOException {
 		this.marshaller = marshaller;
@@ -58,7 +59,7 @@ public class ConnClientHandler implements ClientHandler {
 	@Override
 	public ClientMessage receive() throws IOException {
 		ClientMessage message = marshaller.read(ClientMessage.class, reader);
-		isActive  = (message != null);
+		isActive  = (message == null);
 		return message;
 	}
 
@@ -67,11 +68,13 @@ public class ConnClientHandler implements ClientHandler {
 	 */
 	@Override
 	public boolean send(ServerMessage m) {
-		if (!isActive) {
-			return false;
-		}
 		marshaller.write(m, writer);
 		isActive = false;
+		try {
+			close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 
@@ -84,8 +87,14 @@ public class ConnClientHandler implements ClientHandler {
 	}
 
 	@Override
-	public void close() throws IOException {
+	public synchronized void close() throws IOException {
 		client.close();
+		isClosed = true;
+	}
+
+	@Override
+	public synchronized boolean isClosed() {
+		return isClosed;
 	}
 
 }

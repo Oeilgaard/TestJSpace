@@ -35,7 +35,11 @@ public class LobbyAcceptManager implements Runnable {
             }
 
             if (Lobby.getNrOfPlayers() == maxnrOfPlayer){
-                server.GetServerSpace().put("Begin");
+                try {
+                    server.GetServerSpace().put("Begin");
+                } catch (InterruptedException e){
+                    System.out.println("Error 2");
+                }
                 break serverLoop;
             }
 

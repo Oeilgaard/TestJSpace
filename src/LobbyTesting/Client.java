@@ -14,7 +14,7 @@ public class Client implements Runnable{
 
     }
 
-    public static void startClient(){
+    public static void startClient() throws InterruptedException {
 
         RemoteSpace chat;
 
@@ -107,6 +107,8 @@ public class Client implements Runnable{
             e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e){
             e.printStackTrace();
         }
     }

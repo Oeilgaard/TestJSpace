@@ -41,4 +41,6 @@ public interface ClientHandler {
 
 	public void close() throws IOException;
 
+	public boolean isClosed();
+
 }

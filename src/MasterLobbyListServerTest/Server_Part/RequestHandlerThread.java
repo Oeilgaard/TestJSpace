@@ -28,12 +28,16 @@ public class RequestHandlerThread implements Runnable {
             serverData.executor.execute(lobby);//calling execute method of ExecutorService
 
             //System.out.println("(Put Tuple with information about the lobbyID to the user)");
+            try {
+                serverData.requestSpace.put("Response", tuple[3], idForLobby);
 
-            serverData.requestSpace.put("Response",tuple[3],idForLobby);
+                //System.out.println("(Add Server information to entrySpace)");
 
-            //System.out.println("(Add Server information to entrySpace)");
+                serverData.lobbyOverviewSpace.put("Lobby", tuple[2], idForLobby);
 
-            serverData.lobbyOverviewSpace.put("Lobby", tuple[2], idForLobby);
+            } catch (InterruptedException e){
+                System.out.println("Error ");
+            }
 
             System.out.println("LobbyRequest has now been handled");
         } else {

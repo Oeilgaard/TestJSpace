@@ -26,24 +26,44 @@ package org.jspace;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 public class SequentialSpace implements Space {
 	
+	protected final int bound;
+	
 	protected final LinkedList<Tuple> tuples = new LinkedList<>();
 
+	/**
+	 * Create an unbounded sequential space.
+	 */
+	public SequentialSpace() {
+		this(-1);
+	}
+	
+	/**
+	 * Create a new sequential space with bound that limits the number of tuples that can be inserted in the space.
+	 * 
+	 * @param bound max number of tuples in the space.
+	 */
+	public SequentialSpace(int bound) {
+		this.bound = (bound<=0?-1:bound);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see org.jspace.Space#put(java.lang.Object[])
 	 */
 	@Override
-	public synchronized boolean put(Object ... fields) {
+	public synchronized boolean put(Object ... fields) throws InterruptedException {
+		while ((this.bound>0)&&(this.tuples.size()>=bound)) {
+			wait();
+		}
 		addTuple(new Tuple(Arrays.copyOf(fields, fields.length)));
 		notifyAll();
 		return true;
 	}
 	
-	protected void addTuple(Tuple tuple) {
+	protected synchronized void addTuple(Tuple tuple) {
 		tuples.add(tuple);
 	}
 	
@@ -56,13 +76,14 @@ public class SequentialSpace implements Space {
 		while (true) {
 			Tuple result = findTuple(new Template(Arrays.copyOf(fields,fields.length)),true);
 			if (result != null) {
+				notifyAll();
 				return result.getTuple();
 			}
 			wait(); 
 		}
 	}
 	
-	protected Tuple findTuple(Template template,boolean toRemove) {
+	protected synchronized Tuple findTuple(Template template,boolean toRemove) {
 		Iterator<Tuple> tuplesIterator = tuples.iterator();
 		while (tuplesIterator.hasNext()) {
 			Tuple t = tuplesIterator.next();
@@ -76,7 +97,7 @@ public class SequentialSpace implements Space {
 		return null;
 	}
 
-	protected LinkedList<Object[]> findAllTuples(Template template,boolean toRemove) {
+	protected synchronized LinkedList<Object[]> findAllTuples(Template template,boolean toRemove) {
 		LinkedList<Object[]> result = new LinkedList<Object[]>();
 		Iterator<Tuple> tuplesIterator = tuples.iterator();
 		Tuple t;
@@ -99,7 +120,11 @@ public class SequentialSpace implements Space {
 	@Override
 	public synchronized Object[] getp(TemplateField ... fields) {
 		Tuple result = findTuple(new Template(Arrays.copyOf(fields,fields.length)),true);
-		return (result==null?null:result.getTuple());
+		if (result != null) {
+			notifyAll();
+			return result.getTuple();
+		}
+		return null;
 	}
 
 	/*
@@ -109,6 +134,9 @@ public class SequentialSpace implements Space {
 	@Override
 	public synchronized LinkedList<Object[]> getAll(TemplateField ... fields){
 		LinkedList<Object[]> result = findAllTuples(new Template(Arrays.copyOf(fields,fields.length)),true);
+		if (result.size()>0) {
+			notifyAll();
+		}
 		return result;
 	}
 	
@@ -142,7 +170,7 @@ public class SequentialSpace implements Space {
 	 * @see org.jspace.Space#queryAll(org.jspace.TemplateField[])
 	 */
 	@Override
-	public LinkedList<Object[]> queryAll(TemplateField ... fields){
+	public synchronized LinkedList<Object[]> queryAll(TemplateField ... fields){
 		return findAllTuples(new Template(Arrays.copyOf(fields,fields.length)),false);
 	}
 	
