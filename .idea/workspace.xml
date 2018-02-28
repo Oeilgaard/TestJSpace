@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="Executor + More lobby extensions">
+    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DistributedDiningPhilosophers.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DistributedDiningPhilosophers.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Client.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Client.class" />
@@ -11,8 +11,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/DistributedProducerConsumer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/DistributedProducerConsumer.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/App.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/App.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestServer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestServer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/FIFOSpace.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/LIFOSpace.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/RemoteSpace.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/RemoteSpace.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SequentialSpace.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SequentialSpace.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository$1.class" />
@@ -28,26 +26,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/TcpGateBuilder.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/TcpGateBuilder.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/MarshalFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/MarshalFactory.class" />
       <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessage.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessage.class" />
-      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/Client.java" afterPath="$PROJECT_DIR$/src/LobbyTesting/Client.java" />
-      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/LobbyAcceptManager.java" afterPath="$PROJECT_DIR$/src/LobbyTesting/LobbyAcceptManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/FIFOSpace.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/LIFOSpace.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/RemoteSpace.java" afterPath="$PROJECT_DIR$/src/org/jspace/RemoteSpace.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/SequentialSpace.java" afterPath="$PROJECT_DIR$/src/org/jspace/SequentialSpace.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/SpaceRepository.java" afterPath="$PROJECT_DIR$/src/org/jspace/SpaceRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/ClientHandler.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/ClientHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/ConnClientGate.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/ConnClientGate.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/ConnClientHandler.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/ConnClientHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/ConnServerGate.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/ConnServerGate.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/KeepClientGate.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/KeepClientGate.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/KeepClientHandler.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/KeepClientHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/KeepServerGate.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/KeepServerGate.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/ServerGate.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/ServerGate.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/gate/TcpGateBuilder.java" afterPath="$PROJECT_DIR$/src/org/jspace/gate/TcpGateBuilder.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/io/MarshalFactory.java" afterPath="$PROJECT_DIR$/src/org/jspace/io/MarshalFactory.java" />
-      <change beforePath="$PROJECT_DIR$/src/org/jspace/protocol/ServerMessage.java" afterPath="$PROJECT_DIR$/src/org/jspace/protocol/ServerMessage.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -102,8 +80,8 @@
       <file leaf-file-name="RemoteSpace.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/jspace/RemoteSpace.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+            <state relative-caret-position="-25">
+              <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -176,6 +154,7 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -541,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519647133677</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Executor + More lobby extensions">
+      <created>1519810249069</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1519810249069</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -997,8 +983,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jspace/RemoteSpace.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+        <state relative-caret-position="-25">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding />
         </state>
       </provider>
