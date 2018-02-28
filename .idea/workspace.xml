@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java" />
       <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample2.fxml" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample2.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +18,8 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+            <state relative-caret-position="298">
+              <caret line="49" column="32" lean-forward="false" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -43,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LobbyConnectionManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LobbyConnectionManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="40" column="74" lean-forward="true" selection-start-line="40" selection-start-column="74" selection-end-line="40" selection-end-column="74" />
+            <state relative-caret-position="275">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,17 +55,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+            <state relative-caret-position="135">
+              <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
               <folding>
-                <element signature="e#607#608#0" expanded="true" />
-                <element signature="e#644#645#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#717#718#0" expanded="true" />
+                <element signature="e#1044#1045#0" expanded="true" />
+                <element signature="e#1081#1082#0" expanded="true" />
+                <element signature="e#1119#1120#0" expanded="true" />
+                <element signature="e#1154#1155#0" expanded="true" />
+                <element signature="e#1429#1430#0" expanded="true" />
+                <element signature="e#1465#1466#0" expanded="true" />
+                <element signature="e#1502#1503#0" expanded="true" />
+                <element signature="e#1535#1536#0" expanded="true" />
+                <element signature="e#1587#1588#0" expanded="true" />
+                <element signature="e#1631#1632#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-152">
+              <caret line="76" column="9" lean-forward="false" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -93,8 +101,8 @@
       <file leaf-file-name="ServerData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="27" column="66" lean-forward="true" selection-start-line="27" selection-start-column="66" selection-end-line="27" selection-end-column="66" />
+            <state relative-caret-position="400">
+              <caret line="28" column="66" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,38 +110,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sample2.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample2.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="16" column="130" lean-forward="true" selection-start-line="16" selection-start-column="130" selection-end-line="16" selection-end-column="130" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sample.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="425">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <marker date="1519830006619" expanded="true" signature="715:721" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -206,9 +190,9 @@
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
       </list>
     </option>
   </component>
@@ -291,6 +275,369 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DiningPhilosophers.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DistributedDiningPhilosophers.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/Philosopher.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Client.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/GamePlay.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Lobby.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyAcceptManager.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyDisconnectManager.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Server.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/TestOfLobby.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Client.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Server.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ConsumerAgent.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/DistributedProducerConsumer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerAgent.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerConsumer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/DefaultDateTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/ExclusionStrategy.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldAttributes.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingStrategy.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$FutureTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/GsonBuilder.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/InstanceCreator.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonArray.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializationContext.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonElement.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonIOException.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonNull.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonObject.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParseException.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonPrimitive.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializationContext.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonStreamParser.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSyntaxException.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapterFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Expose.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/JsonAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/SerializedName.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Since.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Until.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Preconditions.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$GenericArrayTypeImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$ParameterizedTypeImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$WildcardTypeImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$10.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$11.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$12.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$13.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$14.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$6.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$7.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$8.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$9.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/JsonReaderInternalAccess.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LazilyParsedNumber.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlBuilder.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlIterator.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$LinkedTreeMapIterator.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$Node.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$Node.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ObjectConstructor.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/PreJava9DateFormatProvider.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Primitives.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter$CurrentWrite.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory$Adapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory$Adapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$GsonContextImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$SingleTypeFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapterRuntimeTypeWrapper.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$10.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$11.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$12.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$13.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$14.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$15.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$16.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$17.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$18.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$19.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$20.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$21.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$22.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$23.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$24.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$25.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$27.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$28.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$29.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$30.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$31.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$32.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$33.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$34.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$36.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$6.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$7.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$8.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$9.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$EnumTypeAdapter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/util/ISO8601Utils.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/reflect/TypeToken.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonScope.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonToken.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonWriter.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/MalformedJsonException.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/util/VersionUtils.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/common/src/main/App.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestClient.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestServer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/common/src/main/SimpleCardGameTest.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaClient.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaServer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/ActualField.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/FormalField.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/RemoteSpace.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SequentialSpace.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Space.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/TemplateField.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientGate.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientHandler.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientGate.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientHandler.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnServerGate.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateBuilder.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientGate.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientHandler.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepServerGate.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ServerGate.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/TcpGateBuilder.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/UdpGateBuilder.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/ClassDictionary.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/JSonMarshaller.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/MarshalFactory.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/jSpaceMarshaller.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateDeserializer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateSerializer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleDeserializer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleSerializer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/jSonUtils.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessage.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessageType.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/InteractionMode.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/PutRequest.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessage.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessageType.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/pSpaceMessage.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous$DataWrapper.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Client_Part/Client.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/JoinServerScene.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/UserNameScene.fxml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample.fxml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample2.fxml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -603,7 +950,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519811977690</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Lobby disconnection handling">
+      <created>1519829781337</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1519829781337</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -681,7 +1035,8 @@
     <MESSAGE value="Executor" />
     <MESSAGE value="Executor + More lobby extensions" />
     <MESSAGE value="Executor + JavaFXClient added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Executor + JavaFXClient added" />
+    <MESSAGE value="Lobby disconnection handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lobby disconnection handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -996,14 +1351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="76" column="23" lean-forward="false" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample2.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
@@ -1028,8 +1375,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="66" lean-forward="true" selection-start-line="27" selection-start-column="66" selection-end-line="27" selection-end-column="66" />
+        <state relative-caret-position="400">
+          <caret line="28" column="66" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1038,21 +1385,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        <state relative-caret-position="425">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
-            <element signature="e#607#608#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#717#718#0" expanded="true" />
+            <marker date="1519830006619" expanded="true" signature="715:721" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1069,8 +1405,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+        <state relative-caret-position="298">
+          <caret line="49" column="32" lean-forward="false" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1093,9 +1429,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="40" column="74" lean-forward="true" selection-start-line="40" selection-start-column="74" selection-end-line="40" selection-end-column="74" />
+        <state relative-caret-position="275">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="76" column="9" lean-forward="false" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <element signature="e#1044#1045#0" expanded="true" />
+            <element signature="e#1081#1082#0" expanded="true" />
+            <element signature="e#1119#1120#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+            <element signature="e#1465#1466#0" expanded="true" />
+            <element signature="e#1502#1503#0" expanded="true" />
+            <element signature="e#1535#1536#0" expanded="true" />
+            <element signature="e#1587#1588#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

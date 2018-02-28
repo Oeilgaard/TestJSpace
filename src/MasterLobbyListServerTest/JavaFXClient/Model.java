@@ -8,9 +8,8 @@ import java.util.UUID;
 
 public class Model {
 
-    public static RemoteSpace requestSpace, lobbyListSpace, lobbySpace;
-    public static String serverIp;
     public static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
+    public static String serverIp;
 
     protected final static int REQUEST_CODE = 1;
     protected final static int CREATE_LOBBY_REQ = 11;
