@@ -19,12 +19,13 @@ import java.util.UUID;
 
 public class Controller {
 
+    public static final String LOBBY_LIST_SCENE = "LobbyListScene";
+    public static final String USER_NAME_SCENE = "UserNameScene";
+
     @FXML
     private ListView lobbyList;
     @FXML
     private TextField IP;
-    @FXML
-    private Button joinServerButton;
     @FXML
     private Button createUserNameButton;
     @FXML
@@ -36,60 +37,49 @@ public class Controller {
 
     @FXML
     public void joinServer(ActionEvent event) throws IOException {
-        System.out.println("Joining main server...");
+
         String urlForRemoteSpace = IP.getText();
         model = new Model();
         model.addIpToRemoteSpaces(urlForRemoteSpace);
 
-        Stage stage;
-        Parent root;
-
-        //get reference to the button's stage
-        stage=(Stage) joinServerButton.getScene().getWindow();
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("UserNameScene.fxml"));
-
-        //create a new scene with root and set the stage
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        changeScene(USER_NAME_SCENE);
     }
 
     @FXML
     public void createUser(ActionEvent event) throws InterruptedException {
-        String userNameString = userName.getText();
-        if(HelperFunctions.validName(userNameString)) {
 
-            System.out.println("c 63");
+        String userNameString = userName.getText();
+
+        if(HelperFunctions.validName(userNameString)) {
 
             createUserNameButton.setDisable(true);
             instructions.setText("");
             model.getRequest().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
 
-            System.out.println("c 69");
-
+            // Blocking until user recieves unique username
             Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.CREATE_UNIQUE_USERNAME),
-                    new ActualField(userNameString), new FormalField(String.class)); // TODO: why does it not block?
+                    new ActualField(userNameString), new FormalField(String.class));
 
-            System.out.println("c 74");
-
-            System.out.println(tuple.toString());
-            System.out.println(tuple.length);
-
-            System.out.println((String) tuple[3]);
-
-            model.setUniqueName((String) tuple[3]);
-
-
-
-            System.out.println("Creating user name...");
+            model.setUniqueName((String) tuple[3]); // Setting the user's name
             System.out.println("Unique name:");
             System.out.println(model.getUniqueName());
 
+            // Goto Lobby List
+            try {
+                changeScene(LOBBY_LIST_SCENE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             instructions.setText("Please only apply alphabetic characters (between 2-15 characters).");
         }
 
+    }
+
+    public void changeScene(String sceneName) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
+        Scene scene = new Scene(root);
+        Main.appWindow.setScene(scene);
     }
 
     @FXML

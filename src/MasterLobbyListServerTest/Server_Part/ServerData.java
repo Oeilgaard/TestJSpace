@@ -19,15 +19,17 @@ public class ServerData{
 
     ExecutorService executor = Executors.newFixedThreadPool(MAXIMUM_LOBBIES);//creating a pool of 5 threads
 
-    public ServerData(){
-        String serverAddress = JOptionPane.showInputDialog(
+    public ServerData() {
+
+            String serverAddress = JOptionPane.showInputDialog(
                 "Enter IP Address of this machine\n" +
-                        "it will run the server on port 25565:", "10.68.108.51");
+                        "it will run the server on port 25565:", "10.68.108.51"); //
 
-        serverRepos.addGate("tcp://" + serverAddress + ":25565/?keep");
-        serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);
-        serverRepos.add("requestSpace" , requestSpace);
-        serverRepos.add("responseSpace", responseSpace);
+            serverRepos.addGate("tcp://" + serverAddress + ":25565/?keep");
+            serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);
+            serverRepos.add("requestSpace" , requestSpace);
+            serverRepos.add("responseSpace", responseSpace);
     }
-
 }
+
+

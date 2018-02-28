@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    static Stage appWindow;
+
     public static void main(String[] args) {
         launch(args);
         System.out.println("Elegant closing");
@@ -18,10 +20,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("JoinServerScene.fxml"));
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        appWindow = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("JoinServerScene.fxml"));
+        appWindow.setScene(new Scene(root));
+        appWindow.show();
     }
 
 }
