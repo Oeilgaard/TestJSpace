@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
    <children>
       <Button fx:id="btn2" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" onAction="#fåList" text="Refresh server list" />
       <Label layoutX="108.0" layoutY="84.0" text="Server list" />
