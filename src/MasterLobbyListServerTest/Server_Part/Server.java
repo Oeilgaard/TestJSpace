@@ -38,7 +38,9 @@ public class Server {
 
     protected static int REQUEST_CODE = 1;
     protected static int CREATE_LOBBY_REQ = 11;
+    protected static int CREATE_USERNAME_REQ = 12;
     protected static int RESPONSE_CODE = 2;
+    protected static int CREATE_UNIQUE_USERNAME = 21;
 
     private static ServerData serverData;
 

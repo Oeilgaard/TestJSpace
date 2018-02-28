@@ -7,25 +7,24 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.SocketException;
 
 public class Main extends Application {
 
-    private static Controller controller;
+    static Stage appWindow;
 
     public static void main(String[] args) {
         launch(args);
-
         System.out.println("Elegant closing");
         System.exit(0);
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        appWindow = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("JoinServerScene.fxml"));
+        appWindow.setScene(new Scene(root));
+        appWindow.show();
     }
 
     @Override

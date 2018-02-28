@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,46 +19,79 @@ import java.util.UUID;
 
 public class Controller {
 
+    public static final String LOBBY_LIST_SCENE = "LobbyListScene";
+    public static final String USER_NAME_SCENE = "UserNameScene";
+
     @FXML
-    private ListView listView;
+    private ListView lobbyList;
     @FXML
-    private TextField txtfield1;
+    private TextField IP;
     @FXML
-    private Button btn1;
+    private Button createUserNameButton;
+    @FXML
+    private TextField userName;
+    @FXML
+    private Label instructions;
 
     private static Model model;
 
     public static Boolean connectedToLobby = false;
 
     @FXML
-    public void trykPåKnappen(ActionEvent event) throws IOException {
-        System.out.println("Du trykkede på knappen");
-        String urlForRemoteSpace = txtfield1.getText();
+    public void joinServer(ActionEvent event) throws IOException {
+
+        String urlForRemoteSpace = IP.getText();
         model = new Model();
         model.addIpToRemoteSpaces(urlForRemoteSpace);
 
-        Stage stage;
-        Parent root;
-
-        //get reference to the button's stage
-        stage=(Stage) btn1.getScene().getWindow();
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("sample2.fxml"));
-
-        //create a new scene with root and set the stage
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        changeScene(USER_NAME_SCENE);
     }
 
     @FXML
-    public void fåList(ActionEvent event) throws InterruptedException {
-        listView.getItems().clear();
+    public void createUser(ActionEvent event) throws InterruptedException {
+
+        String userNameString = userName.getText();
+
+        if(HelperFunctions.validName(userNameString)) {
+
+            createUserNameButton.setDisable(true);
+            instructions.setText("");
+            model.getRequest().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
+
+            // Blocking until user recieves unique username
+            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.CREATE_UNIQUE_USERNAME),
+                    new ActualField(userNameString), new FormalField(String.class));
+
+            model.setUniqueName((String) tuple[3]); // Setting the user's name
+            System.out.println("Unique name:");
+            System.out.println(model.getUniqueName());
+
+            // Goto Lobby List
+            try {
+                changeScene(LOBBY_LIST_SCENE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            instructions.setText("Please only apply alphabetic characters (between 2-15 characters).");
+        }
+
+    }
+
+    public void changeScene(String sceneName) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
+        Scene scene = new Scene(root);
+        Main.appWindow.setScene(scene);
+    }
+
+    @FXML
+    public void queryServers(ActionEvent event) throws InterruptedException {
+        lobbyList.getItems().clear();
 
         List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
-            listView.getItems().add(obj[1]);
+            lobbyList.getItems().add(obj[1]);
         }
     }
 

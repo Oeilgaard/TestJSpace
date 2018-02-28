@@ -39,9 +39,30 @@ public class RequestHandlerThread implements Runnable {
             }
 
             System.out.println("LobbyRequest has now been handled");
+        } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
+
+            String userName = (String) tuple[2];
+
+            if(validName(userName)) {
+                String uniqueName = uniqueUserName(userName);
+                try {
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.CREATE_UNIQUE_USERNAME, userName, uniqueName);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             System.out.println("Too many lobbies at once \n Deny request");
         }
+    }
+
+    public boolean validName(String name){
+        return name.matches("[a-zA-Z]+");
+    }
+
+    public String uniqueUserName(String name){
+        String salt = "#" + UUID.randomUUID().toString();
+        return name+salt;
     }
 
 
