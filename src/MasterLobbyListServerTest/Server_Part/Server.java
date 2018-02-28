@@ -38,6 +38,7 @@ public class Server {
 
     protected static int REQUEST_CODE = 1;
     protected static int CREATE_LOBBY_REQ = 11;
+    protected static int RESPONSE_CODE = 2;
 
     private static ServerData serverData;
 

@@ -7,11 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.SocketException;
 
 public class Main extends Application {
 
+    private static Controller controller;
+
     public static void main(String[] args) {
         launch(args);
+
         System.out.println("Elegant closing");
         System.exit(0);
     }
@@ -22,6 +26,14 @@ public class Main extends Application {
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws InterruptedException {
+
+        if(Controller.connectedToLobby) {
+            Controller.sendDisconnectTuple();
+        }
     }
 
 }

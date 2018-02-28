@@ -27,6 +27,8 @@ public class Controller {
 
     private static Model model;
 
+    public static Boolean connectedToLobby = false;
+
     @FXML
     public void trykPåKnappen(ActionEvent event) throws IOException {
         System.out.println("Du trykkede på knappen");
@@ -62,6 +64,19 @@ public class Controller {
     @FXML
     public void requestEnLobby(ActionEvent event) throws InterruptedException {
         model.getRequest().put(1,11,"Super fun Lobby!","John");
+    }
+
+    @FXML
+    public void joinCreatedLobby(ActionEvent event) throws InterruptedException, IOException {
+        Object[] tuple = model.getRequest().get(new ActualField(2),new ActualField("John"),new FormalField(UUID.class));
+        model.joinLobby((UUID) tuple[2]);
+        model.getLobbySpace().put("Connection",true,"John");
+        connectedToLobby = true;
+    }
+
+    public static void sendDisconnectTuple() throws InterruptedException {
+        model.getLobbySpace().put("Connection",false,"John");
+        connectedToLobby = false;
     }
 
 }

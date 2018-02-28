@@ -20,18 +20,17 @@ public class RequestHandlerThread implements Runnable {
         if ((int) tuple[1] == Server.CREATE_LOBBY_REQ){
             System.out.println("Trying to create a lobby with the name : " + tuple[2] + "\n");
 
-            //System.out.println("(Add Thread to lobbyThreads)");
+            //Add Thread to lobbyThreads
 
             UUID idForLobby = UUID.randomUUID();
 
-            Runnable lobby = new Lobby(idForLobby,serverData.requestSpace,serverData.serverRepos);
-            serverData.executor.execute(lobby);//calling execute method of ExecutorService
+            Runnable lobby = new Lobby(idForLobby,serverData.lobbyOverviewSpace,serverData.serverRepos,(String)tuple[3]);
+            serverData.executor.execute(lobby);  //calling execute method of ExecutorService
 
-            //System.out.println("(Put Tuple with information about the lobbyID to the user)");
             try {
-                serverData.requestSpace.put("Response", tuple[3], idForLobby);
+                serverData.requestSpace.put(Server.RESPONSE_CODE, tuple[3], idForLobby);
 
-                //System.out.println("(Add Server information to entrySpace)");
+                //Add Server information to entrySpace
 
                 serverData.lobbyOverviewSpace.put("Lobby", tuple[2], idForLobby);
 
