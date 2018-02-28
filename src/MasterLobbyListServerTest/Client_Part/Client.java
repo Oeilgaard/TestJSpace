@@ -23,7 +23,7 @@ public class Client {
 
         String serverAddress = JOptionPane.showInputDialog(
                 "Enter IP Address of a machine that is\n" +
-                        "running the server on port 25565:", "10.69.49.0");
+                        "running the server on port 25565:", "10.68.108.51");
 
         RemoteSpace serverSpace = new RemoteSpace("tcp://" + serverAddress + ":25565/requestSpace?keep");
 

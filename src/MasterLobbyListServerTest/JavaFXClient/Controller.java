@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -19,18 +20,24 @@ import java.util.UUID;
 public class Controller {
 
     @FXML
-    private ListView listView;
+    private ListView lobbyList;
     @FXML
-    private TextField txtfield1;
+    private TextField IP;
     @FXML
-    private Button btn1;
+    private Button joinServerButton;
+    @FXML
+    private Button createUserNameButton;
+    @FXML
+    private TextField userName;
+    @FXML
+    private Label instructions;
 
     private static Model model;
 
     @FXML
-    public void trykPåKnappen(ActionEvent event) throws IOException {
-        System.out.println("Du trykkede på knappen");
-        String urlForRemoteSpace = txtfield1.getText();
+    public void joinServer(ActionEvent event) throws IOException {
+        System.out.println("Joining main server...");
+        String urlForRemoteSpace = IP.getText();
         model = new Model();
         model.addIpToRemoteSpaces(urlForRemoteSpace);
 
@@ -38,9 +45,9 @@ public class Controller {
         Parent root;
 
         //get reference to the button's stage
-        stage=(Stage) btn1.getScene().getWindow();
+        stage=(Stage) joinServerButton.getScene().getWindow();
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("sample2.fxml"));
+        root = FXMLLoader.load(getClass().getResource("UserNameScene.fxml"));
 
         //create a new scene with root and set the stage
         Scene scene = new Scene(root);
@@ -49,13 +56,50 @@ public class Controller {
     }
 
     @FXML
-    public void fåList(ActionEvent event) throws InterruptedException {
-        listView.getItems().clear();
+    public void createUser(ActionEvent event) throws InterruptedException {
+        String userNameString = userName.getText();
+        if(HelperFunctions.validName(userNameString)) {
+
+            System.out.println("c 63");
+
+            createUserNameButton.setDisable(true);
+            instructions.setText("");
+            model.getRequest().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
+
+            System.out.println("c 69");
+
+            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.CREATE_UNIQUE_USERNAME),
+                    new ActualField(userNameString), new FormalField(String.class)); // TODO: why does it not block?
+
+            System.out.println("c 74");
+
+            System.out.println(tuple.toString());
+            System.out.println(tuple.length);
+
+            System.out.println((String) tuple[3]);
+
+            model.setUniqueName((String) tuple[3]);
+
+
+
+            System.out.println("Creating user name...");
+            System.out.println("Unique name:");
+            System.out.println(model.getUniqueName());
+
+        } else {
+            instructions.setText("Please only apply alphabetic characters (between 2-15 characters).");
+        }
+
+    }
+
+    @FXML
+    public void queryServers(ActionEvent event) throws InterruptedException {
+        lobbyList.getItems().clear();
 
         List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
-            listView.getItems().add(obj[1]);
+            lobbyList.getItems().add(obj[1]);
         }
     }
 

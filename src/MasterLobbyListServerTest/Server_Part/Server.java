@@ -38,6 +38,9 @@ public class Server {
 
     protected static int REQUEST_CODE = 1;
     protected static int CREATE_LOBBY_REQ = 11;
+    protected static int CREATE_USERNAME_REQ = 12;
+    protected static int RESPONSE_CODE = 2;
+    protected static int CREATE_UNIQUE_USERNAME = 21;
 
     private static ServerData serverData;
 
@@ -49,8 +52,9 @@ public class Server {
         PrimaryLoop:
         while (true) {
 
-            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
 
+            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
+            System.out.print("Spawning new thread...");
             ExecutorService executor = Executors.newFixedThreadPool(5);//creating a pool of 5 threads
 
             Runnable tempReqHandler = new RequestHandlerThread(serverData, tuple);
