@@ -262,7 +262,7 @@ public class Controller {
     }
 
     //TODO: implement Join-lobby button for highlighted choice
-    public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException {
+    public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException {
         if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
             if(mouseEvent.getClickCount() == 2){
 
@@ -278,6 +278,27 @@ public class Controller {
                 tuple = model.getLobbyList().queryp(new ActualField("Lobby"),
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
+
+                model.joinLobby((UUID) tuple[2]);
+
+                Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
+                tryToJoinLobby.start();
+
+                changeScene(LOADING_LOBBY_SCENE);
+
+                model.getServerResponseMonitor().sync();
+
+                switch (model.getResponseFromLobby()){
+                    case 0:
+                        changeScene(LOBBY_LIST_SCENE);
+                        break;
+                    case 1:
+                        changeScene(LOBBY_LIST_SCENE);
+                        break;
+                    case 2:
+                        changeScene("LobbyScene");
+                        break;
+                }
             }
         }
     }
