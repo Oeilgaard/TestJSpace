@@ -27,6 +27,7 @@ public class Controller {
 
     public static final String LOBBY_LIST_SCENE = "LobbyListScene";
     public static final String USER_NAME_SCENE = "UserNameScene";
+    public static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
 
     @FXML
     private ScrollPane scroll;
@@ -123,11 +124,7 @@ public class Controller {
         Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
         tryToJoinLobby.start();
 
-        changeScene("ConnectingToLobby");
-
-        //model.getLobbySpace().put("Connection",true,"John");
-        //connectedToLobby = true;
-
+        changeScene(LOADING_LOBBY_SCENE);
 
         model.getServerResponseMonitor().sync();
 
@@ -166,9 +163,9 @@ public class Controller {
 
     @FXML
     public void pressReadyButton(ActionEvent e) throws InterruptedException {
-        System.out.println("Before pressing : " + readyForGameplay);
+
         readyForGameplay = !readyForGameplay;
-        System.out.println("After pressing : " + readyForGameplay);
+
         if(readyForGameplay) {
             model.getLobbySpace().getp(new ActualField("Ready"),new ActualField(!readyForGameplay),new ActualField(model.getUniqueName()));
             model.getLobbySpace().put("Ready", readyForGameplay, model.getUniqueName());
