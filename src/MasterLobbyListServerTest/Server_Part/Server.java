@@ -39,6 +39,8 @@ public class Server {
     protected static int REQUEST_CODE = 1;
     protected static int CREATE_LOBBY_REQ = 11;
     protected static int CREATE_USERNAME_REQ = 12;
+    protected static int JOIN_LOBBY_REQ = 13;
+
     protected static int RESPONSE_CODE = 2;
     protected static int CREATE_UNIQUE_USERNAME = 21;
 
@@ -52,6 +54,7 @@ public class Server {
         PrimaryLoop:
         while (true) {
 
+            //TODO: Re-evaluate req. and response codes - are they unnessacary as we have seperate spaces?
             Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
 
             ExecutorService executor = Executors.newFixedThreadPool(5);//creating a pool of 5 threads
