@@ -10,12 +10,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,11 +45,9 @@ public class Controller {
     @FXML
     private Label instructionsLobbyName;
 
+    private static ArrayList<UUID> lobbyIds;
     private static Model model;
-
     public static Boolean connectedToLobby = false;
-
-
 
     @FXML
     public void joinServer(ActionEvent event) throws IOException {
@@ -54,6 +55,7 @@ public class Controller {
         String urlForRemoteSpace = IP.getText();
         model = new Model();
         model.addIpToRemoteSpaces(urlForRemoteSpace);
+        lobbyIds = new ArrayList<>();
 
         changeScene(USER_NAME_SCENE);
     }
@@ -123,7 +125,7 @@ public class Controller {
             connectedToLobby = true;
 
             try {
-                //TODO: Go to Lobby
+                //TODO: Update list automatically when joining.
                 changeScene(LOBBY_LIST_SCENE);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -153,12 +155,14 @@ public class Controller {
     @FXML
     public void queryServers(ActionEvent event) throws InterruptedException {
         lobbyList.getItems().clear();
-
         List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
             lobbyList.getItems().add(obj[1]);
+            lobbyIds.add((UUID) obj[2]);
         }
+
+        //lobbies.toString();
     }
 
     @FXML
@@ -184,7 +188,27 @@ public class Controller {
         connectedToLobby = false;
     }
 
-    public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) {
-        System.out.println("clicked on " + lobbyList.getSelectionModel().getSelectedItem());
+    //TODO: implement Join-lobby button for highlighted choice
+    public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException {
+        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+            if(mouseEvent.getClickCount() == 2){
+
+                Object[] tuple = null;
+
+                int index = lobbyList.getSelectionModel().getSelectedIndex();
+
+                System.out.println("Double clicked join: " + lobbyList.getSelectionModel().getSelectedItem()
+                        + " index: " + index);
+
+                // Query the desired lobby-tuple (non-blocking)
+
+//                tuple = model.getLobbyList().queryp(new ActualField("Lobby"),
+//                        new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
+//                        new ActualField(lobbyIds.get(index)));
+                
+               // model.getLobbySpace().put("Connection",true,model.getUniqueName());
+
+            }
+        }
     }
 }
