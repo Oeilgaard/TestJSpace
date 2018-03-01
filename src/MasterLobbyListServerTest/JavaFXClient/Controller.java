@@ -202,12 +202,9 @@ public class Controller {
 
                 // Query the desired lobby-tuple (non-blocking)
 
-//                tuple = model.getLobbyList().queryp(new ActualField("Lobby"),
-//                        new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
-//                        new ActualField(lobbyIds.get(index)));
-                
-               // model.getLobbySpace().put("Connection",true,model.getUniqueName());
-
+                tuple = model.getLobbyList().queryp(new ActualField("Lobby"),
+                        new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
+                        new ActualField(lobbyIds.get(index)));
             }
         }
     }

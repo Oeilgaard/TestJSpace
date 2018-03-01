@@ -19,7 +19,7 @@ public class RequestHandlerThread implements Runnable {
     public void run() {
         if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
 
-            System.out.println("Trying to create a lobby with the name : " + tuple[2] + "\n");
+            System.out.println("Creating a lobby with the name : " + tuple[2] + "\n");
 
             //Add Thread to lobbyThreads
 
