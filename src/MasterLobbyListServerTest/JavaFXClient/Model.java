@@ -17,7 +17,15 @@ public class Model {
     protected final static int RESPONSE_CODE = 2;
     protected final static int CREATE_UNIQUE_USERNAME = 21;
 
+    private int responseFromLobby = 0;
+
     private String uniqueName;
+
+    private ServerResponseMonitor serverResponseMonitor;
+
+    public Model(){
+        serverResponseMonitor = new ServerResponseMonitor();
+    }
 
     public void addIpToRemoteSpaces(String ip) throws IOException {
         requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
@@ -53,4 +61,15 @@ public class Model {
         this.uniqueName = uniqueName;
     }
 
+    public ServerResponseMonitor getServerResponseMonitor() {
+        return serverResponseMonitor;
+    }
+
+    public void changeResponseFromLobby(int responseFromLobby){
+        this.responseFromLobby = responseFromLobby;
+    }
+
+    public int getResponseFromLobby() {
+        return responseFromLobby;
+    }
 }

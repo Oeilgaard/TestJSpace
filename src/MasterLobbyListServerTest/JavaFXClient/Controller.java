@@ -1,18 +1,24 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
+import com.sun.source.tree.SynchronizedTree;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +28,12 @@ public class Controller {
     public static final String LOBBY_LIST_SCENE = "LobbyListScene";
     public static final String USER_NAME_SCENE = "UserNameScene";
 
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private TextField chatTxtField;
+    @FXML
+    private VBox vb1;
     @FXML
     private ListView lobbyList;
     @FXML
@@ -36,6 +48,7 @@ public class Controller {
     private static Model model;
 
     public static Boolean connectedToLobby = false;
+    public static Boolean readyForGameplay = false;
 
     @FXML
     public void joinServer(ActionEvent event) throws IOException {
@@ -100,17 +113,69 @@ public class Controller {
         model.getRequest().put(1,11,"Super fun Lobby!","John");
     }
 
+    //TODO Add button to join selected lobby
+
     @FXML
     public void joinCreatedLobby(ActionEvent event) throws InterruptedException, IOException {
         Object[] tuple = model.getRequest().get(new ActualField(2),new ActualField("John"),new FormalField(UUID.class));
         model.joinLobby((UUID) tuple[2]);
-        model.getLobbySpace().put("Connection",true,"John");
-        connectedToLobby = true;
+
+        Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
+        tryToJoinLobby.start();
+
+        changeScene("ConnectingToLobby");
+
+        //model.getLobbySpace().put("Connection",true,"John");
+        //connectedToLobby = true;
+
+
+        model.getServerResponseMonitor().sync();
+
+        switch (model.getResponseFromLobby()){
+            case 0:
+                changeScene(LOBBY_LIST_SCENE);
+                break;
+            case 1:
+                changeScene(LOBBY_LIST_SCENE);
+                break;
+            case 2:
+                changeScene("LobbyScene");
+                break;
+        }
+
     }
 
     public static void sendDisconnectTuple() throws InterruptedException {
         model.getLobbySpace().put("Connection",false,"John");
         connectedToLobby = false;
+    }
+
+    @FXML
+    public void textToChat(ActionEvent e){
+
+        String text = chatTxtField.getText();
+
+        Label chatText = new Label(text);
+        chatText.setWrapText(true);
+        chatText.prefWidth(254);
+
+        vb1.getChildren().add(chatText);
+        chatTxtField.clear();
+        scroll.setVvalue(1.0);
+    }
+
+    @FXML
+    public void pressReadyButton(ActionEvent e) throws InterruptedException {
+        System.out.println("Before pressing : " + readyForGameplay);
+        readyForGameplay = !readyForGameplay;
+        System.out.println("After pressing : " + readyForGameplay);
+        if(readyForGameplay) {
+            model.getLobbySpace().getp(new ActualField("Ready"),new ActualField(!readyForGameplay),new ActualField(model.getUniqueName()));
+            model.getLobbySpace().put("Ready", readyForGameplay, model.getUniqueName());
+        } else {
+            model.getLobbySpace().get(new ActualField("Ready"),new ActualField(!readyForGameplay),new ActualField(model.getUniqueName()));
+            model.getLobbySpace().put("Ready", readyForGameplay, model.getUniqueName());
+        }
     }
 
 }

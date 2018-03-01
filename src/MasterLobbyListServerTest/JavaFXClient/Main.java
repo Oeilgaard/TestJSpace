@@ -29,7 +29,6 @@ public class Main extends Application {
 
     @Override
     public void stop() throws InterruptedException {
-
         if(Controller.connectedToLobby) {
             Controller.sendDisconnectTuple();
         }
