@@ -8,8 +8,8 @@ public class Gameplay {
         this.playerInfo = playerInfo;
     }
 
-    public void RunGamePlay(){
-
+    public void runGamePlay(){
+        System.out.println("Playing Love Letter...");
     }
 
 }

@@ -17,8 +17,9 @@ public class RequestHandlerThread implements Runnable {
 
     @Override
     public void run() {
-        if ((int) tuple[1] == Server.CREATE_LOBBY_REQ){
-            System.out.println("Trying to create a lobby with the name : " + tuple[2] + "\n");
+        if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
+
+            System.out.println("Creating a lobby with the name : " + tuple[2] + "\n");
 
             //Add Thread to lobbyThreads
 
@@ -28,10 +29,8 @@ public class RequestHandlerThread implements Runnable {
             serverData.executor.execute(lobby);  //calling execute method of ExecutorService
 
             try {
-                serverData.requestSpace.put(Server.RESPONSE_CODE, tuple[3], idForLobby);
-
+                serverData.responseSpace.put(Server.RESPONSE_CODE, tuple[3], idForLobby);
                 //Add Server information to entrySpace
-
                 serverData.lobbyOverviewSpace.put("Lobby", tuple[2], idForLobby);
 
             } catch (InterruptedException e){
@@ -39,6 +38,7 @@ public class RequestHandlerThread implements Runnable {
             }
 
             System.out.println("LobbyRequest has now been handled");
+
         } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
 
             String userName = (String) tuple[2];
@@ -51,6 +51,12 @@ public class RequestHandlerThread implements Runnable {
                     e.printStackTrace();
                 }
             }
+        } else if ((int) tuple[1] == Server.JOIN_LOBBY_REQ) {
+
+            // PSEUDO
+            // if (lobby exists AND not in game) { join(); }
+            // else { lobby unavailable respond }
+
         } else {
             System.out.println("Too many lobbies at once \n Deny request");
         }
@@ -61,8 +67,8 @@ public class RequestHandlerThread implements Runnable {
     }
 
     public String uniqueUserName(String name){
-        String salt = "#" + UUID.randomUUID().toString();
-        return name+salt;
+        String id = "#" + UUID.randomUUID().toString();
+        return name+id;
     }
 
 

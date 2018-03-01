@@ -14,6 +14,7 @@ public class Model {
     protected final static int REQUEST_CODE = 1;
     protected final static int CREATE_LOBBY_REQ = 11;
     protected final static int CREATE_USERNAME_REQ = 12;
+
     protected final static int RESPONSE_CODE = 2;
     protected final static int CREATE_UNIQUE_USERNAME = 21;
 

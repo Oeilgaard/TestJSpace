@@ -12,8 +12,8 @@
    <children>
       <Button fx:id="btn2" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" onAction="#queryServers" text="Refresh server list" />
       <Label layoutX="108.0" layoutY="84.0" text="Server list" />
-      <ListView fx:id="lobbyList" layoutX="108.0" layoutY="109.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="414.0" layoutY="109.0" mnemonicParsing="false" onAction="#requestEnLobby" text="Request server" />
-      <Button layoutX="414.0" layoutY="158.0" mnemonicParsing="false" onAction="#joinCreatedLobby" text="Join Requested server" />
+      <ListView fx:id="lobbyList" layoutX="108.0" layoutY="109.0" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#clickLobby"/>
+      <Button layoutX="414.0" layoutY="109.0" mnemonicParsing="false" onAction="#goToCreateLobbyScene" text="Create new Lobby" />
+
    </children>
 </AnchorPane>

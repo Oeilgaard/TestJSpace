@@ -24,6 +24,8 @@ public class LobbyConnectionManager implements Runnable{
             Object[] tuple = null;
 
             try {
+                // Indices:
+                // 0: tuple type 1: true for joining, false for leaving 2: unique username
                 tuple = lobbySpace.get(new ActualField("Connection"),new FormalField(Boolean.class),new FormalField(String.class));
 
                 if(tuple != null && tuple[0].equals("Connection")){

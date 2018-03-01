@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class ServerData{
 
+    //TODO: fryser hvis vi laver mere end 8 lobbies.
     final static int MAXIMUM_LOBBIES = 8;
 
     SequentialSpace lobbyOverviewSpace = new SequentialSpace();
@@ -23,7 +24,7 @@ public class ServerData{
 
             String serverAddress = JOptionPane.showInputDialog(
                 "Enter IP Address of this machine\n" +
-                        "it will run the server on port 25565:", "10.69.33.98"); //
+                        "it will run the server on port 25565:", "10.68.96.109"); //
 
             serverRepos.addGate("tcp://" + serverAddress + ":25565/?keep");
             serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);

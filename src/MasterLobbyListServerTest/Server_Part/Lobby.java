@@ -8,26 +8,27 @@ import java.util.UUID;
 
 public class Lobby implements Runnable {
 
+    public final static int LOBBY_MESSAGE = 200;
+    private final static int MAX_PLAYER_PR_LOBBY = 5;
+
     private UUID lobbyID;
+    // TODO: hvorfor ikke bare en reference til serverData?
     private SequentialSpace lobbyOverviewSpace;
     private SpaceRepository serverRepos;
     private SequentialSpace lobbySpace;
-
     private PlayerInfo playerInfo;
     private String lobbyLeader;
-
-    private Boolean beginFlag = true;
-
-    private final static int MAX_PLAYER_PR_LOBBY = 5;
-
-    public static int LOBBY_MESSAGE = 200;
+    private Boolean beginFlag;
+    private Boolean inGame;
 
     public Lobby(UUID lobbyID, SequentialSpace lobbyOverviewSpace, SpaceRepository serverRepos, String lobbyLeader){
         this.lobbyID = lobbyID;
         this.lobbyOverviewSpace = lobbyOverviewSpace;
         this.serverRepos = serverRepos;
         this.lobbyLeader = lobbyLeader;
-        playerInfo = new PlayerInfo(MAX_PLAYER_PR_LOBBY);
+        this.playerInfo = new PlayerInfo(MAX_PLAYER_PR_LOBBY);
+        this.inGame = false;
+        this.beginFlag = false;
     }
 
     @Override
@@ -36,6 +37,7 @@ public class Lobby implements Runnable {
         lobbySpace = new SequentialSpace();
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
+        // TODO: prone til concurrency problemer?
         Thread lobbyConnectionManager = new Thread(new LobbyConnectionManager(lobbySpace, playerInfo, lobbyLeader));
         lobbyConnectionManager.start();
 
@@ -70,10 +72,8 @@ public class Lobby implements Runnable {
         lobbyConnectionManager.interrupt();
 
         if(beginFlag) {
-
             Gameplay gp = new Gameplay(playerInfo);
-
-            gp.RunGamePlay();
+            gp.runGamePlay();
         }
 
         try {
