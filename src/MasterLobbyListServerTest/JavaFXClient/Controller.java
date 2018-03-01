@@ -99,10 +99,15 @@ public class Controller {
         Main.appWindow.setScene(scene);
 
 //        if(sceneName.equals(LOBBY_LIST_SCENE)){
-//            updateLobbyList();
+//            try {
+//                update();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 //        }
     }
 
+    @FXML
     public void createLobby(ActionEvent event) throws InterruptedException {
 
         String lobbyNameString = lobbyName.getText();
@@ -127,6 +132,7 @@ public class Controller {
             try {
                 //TODO: Update list automatically when joining.
                 changeScene(LOBBY_LIST_SCENE);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -136,21 +142,28 @@ public class Controller {
         }
     }
 
-//    public void updateLobbyList(){
-//        lobbyList.getItems().clear();
-//
-//        List<Object[]> tuple = null;
-//
-//        try {
-//            tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        for (Object[] obj : tuple) {
-//            lobbyList.getItems().add(obj[1]);
-//        }
-//    }
+    public void updateLobbyList(){
+        //lobbyList.getItems().clear();
+        try {
+            List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+            for (Object[] obj : tuple) {
+                lobbyList.getItems().add(obj[1]);
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update() throws InterruptedException {
+        lobbyList.getItems().clear();
+        List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+
+        for (Object[] obj : tuple) {
+            lobbyList.getItems().add(obj[1]);
+            lobbyIds.add((UUID) obj[2]);
+        }
+    }
 
     @FXML
     public void queryServers(ActionEvent event) throws InterruptedException {
@@ -161,8 +174,6 @@ public class Controller {
             lobbyList.getItems().add(obj[1]);
             lobbyIds.add((UUID) obj[2]);
         }
-
-        //lobbies.toString();
     }
 
     @FXML

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class ServerData{
 
+    //TODO: fryser hvis vi laver mere end 8 lobbies.
     final static int MAXIMUM_LOBBIES = 8;
 
     SequentialSpace lobbyOverviewSpace = new SequentialSpace();
