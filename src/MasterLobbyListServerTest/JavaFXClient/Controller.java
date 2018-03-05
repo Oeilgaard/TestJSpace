@@ -86,18 +86,24 @@ public class Controller {
             model.getRequest().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
 
             // Blocks until user receives unique username (due to 'get')
-            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.CREATE_UNIQUE_USERNAME),
-                    new ActualField(userNameString), new FormalField(String.class));
+            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.ASSIGN_UNIQUE_USERNAME_RESP),
+                    new FormalField(Integer.class), new ActualField(userNameString), new FormalField(String.class));
 
-            model.setUniqueName((String) tuple[3]); // Setting the user's name
-            System.out.println("Unique name:");
-            System.out.println(model.getUniqueName());
+            if((int) tuple[2] == model.OK) {
+                model.setUniqueName((String) tuple[4]); // Setting the user's name
+                System.out.println("Unique name:");
+                System.out.println(model.getUniqueName());
 
-            // Goto Lobby List
-            try {
-                changeScene(LOBBY_LIST_SCENE);
-            } catch (IOException e) {
-                e.printStackTrace();
+                // Goto Lobby List
+                try {
+                    changeScene(LOBBY_LIST_SCENE);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // should ideally never happen, however can happen if the sanity check is bypassed client-side
+            } else if((int) tuple[2] == model.BAD_REQUEST) {
+                instructionsUserName.setText("Server denied username. Please try again.");
+                createUserNameButton.setDisable(false);
             }
         } else {
             instructionsUserName.setText("Please only apply alphabetic characters (between 2-15 characters).");
@@ -124,8 +130,10 @@ public class Controller {
     public void createLobby(ActionEvent event) throws InterruptedException {
 
         String lobbyNameString = lobbyName.getText();
+        System.out.println("L132");
 
         if(HelperFunctions.validName(lobbyNameString)) {
+            System.out.println("L135");
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 

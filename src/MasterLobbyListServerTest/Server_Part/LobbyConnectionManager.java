@@ -10,6 +10,8 @@ public class LobbyConnectionManager implements Runnable{
     private PlayerInfo playerInfo;
     private String lobbyLeader;
 
+    private static final String CONNECTION = "Connection";
+
     public LobbyConnectionManager(SequentialSpace lobbySpace, PlayerInfo playerInfo, String lobbyLeader){
         this.lobbySpace = lobbySpace;
         this.playerInfo = playerInfo;
@@ -25,14 +27,16 @@ public class LobbyConnectionManager implements Runnable{
 
             try {
                 // Indices:
-                // 0: tuple type 1: true for joining, false for leaving 2: unique username
-                tuple = lobbySpace.get(new ActualField("Connection"),new FormalField(Boolean.class),new FormalField(String.class));
+                // 0: request type type 1: true for joining, false for leaving 2: unique username
+                tuple = lobbySpace.get(new ActualField(CONNECTION),new FormalField(Boolean.class),new FormalField(String.class));
 
-                if(tuple != null && tuple[0].equals("Connection")){
+                if(tuple != null && tuple[0].equals(CONNECTION)){
 
                     if(tuple[1].equals(true)){
 
                         playerInfo.addPlayer((String)tuple[2]);
+
+                        // put 'join tuple' to user
 
                     } else if (tuple[1].equals(false)){
 
@@ -44,7 +48,6 @@ public class LobbyConnectionManager implements Runnable{
                         }
                     }
                 }
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

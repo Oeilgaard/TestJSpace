@@ -46,16 +46,22 @@ public class RequestHandlerThread implements Runnable {
             if(validName(userName)) {
                 String uniqueName = uniqueUserName(userName);
                 try {
-                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.CREATE_UNIQUE_USERNAME, userName, uniqueName);
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, Server.OK, userName, uniqueName);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, Server.BAD_REQUEST, userName, "");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        } else if ((int) tuple[1] == Server.JOIN_LOBBY_REQ) {
+        } else if ((int) tuple[1] == Server.JOIN_LOBBY_REQ) { //TODO: remove?
 
             // PSEUDO
-            // if (lobby exists AND not in game) { join(); }
-            // else { lobby unavailable respond }
+            // if (lobby exists AND not in game) { //send join tuple }
+            // else { lobby unavailable respond (and auto-refresh list?) }
 
         } else {
             System.out.println("Too many lobbies at once \n Deny request");

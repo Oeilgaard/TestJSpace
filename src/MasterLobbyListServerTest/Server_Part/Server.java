@@ -39,10 +39,14 @@ public class Server {
     protected static int REQUEST_CODE = 1;
     protected static int CREATE_LOBBY_REQ = 11;
     protected static int CREATE_USERNAME_REQ = 12;
-    protected static int JOIN_LOBBY_REQ = 13;
+    protected static int JOIN_LOBBY_REQ = 13; // remove?
 
-    protected static int RESPONSE_CODE = 2;
-    protected static int CREATE_UNIQUE_USERNAME = 21;
+    protected final static int RESPONSE_CODE = 2;
+    protected static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
+
+    // 'HTTP style'
+    protected final static int OK = 200;
+    protected final static int BAD_REQUEST = 400;
 
     private static ServerData serverData;
 
