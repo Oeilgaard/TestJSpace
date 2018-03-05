@@ -107,8 +107,8 @@ public class Controller {
             }
         } else {
             instructionsUserName.setText("Please only apply alphabetic characters (between 2-15 characters).");
+            createUserNameButton.setDisable(false);
         }
-
     }
 
     public void changeScene(String sceneName) throws IOException {
@@ -130,36 +130,40 @@ public class Controller {
     public void createLobby(ActionEvent event) throws InterruptedException {
 
         String lobbyNameString = lobbyName.getText();
-        System.out.println("L132");
 
         if(HelperFunctions.validName(lobbyNameString)) {
-            System.out.println("L135");
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 
             model.getRequest().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
             // Wait for server to be created
-            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.getUniqueName()), new FormalField(UUID.class));
+            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new FormalField(Integer.class),
+                    new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
-            try {
-                model.joinLobby((UUID) tuple[2]);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if((int) tuple[1] == model.OK){
+                try {
+                    model.joinLobby((UUID) tuple[3]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                connectedToLobby = true;
+
+                try {
+                    //TODO: Update list automatically when joining.
+                    changeScene(LOBBY_LIST_SCENE);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if((int) tuple[1] == model.BAD_REQUEST){
+                instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
+                createLobbyButton.setDisable(false);
             }
-
-            connectedToLobby = true;
-
-            try {
-                //TODO: Update list automatically when joining.
-                changeScene(LOBBY_LIST_SCENE);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         } else {
             instructionsLobbyName.setText("Please only apply alphabetic characters (between 2-15 characters).");
+            createLobbyButton.setDisable(true);
         }
     }
 
@@ -202,7 +206,6 @@ public class Controller {
 
     @FXML
     public void goToCreateLobbyScene(ActionEvent event) throws InterruptedException {
-        //model.getRequest().put(1,11,"Super fun Lobby!","John");
         try {
             changeScene(CREATE_LOBBY_SCENE);
         } catch (IOException e) {

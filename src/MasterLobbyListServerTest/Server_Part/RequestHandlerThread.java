@@ -21,24 +21,33 @@ public class RequestHandlerThread implements Runnable {
 
             System.out.println("Creating a lobby with the name : " + tuple[2] + "\n");
 
-            //Add Thread to lobbyThreads
+            String serverName = (String) tuple[2];
+            String user = (String) tuple[3];
 
-            UUID idForLobby = UUID.randomUUID();
+            if(validName(serverName)) {
+                //Add Thread to lobbyThreads
 
-            Runnable lobby = new Lobby(idForLobby,serverData.lobbyOverviewSpace,serverData.serverRepos,(String)tuple[3]);
-            serverData.executor.execute(lobby);  //calling execute method of ExecutorService
+                UUID idForLobby = UUID.randomUUID();
 
-            try {
-                serverData.responseSpace.put(Server.RESPONSE_CODE, tuple[3], idForLobby);
-                //Add Server information to entrySpace
-                serverData.lobbyOverviewSpace.put("Lobby", tuple[2], idForLobby);
+                Runnable lobby = new Lobby(idForLobby,serverData.lobbyOverviewSpace,serverData.serverRepos,user);
+                serverData.executor.execute(lobby);  //calling execute method of ExecutorService
 
-            } catch (InterruptedException e){
-                System.out.println("Error ");
+                try {
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.OK, user, idForLobby);
+                    //Add Server information to entrySpace
+                    serverData.lobbyOverviewSpace.put("Lobby", serverName, idForLobby);
+                } catch (InterruptedException e){
+                    System.out.println("Error");
+                }
+                System.out.println("LobbyRequest has now been handled");
+            } else {
+                UUID idForLobby = UUID.randomUUID();
+                try {
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.BAD_REQUEST, user, idForLobby);
+                } catch (InterruptedException e){
+                    System.out.println("Error");
+                }
             }
-
-            System.out.println("LobbyRequest has now been handled");
-
         } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
 
             String userName = (String) tuple[2];
@@ -69,7 +78,7 @@ public class RequestHandlerThread implements Runnable {
     }
 
     public boolean validName(String name){
-        return name.matches("[a-zA-Z]+");
+        return name.matches("[a-zA-Z0-9_]+");
     }
 
     public String uniqueUserName(String name){
