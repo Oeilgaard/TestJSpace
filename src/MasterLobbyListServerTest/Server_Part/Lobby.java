@@ -37,7 +37,7 @@ public class Lobby implements Runnable {
         lobbySpace = new SequentialSpace();
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
-        // TODO: prone til concurrency problemer?
+        // TODO: overvej om det er prone til concurrency problemer?
         Thread lobbyConnectionManager = new Thread(new LobbyConnectionManager(lobbySpace, playerInfo, lobbyLeader));
         lobbyConnectionManager.start();
 

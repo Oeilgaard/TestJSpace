@@ -41,11 +41,11 @@ public class Model {
     }
 
     //TODO: rename to "Space"...
-    public RemoteSpace getLobbyList(){
+    public RemoteSpace getLobbyListSpace(){
         return lobbyListSpace;
     }
 
-    public RemoteSpace getRequest(){
+    public RemoteSpace getRequestSpace(){
         return requestSpace;
     }
 

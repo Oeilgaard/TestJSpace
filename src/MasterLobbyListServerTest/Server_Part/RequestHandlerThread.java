@@ -66,12 +66,6 @@ public class RequestHandlerThread implements Runnable {
                     e.printStackTrace();
                 }
             }
-        } else if ((int) tuple[1] == Server.JOIN_LOBBY_REQ) { //TODO: remove?
-
-            // PSEUDO
-            // if (lobby exists AND not in game) { //send join tuple }
-            // else { lobby unavailable respond (and auto-refresh list?) }
-
         } else {
             System.out.println("Too many lobbies at once \n Deny request");
         }

@@ -1,6 +1,5 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,16 +12,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -83,7 +77,7 @@ public class Controller {
             createUserNameButton.setDisable(true);
             instructionsUserName.setText("");
 
-            model.getRequest().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
+            model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
 
             // Blocks until user receives unique username (due to 'get')
             Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.ASSIGN_UNIQUE_USERNAME_RESP),
@@ -135,7 +129,7 @@ public class Controller {
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 
-            model.getRequest().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
+            model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
             // Wait for server to be created
             Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new FormalField(Integer.class),
@@ -170,7 +164,7 @@ public class Controller {
     public void updateLobbyList(){
         //lobbyList.getItems().clear();
         try {
-            List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+            List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
             for (Object[] obj : tuple) {
                 lobbyList.getItems().add(obj[1]);
             }
@@ -183,7 +177,7 @@ public class Controller {
     public void update() throws InterruptedException {
         lobbyList.getItems().clear();
 
-        List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
             lobbyList.getItems().add(obj[1]);
@@ -194,7 +188,7 @@ public class Controller {
     @FXML
     public void queryServers(ActionEvent event) throws InterruptedException {
         lobbyList.getItems().clear();
-        List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
             lobbyList.getItems().add(obj[1]);
@@ -215,7 +209,7 @@ public class Controller {
 
     @FXML
     public void joinCreatedLobby(ActionEvent event) throws InterruptedException, IOException {
-        Object[] tuple = model.getRequest().get(new ActualField(2),new ActualField("John"),new FormalField(UUID.class));
+        Object[] tuple = model.getRequestSpace().get(new ActualField(2),new ActualField("John"),new FormalField(UUID.class));
         model.joinLobby((UUID) tuple[2]);
 
         Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
@@ -286,7 +280,7 @@ public class Controller {
 
                 // Query the desired lobby-tuple (non-blocking)
 
-                tuple = model.getLobbyList().queryp(new ActualField("Lobby"),
+                tuple = model.getLobbyListSpace().queryp(new ActualField("Lobby"),
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
