@@ -13,6 +13,7 @@ public class Main extends Application {
     static Stage appWindow;
 
     public static void main(String[] args) {
+        System.out.println("Starting main");
         launch(args);
         System.out.println("Elegant closing");
         System.exit(0);
