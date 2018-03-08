@@ -119,7 +119,7 @@ public class Controller {
             ListView updateListView = ((ListView) root.lookup("#lobbyList"));
 
             updateListView.getItems().clear();
-            List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+            List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
             for (Object[] obj : tuple) {
                 updateListView.getItems().add(obj[1]);
                 lobbyIds.add((UUID) obj[2]);
@@ -170,7 +170,7 @@ public class Controller {
     @FXML
     public void queryServers(ActionEvent event) throws InterruptedException {
         lobbyList.getItems().clear();
-        List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
             lobbyList.getItems().add(obj[1]);

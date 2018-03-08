@@ -16,7 +16,11 @@ public class Model {
     protected final static int CREATE_USERNAME_REQ = 12;
 
     protected final static int RESPONSE_CODE = 2;
-    protected final static int CREATE_UNIQUE_USERNAME = 21;
+    protected final static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
+
+    // 'http style'
+    protected final static int OK = 200;
+    protected final static int BAD_REQUEST = 400;
 
     private int responseFromLobby = 0;
 
@@ -36,11 +40,11 @@ public class Model {
     }
 
     //TODO: rename to "Space"...
-    public RemoteSpace getLobbyList(){
+    public RemoteSpace getLobbyListSpace(){
         return lobbyListSpace;
     }
 
-    public RemoteSpace getRequest(){
+    public RemoteSpace getRequestSpace(){
         return requestSpace;
     }
 
