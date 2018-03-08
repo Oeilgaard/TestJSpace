@@ -20,6 +20,7 @@ public class Lobby {
     }
 
     public void startLobby() throws InterruptedException {
+        System.out.println("Hey");
 
         conManager = new Thread( new LobbyAcceptManager(serverSpace,maxPlayerNr));
         leaveManager = new Thread( new LobbyDisconnectManager(serverSpace));
