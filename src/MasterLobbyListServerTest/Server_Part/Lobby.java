@@ -37,9 +37,12 @@ public class Lobby implements Runnable {
         lobbySpace = new SequentialSpace();
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
-        // TODO: overvej om det er prone til concurrency problemer?
+        // TODO: prone til concurrency problemer?
         Thread lobbyConnectionManager = new Thread(new LobbyConnectionManager(lobbySpace, playerInfo, lobbyLeader));
         lobbyConnectionManager.start();
+
+        Thread updateAgent = new Thread(new LobbyChatAgent(lobbySpace, playerInfo));
+        updateAgent.start();
 
         System.out.println("Lobby is now running\n");
 
@@ -82,5 +85,6 @@ public class Lobby implements Runnable {
             e.printStackTrace();
         }
         serverRepos.remove(lobbyID.toString());
+        System.out.println("Lobby is closed");
     }
 }
