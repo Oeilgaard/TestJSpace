@@ -3,249 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="merge ex into single lobby&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;src/MasterLobbyListServerTest/JavaFXClient/Controller.java&#10;&#9;src/MasterLobbyListServerTest/Server_Part/Lobby.java&#10;&#9;src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java&#10;&#9;src/MasterLobbyListServerTest/Server_Part/ServerData.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DiningPhilosophers.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DiningPhilosophers.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DistributedDiningPhilosophers.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DistributedDiningPhilosophers.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/Philosopher.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/Philosopher.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Client.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Client.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/GamePlay.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/GamePlay.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Lobby.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Lobby.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyAcceptManager.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyAcceptManager.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyDisconnectManager.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyDisconnectManager.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Server.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Server.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/TestOfLobby.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/TestOfLobby.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Client.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Client.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Server.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Server.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ConsumerAgent.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ConsumerAgent.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/DistributedProducerConsumer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/DistributedProducerConsumer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerAgent.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerAgent.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerConsumer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerConsumer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/DefaultDateTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/DefaultDateTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/ExclusionStrategy.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/ExclusionStrategy.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldAttributes.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldAttributes.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$2.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$3.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$4.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$4.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$5.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$5.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingStrategy.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingStrategy.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$2.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$3.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$4.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$4.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$5.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$5.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$FutureTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$FutureTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/GsonBuilder.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/GsonBuilder.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/InstanceCreator.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/InstanceCreator.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonArray.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonArray.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializationContext.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializationContext.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonElement.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonElement.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonIOException.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonIOException.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonNull.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonNull.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonObject.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonObject.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParseException.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParseException.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonPrimitive.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonPrimitive.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializationContext.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializationContext.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonStreamParser.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonStreamParser.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSyntaxException.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSyntaxException.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$2.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapterFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapterFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Expose.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Expose.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/JsonAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/JsonAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/SerializedName.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/SerializedName.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Since.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Since.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Until.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Until.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Preconditions.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Preconditions.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$GenericArrayTypeImpl.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$GenericArrayTypeImpl.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$ParameterizedTypeImpl.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$ParameterizedTypeImpl.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$WildcardTypeImpl.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$WildcardTypeImpl.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$10.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$10.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$11.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$11.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$12.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$12.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$13.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$13.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$14.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$14.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$2.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$3.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$4.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$4.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$5.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$5.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$6.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$6.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$7.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$7.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$8.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$8.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$9.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$9.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/JsonReaderInternalAccess.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/JsonReaderInternalAccess.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LazilyParsedNumber.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LazilyParsedNumber.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlBuilder.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlBuilder.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlIterator.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlIterator.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$LinkedTreeMapIterator.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$LinkedTreeMapIterator.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$Node.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$Node.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$Node.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$Node.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ObjectConstructor.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ObjectConstructor.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/PreJava9DateFormatProvider.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/PreJava9DateFormatProvider.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Primitives.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Primitives.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter$CurrentWrite.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter$CurrentWrite.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$2.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$3.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$4.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$4.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory$Adapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory$Adapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory$Adapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory$Adapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$2.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$GsonContextImpl.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$GsonContextImpl.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$SingleTypeFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$SingleTypeFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapterRuntimeTypeWrapper.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapterRuntimeTypeWrapper.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$10.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$10.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$11.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$11.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$12.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$12.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$13.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$13.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$14.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$14.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$15.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$15.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$16.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$16.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$17.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$17.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$18.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$18.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$19.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$19.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$2.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$20.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$20.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$21.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$21.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$22.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$22.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$23.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$23.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$24.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$24.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$25.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$25.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$27.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$27.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$28.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$28.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$29.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$29.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$3.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$30.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$30.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$31.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$31.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$32.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$32.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$33.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$33.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$34.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$34.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$36.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$36.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$4.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$4.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$5.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$5.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$6.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$6.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$7.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$7.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$8.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$8.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$9.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$9.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$EnumTypeAdapter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$EnumTypeAdapter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/util/ISO8601Utils.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/util/ISO8601Utils.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/reflect/TypeToken.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/reflect/TypeToken.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonScope.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonScope.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonToken.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonToken.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonWriter.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonWriter.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/MalformedJsonException.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/MalformedJsonException.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/util/VersionUtils.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/util/VersionUtils.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/App.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/App.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestClient.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestClient.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestServer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestServer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/SimpleCardGameTest.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/SimpleCardGameTest.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaClient.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaClient.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaServer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaServer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/ActualField.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/ActualField.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/FormalField.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/FormalField.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/RemoteSpace.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/RemoteSpace.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SequentialSpace.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SequentialSpace.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Space.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Space.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/TemplateField.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/TemplateField.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple$1.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientGate.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientGate.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientHandler.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientHandler.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientGate.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientGate.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientHandler.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientHandler.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnServerGate.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnServerGate.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateBuilder.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateBuilder.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientGate.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientGate.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientHandler.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientHandler.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepServerGate.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepServerGate.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ServerGate.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ServerGate.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/TcpGateBuilder.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/TcpGateBuilder.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/UdpGateBuilder.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/UdpGateBuilder.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/ClassDictionary.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/ClassDictionary.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/JSonMarshaller.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/JSonMarshaller.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/MarshalFactory.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/MarshalFactory.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/jSpaceMarshaller.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/jSpaceMarshaller.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateDeserializer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateDeserializer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateSerializer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateSerializer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleDeserializer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleDeserializer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleSerializer.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleSerializer.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/jSonUtils.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/jSonUtils.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessage.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessage.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessageType.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessageType.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/InteractionMode.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/InteractionMode.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/PutRequest.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/PutRequest.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessage.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessage.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessageType.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessageType.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/pSpaceMessage.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/pSpaceMessage.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous$DataWrapper.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous$DataWrapper.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous.class" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -257,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="38" column="42" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+              <caret line="44" column="58" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -270,8 +30,8 @@
       <file leaf-file-name="ServerData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="113">
+              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -280,7 +40,7 @@
       <file leaf-file-name="Lobby.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
+            <state relative-caret-position="19">
               <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
               <folding />
             </state>
@@ -317,12 +77,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestHandlerThread.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RequestHandlerThread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="68" column="10" lean-forward="false" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="319">
+              <caret line="62" column="117" lean-forward="false" selection-start-line="62" selection-start-column="117" selection-end-line="62" selection-end-column="117" />
+              <folding>
+                <element signature="e#2836#2837#0" expanded="true" />
+                <element signature="e#2888#2889#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -330,7 +93,7 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
+            <state relative-caret-position="646">
               <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
@@ -341,11 +104,8 @@
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding>
-                <element signature="e#129#130#0" expanded="true" />
-                <element signature="e#186#187#0" expanded="true" />
-              </folding>
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -353,7 +113,7 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
+            <state relative-caret-position="1482">
               <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
               <folding />
             </state>
@@ -444,14 +204,14 @@
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ConnectingToLobby.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
       </list>
     </option>
   </component>
@@ -462,9 +222,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="30" />
+    <option name="x" value="-17" />
     <option name="y" value="22" />
-    <option name="width" value="1920" />
+    <option name="width" value="1425" />
     <option name="height" value="1174" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -583,7 +343,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Server (1)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -769,8 +529,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Server (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Server (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
         <item index="2" class="java.lang.String" itemvalue="Application.Client (2)" />
         <item index="3" class="java.lang.String" itemvalue="Application.Client (1)" />
         <item index="4" class="java.lang.String" itemvalue="Application.Server" />
@@ -995,7 +755,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54846000" />
+    <option name="totallyTimeSpent" value="55621000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1007,7 +767,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="3" y="22" width="1920" height="1174" extended-state="6" />
+    <frame x="0" y="22" width="1920" height="1174" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35480943" sideWeight="0.484375" order="6" side_tool="false" content_ui="tabs" />
@@ -1028,15 +788,59 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35480943" sideWeight="0.484375" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35480943" sideWeight="0.515625" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25260416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35480943" sideWeight="0.48645833" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42105263" sideWeight="0.51354164" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15572916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1368,30 +1172,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="68" column="10" lean-forward="false" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+        <state relative-caret-position="456">
+          <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -1412,34 +1199,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
+        <state relative-caret-position="646">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1447,19 +1218,51 @@
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#129#130#0" expanded="true" />
-            <element signature="e#186#187#0" expanded="true" />
-          </folding>
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1482">
+          <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="38" column="42" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+          <caret line="44" column="58" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="62" column="117" lean-forward="false" selection-start-line="62" selection-start-column="117" selection-end-line="62" selection-end-column="117" />
+          <folding>
+            <element signature="e#2836#2837#0" expanded="true" />
+            <element signature="e#2888#2889#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
