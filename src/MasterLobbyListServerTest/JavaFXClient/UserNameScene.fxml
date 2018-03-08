@@ -10,9 +10,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
     <children>
+        <TextField fx:id="userName" layoutX="206.0" layoutY="129.0" onKeyPressed="#requestNameVhaEnter" />
         <Button fx:id="createUserNameButton" layoutX="370.0" layoutY="129.0" mnemonicParsing="false" onAction="#createUser" text="Go" />
         <Label layoutX="206.0" layoutY="105.0" text="Enter nick name" />
-        <TextField fx:id="userName" layoutX="206.0" layoutY="129.0" />
         <Label fx:id="instructionsUserName" layoutX="206.0" layoutY="172.0" text="" />
     </children>
 </AnchorPane>

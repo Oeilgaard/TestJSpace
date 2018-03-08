@@ -18,6 +18,21 @@ public class Model {
     protected final static int RESPONSE_CODE = 2;
     protected final static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
 
+    protected final static int LOBBY_REQ = 30;
+    protected final static int CONNECT = 31;
+    protected final static int DISCONNECT = 32;
+    protected final static int BEGIN = 33;
+    protected final static int CLOSE = 34;
+
+    protected final static int LOBBY_RESP = 40;
+    protected final static int CONNECT_DENIED = 41;
+    protected final static int CONNECT_ACCEPTED = 42;
+
+    protected final static int LOBBY_UPDATE = 50;
+    protected final static int CHAT_MESSAGE = 51;
+
+    protected final static int GET_PLAYERLIST = 60;
+
     // 'http style'
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
@@ -76,5 +91,9 @@ public class Model {
 
     public int getResponseFromLobby() {
         return responseFromLobby;
+    }
+
+    public void resetLobbyInfo(){
+        lobbySpace = null;
     }
 }

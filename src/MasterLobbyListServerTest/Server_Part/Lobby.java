@@ -21,6 +21,9 @@ public class Lobby implements Runnable {
     public final static int CONNECT_ACCEPTED = 42;
 
     public final static int LOBBY_UPDATE = 50;
+    public final static int CHAT_MESSAGE = 51;
+
+    protected final static int GET_PLAYERLIST = 60;
 
     private final static int MAX_PLAYER_PR_LOBBY = 5;
 
@@ -55,6 +58,9 @@ public class Lobby implements Runnable {
 
         System.out.println("Lobby is now running\n");
 
+        Thread chatAgent = new Thread(new LobbyChatAgent(lobbySpace,players));
+        chatAgent.start();
+
         BeginLoop:
         while(true) {
             try {
@@ -63,32 +69,32 @@ public class Lobby implements Runnable {
                 int req = (int) tuple[1];
                 String name = (String) tuple[2];
 
-                if(req==CONNECT){
-                    if(noPlayers < MAX_PLAYER_PR_LOBBY){
+                if (req == CONNECT) {
+                    if (noPlayers < MAX_PLAYER_PR_LOBBY) {
                         players.add(name); // add player to players
                         noPlayers++;
-                        lobbySpace.put(new ActualField(LOBBY_RESP), new ActualField(CONNECT_ACCEPTED), new ActualField(name));
+                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, name);
                         updatePlayers(name, CONNECT);
                     } else { // lobby full
-                        lobbySpace.put(new ActualField(LOBBY_RESP), new ActualField(CONNECT_DENIED), new ActualField(name));
+                        lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, name);
                     }
-                } else if (req==DISCONNECT){
-                    players.remove(name); // remove player from players
-                    noPlayers--;
-                    updatePlayers(name, DISCONNECT);
-                    if (name.equals(lobbyLeader)){
+                } else if (req == DISCONNECT) {
+                    if (name.equals(lobbyLeader)) {
                         System.out.println("The lobby leader left! Lobby is closing");
                         beginFlag = false;
                         updatePlayers(name, CLOSE);
                         break BeginLoop;
                     }
-                } else if(req==CLOSE){
+                    players.remove(name); // remove player from players
+                    noPlayers--;
+                    updatePlayers(name, DISCONNECT);
+                } else if (req == CLOSE) {
                     System.out.println("Lobby is closing");
                     beginFlag = false;
                     updatePlayers(name, CLOSE);
                     break BeginLoop;
-                } else if(req==BEGIN){
-                    if(noPlayers >= 2){
+                } else if (req == BEGIN) {
+                    if (noPlayers >= 2) {
                         System.out.println("Ready to begin!");
                         beginFlag = true;
                         updatePlayers(name, BEGIN);
@@ -96,6 +102,8 @@ public class Lobby implements Runnable {
                     } else {
                         System.out.println("Not enough players to begin");
                     }
+                } else if (req == GET_PLAYERLIST) {
+                    lobbySpace.put(LOBBY_RESP, players, tuple[2]);
                 } else {
                     System.out.println("Unknown request");
                 }
@@ -118,6 +126,7 @@ public class Lobby implements Runnable {
             gp.runGamePlay();
         }
 
+        chatAgent.interrupt();
         serverRepos.remove(lobbyID.toString());
         System.out.println("Lobby is closed");
     }
@@ -126,12 +135,12 @@ public class Lobby implements Runnable {
         if(action==BEGIN) {
             for(String p : players){
                 // burde 'responded' også stå her?
-                lobbySpace.put(new ActualField(LOBBY_UPDATE), new ActualField(action), new ActualField(p));
+                lobbySpace.put(LOBBY_UPDATE,action,p, "");
             }
         } else {
             for(String p : players) {
                 if(p != actingPlayer) {
-                    lobbySpace.put(new ActualField(LOBBY_UPDATE), new ActualField(action), new ActualField(p));
+                    lobbySpace.put(LOBBY_UPDATE,action,p, "");
                 }
             }
         }

@@ -13,11 +13,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
    <children>
-      <Button layoutX="64.0" layoutY="346.0" mnemonicParsing="false" text="Ready" />
+      <Button layoutX="149.0" layoutY="336.0" mnemonicParsing="false" text="Ready" />
       <Label fx:id="lobbyTitle" layoutX="40.0" layoutY="27.0" prefHeight="17.0" prefWidth="180.0" text="Insert Lobby Name Here" />
       <Label layoutX="40.0" layoutY="56.0" text="Chat Box" />
-      <ListView fx:id="listOfPlayers" focusTraversable="false" layoutX="375.0" layoutY="56.0" mouseTransparent="true" prefHeight="315.0" prefWidth="127.0" />
-      <Label layoutX="375.0" layoutY="27.0" text="Players" />
+      <ListView fx:id="listOfPlayers" focusTraversable="false" layoutX="418.0" layoutY="56.0" mouseTransparent="true" prefHeight="315.0" prefWidth="125.0" />
+      <Label layoutX="418.0" layoutY="27.0" text="Players" />
       <TextField fx:id="chatTxtField" layoutX="39.0" layoutY="289.0" prefHeight="25.0" prefWidth="225.0" />
       <Button fx:id="sendBtn" defaultButton="true" layoutX="265.0" layoutY="289.0" mnemonicParsing="false" onAction="#textToChat" text="Send" />
       <ScrollPane fx:id="scroll" layoutX="39.0" layoutY="73.0" pannable="true" prefHeight="213.0" prefWidth="269.0" vbarPolicy="ALWAYS" vvalue="1.0">
@@ -25,6 +25,5 @@
             <VBox fx:id="vb1" maxHeight="999999.0" prefHeight="212.0" prefWidth="254.0" />
          </content>
       </ScrollPane>
-      <ListView fx:id="readyList" focusTraversable="false" layoutX="500.0" layoutY="56.0" mouseTransparent="true" prefHeight="315.0" prefWidth="88.0" />
    </children>
 </AnchorPane>

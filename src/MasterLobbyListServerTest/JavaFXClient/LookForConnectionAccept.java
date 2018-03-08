@@ -14,9 +14,9 @@ public class LookForConnectionAccept implements Runnable {
     @Override
     public void run() {
         try {
-            Object[] tuple = model.getLobbySpace().get(new ActualField(model.RESPONSE_CODE),new ActualField(model.getUniqueName()),new FormalField(Boolean.class));
+            Object[] tuple = model.getLobbySpace().get(new ActualField(model.LOBBY_RESP),new FormalField(Integer.class),new ActualField(model.getUniqueName()));
 
-            if((Boolean) tuple[2]){
+            if(tuple[1].equals(model.CONNECT_ACCEPTED)){
                 TimerForLobbyJoining.lobbyConnectionSuccess(2);
             } else {
                 TimerForLobbyJoining.lobbyConnectionSuccess(1);
