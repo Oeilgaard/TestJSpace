@@ -4,6 +4,8 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
+import java.util.ArrayList;
+
 public class LobbyConnectionManager implements Runnable{
 
     private SequentialSpace lobbySpace;
@@ -41,6 +43,10 @@ public class LobbyConnectionManager implements Runnable{
                         } else {
                             playerInfo.addPlayer((String) tuple[2], lobbySpace);
                             lobbySpace.put(2, tuple[2], true);
+                            ArrayList<String> userToUpdate = playerInfo.getOtherPlayers((String) tuple[2]);
+                            for (String user : userToUpdate) {
+                                lobbySpace.put("LobbyUpdate","connection", user, "join", tuple[2]);
+                            }
                         }
 
                         // put 'join tuple' to user
@@ -48,6 +54,10 @@ public class LobbyConnectionManager implements Runnable{
                     } else if (tuple[1].equals(false)){
 
                         playerInfo.removePlayer((String)tuple[2],lobbySpace);
+                        ArrayList<String> userToUpdate = playerInfo.getOtherPlayers((String) tuple[2]);
+                        for (String user : userToUpdate) {
+                            lobbySpace.put("LobbyUpdate","connection", user, "left", tuple[2]);
+                        }
 
                         if (tuple[2].equals(lobbyLeader)){
 

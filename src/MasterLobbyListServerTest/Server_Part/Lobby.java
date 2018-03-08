@@ -1,6 +1,5 @@
 package MasterLobbyListServerTest.Server_Part;
 
-import MasterLobbyListServerTest.JavaFXClient.LookForUpdatesAgent;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
@@ -42,7 +41,7 @@ public class Lobby implements Runnable {
         Thread lobbyConnectionManager = new Thread(new LobbyConnectionManager(lobbySpace, playerInfo, lobbyLeader));
         lobbyConnectionManager.start();
 
-        Thread updateAgent = new Thread(new LobbyUpdateAgent(lobbySpace, playerInfo));
+        Thread updateAgent = new Thread(new LobbyChatAgent(lobbySpace, playerInfo));
         updateAgent.start();
 
         System.out.println("Lobby is now running\n");

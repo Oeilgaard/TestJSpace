@@ -12,16 +12,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,8 +37,6 @@ public class Controller {
     private ListView lobbyList;
     @FXML
     private ListView listOfPlayers;
-    @FXML
-    private ListView readyList;
     @FXML
     private TextField IP;
     @FXML
@@ -66,7 +59,6 @@ public class Controller {
     private static Thread updateAgent;
 
     public static Boolean connectedToLobby = false;
-    public static Boolean readyForGameplay = false;
 
     @FXML
     public void joinServer(ActionEvent event) throws IOException, InterruptedException {
@@ -141,7 +133,7 @@ public class Controller {
             model.getRequest().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
             // Wait for server to be created
-            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.getUniqueName()), new FormalField(UUID.class));
+            model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
             try {
                 //TODO: Update list automatically when joining.
@@ -184,11 +176,6 @@ public class Controller {
         connectedToLobby = false;
     }
 
-    public static void updateChat(String text){
-
-
-    }
-
     @FXML
     public void textToChat(ActionEvent e) throws InterruptedException {
 
@@ -205,7 +192,7 @@ public class Controller {
         scroll.setVvalue(1.0);
 
         System.out.println("Sending update tuple");
-        model.getLobbySpace().put("Update","chat",model.getUniqueName(),text);
+        model.getLobbySpace().put("Chat",model.getUniqueName(),text);
     }
 
 
@@ -253,7 +240,7 @@ public class Controller {
                         updatePlayerLobbyList(root);
                         connectedToLobby = true;
 
-                        updateAgent = new Thread(new LookForUpdatesAgent(model, root));
+                        updateAgent = new Thread(new ClientChatUpdateAgent(model, root));
                         updateAgent.start();
 
                         break;
