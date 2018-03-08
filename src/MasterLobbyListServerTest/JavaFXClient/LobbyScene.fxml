@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -8,13 +11,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
    <children>
-      <Label layoutX="40.0" layoutY="27.0" prefHeight="17.0" prefWidth="180.0" text="Insert Lobby Name Here" />
+      <Button layoutX="64.0" layoutY="346.0" mnemonicParsing="false" text="Ready" />
+      <Label fx:id="lobbyTitle" layoutX="40.0" layoutY="27.0" prefHeight="17.0" prefWidth="180.0" text="Insert Lobby Name Here" />
       <Label layoutX="40.0" layoutY="56.0" text="Chat Box" />
-      <ListView layoutX="375.0" layoutY="56.0" prefHeight="315.0" prefWidth="200.0" />
+      <ListView fx:id="listOfPlayers" focusTraversable="false" layoutX="375.0" layoutY="56.0" mouseTransparent="true" prefHeight="315.0" prefWidth="127.0" />
       <Label layoutX="375.0" layoutY="27.0" text="Players" />
-      <Button layoutX="64.0" layoutY="346.0" mnemonicParsing="false" onAction="#pressReadyButton" text="Ready" />
       <TextField fx:id="chatTxtField" layoutX="39.0" layoutY="289.0" prefHeight="25.0" prefWidth="225.0" />
       <Button fx:id="sendBtn" defaultButton="true" layoutX="265.0" layoutY="289.0" mnemonicParsing="false" onAction="#textToChat" text="Send" />
       <ScrollPane fx:id="scroll" layoutX="39.0" layoutY="73.0" pannable="true" prefHeight="213.0" prefWidth="269.0" vbarPolicy="ALWAYS" vvalue="1.0">
@@ -22,5 +25,6 @@
             <VBox fx:id="vb1" maxHeight="999999.0" prefHeight="212.0" prefWidth="254.0" />
          </content>
       </ScrollPane>
+      <ListView fx:id="readyList" focusTraversable="false" layoutX="500.0" layoutY="56.0" mouseTransparent="true" prefHeight="315.0" prefWidth="88.0" />
    </children>
 </AnchorPane>

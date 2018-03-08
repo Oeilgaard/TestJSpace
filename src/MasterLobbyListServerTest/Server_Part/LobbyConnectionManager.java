@@ -36,13 +36,18 @@ public class LobbyConnectionManager implements Runnable{
 
                     if(tuple[1].equals(true)){
 
-                        playerInfo.addPlayer((String)tuple[2]);
+                        if(playerInfo.maxPlayerNr == playerInfo.nrOfPlayers){
+                            lobbySpace.put(2,tuple[2],false);
+                        } else {
+                            playerInfo.addPlayer((String) tuple[2], lobbySpace);
+                            lobbySpace.put(2, tuple[2], true);
+                        }
 
                         // put 'join tuple' to user
 
                     } else if (tuple[1].equals(false)){
 
-                        playerInfo.removePlayer((String)tuple[2]);
+                        playerInfo.removePlayer((String)tuple[2],lobbySpace);
 
                         if (tuple[2].equals(lobbyLeader)){
 

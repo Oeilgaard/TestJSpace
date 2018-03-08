@@ -22,14 +22,14 @@ public class ServerData{
 
     public ServerData() {
 
-            String serverAddress = JOptionPane.showInputDialog(
+        String serverAddress = JOptionPane.showInputDialog(
                 "Enter IP Address of this machine\n" +
-                        "it will run the server on port 25565:", "10.68.127.206"); //
+                        "it will run the server on port 25565:", "10.16.168.103"); //
 
-            serverRepos.addGate("tcp://" + serverAddress + ":25565/?keep");
-            serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);
-            serverRepos.add("requestSpace" , requestSpace);
-            serverRepos.add("responseSpace", responseSpace);
+        serverRepos.addGate("tcp://" + serverAddress + ":25565/?keep");
+        serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);
+        serverRepos.add("requestSpace" , requestSpace);
+        serverRepos.add("responseSpace", responseSpace);
     }
 }
 

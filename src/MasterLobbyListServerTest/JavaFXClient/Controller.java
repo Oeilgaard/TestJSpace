@@ -12,11 +12,16 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +41,10 @@ public class Controller {
     @FXML
     private ListView lobbyList;
     @FXML
+    private ListView listOfPlayers;
+    @FXML
+    private ListView readyList;
+    @FXML
     private TextField IP;
     @FXML
     private Button createUserNameButton;
@@ -43,6 +52,8 @@ public class Controller {
     private TextField userName;
     @FXML
     private Label instructionsUserName;
+    @FXML
+    private Label lobbyTitle;
     @FXML
     private TextField lobbyName;
     @FXML
@@ -52,12 +63,13 @@ public class Controller {
 
     private static ArrayList<UUID> lobbyIds;
     private static Model model;
+    private static Thread updateAgent;
 
     public static Boolean connectedToLobby = false;
     public static Boolean readyForGameplay = false;
 
     @FXML
-    public void joinServer(ActionEvent event) throws IOException {
+    public void joinServer(ActionEvent event) throws IOException, InterruptedException {
 
         String urlForRemoteSpace = IP.getText();
         model = new Model();
@@ -77,47 +89,44 @@ public class Controller {
             createUserNameButton.setDisable(true);
             instructionsUserName.setText("");
 
-            model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
+            model.getRequest().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
 
             // Blocks until user receives unique username (due to 'get')
-            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.ASSIGN_UNIQUE_USERNAME_RESP),
-                    new FormalField(Integer.class), new ActualField(userNameString), new FormalField(String.class));
+            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.CREATE_UNIQUE_USERNAME),
+                    new ActualField(userNameString), new FormalField(String.class));
 
-            if((int) tuple[2] == model.OK) {
-                model.setUniqueName((String) tuple[4]); // Setting the user's name
-                System.out.println("Unique name:");
-                System.out.println(model.getUniqueName());
+            model.setUniqueName((String) tuple[3]); // Setting the user's name
+            System.out.println("Unique name:");
+            System.out.println(model.getUniqueName());
 
-                // Goto Lobby List
-                try {
-                    changeScene(LOBBY_LIST_SCENE);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                // should ideally never happen, however can happen if the sanity check is bypassed client-side
-            } else if((int) tuple[2] == model.BAD_REQUEST) {
-                instructionsUserName.setText("Server denied username. Please try again.");
-                createUserNameButton.setDisable(false);
+            // Goto Lobby List
+            try {
+                changeScene(LOBBY_LIST_SCENE);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         } else {
             instructionsUserName.setText("Please only apply alphabetic characters (between 2-15 characters).");
-            createUserNameButton.setDisable(false);
         }
+
     }
 
-    public void changeScene(String sceneName) throws IOException {
+    public void changeScene(String sceneName) throws IOException, InterruptedException {
 
         Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
         Scene scene = new Scene(root);
         Main.appWindow.setScene(scene);
 
-//        if(sceneName.equals(LOBBY_LIST_SCENE)){
-//            try {
-//                update();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        if (sceneName == LOBBY_LIST_SCENE) {
+            ListView updateListView = ((ListView) root.lookup("#lobbyList"));
+
+            updateListView.getItems().clear();
+            List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+            for (Object[] obj : tuple) {
+                updateListView.getItems().add(obj[1]);
+                lobbyIds.add((UUID) obj[2]);
+            }
+        }
     }
 
     @FXML
@@ -129,66 +138,28 @@ public class Controller {
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 
-            model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
+            model.getRequest().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
             // Wait for server to be created
-            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new FormalField(Integer.class),
-                    new ActualField(model.getUniqueName()), new FormalField(UUID.class));
+            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
-            if((int) tuple[1] == model.OK){
-                try {
-                    model.joinLobby((UUID) tuple[3]);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                //TODO: Update list automatically when joining.
+                changeScene(LOBBY_LIST_SCENE);
 
-                connectedToLobby = true;
-
-                try {
-                    //TODO: Update list automatically when joining.
-                    changeScene(LOBBY_LIST_SCENE);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else if((int) tuple[1] == model.BAD_REQUEST){
-                instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
-                createLobbyButton.setDisable(false);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
         } else {
             instructionsLobbyName.setText("Please only apply alphabetic characters (between 2-15 characters).");
-            createLobbyButton.setDisable(true);
-        }
-    }
-
-    public void updateLobbyList(){
-        //lobbyList.getItems().clear();
-        try {
-            List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
-            for (Object[] obj : tuple) {
-                lobbyList.getItems().add(obj[1]);
-            }
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void update() throws InterruptedException {
-        lobbyList.getItems().clear();
-
-        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
-
-        for (Object[] obj : tuple) {
-            lobbyList.getItems().add(obj[1]);
-            lobbyIds.add((UUID) obj[2]);
         }
     }
 
     @FXML
     public void queryServers(ActionEvent event) throws InterruptedException {
         lobbyList.getItems().clear();
-        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+        List<Object[]> tuple = model.getLobbyList().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
             lobbyList.getItems().add(obj[1]);
@@ -200,6 +171,7 @@ public class Controller {
 
     @FXML
     public void goToCreateLobbyScene(ActionEvent event) throws InterruptedException {
+        //model.getRequest().put(1,11,"Super fun Lobby!","John");
         try {
             changeScene(CREATE_LOBBY_SCENE);
         } catch (IOException e) {
@@ -207,64 +179,35 @@ public class Controller {
         }
     }
 
-    @FXML
-    public void joinCreatedLobby(ActionEvent event) throws InterruptedException, IOException {
-        Object[] tuple = model.getRequestSpace().get(new ActualField(2),new ActualField("John"),new FormalField(UUID.class));
-        model.joinLobby((UUID) tuple[2]);
-
-        Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
-        tryToJoinLobby.start();
-
-        changeScene(LOADING_LOBBY_SCENE);
-
-        model.getServerResponseMonitor().sync();
-
-        switch (model.getResponseFromLobby()){
-            case 0:
-                changeScene(LOBBY_LIST_SCENE);
-                break;
-            case 1:
-                changeScene(LOBBY_LIST_SCENE);
-                break;
-            case 2:
-                changeScene("LobbyScene");
-                break;
-        }
-
-    }
-
     public static void sendDisconnectTuple() throws InterruptedException {
-        model.getLobbySpace().put("Connection",false,"John");
+        model.getLobbySpace().put("Connection",false,model.getUniqueName());
         connectedToLobby = false;
     }
 
+    public static void updateChat(String text){
+
+
+    }
+
     @FXML
-    public void textToChat(ActionEvent e){
+    public void textToChat(ActionEvent e) throws InterruptedException {
 
         String text = chatTxtField.getText();
 
-        Label chatText = new Label(text);
+        String s = model.getUniqueName();
+        s = s.substring(0, s.indexOf("#"));
+        Label chatText = new Label(s + " : " + text);
         chatText.setWrapText(true);
         chatText.prefWidth(254);
 
         vb1.getChildren().add(chatText);
         chatTxtField.clear();
         scroll.setVvalue(1.0);
+
+        System.out.println("Sending update tuple");
+        model.getLobbySpace().put("Update","chat",model.getUniqueName(),text);
     }
 
-    @FXML
-    public void pressReadyButton(ActionEvent e) throws InterruptedException {
-
-        readyForGameplay = !readyForGameplay;
-
-        if(readyForGameplay) {
-            model.getLobbySpace().getp(new ActualField("Ready"),new ActualField(!readyForGameplay),new ActualField(model.getUniqueName()));
-            model.getLobbySpace().put("Ready", readyForGameplay, model.getUniqueName());
-        } else {
-            model.getLobbySpace().get(new ActualField("Ready"),new ActualField(!readyForGameplay),new ActualField(model.getUniqueName()));
-            model.getLobbySpace().put("Ready", readyForGameplay, model.getUniqueName());
-        }
-    }
 
     //TODO: implement Join-lobby button for highlighted choice
     public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException {
@@ -280,11 +223,13 @@ public class Controller {
 
                 // Query the desired lobby-tuple (non-blocking)
 
-                tuple = model.getLobbyListSpace().queryp(new ActualField("Lobby"),
+                tuple = model.getLobbyList().queryp(new ActualField("Lobby"),
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
                 model.joinLobby((UUID) tuple[2]);
+
+                model.getLobbySpace().put("Connection",true,model.getUniqueName());
 
                 Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
                 tryToJoinLobby.start();
@@ -301,9 +246,41 @@ public class Controller {
                         changeScene(LOBBY_LIST_SCENE);
                         break;
                     case 2:
-                        changeScene("LobbyScene");
+                        Parent root = FXMLLoader.load(getClass().getResource("LobbyScene.fxml"));
+                        Scene scene = new Scene(root);
+                        Main.appWindow.setScene(scene);
+                        ((Label)root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyList.getSelectionModel().getSelectedItem());
+                        updatePlayerLobbyList(root);
+                        connectedToLobby = true;
+
+                        updateAgent = new Thread(new LookForUpdatesAgent(model, root));
+                        updateAgent.start();
+
                         break;
                 }
+            }
+        }
+    }
+
+    public void updatePlayerLobbyList(Parent root) throws InterruptedException {
+        List<Object[]> tuple = model.getLobbySpace().queryAll(new ActualField("playerField"),new FormalField(Integer.class), new FormalField(String.class));
+
+        if(root == null) {
+            listOfPlayers.getItems().clear();
+            for (Object[] obj : tuple) {
+                listOfPlayers.getItems().add(new Label((String)obj[2]));
+            }
+        } else {
+            ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
+            ListView readyListTemp = ((ListView) root.lookup("#readyList"));
+            updatePlayerListView.getItems().clear();
+            for (Object[] obj : tuple) {
+
+                System.out.println("Got one!");
+
+                String s = (String) obj[2];
+                s = s.substring(0, s.indexOf("#"));
+                updatePlayerListView.getItems().add(new Label(s));
             }
         }
     }
