@@ -104,6 +104,13 @@ public class Lobby implements Runnable {
             }
         }
 
+        // Remove Lobby from Lobby List overview space
+        try {
+            lobbyOverviewSpace.get(new ActualField("Lobby"),new FormalField(String.class),new ActualField(lobbyID));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // Start the game
         if(beginFlag){
             inGame = true;
@@ -111,12 +118,6 @@ public class Lobby implements Runnable {
             gp.runGamePlay();
         }
 
-        // Remove Lobby from Lobby List overview space
-        try {
-            lobbyOverviewSpace.get(new ActualField("Lobby"),new FormalField(String.class),new ActualField(lobbyID));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         serverRepos.remove(lobbyID.toString());
     }
 
