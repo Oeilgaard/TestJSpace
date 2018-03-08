@@ -119,6 +119,7 @@ public class Lobby implements Runnable {
         }
 
         serverRepos.remove(lobbyID.toString());
+        System.out.println("Lobby is closed");
     }
 
     public void updatePlayers(String actingPlayer, int action) throws InterruptedException {

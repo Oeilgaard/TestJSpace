@@ -6,6 +6,8 @@ import org.jspace.SequentialSpace;
 
 import static MasterLobbyListServerTest.Server_Part.Lobby.CLOSE;
 
+import java.util.ArrayList;
+
 public class LobbyConnectionManager implements Runnable{
 
     private SequentialSpace lobbySpace;
@@ -38,13 +40,26 @@ public class LobbyConnectionManager implements Runnable{
 
                     if(tuple[1].equals(true)){
 
-                        playerInfo.addPlayer((String)tuple[2]);
+                        if(playerInfo.maxPlayerNr == playerInfo.nrOfPlayers){
+                            lobbySpace.put(2,tuple[2],false);
+                        } else {
+                            playerInfo.addPlayer((String) tuple[2], lobbySpace);
+                            lobbySpace.put(2, tuple[2], true);
+                            ArrayList<String> userToUpdate = playerInfo.getOtherPlayers((String) tuple[2]);
+                            for (String user : userToUpdate) {
+                                lobbySpace.put("LobbyUpdate","connection", user, "join", tuple[2]);
+                            }
+                        }
 
                         // put 'join tuple' to user
 
                     } else if (tuple[1].equals(false)){
 
-                        playerInfo.removePlayer((String)tuple[2]);
+                        playerInfo.removePlayer((String)tuple[2],lobbySpace);
+                        ArrayList<String> userToUpdate = playerInfo.getOtherPlayers((String) tuple[2]);
+                        for (String user : userToUpdate) {
+                            lobbySpace.put("LobbyUpdate","connection", user, "left", tuple[2]);
+                        }
 
                         if (tuple[2].equals(lobbyLeader)){
                             lobbySpace.put(Lobby.LOBBY_REQ,CLOSE);
