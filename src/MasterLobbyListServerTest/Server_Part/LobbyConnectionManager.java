@@ -4,6 +4,8 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
+import static MasterLobbyListServerTest.Server_Part.Lobby.CLOSE;
+
 public class LobbyConnectionManager implements Runnable{
 
     private SequentialSpace lobbySpace;
@@ -45,8 +47,7 @@ public class LobbyConnectionManager implements Runnable{
                         playerInfo.removePlayer((String)tuple[2]);
 
                         if (tuple[2].equals(lobbyLeader)){
-
-                            lobbySpace.put(Lobby.LOBBY_MESSAGE,"Closing");
+                            lobbySpace.put(Lobby.LOBBY_REQ,CLOSE);
                         }
                     }
                 }

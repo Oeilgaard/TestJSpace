@@ -284,6 +284,7 @@ public class Controller {
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
+                //TODO: NullPointerException?
                 model.joinLobby((UUID) tuple[2]);
 
                 Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
@@ -301,7 +302,7 @@ public class Controller {
                         changeScene(LOBBY_LIST_SCENE);
                         break;
                     case 2:
-                        changeScene("LobbyScene");
+                        changeScene(LOBBY_LIST_SCENE);
                         break;
                 }
             }

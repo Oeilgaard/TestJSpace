@@ -24,7 +24,7 @@ public class ServerData{
 
             String serverAddress = JOptionPane.showInputDialog(
                 "Enter IP Address of this machine\n" +
-                        "it will run the server on port 25565:", "10.68.127.206"); //
+                        "it will run the server on port 25565:", "10.16.134.57"); //
 
             serverRepos.addGate("tcp://" + serverAddress + ":25565/?keep");
             serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);

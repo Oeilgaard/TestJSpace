@@ -1,11 +1,13 @@
 package MasterLobbyListServerTest.Server_Part;
 
+import java.util.ArrayList;
+
 public class Gameplay {
 
-    private PlayerInfo playerInfo;
+    private ArrayList<String> players;
 
-    public Gameplay(PlayerInfo playerInfo){
-        this.playerInfo = playerInfo;
+    public Gameplay(ArrayList<String> players){
+        this.players = players;
     }
 
     public void runGamePlay(){
