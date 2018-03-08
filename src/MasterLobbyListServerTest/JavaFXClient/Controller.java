@@ -259,7 +259,6 @@ public class Controller {
             }
         } else {
             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
-            ListView readyListTemp = ((ListView) root.lookup("#readyList"));
             updatePlayerListView.getItems().clear();
             for (Object[] obj : tuple) {
 
