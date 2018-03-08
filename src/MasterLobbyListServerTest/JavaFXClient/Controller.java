@@ -23,10 +23,10 @@ import java.util.UUID;
 
 public class Controller {
 
-    public static final String LOBBY_LIST_SCENE = "LobbyListScene";
-    public static final String USER_NAME_SCENE = "UserNameScene";
-    public static final String CREATE_LOBBY_SCENE = "CreateLobbyScene";
-    public static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
+    protected static final String LOBBY_LIST_SCENE = "LobbyListScene";
+    protected static final String USER_NAME_SCENE = "UserNameScene";
+    protected static final String CREATE_LOBBY_SCENE = "CreateLobbyScene";
+    protected static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
 
     @FXML
     private ScrollPane scroll;
@@ -82,13 +82,13 @@ public class Controller {
             createUserNameButton.setDisable(true);
             instructionsUserName.setText("");
 
-            model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
+            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, userNameString, "");
 
             // Blocks until user receives unique username (due to 'get')
-            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.ASSIGN_UNIQUE_USERNAME_RESP),
+            Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
                     new FormalField(Integer.class), new ActualField(userNameString), new FormalField(String.class));
 
-            if((int) tuple[2] == model.OK) {
+            if((int) tuple[2] == Model.OK) {
                 model.setUniqueName((String) tuple[4]); // Setting the user's name
                 System.out.println("Unique name:");
                 System.out.println(model.getUniqueName());
@@ -100,7 +100,7 @@ public class Controller {
                     e.printStackTrace();
                 }
                 // should ideally never happen, however can happen if the sanity check is bypassed client-side
-            } else if((int) tuple[2] == model.BAD_REQUEST) {
+            } else if((int) tuple[2] == Model.BAD_REQUEST) {
                 instructionsUserName.setText("Server denied username. Please try again.");
                 createUserNameButton.setDisable(false);
             }
@@ -137,13 +137,13 @@ public class Controller {
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 
-            model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
+            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
             // Wait for server to be created
-            Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new FormalField(Integer.class),
+            Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(Integer.class),
                     new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
-            if((int) tuple[1] == model.OK){
+            if((int) tuple[1] == Model.OK){
                 try {
                     //TODO: Update list automatically when joining.
                     changeScene(LOBBY_LIST_SCENE);
@@ -151,7 +151,7 @@ public class Controller {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if((int) tuple[1] == model.BAD_REQUEST){
+            } else if((int) tuple[1] == Model.BAD_REQUEST){
                 instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
                 createLobbyButton.setDisable(false);
             }
@@ -183,7 +183,7 @@ public class Controller {
     }
 
     public static void sendDisconnectTuple() throws InterruptedException {
-        model.getLobbySpace().put(model.LOBBY_REQ,model.DISCONNECT,model.getUniqueName());
+        model.getLobbySpace().put(Model.LOBBY_REQ, Model.DISCONNECT,model.getUniqueName());
         connectedToLobby = false;
     }
 
@@ -227,7 +227,7 @@ public class Controller {
                 //TODO: NullPointerException?
                 model.joinLobby((UUID) tuple[2]);
 
-                model.getLobbySpace().put(model.LOBBY_REQ,model.CONNECT,model.getUniqueName());
+                model.getLobbySpace().put(Model.LOBBY_REQ, Model.CONNECT,model.getUniqueName());
 
                 Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
                 tryToJoinLobby.start();
@@ -282,13 +282,13 @@ public class Controller {
                 createUserNameButton.setDisable(true);
                 instructionsUserName.setText("");
 
-                model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_USERNAME_REQ, userNameString, "");
+                model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, userNameString, "");
 
                 // Blocks until user receives unique username (due to 'get')
-                Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new ActualField(model.ASSIGN_UNIQUE_USERNAME_RESP),
+                Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
                         new FormalField(Integer.class), new ActualField(userNameString), new FormalField(String.class));
 
-                if((int) tuple[2] == model.OK) {
+                if((int) tuple[2] == Model.OK) {
                     model.setUniqueName((String) tuple[4]); // Setting the user's name
                     System.out.println("Unique name:");
                     System.out.println(model.getUniqueName());
@@ -300,7 +300,7 @@ public class Controller {
                         e.printStackTrace();
                     }
                     // should ideally never happen, however can happen if the sanity check is bypassed client-side
-                } else if((int) tuple[2] == model.BAD_REQUEST) {
+                } else if((int) tuple[2] == Model.BAD_REQUEST) {
                     instructionsUserName.setText("Server denied username. Please try again.");
                     createUserNameButton.setDisable(false);
                 }
@@ -320,13 +320,13 @@ public class Controller {
                 createLobbyButton.setDisable(true);
                 instructionsLobbyName.setText("");
 
-                model.getRequestSpace().put(model.REQUEST_CODE, model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
+                model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
                 // Wait for server to be created
-                Object[] tuple = model.getResponseSpace().get(new ActualField(model.RESPONSE_CODE), new FormalField(Integer.class),
+                Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(Integer.class),
                         new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
-                if((int) tuple[1] == model.OK){
+                if((int) tuple[1] == Model.OK){
                     try {
                         //TODO: Update list automatically when joining.
                         changeScene(LOBBY_LIST_SCENE);
@@ -334,7 +334,7 @@ public class Controller {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else if((int) tuple[1] == model.BAD_REQUEST){
+                } else if((int) tuple[1] == Model.BAD_REQUEST){
                     instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
                     createLobbyButton.setDisable(false);
                 }
@@ -345,9 +345,9 @@ public class Controller {
     }
 
     public void updatePlayerLobbyList(Parent root) throws InterruptedException {
-        model.getLobbySpace().put(model.LOBBY_REQ,model.GET_PLAYERLIST,model.getUniqueName());
+        model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST,model.getUniqueName());
 
-        Object[] tuple = model.getLobbySpace().get(new ActualField(model.LOBBY_RESP),new FormalField(ArrayList.class),new ActualField(model.getUniqueName()));
+        Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP),new FormalField(ArrayList.class),new ActualField(model.getUniqueName()));
 
         if(root == null) {
             listOfPlayers.getItems().clear();
