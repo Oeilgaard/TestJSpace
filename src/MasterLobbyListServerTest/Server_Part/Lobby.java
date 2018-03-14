@@ -129,7 +129,7 @@ public class Lobby implements Runnable {
             inGame = true;
             //GameplayDummy gp = new GameplayDummy(players);
             //gp.runGamePlay();
-            Game game = new Game(players);
+            Game game = new Game(players, lobbySpace);
             game.startGame();
         }
 
