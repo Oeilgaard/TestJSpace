@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
+   <children>
+      <VBox layoutX="46.0" layoutY="59.0" prefHeight="232.0" prefWidth="186.0" />
+      <ListView layoutX="413.0" layoutY="42.0" prefHeight="316.0" prefWidth="144.0" />
+      <Label layoutX="54.0" layoutY="35.0" text="Actions" />
+      <Label layoutX="30.0" layoutY="350.0" text="Player 1: alive " />
+      <Label layoutX="129.0" layoutY="351.0" text="Player 2:  alive" />
+      <Label layoutX="215.0" layoutY="351.0" text="Player 3: alive " />
+      <Label layoutX="300.0" layoutY="351.0" text="Player 4: alive" />
+      <Label layoutX="22.0" layoutY="368.0" text="Current turn" />
+      <ImageView fitHeight="192.0" fitWidth="144.0" layoutX="252.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="291.0" layoutY="51.0" text="Current card" />
+   </children>
+</AnchorPane>

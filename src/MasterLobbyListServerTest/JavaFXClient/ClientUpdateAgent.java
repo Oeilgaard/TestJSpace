@@ -134,6 +134,7 @@ public class ClientUpdateAgent implements Runnable{
                             }
                         }
                     });
+                    break updateLoop;
                 }
 
             } catch (InterruptedException e) {

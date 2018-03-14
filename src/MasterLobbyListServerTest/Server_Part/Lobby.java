@@ -126,6 +126,8 @@ public class Lobby implements Runnable {
             e.printStackTrace();
         }
 
+        chatAgent.interrupt();
+
         // Start the game
         if(beginFlag){
             inGame = true;
@@ -135,7 +137,6 @@ public class Lobby implements Runnable {
             game.startGame();
         }
 
-        chatAgent.interrupt();
         serverRepos.remove(lobbyID.toString());
         System.out.println("Lobby is closed");
     }
