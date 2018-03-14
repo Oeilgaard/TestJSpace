@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
@@ -31,7 +33,7 @@ public class ClientUpdateAgent implements Runnable{
 
     @Override
     public void run() {
-
+    
         updateLoop:
         while(true) {
             try {
@@ -108,10 +110,36 @@ public class ClientUpdateAgent implements Runnable{
                     });
 
                     break updateLoop;
+                } else if (tuple[1].equals(model.BEGIN)){
+
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            try {
+                                root = FXMLLoader.load(getClass().getResource("PlayCardScene.fxml"));
+                                Scene scene = new Scene(root);
+                                Main.appWindow.setScene(scene);
+
+                                ArrayList<String> hand = new ArrayList<>();
+                                hand.add("baron");
+                                hand.add("prince");
+
+                                ImageView card1 = ((ImageView) root.lookup("#card1"));
+                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(0) + ".jpg"));
+                                ImageView card2 = ((ImageView) root.lookup("#card2"));
+                                card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
+
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
 
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Den er blevet catched!");
+                break updateLoop;
             }
         }
 
