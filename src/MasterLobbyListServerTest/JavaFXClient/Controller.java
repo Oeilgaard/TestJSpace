@@ -67,6 +67,7 @@ public class Controller {
     private ImageView card2;
 
     protected static ArrayList<UUID> lobbyIds;
+    private static ArrayList<String> currentHand;
     private static Model model;
     public static Thread updateAgent;
 
