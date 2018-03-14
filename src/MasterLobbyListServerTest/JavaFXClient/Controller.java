@@ -10,12 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +28,11 @@ import java.util.UUID;
 
 public class Controller {
 
-    protected static final String LOBBY_LIST_SCENE = "LobbyListScene";
-    protected static final String USER_NAME_SCENE = "UserNameScene";
-    protected static final String CREATE_LOBBY_SCENE = "CreateLobbyScene";
-    protected static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
+    public static final String LOBBY_LIST_SCENE = "LobbyListScene";
+    public static final String USER_NAME_SCENE = "UserNameScene";
+    public static final String CREATE_LOBBY_SCENE = "CreateLobbyScene";
+    public static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
+    public static final String PLAY_CARD_SCENE = "PlayCardScene";
 
     @FXML
     private ScrollPane scroll;
@@ -54,12 +60,31 @@ public class Controller {
     private Button createLobbyButton;
     @FXML
     private Label instructionsLobbyName;
+    @FXML
+    private ImageView card1;
+    @FXML
+    private ImageView card2;
 
     protected static ArrayList<UUID> lobbyIds;
     private static Model model;
     public static Thread updateAgent;
 
     public static Boolean connectedToLobby = false;
+
+
+    public void pickCardOne(MouseEvent mouseEvent) {
+        System.out.println("Card one");
+    }
+
+    public void pickCardTwo(MouseEvent mouseEvent) {
+        System.out.println("Card two");
+    }
+
+    public void loadCardOne(MouseEvent mouseEvent) {
+        Image baron = new Image("MasterLobbyListServerTest/JavaFXClient/resources/baron.jpg");
+        card1.setImage(baron);
+        card2.setImage(baron);
+    }
 
     @FXML
     public void joinServer(ActionEvent event) throws IOException, InterruptedException {
@@ -68,6 +93,9 @@ public class Controller {
         model = new Model();
         model.addIpToRemoteSpaces(urlForRemoteSpace);
         lobbyIds = new ArrayList<>();
+
+        card1 = new ImageView();
+        card2 = new ImageView();
 
         changeScene(USER_NAME_SCENE);
     }
@@ -95,7 +123,7 @@ public class Controller {
 
                 // Goto Lobby List
                 try {
-                    changeScene(LOBBY_LIST_SCENE);
+                    changeScene(PLAY_CARD_SCENE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -126,6 +154,20 @@ public class Controller {
                 lobbyIds.add((UUID) obj[2]);
             }
         }
+
+        if (sceneName == PLAY_CARD_SCENE){
+            ArrayList<String> hand = new ArrayList<>();
+            hand.add("baron");
+            hand.add("prince");
+            loadHand(hand, root);
+        }
+    }
+
+    public void loadHand(ArrayList<String> hand, Parent root){
+        ImageView card1 = ((ImageView) root.lookup("#card1"));
+        card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(0) + ".jpg"));
+        ImageView card2 = ((ImageView) root.lookup("#card2"));
+        card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
     }
 
     @FXML
