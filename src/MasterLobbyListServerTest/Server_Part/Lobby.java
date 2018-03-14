@@ -1,5 +1,10 @@
 package MasterLobbyListServerTest.Server_Part;
 
+import MasterLobbyListServerTest.Server_Part.Gameplay.Game;
+import org.jspace.ActualField;
+import org.jspace.FormalField;
+import org.jspace.SequentialSpace;
+import org.jspace.SpaceRepository;
 import org.jspace.*;
 
 import java.util.ArrayList;
@@ -124,8 +129,10 @@ public class Lobby implements Runnable {
         // Start the game
         if(beginFlag){
             inGame = true;
-            Gameplay gp = new Gameplay(players);
-            gp.runGamePlay();
+            //GameplayDummy gp = new GameplayDummy(players);
+            //gp.runGamePlay();
+            Game game = new Game(players);
+            game.startGame();
         }
 
         chatAgent.interrupt();

@@ -2,11 +2,11 @@ package MasterLobbyListServerTest.Server_Part;
 
 import java.util.ArrayList;
 
-public class Gameplay {
+public class GameplayDummy {
 
     private ArrayList<String> players;
 
-    public Gameplay(ArrayList<String> players){
+    public GameplayDummy(ArrayList<String> players){
         this.players = players;
     }
 
