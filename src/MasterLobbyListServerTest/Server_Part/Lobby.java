@@ -1,5 +1,6 @@
 package MasterLobbyListServerTest.Server_Part;
 
+import MasterLobbyListServerTest.Server_Part.Gameplay.Game;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
@@ -23,7 +24,7 @@ public class Lobby implements Runnable {
     public final static int LOBBY_UPDATE = 50;
     public final static int CHAT_MESSAGE = 51;
 
-    protected final static int GET_PLAYERLIST = 60;
+    protected final static int GET_PLAYERLIST = 61;
 
     private final static int MAX_PLAYER_PR_LOBBY = 5;
 
@@ -126,8 +127,10 @@ public class Lobby implements Runnable {
         // Start the game
         if(beginFlag){
             inGame = true;
-            Gameplay gp = new Gameplay(players);
-            gp.runGamePlay();
+            //GameplayDummy gp = new GameplayDummy(players);
+            //gp.runGamePlay();
+            Game game = new Game(players);
+            game.startGame();
         }
 
         chatAgent.interrupt();
