@@ -318,10 +318,8 @@ public class Controller {
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
-                System.out.println("Er den null?");
                 if(tuple != null) {
 
-                    System.out.println("Den var ikke null");
                     //TODO: NullPointerException?
                     model.joinLobby((UUID) tuple[2]);
 

@@ -1,9 +1,6 @@
 package MasterLobbyListServerTest.Server_Part;
 
-import org.jspace.ActualField;
-import org.jspace.FormalField;
-import org.jspace.SequentialSpace;
-import org.jspace.SpaceRepository;
+import org.jspace.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -23,7 +20,7 @@ public class Lobby implements Runnable {
     public final static int LOBBY_UPDATE = 50;
     public final static int CHAT_MESSAGE = 51;
 
-    protected final static int GET_PLAYERLIST = 60;
+    protected final static int GET_PLAYERLIST = 61;
 
     private final static int MAX_PLAYER_PR_LOBBY = 5;
 
@@ -110,6 +107,7 @@ public class Lobby implements Runnable {
                     lobbySpace.put(LOBBY_RESP, players, name);
                 } else {
                     System.out.println("Unknown request");
+                    System.out.println(tuple[1].toString());
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
