@@ -317,7 +317,8 @@ public class Controller {
     @FXML
     public void requestNameVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){
-            String userNameString = userName.getText();
+            createUser(null);
+            /*String userNameString = userName.getText();
 
             if(HelperFunctions.validName(userNameString)) {
 
@@ -349,7 +350,7 @@ public class Controller {
             } else {
                 instructionsUserName.setText("Please only apply alphabetic characters (between 2-15 characters).");
                 createUserNameButton.setDisable(false);
-            }
+            }*/
         }
     }
 
