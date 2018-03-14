@@ -73,10 +73,14 @@ public class Lobby implements Runnable {
                     if (noPlayers < MAX_PLAYER_PR_LOBBY) {
                         players.add(name); // add player to players
                         noPlayers++;
-                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, name);
+                        Boolean isThisPlayerLobbyLeader = false;
+                        if(name.equals(lobbyLeader)){
+                            isThisPlayerLobbyLeader = true;
+                        }
+                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, name, isThisPlayerLobbyLeader);
                         updatePlayers(name, CONNECT);
                     } else { // lobby full
-                        lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, name);
+                        lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, name, false);
                     }
                 } else if (req == DISCONNECT) {
                     if (name.equals(lobbyLeader)) {
@@ -93,7 +97,7 @@ public class Lobby implements Runnable {
                     beginFlag = false;
                     updatePlayers(name, CLOSE);
                     break BeginLoop;
-                } else if (req == BEGIN) {
+                } else if (req == BEGIN && name.equals(lobbyLeader)) {
                     if (noPlayers >= 2) {
                         System.out.println("Ready to begin!");
                         beginFlag = true;
@@ -103,7 +107,7 @@ public class Lobby implements Runnable {
                         System.out.println("Not enough players to begin");
                     }
                 } else if (req == GET_PLAYERLIST) {
-                    lobbySpace.put(LOBBY_RESP, players, tuple[2]);
+                    lobbySpace.put(LOBBY_RESP, players, name);
                 } else {
                     System.out.println("Unknown request");
                 }

@@ -140,7 +140,7 @@ public class Controller {
 
                 // Goto Lobby List
                 try {
-                    changeScene(PLAY_CARD_SCENE);
+                    changeScene(LOBBY_LIST_SCENE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -164,6 +164,7 @@ public class Controller {
         if (sceneName == LOBBY_LIST_SCENE) {
             ListView updateListView = ((ListView) root.lookup("#lobbyList"));
             updateListView.getItems().clear();
+            lobbyIds.clear();
             List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
             for (Object[] obj : tuple) {
                 updateListView.getItems().add(obj[1]);
@@ -255,6 +256,7 @@ public class Controller {
     @FXML
     public void queryServers(ActionEvent event) throws InterruptedException {
         lobbyList.getItems().clear();
+        lobbyIds.clear();
         List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
@@ -316,36 +318,51 @@ public class Controller {
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
-                //TODO: NullPointerException?
-                model.joinLobby((UUID) tuple[2]);
+                System.out.println("Er den null?");
+                if(tuple != null) {
 
-                model.getLobbySpace().put(Model.LOBBY_REQ, Model.CONNECT,model.getUniqueName());
+                    System.out.println("Den var ikke null");
+                    //TODO: NullPointerException?
+                    model.joinLobby((UUID) tuple[2]);
 
-                Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model,this));
-                tryToJoinLobby.start();
+                    model.getLobbySpace().put(Model.LOBBY_REQ, Model.CONNECT, model.getUniqueName());
 
-                changeScene(LOADING_LOBBY_SCENE);
+                    Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model, this));
+                    tryToJoinLobby.start();
 
-                model.getServerResponseMonitor().sync();
+                    changeScene(LOADING_LOBBY_SCENE);
+
+                    model.getServerResponseMonitor().sync();
+
+                }
 
                 switch (model.getResponseFromLobby()){
                     case 0:
                         changeScene(LOBBY_LIST_SCENE);
+                        model.changeResponseFromLobby(0);
                         break;
                     case 1:
                         changeScene(LOBBY_LIST_SCENE);
+                        model.changeResponseFromLobby(0);
                         break;
                     case 2:
+
                         Parent root = FXMLLoader.load(getClass().getResource("LobbyScene.fxml"));
                         Scene scene = new Scene(root);
                         Main.appWindow.setScene(scene);
+
                         ((Label)root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyList.getSelectionModel().getSelectedItem());
                         updatePlayerLobbyList(root);
+
                         connectedToLobby = true;
+                        if(model.leaderForCurrentLobby){
+                            ((Button)root.lookup("#beginButton")).disableProperty().setValue(false);
+                        }
 
                         updateAgent = new Thread(new ClientUpdateAgent(model, root));
                         updateAgent.start();
 
+                        model.changeResponseFromLobby(0);
                         break;
                 }
             }
@@ -367,7 +384,8 @@ public class Controller {
     @FXML
     public void requestNameVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){
-            String userNameString = userName.getText();
+            createUser(null);
+            /*String userNameString = userName.getText();
 
             if(HelperFunctions.validName(userNameString)) {
 
@@ -399,7 +417,7 @@ public class Controller {
             } else {
                 instructionsUserName.setText("Please only apply alphabetic characters (between 2-15 characters).");
                 createUserNameButton.setDisable(false);
-            }
+            }*/
         }
     }
 
@@ -456,6 +474,27 @@ public class Controller {
                 updatePlayerListView.getItems().add(new Label(s));
             }
         }
+    }
+
+    @FXML
+    public void pressBegin(ActionEvent event) throws InterruptedException {
+        if(model.leaderForCurrentLobby){
+            System.out.println("BEGIN");
+            model.getLobbySpace().put(Model.LOBBY_REQ,Model.BEGIN,model.getUniqueName());
+        }
+    }
+
+    @FXML
+    public void pressLeaveLobby(ActionEvent event) throws InterruptedException, IOException {
+        model.leaderForCurrentLobby = false;
+
+        updateAgent.interrupt();
+
+        sendDisconnectTuple();
+
+        model.resetLobbyInfo();
+
+        changeScene(LOBBY_LIST_SCENE);
     }
 
 }

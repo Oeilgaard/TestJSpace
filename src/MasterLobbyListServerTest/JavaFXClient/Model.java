@@ -49,6 +49,8 @@ public class Model {
 
     private ServerResponseMonitor serverResponseMonitor;
 
+    public boolean leaderForCurrentLobby = false;
+
     public Model(){
         serverResponseMonitor = new ServerResponseMonitor();
     }
