@@ -33,6 +33,7 @@ public class Controller {
     public static final String CREATE_LOBBY_SCENE = "CreateLobbyScene";
     public static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
     public static final String PLAY_CARD_SCENE = "PlayCardScene";
+    public static final String PICK_PLAYER_SCENE = "PickPlayerScene";
 
     @FXML
     private ScrollPane scroll;
@@ -66,6 +67,7 @@ public class Controller {
     private ImageView card2;
 
     protected static ArrayList<UUID> lobbyIds;
+    private static ArrayList<String> currentHand;
     private static Model model;
     public static Thread updateAgent;
 
@@ -74,6 +76,10 @@ public class Controller {
 
     public void pickCardOne(MouseEvent mouseEvent) {
         System.out.println("Card one");
+
+        // if card one is targeted
+        // go to pick player scene
+        // else next player's turn
     }
 
     public void pickCardTwo(MouseEvent mouseEvent) {
