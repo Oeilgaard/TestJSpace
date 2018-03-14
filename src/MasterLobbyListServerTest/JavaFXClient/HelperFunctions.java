@@ -6,6 +6,6 @@ public class HelperFunctions {
         return name.matches("[a-zA-Z0-9_]{2,15}");
     }
 
-    public static boolean isTargeted(String card) {}
+    public static boolean isTargeted(String card) { return (card == "guard" || card == "baron" || card == "king"); }
 
 }

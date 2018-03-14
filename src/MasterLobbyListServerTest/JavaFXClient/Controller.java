@@ -65,6 +65,9 @@ public class Controller {
     private ImageView card1;
     @FXML
     private ImageView card2;
+    @FXML
+    private ListView targetablePlayers;
+
 
     protected static ArrayList<UUID> lobbyIds;
     private static ArrayList<String> currentHand;
@@ -74,22 +77,30 @@ public class Controller {
     public static Boolean connectedToLobby = false;
 
 
-    public void pickCardOne(MouseEvent mouseEvent) {
-        System.out.println("Card one");
+    public void pickCardOne(MouseEvent mouseEvent) throws IOException, InterruptedException {
+        System.out.println("Pick card one");
 
+        if(HelperFunctions.isTargeted(currentHand.get(0))) {
+            changeScene(PICK_PLAYER_SCENE);
+        } else {
+            model.getLobbySpace().put(currentHand.get(0), model.getUniqueName()); // Send the action to the server
+        }
         // if card one is targeted
         // go to pick player scene
         // else next player's turn
     }
 
-    public void pickCardTwo(MouseEvent mouseEvent) {
-        System.out.println("Card two");
-    }
+    public void pickCardTwo(MouseEvent mouseEvent) throws IOException, InterruptedException {
+        System.out.println("Pick card two");
 
-    public void loadCardOne(MouseEvent mouseEvent) {
-        Image baron = new Image("MasterLobbyListServerTest/JavaFXClient/resources/baron.jpg");
-        card1.setImage(baron);
-        card2.setImage(baron);
+        System.out.println(currentHand.toString());
+
+        if(HelperFunctions.isTargeted(currentHand.get(1))) {
+            changeScene(PICK_PLAYER_SCENE);
+        } else {
+            System.out.println(model.getUniqueName());
+            model.getLobbySpace().put(model.getUniqueName()); // Send the action to the server
+        }
     }
 
     @FXML
@@ -152,20 +163,53 @@ public class Controller {
 
         if (sceneName == LOBBY_LIST_SCENE) {
             ListView updateListView = ((ListView) root.lookup("#lobbyList"));
-
             updateListView.getItems().clear();
             List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
             for (Object[] obj : tuple) {
                 updateListView.getItems().add(obj[1]);
                 lobbyIds.add((UUID) obj[2]);
             }
-        }
-
-        if (sceneName == PLAY_CARD_SCENE){
+        } else if (sceneName == PLAY_CARD_SCENE){
             ArrayList<String> hand = new ArrayList<>();
             hand.add("baron");
             hand.add("prince");
+            currentHand = hand;
             loadHand(hand, root);
+        } else if (sceneName == PICK_PLAYER_SCENE){
+            ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
+            targetablePlayers.getItems().clear();
+
+            //LOAD DUMMY PLAYER ARRAY
+            ArrayList<ArrayList> dummyPlayers = new ArrayList();
+
+            ArrayList<String> bob = new ArrayList();
+            bob.add("Bob");
+            bob.add("0");
+
+            ArrayList<String> alice = new ArrayList();
+            alice.add("Alice");
+            alice.add("1");
+
+            ArrayList<String> charles = new ArrayList();
+            charles.add("Charles");
+            charles.add("1");
+
+            dummyPlayers.add(bob);
+            dummyPlayers.add(alice);
+            dummyPlayers.add(charles);
+
+            model.getLobbySpace().put(Model.GAMEPLAY_INFO, Model.PLAYERS_IN_ROUND, dummyPlayers);
+            //LOAD DUMMY PLAYER END
+
+            Object[] tp = model.getLobbySpace().query(new ActualField(Model.GAMEPLAY_INFO), new ActualField(Model.PLAYERS_IN_ROUND), new FormalField(ArrayList.class));
+
+            int index = 1;
+            for (ArrayList<String> p : (ArrayList<ArrayList>) tp[2]) {
+                if(p.get(1) == "1") {
+                    targetablePlayers.getItems().add(index + ". " + p.get(0));
+                }
+                index++;
+            }
         }
     }
 

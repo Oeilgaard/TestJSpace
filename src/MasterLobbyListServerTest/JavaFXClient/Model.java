@@ -31,7 +31,13 @@ public class Model {
     protected final static int LOBBY_UPDATE = 50;
     protected final static int CHAT_MESSAGE = 51;
 
-    protected final static int GET_PLAYERLIST = 60;
+    // Query tuples
+    protected final static int GAMEPLAY_INFO = 60;
+    protected final static int GET_PLAYERLIST = 61;
+    protected final static int PLAYERS_IN_ROUND = 62;
+
+    protected final static int GAMEPLAY_ACTION = 70;
+    protected final static int PLAY_CARD = 71;
 
     // 'http style'
     protected final static int OK = 200;
@@ -54,7 +60,6 @@ public class Model {
         responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
     }
 
-    //TODO: rename to "Space"...
     public RemoteSpace getLobbyListSpace(){
         return lobbyListSpace;
     }
