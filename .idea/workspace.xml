@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -706,7 +704,7 @@
       <workItem from="1519924064309" duration="268000" />
       <workItem from="1520237507684" duration="14603000" />
       <workItem from="1520505187019" duration="1194000" />
-      <workItem from="1521013761010" duration="18684000" />
+      <workItem from="1521013761010" duration="18716000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1519632464009</created>
@@ -981,11 +979,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521038391053</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Refactored Game-loop in Game-class (introduced various new methods)">
+      <created>1521040400356</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1521040400356</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85293000" />
+    <option name="totallyTimeSpent" value="85325000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1109,7 +1114,8 @@
     <MESSAGE value="Work on pick player scene" />
     <MESSAGE value="Imported the game as a sub-package of 'Server_Part' (dubbed 'Gameplay'). Fixed a few errors during import. Game can start now, however, GUI does not update." />
     <MESSAGE value="Refactored naming a bit in Game-class (introduced &quot;currentPlayer&quot;)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored naming a bit in Game-class (introduced &quot;currentPlayer&quot;)" />
+    <MESSAGE value="Refactored Game-loop in Game-class (introduced various new methods)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored Game-loop in Game-class (introduced various new methods)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
