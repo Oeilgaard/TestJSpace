@@ -8,89 +8,95 @@ public class Game {
     public final static String newLine = System.getProperty("line.separator");
 
     private Model model;
+    private int cardPick;
+    private int playerPick;
+    private int guardGuess;
+    private Character guardGuessCharacter;
+    private Character chosenCharacter;
 
     public Game(ArrayList<String> players) {
         model = new Model(players);
+    }
+
+    public void newRound(){
+
+        System.out.println("Shuffling cards...");
+
+        for(Player p : model.players) {
+            p.getHand().getCards().clear();
+            p.getDiscardPile().getCards().clear();
+            p.setInRound(true);
+            p.deactivateHandmaid();
+        }
+
+        model.turn = 0;
+        model.round++;
+
+        model.deck.getCards().clear();
+        model.deck.fillDeck();
+        model.deck.shuffle();
+        model.setRoundWon(false);
+
+        System.out.println("The revealed cards are:");
+        for(int i = 0; i < model.REVEALED_CARDS_TWO_PLAYER; i++) {
+            model.deck.drawCard(model.revealedCards);
+            System.out.println(model.revealedCards.get(i).getCharacter());
+        }
+
+        // Secret card
+        System.out.println("and a secret card is set aside..." + newLine);
+        model.secretCard = model.deck.drawCard();
+        //System.out.println(model.secretCard.getCharacter() + newLine);
+
+        System.out.println("Each player draws a card..." + newLine);
+        //Both players draw a card
+        for(Player p : model.players) {
+            model.deck.drawCard(p.getHand());
+            System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
+        }
+        System.out.print(newLine);
     }
 
     public void startGame() {
 
         Scanner scanner = new Scanner(System.in);
 
-        int cardPick;
-        int playerPick;
-        int guardGuess;
-        Character guardGuessCharacter;
-        Character chosenCharacter;
-
+        // Game loop
         while (model.currentMaxAffection() < model.AFFECTION_GOAL_TWO_PLAYER) {
 
-            System.out.println("Shuffling cards...");
+            newRound();
 
-            for(Player p : model.players) {
-                p.getHand().getCards().clear();
-                p.getDiscardPile().getCards().clear();
-                p.setInRound(true);
-                p.deactivateHandmaid();
-            }
-
-            model.turn = 0;
-            model.round++;
-
-            model.deck.getCards().clear();
-            model.deck.fillDeck();
-            model.deck.shuffle();
-            model.setRoundWon(false);
-
-            System.out.println("The revealed cards are:");
-            for(int i = 0; i < model.REVEALED_CARDS_TWO_PLAYER; i++) {
-                model.deck.drawCard(model.revealedCards);
-                System.out.println(model.revealedCards.get(i).getCharacter());
-            }
-
-            // Secret card
-            System.out.println("and a secret card is set aside..." + newLine);
-            model.secretCard = model.deck.drawCard();
-            //System.out.println(model.secretCard.getCharacter() + newLine);
-
-            System.out.println("Each player draws a card..." + newLine);
-            //Both players draw a card
-            for(Player p : model.players) {
-                model.deck.drawCard(p.getHand());
-                System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
-            }
-
-            System.out.print(newLine);
-
+            // Round loop
             while(!model.roundWon) {
 
-                if(model.players.get(model.indexOfCurrentPlayersTurn()).isInRound()) {
+                Player currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
 
-                if(model.players.get(model.indexOfCurrentPlayersTurn()).isHandMaidProtected()) {
-                    model.players.get(model.indexOfCurrentPlayersTurn()).deactivateHandmaid();
+                if(currentPlayer.isInRound()) {
+
+                if(currentPlayer.isHandMaidProtected()) {
+                    currentPlayer.deactivateHandmaid();
                 }
 
                 // States current player's turn
                 System.out.println("Round no. " + model.round + newLine + "Turn no. " + (model.turn+1) + newLine + model.players.get(model.indexOfCurrentPlayersTurn()).getName() + "'s turn" + newLine);
 
                 // 1. DRAW
-                model.deck.drawCard(model.players.get(model.indexOfCurrentPlayersTurn()).getHand());
-                System.out.println(model.players.get(model.indexOfCurrentPlayersTurn()).getName() + " drew a " + model.players.get(model.indexOfCurrentPlayersTurn()).getHand().getCards().get(1).getCharacter() + newLine);
+                model.deck.drawCard(currentPlayer.getHand());
+                System.out.println(currentPlayer.getName() + " drew a " + currentPlayer.getHand().getCards().get(1).getCharacter() + newLine);
 
 
-                System.out.println(model.players.get(model.indexOfCurrentPlayersTurn()).getName() + "'s current hand: ");
-                model.players.get(model.indexOfCurrentPlayersTurn()).getHand().printHand();
+                System.out.println(currentPlayer.getName() + "'s current hand: ");
+                currentPlayer.getHand().printHand();
                 System.out.print(newLine);
-
-
+                
                 // 2. DISCARD
 
-                System.out.print("Discard " + model.players.get(model.indexOfCurrentPlayersTurn()).getHand().getCards().get(0).getCharacter()
-                        + " (press 1) or " + model.players.get(model.indexOfCurrentPlayersTurn()).getHand().getCards().get(1).getCharacter() +
+                System.out.print("Discard " + currentPlayer.getHand().getCards().get(0).getCharacter()
+                        + " (press 1) or " + currentPlayer.getHand().getCards().get(1).getCharacter() +
                         " (press 2)" + newLine);
 
                 cardPick = scanner.nextInt();
-                chosenCharacter = model.players.get(model.indexOfCurrentPlayersTurn()).getHand().getCards().get(cardPick-1).getCharacter();
+                chosenCharacter = currentPlayer.getHand().getCards().get(cardPick-1).getCharacter();
 
                 // 2.1 TARGETED CASE
                 targetedCase:
@@ -101,7 +107,7 @@ public class Game {
 
                     for(Player p : model.players) {
 
-                        if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(model.players.get(model.indexOfCurrentPlayersTurn()).getName())) {
+                        if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(currentPlayer.getName())) {
                             possibleTargets = true;
                             System.out.println("Target player " + p.getName() + " with " + chosenCharacter + " (press " + i + ")");
                         }
@@ -140,16 +146,16 @@ public class Game {
                     } else if(chosenCharacter == Character.PRINCE) {
                         model.princeAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
                     } else { // i.e. chosenCharacter == Character.KING
-                        //model.players.get(model.indexOfCurrentPlayersTurn()).getHand().printHand();
-                        System.out.println(model.players.get(model.indexOfCurrentPlayersTurn()).getName() + " gets " + model.players.get(playerPick-1).getHand().getCards().get(0).getCharacter());
-                        System.out.println(model.players.get(playerPick-1).getName() + " gets " + model.players.get(model.indexOfCurrentPlayersTurn()).getHand().getCards().get(cardPick%2).getCharacter());
+                        //currentPlayer.getHand().printHand();
+                        System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerPick-1).getHand().getCards().get(0).getCharacter());
+                        System.out.println(model.players.get(playerPick-1).getName() + " gets " + currentPlayer.getHand().getCards().get(cardPick%2).getCharacter());
                         model.kingAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
 
                     }
                     // 2.2 UNTARGETED CASE
                 } else {
                     if(chosenCharacter == Character.HANDMAID){
-                        System.out.println(model.players.get(model.indexOfCurrentPlayersTurn()).getName() + " is handmaid protected until next turn...");
+                        System.out.println(currentPlayer.getName() + " is handmaid protected until next turn...");
                         model.handmaidAction(model.indexOfCurrentPlayersTurn(), cardPick-1);
                     } else if(chosenCharacter == Character.COUNTESS) {
                         model.countessAction(model.indexOfCurrentPlayersTurn(), cardPick-1);
