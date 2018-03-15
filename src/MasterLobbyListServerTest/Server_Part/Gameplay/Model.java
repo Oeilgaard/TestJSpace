@@ -26,6 +26,9 @@ public class Model {
     public final static int UNTARGETTED = 122;
     public final static int WIN = 13;
 
+    public final static int SERVER_UPDATE = 20;
+    //public final static int DISCARD = 21;
+
     protected static ArrayList<Player> players;
     protected static int turn;
     protected static int affectionGoal;
@@ -87,7 +90,6 @@ public class Model {
     public static Deck getDeck() {
         return deck;
     }
-
 
     public int currentMaxAffection(){
         int max = 0;

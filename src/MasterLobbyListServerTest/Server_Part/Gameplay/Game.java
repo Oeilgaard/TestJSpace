@@ -1,5 +1,7 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import org.jspace.ActualField;
+import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
 import java.util.ArrayList;
@@ -13,10 +15,12 @@ public class Game {
     private SequentialSpace lobbySpace;
 
     private int cardPick;
+    private Object[] tuple;
     private int playerPick;
     private int guardGuess;
     private Character guardGuessCharacter;
     private Character chosenCharacter;
+    private Player currentPlayer;
 
     public Game(ArrayList<String> players, SequentialSpace lobbySpace) {
         this.model = new Model(players);
@@ -64,8 +68,6 @@ public class Game {
 
     public void startGame() {
 
-        Scanner scanner = new Scanner(System.in);
-
         model.determineAffectionGoal();
 
         // Game loop
@@ -77,7 +79,7 @@ public class Game {
             while(!model.roundWon) {
 
                 // temp. variables for current round
-                Player currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
+                currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
                 Card one = currentPlayer.getHand().getCards().get(0);
                 Card two = currentPlayer.getHand().getCards().get(1);
 
@@ -104,13 +106,13 @@ public class Game {
                     for(Player p : model.players){
                         if(p.getName()==currentPlayer.getName()) {
                             try {
-                                lobbySpace.put(model.CLIENT_UPDATE, model.NEW_TURN, p.getName(), two.toString());
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString());
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         } else {
                             try {
-                                lobbySpace.put(model.CLIENT_UPDATE, model.NEW_TURN, p.getName(), "");
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -125,9 +127,22 @@ public class Game {
 
                     // TODO: 'GET' RESPOND FROM SPECIFIC PLAYER
                     // TODO: DO SANITY CHECK OF PLAY
-                    cardPick = scanner.nextInt();
+                    //cardPick = scanner.nextInt();
 
-                    chosenCharacter = currentPlayer.getHand().getCards().get(cardPick-1).getCharacter();
+                    try {
+                        // [0]: Update, [1] update type, [2] sender, [3] card, [4] target (situational) , [5] guess (situational)
+                        Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new ActualField(Model.DISCARD),
+                                new FormalField(String.class), new FormalField(String.class),
+                                new FormalField(Integer.class), new FormalField(String.class));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    if(validTarget((int) tuple[4], (String) tuple[3])){
+                        chosenCharacter = currentPlayer.getHand().getCards().get(cardPick-1).getCharacter();
+                    } else {
+                        // Send tuple der requester nyt kort...
+                    }
 
                     // 2. PLAY CARD
                     playCard(chosenCharacter, currentPlayer);
@@ -142,6 +157,15 @@ public class Game {
                 model.playerPointer++; // player pointer increments for every index in the players array
             }
             System.out.println("Game is over");
+        }
+    }
+
+    private boolean validTarget(int targetPlayerIndex, String card){
+        Player target = model.players.get(targetPlayerIndex);
+        if(card == Character.PRINCE.toString()){ //TODO fix
+            return !target.isHandMaidProtected() && target.isInRound();
+        } else {
+            return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getName());
         }
     }
 
