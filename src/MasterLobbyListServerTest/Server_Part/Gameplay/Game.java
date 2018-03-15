@@ -87,7 +87,6 @@ public class Game {
                         currentPlayer.deactivateHandmaid();
                     }
 
-                    // TODO: TURN TUPLE TO CURRENT PLAYER + INFO TO REST
                     // States current player's turn
                     System.out.println("Round no. " + model.round + newLine + "Turn no. "
                             + (model.turn+1) + newLine + currentPlayer.getName() + "'s turn" + newLine);
@@ -100,6 +99,23 @@ public class Game {
                     System.out.println(currentPlayer.getName() + "'s current hand: ");
                     currentPlayer.getHand().printHand();
                     System.out.print(newLine);
+
+                    // TODO: TURN TUPLE TO CURRENT PLAYER + INFO TO REST
+                    for(Player p : model.players){
+                        if(p.getName()==currentPlayer.getName()) {
+                            try {
+                                lobbySpace.put(model.CLIENT_UPDATE, model.NEW_TURN, p.getName(), two.toString());
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            try {
+                                lobbySpace.put(model.CLIENT_UPDATE, model.NEW_TURN, p.getName(), "");
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
 
                     // 2. DISCARD
 

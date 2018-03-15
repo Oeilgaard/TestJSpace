@@ -10,6 +10,22 @@ public class Model {
 
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
 
+    public final static int NO_OF_GUARD = 5;
+    public final static int NO_OF_PRIEST = 2;
+    public final static int NO_OF_BARON = 2;
+    public final static int NO_OF_HANDMAID = 2;
+    public final static int NO_OF_PRINCE = 2;
+    public final static int NO_OF_KING = 1;
+    public final static int NO_OF_COUNTESS = 1;
+    public final static int NO_OF_PRINCESS = 1;
+
+    public final static int CLIENT_UPDATE = 10;
+    public final static int NEW_TURN = 11;
+    public final static int DISCARD = 12;
+    public final static int TARGETTED = 121;
+    public final static int UNTARGETTED = 122;
+    public final static int WIN = 13;
+
     protected static ArrayList<Player> players;
     protected static int turn;
     protected static int affectionGoal;
