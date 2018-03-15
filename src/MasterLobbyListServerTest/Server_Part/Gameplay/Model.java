@@ -4,11 +4,16 @@ import java.util.ArrayList;
 
 public class Model {
 
-    public final static int AFFECTION_GOAL_TWO_PLAYER = 7;
+    public final static int AFFECTION_GOAL_TWO_PLAYERS = 7;
+    public final static int AFFECTION_GOAL_THREE_PLAYERS = 5;
+    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 5;
+
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
 
     protected static ArrayList<Player> players;
     protected static int turn;
+    protected static int affectionGoal;
+    protected static int playerPointer; // index of the current player's turn
     protected static int round;
     protected static Deck deck;
     protected static boolean roundWon;
@@ -29,6 +34,22 @@ public class Model {
         }
         //Model.players.add(new Player("Alice"));
         //Model.players.add(new Player("Bob"));
+    }
+
+    public static void determineAffectionGoal(){
+        switch (players.size()) {
+            case 2:
+                affectionGoal = AFFECTION_GOAL_TWO_PLAYERS;
+                break;
+            case 3:
+                affectionGoal = AFFECTION_GOAL_THREE_PLAYERS;
+                break;
+            case 4:
+                affectionGoal = AFFECTION_GOAL_FOUR_PLAYERS;
+                break;
+            default:
+                break;
+        }
     }
 
     public static ArrayList<Player> getPlayers() {
@@ -61,7 +82,7 @@ public class Model {
     }
 
     public int indexOfCurrentPlayersTurn(){
-        return turn % players.size();
+        return playerPointer % players.size();
     }
 
     public boolean isTargeted(Card card){

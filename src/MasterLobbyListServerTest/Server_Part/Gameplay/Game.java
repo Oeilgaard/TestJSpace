@@ -11,6 +11,7 @@ public class Game {
 
     private Model model;
     private SequentialSpace lobbySpace;
+
     private int cardPick;
     private int playerPick;
     private int guardGuess;
@@ -65,14 +66,17 @@ public class Game {
 
         Scanner scanner = new Scanner(System.in);
 
+        model.determineAffectionGoal();
+
         // Game loop
-        while (model.currentMaxAffection() < model.AFFECTION_GOAL_TWO_PLAYER) {
+        while (model.currentMaxAffection()< model.affectionGoal) {
 
             newRound();
 
             // Round loop
             while(!model.roundWon) {
 
+                // temp. variables for current round
                 Player currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
                 Card one = currentPlayer.getHand().getCards().get(0);
                 Card two = currentPlayer.getHand().getCards().get(1);
@@ -83,11 +87,13 @@ public class Game {
                         currentPlayer.deactivateHandmaid();
                     }
 
+                    // TODO: TURN TUPLE TO CURRENT PLAYER + INFO TO REST
                     // States current player's turn
                     System.out.println("Round no. " + model.round + newLine + "Turn no. "
                             + (model.turn+1) + newLine + currentPlayer.getName() + "'s turn" + newLine);
 
                     // 1. DRAW
+
                     model.deck.drawCard(currentPlayer.getHand());
                     System.out.println(currentPlayer.getName() + " drew a " + two.getCharacter() + newLine);
 
@@ -101,21 +107,23 @@ public class Game {
                             + " (press 1) or " + two.getCharacter() +
                             " (press 2)" + newLine);
 
+                    // TODO: 'GET' RESPOND FROM SPECIFIC PLAYER
+                    // TODO: DO SANITY CHECK OF PLAY
                     cardPick = scanner.nextInt();
-
-                    // GET ACTION ...lobbySpace.get()
-                    // DO SANITY CHECK
 
                     chosenCharacter = currentPlayer.getHand().getCards().get(cardPick-1).getCharacter();
 
                     // 2. PLAY CARD
                     playCard(chosenCharacter, currentPlayer);
+                    // TODO: INFO TO ALL
 
                     // 3. ROUND END CHECKS
                     terminalTest();
+                    // TODO: IF GAME OVER, INFO TO ALL - SPECIAL TUPLE TO WINNER
 
-                    model.turn++;
+                    model.turn++; // turn only increments if a turn is executed
                 }
+                model.playerPointer++; // player pointer increments for every index in the players array
             }
             System.out.println("Game is over");
         }
