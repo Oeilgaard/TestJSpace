@@ -33,7 +33,7 @@ public class ClientUpdateAgent implements Runnable{
 
     @Override
     public void run() {
-    
+
         updateLoop:
         while(true) {
             try {
@@ -134,6 +134,7 @@ public class ClientUpdateAgent implements Runnable{
                             }
                         }
                     });
+                    break updateLoop;
                 }
 
             } catch (InterruptedException e) {

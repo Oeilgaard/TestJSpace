@@ -5,6 +5,7 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 import org.jspace.SpaceRepository;
+import org.jspace.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -111,6 +112,7 @@ public class Lobby implements Runnable {
                     lobbySpace.put(LOBBY_RESP, players, name);
                 } else {
                     System.out.println("Unknown request");
+                    System.out.println(tuple[1].toString());
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -124,6 +126,8 @@ public class Lobby implements Runnable {
             e.printStackTrace();
         }
 
+        chatAgent.interrupt();
+
         // Start the game
         if(beginFlag){
             inGame = true;
@@ -133,7 +137,6 @@ public class Lobby implements Runnable {
             game.startGame();
         }
 
-        chatAgent.interrupt();
         serverRepos.remove(lobbyID.toString());
         System.out.println("Lobby is closed");
     }

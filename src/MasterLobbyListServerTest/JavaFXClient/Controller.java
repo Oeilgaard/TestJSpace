@@ -111,9 +111,6 @@ public class Controller {
         model.addIpToRemoteSpaces(urlForRemoteSpace);
         lobbyIds = new ArrayList<>();
 
-        card1 = new ImageView();
-        card2 = new ImageView();
-
         changeScene(USER_NAME_SCENE);
     }
 
@@ -238,7 +235,6 @@ public class Controller {
 
             if((int) tuple[1] == Model.OK){
                 try {
-                    //TODO: Update list automatically when joining.
                     changeScene(LOBBY_LIST_SCENE);
 
                 } catch (IOException e) {
@@ -318,11 +314,8 @@ public class Controller {
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
-                System.out.println("Er den null?");
                 if(tuple != null) {
 
-                    System.out.println("Den var ikke null");
-                    //TODO: NullPointerException?
                     model.joinLobby((UUID) tuple[2]);
 
                     model.getLobbySpace().put(Model.LOBBY_REQ, Model.CONNECT, model.getUniqueName());
@@ -385,39 +378,6 @@ public class Controller {
     public void requestNameVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){
             createUser(null);
-            /*String userNameString = userName.getText();
-
-            if(HelperFunctions.validName(userNameString)) {
-
-                createUserNameButton.setDisable(true);
-                instructionsUserName.setText("");
-
-                model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, userNameString, "");
-
-                // Blocks until user receives unique username (due to 'get')
-                Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
-                        new FormalField(Integer.class), new ActualField(userNameString), new FormalField(String.class));
-
-                if((int) tuple[2] == Model.OK) {
-                    model.setUniqueName((String) tuple[4]); // Setting the user's name
-                    System.out.println("Unique name:");
-                    System.out.println(model.getUniqueName());
-
-                    // Goto Lobby List
-                    try {
-                        changeScene(LOBBY_LIST_SCENE);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    // should ideally never happen, however can happen if the sanity check is bypassed client-side
-                } else if((int) tuple[2] == Model.BAD_REQUEST) {
-                    instructionsUserName.setText("Server denied username. Please try again.");
-                    createUserNameButton.setDisable(false);
-                }
-            } else {
-                instructionsUserName.setText("Please only apply alphabetic characters (between 2-15 characters).");
-                createUserNameButton.setDisable(false);
-            }*/
         }
     }
 
@@ -438,7 +398,6 @@ public class Controller {
 
                 if((int) tuple[1] == Model.OK){
                     try {
-                        //TODO: Update list automatically when joining.
                         changeScene(LOBBY_LIST_SCENE);
 
                     } catch (IOException e) {

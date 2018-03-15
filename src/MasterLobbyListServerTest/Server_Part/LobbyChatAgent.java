@@ -20,6 +20,7 @@ public class LobbyChatAgent implements Runnable{
     @Override
     public void run() {
 
+        chatLoop:
         while(true) {
             try {
                 Object[] tuple = lobbySpace.get(new ActualField("Chat"), new FormalField(String.class), new FormalField(String.class));
@@ -35,7 +36,9 @@ public class LobbyChatAgent implements Runnable{
                     }
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Chat Agent interrupted");
+                break chatLoop;
             }
         }
 
