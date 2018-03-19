@@ -52,6 +52,7 @@ public class ClientGameUpdate implements Runnable{
 
                                     model.cardsOnHand.add((String)tuple[3]);
                                     Controller.loadHand(model.cardsOnHand, root);
+                                    System.out.println("Hand : " + model.cardsOnHand.get(0) + " and " + model.cardsOnHand.get(1));
 
                                 } catch (IOException e) {
                                     e.printStackTrace();

@@ -373,9 +373,11 @@ public class Model {
         players.get(sender).setInRound(false);
         players.get(sender).discardHand();
 
+        knockOut(players.get(sender));
         //TODO: custom messages
         String msgOthers = "moo";
         informPlayersUntargetted(Character.PRINCESS.toString(),sender,msgOthers);
+
     }
 
     public void setRoundWon(boolean roundWon){

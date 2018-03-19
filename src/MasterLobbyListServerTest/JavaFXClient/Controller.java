@@ -70,8 +70,6 @@ public class Controller {
     private ImageView card2;
     @FXML
     private ListView targetablePlayers;
-    @FXML
-    private Button priestbtn, baronbtn, handmaidbtn, princebtn, kingbtn, countessbtn, princessbtn;
 
 
     protected static ArrayList<UUID> lobbyIds;
@@ -88,13 +86,15 @@ public class Controller {
 
     public void pickCardOne(MouseEvent mouseEvent) throws IOException, InterruptedException {
         System.out.println("Pick card one");
-
+        System.out.println("Returned : " + model.cardsOnHand.get(0));
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(0))) {
             changeScene(PICK_PLAYER_SCENE);
             pickedCard = 0;
             selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(0));
         } else {
-            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),0,"",""); // Send the action to the server
+            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"0","",""); // Send the action to the server
+            model.cardsOnHand.remove(0);
+            changeScene("GameScene");
         }
         // if card one is targeted
         // go to pick player scene
@@ -103,13 +103,15 @@ public class Controller {
 
     public void pickCardTwo(MouseEvent mouseEvent) throws IOException, InterruptedException {
         System.out.println("Pick card two");
-
+        System.out.println("Returned : " + model.cardsOnHand.get(1));
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(1))) {
             changeScene(PICK_PLAYER_SCENE);
             pickedCard = 1;
             selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(1));
         } else {
-            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),0,"",""); // Send the action to the server
+            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"1","",""); // Send the action to the server
+            model.cardsOnHand.remove(1);
+            changeScene("GameScene");
         }
     }
 
@@ -121,8 +123,8 @@ public class Controller {
         model.addIpToRemoteSpaces(urlForRemoteSpace);
         lobbyIds = new ArrayList<>();
 
-        //changeScene(USER_NAME_SCENE);
-        changeScene(PLAY_CARD_SCENE);
+        changeScene(USER_NAME_SCENE);
+        //changeScene(PLAY_CARD_SCENE);
     }
 
     @FXML
@@ -182,12 +184,7 @@ public class Controller {
                 lobbyIds.add((UUID) obj[2]);
             }
         } else if (sceneName == PLAY_CARD_SCENE) {
-            ArrayList<String> hand = new ArrayList<>();
-            hand.add("baron");
-            hand.add("prince");
-            model.cardsOnHand = hand;
-            loadHand(hand, root);
-
+            loadHand(model.cardsOnHand, root);
         } else if (sceneName == PICK_PLAYER_SCENE) {
 
             //TODO This needs to be updated
@@ -200,7 +197,7 @@ public class Controller {
 
             ArrayList<String> bob = new ArrayList();
             bob.add("Bob");
-            bob.add("0");
+            bob.add("1");
 
             ArrayList<String> alice = new ArrayList();
             alice.add("Alice");
@@ -219,7 +216,7 @@ public class Controller {
 
             //Object[] tp = model.getLobbySpace().query(new ActualField(Model.GAMEPLAY_INFO), new ActualField(Model.PLAYERS_IN_ROUND), new FormalField(ArrayList.class));
 
-            int index = 1;
+            int index = 0;
             //for (ArrayList<String> p : (ArrayList<ArrayList>) tp[2]) {
             for (ArrayList<String> p : dummyPlayers) {
                 if (p.get(1) == "1") {
@@ -497,9 +494,11 @@ public class Controller {
                 indexOfTarget = targetablePlayers.getSelectionModel().getSelectedIndex();
 
                 if(!selectCardIsGuard) {
-                    model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), pickedCard, indexOfTarget, ""); // Send the action to the server
+                    model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), ""); // Send the action to the server
+                    model.cardsOnHand.remove(pickedCard);
                     pickedCard = 2;
                     indexOfTarget = -1;
+                    changeScene("GameScene");
                 }else {
                     changeScene("ChooseGuessScene");
                 }
@@ -509,9 +508,9 @@ public class Controller {
 
     @FXML
     private void GuessSelect(ActionEvent event) throws InterruptedException, IOException {
-        String text = ((Button)event.getSource()).getText();
-        String finalGuess = text.toLowerCase();
-        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), pickedCard, indexOfTarget, finalGuess); // Send the action to the server
+        Button btn =(Button) event.getSource();
+        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), btn.getId()); // Send the action to the server
+        model.cardsOnHand.remove(pickedCard);
         pickedCard = 2;
         indexOfTarget = -1;
         selectCardIsGuard = false;

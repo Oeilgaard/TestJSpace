@@ -6,8 +6,8 @@ public class HelperFunctions {
         return name.matches("[a-zA-Z0-9_]{2,15}");
     }
 
-    public static boolean isTargeted(String card) { return (card == "guard" || card == "baron" || card == "king"); }
+    public static boolean isTargeted(String card) { return (card.equals("GUARD") || card.equals("BARON") || card.equals("KING") || card.equals("PRINCE") || card.equals("PRIEST")); }
 
-    public static boolean isGuard(String card) { return card == "guard" ;}
+    public static boolean isGuard(String card) { return card.equals("GUARD") ;}
 
 }
