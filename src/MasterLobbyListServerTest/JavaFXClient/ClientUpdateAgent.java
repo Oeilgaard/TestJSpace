@@ -79,6 +79,8 @@ public class ClientUpdateAgent implements Runnable{
 
                     System.out.println("DETECTED A SHUTDOWN");
 
+                    //TODO burde de her change scene ting ikke ske i Controller for at 'seperate concern'?
+
                     model.resetLobbyInfo();
 
                     Platform.runLater(new Runnable() {
@@ -115,18 +117,18 @@ public class ClientUpdateAgent implements Runnable{
                     Platform.runLater(new Runnable() {
                         public void run() {
                             try {
-                                root = FXMLLoader.load(getClass().getResource("PlayCardScene.fxml"));
+                                root = FXMLLoader.load(getClass().getResource("GameScene.fxml"));
                                 Scene scene = new Scene(root);
                                 Main.appWindow.setScene(scene);
 
-                                ArrayList<String> hand = new ArrayList<>();
-                                hand.add("baron");
-                                hand.add("prince");
+//                                ArrayList<String> hand = new ArrayList<>();
+//                                hand.add("baron");
+//                                hand.add("prince");
 
-                                ImageView card1 = ((ImageView) root.lookup("#card1"));
-                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(0) + ".jpg"));
-                                ImageView card2 = ((ImageView) root.lookup("#card2"));
-                                card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
+//                                ImageView card1 = ((ImageView) root.lookup("#card1"));
+//                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(0) + ".jpg"));
+//                                ImageView card2 = ((ImageView) root.lookup("#card2"));
+//                                card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
 
 
                             } catch (IOException e) {

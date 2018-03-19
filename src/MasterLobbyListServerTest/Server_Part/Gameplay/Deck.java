@@ -57,11 +57,11 @@ public class Deck {
     public void fillDeck(){
         for(Character ch : Character.values()) {
             if(ch == Character.GUARD){
-                for(int i = 0; i < 1; i++) {
+                for(int i = 0; i < Model.NO_OF_GUARD; i++) {
                     cards.add(new Card(ch));
                 }
             } else if (ch == Character.PRIEST || ch == Character.BARON || ch == Character.PRINCE || ch == Character.HANDMAID) {
-                for (int i = 0; i < 1; i++) {
+                for (int i = 0; i < Model.NO_OF_PRIEST; i++) {
                     cards.add(new Card(ch));
                 }
             } else {

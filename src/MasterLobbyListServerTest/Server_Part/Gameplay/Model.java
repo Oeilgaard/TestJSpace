@@ -4,11 +4,35 @@ import java.util.ArrayList;
 
 public class Model {
 
-    public final static int AFFECTION_GOAL_TWO_PLAYER = 7;
+    public final static int AFFECTION_GOAL_TWO_PLAYERS = 7;
+    public final static int AFFECTION_GOAL_THREE_PLAYERS = 5;
+    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 5;
+
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
+
+    public final static int NO_OF_GUARD = 5;
+    public final static int NO_OF_PRIEST = 2;
+    public final static int NO_OF_BARON = 2;
+    public final static int NO_OF_HANDMAID = 2;
+    public final static int NO_OF_PRINCE = 2;
+    public final static int NO_OF_KING = 1;
+    public final static int NO_OF_COUNTESS = 1;
+    public final static int NO_OF_PRINCESS = 1;
+
+    public final static int CLIENT_UPDATE = 10;
+    public final static int NEW_TURN = 11;
+    public final static int DISCARD = 12;
+    public final static int TARGETTED = 121;
+    public final static int UNTARGETTED = 122;
+    public final static int WIN = 13;
+
+    public final static int SERVER_UPDATE = 20;
+    //public final static int DISCARD = 21;
 
     protected static ArrayList<Player> players;
     protected static int turn;
+    protected static int affectionGoal;
+    protected static int playerPointer; // index of the current player's turn
     protected static int round;
     protected static Deck deck;
     protected static boolean roundWon;
@@ -31,6 +55,22 @@ public class Model {
         //Model.players.add(new Player("Bob"));
     }
 
+    public static void determineAffectionGoal(){
+        switch (players.size()) {
+            case 2:
+                affectionGoal = AFFECTION_GOAL_TWO_PLAYERS;
+                break;
+            case 3:
+                affectionGoal = AFFECTION_GOAL_THREE_PLAYERS;
+                break;
+            case 4:
+                affectionGoal = AFFECTION_GOAL_FOUR_PLAYERS;
+                break;
+            default:
+                break;
+        }
+    }
+
     public static ArrayList<Player> getPlayers() {
         return players;
     }
@@ -51,7 +91,6 @@ public class Model {
         return deck;
     }
 
-
     public int currentMaxAffection(){
         int max = 0;
         for(Player p : players){
@@ -61,7 +100,7 @@ public class Model {
     }
 
     public int indexOfCurrentPlayersTurn(){
-        return turn % players.size();
+        return playerPointer % players.size();
     }
 
     public boolean isTargeted(Card card){

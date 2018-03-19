@@ -1,5 +1,7 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import org.jspace.ActualField;
+import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
 import java.util.ArrayList;
@@ -11,11 +13,14 @@ public class Game {
 
     private Model model;
     private SequentialSpace lobbySpace;
+
     private int cardPick;
+    private Object[] tuple;
     private int playerPick;
     private int guardGuess;
     private Character guardGuessCharacter;
     private Character chosenCharacter;
+    private Player currentPlayer;
 
     public Game(ArrayList<String> players, SequentialSpace lobbySpace) {
         this.model = new Model(players);
@@ -63,17 +68,18 @@ public class Game {
 
     public void startGame() {
 
-        Scanner scanner = new Scanner(System.in);
+        model.determineAffectionGoal();
 
         // Game loop
-        while (model.currentMaxAffection() < model.AFFECTION_GOAL_TWO_PLAYER) {
+        while (model.currentMaxAffection()< model.affectionGoal) {
 
             newRound();
 
             // Round loop
             while(!model.roundWon) {
 
-                Player currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
+                // temp. variables for current round
+                currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
                 Card one = currentPlayer.getHand().getCards().get(0);
                 Card two = currentPlayer.getHand().getCards().get(1);
 
@@ -88,6 +94,7 @@ public class Game {
                             + (model.turn+1) + newLine + currentPlayer.getName() + "'s turn" + newLine);
 
                     // 1. DRAW
+
                     model.deck.drawCard(currentPlayer.getHand());
                     System.out.println(currentPlayer.getName() + " drew a " + two.getCharacter() + newLine);
 
@@ -95,29 +102,70 @@ public class Game {
                     currentPlayer.getHand().printHand();
                     System.out.print(newLine);
 
+                    // TODO: TURN TUPLE TO CURRENT PLAYER + INFO TO REST
+                    for(Player p : model.players){
+                        if(p.getName()==currentPlayer.getName()) {
+                            try {
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString());
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            try {
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "");
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
                     // 2. DISCARD
 
                     System.out.print("Discard " + one.getCharacter()
                             + " (press 1) or " + two.getCharacter() +
                             " (press 2)" + newLine);
 
-                    cardPick = scanner.nextInt();
+                    // TODO: 'GET' RESPOND FROM SPECIFIC PLAYER
+                    // TODO: DO SANITY CHECK OF PLAY
+                    //cardPick = scanner.nextInt();
 
-                    // GET ACTION ...lobbySpace.get()
-                    // DO SANITY CHECK
+                    try {
+                        // [0]: Update, [1] update type, [2] sender, [3] card, [4] target (situational) , [5] guess (situational)
+                        Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new ActualField(Model.DISCARD),
+                                new FormalField(String.class), new FormalField(String.class),
+                                new FormalField(Integer.class), new FormalField(String.class));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-                    chosenCharacter = currentPlayer.getHand().getCards().get(cardPick-1).getCharacter();
+                    if(validTarget((int) tuple[4], (String) tuple[3])){
+                        chosenCharacter = currentPlayer.getHand().getCards().get(cardPick-1).getCharacter();
+                    } else {
+                        // Send tuple der requester nyt kort...
+                    }
 
                     // 2. PLAY CARD
                     playCard(chosenCharacter, currentPlayer);
+                    // TODO: INFO TO ALL
 
                     // 3. ROUND END CHECKS
                     terminalTest();
+                    // TODO: IF GAME OVER, INFO TO ALL - SPECIAL TUPLE TO WINNER
 
-                    model.turn++;
+                    model.turn++; // turn only increments if a turn is executed
                 }
+                model.playerPointer++; // player pointer increments for every index in the players array
             }
             System.out.println("Game is over");
+        }
+    }
+
+    private boolean validTarget(int targetPlayerIndex, String card){
+        Player target = model.players.get(targetPlayerIndex);
+        if(card == Character.PRINCE.toString()){ //TODO fix
+            return !target.isHandMaidProtected() && target.isInRound();
+        } else {
+            return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getName());
         }
     }
 

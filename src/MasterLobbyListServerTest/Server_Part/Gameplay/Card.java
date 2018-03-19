@@ -15,4 +15,8 @@ public class Card {
     public int getValue() {
         return character.getValue();
     }
+
+    public String toString(){
+        return character.toString(); //TODO: is it acutally e.g. "BARON"?
+    }
 }
