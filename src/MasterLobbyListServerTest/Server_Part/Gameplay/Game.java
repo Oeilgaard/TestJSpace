@@ -83,7 +83,6 @@ public class Game {
                 // temp. variables for current round
                 currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
                 Card one = currentPlayer.getHand().getCards().get(0);
-                Card two = currentPlayer.getHand().getCards().get(1);
 
                 if(currentPlayer.isInRound()) {
 
@@ -96,8 +95,8 @@ public class Game {
                             + (model.turn+1) + newLine + currentPlayer.getName() + "'s turn" + newLine);
 
                     // 1. DRAW
-
                     model.deck.drawCard(currentPlayer.getHand());
+                    Card two = currentPlayer.getHand().getCards().get(1);
                     System.out.println(currentPlayer.getName() + " drew a " + two.getCharacter() + newLine);
 
                     System.out.println(currentPlayer.getName() + "'s current hand: ");
@@ -110,14 +109,14 @@ public class Game {
                         if(p.getName()==currentPlayer.getName()) {
                             try {
                                 // [0] Update, [1] update type, [2] receiver, [3] drawn card
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), "");
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), "", "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         } else {
                             try {
                                 // [0] Update, [1] update type, [2] receiver, [3] ...
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", "");
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", "", "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }

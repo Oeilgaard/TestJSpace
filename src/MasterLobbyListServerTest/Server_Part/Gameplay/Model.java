@@ -199,23 +199,23 @@ public class Model {
         players.get(sender).discardCard(index);
     }
 
-    public void informPlayers(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex, int receiverIndex, String kingCard){
+    public void informPlayers(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex, int receiverIndex, String kingCardToSender, String kingCardToTarget){
         for(Player p : players){
             if(p.getName() == players.get(senderIndex).getName()){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgSender, kingCard);
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgSender, kingCardToSender);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             } else if(p.getName() == players.get(receiverIndex).getName()){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgTarget, kingCard);
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgTarget, kingCardToTarget);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgOthers, kingCard);
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgOthers, "");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -249,7 +249,7 @@ public class Model {
                     players.get(targetPlayer).getName() + " has a " + guess.toString() + "! + " +
                     players.get(targetPlayer).getName() + " is out of the round.";
 
-            informPlayers(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");
+            informPlayers(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
 
 //         players.get(sender).getDiscardPile().addToDiscardPile(players.get(sender).getHand().getCards().get(index));
 //         players.get(sender).getHand().getCards().remove(index);
@@ -258,7 +258,7 @@ public class Model {
             String msgTarget = players.get(sender).getName() + " uses GUARD on you and incorrectly guesses that you have a " + guess.toString();
             String msgOthers = players.get(sender).getName() + " uses GUARD on + " + players.get(targetPlayer).getName()
                     + " and incorrectly guesses " + guess.toString();
-            informPlayers(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");
+            informPlayers(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
         }
     }
 
@@ -267,10 +267,10 @@ public class Model {
         //System.out.print("Priest finds " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter() + Game.newLine);
         //players.get(targetPlayer).getHand().printHand();
         //TODO: custom messages
-        String msgSender = "foo";
-        String msgTarget = "bar";
+        String msgSender = players.get(targetPlayer).getName() + " has a " + players.get(targetPlayer).getHand().getCards().get(0);
+        String msgTarget = players.get(sender).getName() + " uses P";
         String msgOthers = "moo";
-        informPlayers(Character.PRIEST.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");
+        informPlayers(Character.PRIEST.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
     }
 
     //                    PLAYER INDEX  CARD INDEX  PLAYER INDEX
@@ -292,21 +292,21 @@ public class Model {
             String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You win the duel!";
             String msgTarget = players.get(sender).getName() + " has a " + senderPlayerCharater.toString() + ". You are out of the round!";
             String msgOthers = players.get(sender).getName() + " wins the duel, and " + players.get(targetPlayer).getName() + " is out of the round";
-            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");
+            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
         } else if(players.get(sender).getHand().getCards().get(0).getCharacter().getValue() < players.get(targetPlayer).getHand().getCards().get(0).getCharacter().getValue()){
             knockOut(players.get(sender));
 
             String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You are out of the round!";
             String msgTarget = players.get(sender).getName() + " has a " + senderPlayerCharater.toString() + ". You win the duel!";
             String msgOthers = players.get(targetPlayer).getName() + " wins the duel, and " + players.get(sender).getName() + " is out of the round";
-            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");
+            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
         } else {
             System.out.println("Tie! No one is knocked out...");
 
             String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". It's a draw!";
             String msgTarget = players.get(sender).getName() + " has a " + senderPlayerCharater.toString() + ". It's a draw!";
             String msgOthers = "It's a draw! No one is knocked out!";
-            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");}
+            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");}
     }
 
     public void handmaidAction(int sender, int index){
@@ -329,7 +329,7 @@ public class Model {
             String msgSender = "foo";
             String msgTarget = "bar";
             String msgOthers = "moo";
-            informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");
+            informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
         } else {
             drawSecretCard(players.get(targetPlayer).getHand());
 
@@ -337,7 +337,7 @@ public class Model {
             String msgSender = "foo";
             String msgTarget = "bar";
             String msgOthers = "moo";
-            informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "");
+            informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
         }
     }
 
@@ -354,10 +354,12 @@ public class Model {
         players.get(targetPlayer).getHand().getCards().add(senderCard);
 
         //TODO: custom messages
-        String msgSender = "foo";
+        String msgSender = "You played KING on " + players.get(targetPlayer).getName() + " ";
         String msgTarget = "bar";
         String msgOthers = "moo";
-        informPlayers(Character.KING.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, targetCard.getCharacter().toString());
+
+        informPlayers(Character.KING.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, targetCard.getCharacter().toString(), senderCard.getCharacter().toString());
+        
     }
 
     public void countessAction(int sender, int index){
