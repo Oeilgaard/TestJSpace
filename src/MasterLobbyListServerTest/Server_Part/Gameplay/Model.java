@@ -266,14 +266,14 @@ public class Model {
         players.get(sender).discardCard(index);
         //System.out.print("Priest finds " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter() + Game.newLine);
         //players.get(targetPlayer).getHand().printHand();
-        //TODO: custom messages
+
         String msgSender = players.get(targetPlayer).getName() + " has a " + players.get(targetPlayer).getHand().getCards().get(0);
-        String msgTarget = players.get(sender).getName() + " uses P";
-        String msgOthers = "moo";
+        String msgTarget = players.get(sender).getName() + " uses PRIEST on you.";
+        String msgOthers = players.get(sender).getName() + " uses PRIEST on " + players.get(targetPlayer).getName();
         informPlayers(Character.PRIEST.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
     }
 
-    //                    PLAYER INDEX  CARD INDEX  PLAYER INDEX
+    // PLAYER INDEX  CARD INDEX  PLAYER INDEX
     public void baronAction(int sender, int index, int targetPlayer) {
 
         players.get(sender).discardCard(index);
@@ -364,7 +364,7 @@ public class Model {
     public void countessAction(int sender, int index){
         players.get(sender).discardCard(index);
 
-        String msgOthers = players.get(sender).getName() + " played COUNTESS";
+        String msgOthers = players.get(sender).getName() + " played COUNTESS.";
         informPlayersUntargetted(Character.COUNTESS.toString(),sender,msgOthers);
     }
 
