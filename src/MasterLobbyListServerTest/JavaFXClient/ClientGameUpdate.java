@@ -35,35 +35,54 @@ public class ClientGameUpdate implements Runnable{
         while(true) {
             try {
 
-                Object[] tuple = model.getLobbySpace().get(new ActualField("game update"));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE),new FormalField(Integer.class),new ActualField(model.getUniqueName()),new FormalField(String.class),new FormalField(String.class),new FormalField(String.class));
 
-                if (tuple[1].equals("action1")) {
+                if (tuple[1].equals(Model.NEW_TURN)) {
+
+                    if(!tuple[3].equals("")) {
+
+                        Platform.runLater(new Runnable() {
+                            public void run() {
+
+                                //Update GUI
+                                try {
+                                    Parent root = FXMLLoader.load(getClass().getResource( "PlayCardScene.fxml"));
+                                    Scene scene = new Scene(root);
+                                    Main.appWindow.setScene(scene);
+
+                                    model.cardsOnHand.add((String)tuple[3]);
+                                    Controller.loadHand(model.cardsOnHand, root);
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    } else {
+
+                        Platform.runLater(new Runnable() {
+                            public void run() {
+
+                                //Update GUI to show whos turn it is
+                            }
+                        });
+
+                    }
+                } else if (tuple[1].equals(Model.GAME_START_UPDATE)){
+
+                    model.cardsOnHand.add((String)tuple[3]);
+
+                } else if (tuple[1].equals("OUTCOME")){
+
+                } else if (tuple[1].equals("KNOCKOUT")){
+
                     Platform.runLater(new Runnable() {
                         public void run() {
 
-                            //Update GUI
                         }
                     });
-                } else if (tuple[1].equals("action2")){
 
-                    //Reveal information about player
-
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-
-                        }
-                    });
-                } else if (tuple[1].equals("action3")){
-
-                    //Your turn
-
-                } else if (tuple[1].equals("action4")){
-
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-
-                        }
-                    });
+                } else if (tuple[1].equals("WINNER")){
 
                 }
 

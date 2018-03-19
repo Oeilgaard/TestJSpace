@@ -38,6 +38,7 @@ public class ClientUpdateAgent implements Runnable{
         while(true) {
             try {
 
+                //[0] update code [1] type of update [2] name of user [3] chat text combined with username (situational)
                 Object[] tuple = model.getLobbySpace().get(new ActualField(model.LOBBY_UPDATE),new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class));
 
                 if (tuple[1].equals(model.CHAT_MESSAGE)) {
@@ -59,15 +60,16 @@ public class ClientUpdateAgent implements Runnable{
                         public void run() {
                             Object[] tuple2 = new Object[0];
                             try {
+
+                                // [0] response code [1] list of playernames [2] username
                                 tuple2 = model.getLobbySpace().get(new ActualField(model.LOBBY_RESP),new FormalField(ArrayList.class),new ActualField(model.getUniqueName()));
 
 
                                 ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
                                 updatePlayerListView.getItems().clear();
                                 for (String user : (ArrayList<String>) tuple2[1]) {
-                                    String s = user;
-                                    s = s.substring(0, s.indexOf("#"));
-                                    updatePlayerListView.getItems().add(new Label(s));
+
+                                    updatePlayerListView.getItems().add(new Label(user));
 
                                 }
                             } catch (InterruptedException e) {
@@ -96,6 +98,8 @@ public class ClientUpdateAgent implements Runnable{
                                 Controller.lobbyIds.clear();
                                 updateListView.getItems().clear();
                                 List<Object[]> tuple = null;
+
+                                //[0] lobby code [1] Lobby name [2] Lobby ID
                                 tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
                                 for (Object[] obj : tuple) {

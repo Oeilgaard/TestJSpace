@@ -23,6 +23,7 @@ public class LobbyChatAgent implements Runnable{
         chatLoop:
         while(true) {
             try {
+                // [0] update code, [1] name of the one writing the message, [2] the message
                 Object[] tuple = lobbySpace.get(new ActualField("Chat"), new FormalField(String.class), new FormalField(String.class));
 
                 System.out.println("Receive chat update from : " + tuple[1]);
@@ -32,6 +33,7 @@ public class LobbyChatAgent implements Runnable{
                         String s = (String) tuple[1];
                         s = s.substring(0, s.indexOf("#"));
                         String finalText = s + " : " + tuple[2];
+                        // [0] lobby code, [1] chat code, [2] name of the receiving player, [3] text message combined with sending username
                         lobbySpace.put(Lobby.LOBBY_UPDATE, Lobby.CHAT_MESSAGE, user, finalText);
                     }
                 }

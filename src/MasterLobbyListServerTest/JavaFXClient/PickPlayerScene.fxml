@@ -12,6 +12,6 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
     <children>
         <Label layoutX="248.0" layoutY="28.0" text="Pick a target" textAlignment="CENTER" />
-      <ListView fx:id="targetablePlayers" layoutX="65.0" layoutY="62.0" orientation="HORIZONTAL" prefHeight="231.0" prefWidth="469.0" />
+      <ListView fx:id="targetablePlayers" layoutX="65.0" layoutY="62.0" orientation="HORIZONTAL" prefHeight="231.0" prefWidth="469.0" onMouseClicked="#clickTarget" />
     </children>
 </AnchorPane>

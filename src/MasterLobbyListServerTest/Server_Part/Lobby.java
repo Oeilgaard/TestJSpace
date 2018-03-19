@@ -109,7 +109,15 @@ public class Lobby implements Runnable {
                         System.out.println("Not enough players to begin");
                     }
                 } else if (req == GET_PLAYERLIST) {
-                    lobbySpace.put(LOBBY_RESP, players, name);
+
+                    ArrayList<String> usernames = new ArrayList<>();
+                    for (String user :  players) {
+                        String s = user;
+                        s = s.substring(0, s.indexOf("#"));
+                        usernames.add(s);
+                    }
+
+                    lobbySpace.put(LOBBY_RESP, usernames, name);
                 } else {
                     System.out.println("Unknown request");
                     System.out.println(tuple[1].toString());
@@ -121,6 +129,7 @@ public class Lobby implements Runnable {
 
         // Remove Lobby from Lobby List overview space
         try {
+            // [0] lobby code [1] lobbyname [2] lobby-id
             lobbyOverviewSpace.get(new ActualField("Lobby"),new FormalField(String.class),new ActualField(lobbyID));
         } catch (InterruptedException e) {
             e.printStackTrace();

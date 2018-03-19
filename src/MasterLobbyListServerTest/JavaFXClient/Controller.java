@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
@@ -62,29 +63,38 @@ public class Controller {
     @FXML
     private Label instructionsLobbyName;
     @FXML
+    private Pane cardListPane;
+    @FXML
     private ImageView card1;
     @FXML
     private ImageView card2;
     @FXML
     private ListView targetablePlayers;
+    @FXML
+    private Button priestbtn, baronbtn, handmaidbtn, princebtn, kingbtn, countessbtn, princessbtn;
 
 
     protected static ArrayList<UUID> lobbyIds;
-    private static ArrayList<String> currentHand;
     private static Model model;
     public static Thread updateAgent;
     public static Thread gameAgent;
 
     public static Boolean connectedToLobby = false;
 
+    public static int pickedCard = 2;
+    public static boolean selectCardIsGuard = false;
+    public static int indexOfTarget = -1;
+
 
     public void pickCardOne(MouseEvent mouseEvent) throws IOException, InterruptedException {
         System.out.println("Pick card one");
 
-        if(HelperFunctions.isTargeted(currentHand.get(0))) {
+        if (HelperFunctions.isTargeted(model.cardsOnHand.get(0))) {
             changeScene(PICK_PLAYER_SCENE);
+            pickedCard = 0;
+            selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(0));
         } else {
-            model.getLobbySpace().put(currentHand.get(0), model.getUniqueName()); // Send the action to the server
+            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),0,"",""); // Send the action to the server
         }
         // if card one is targeted
         // go to pick player scene
@@ -94,13 +104,12 @@ public class Controller {
     public void pickCardTwo(MouseEvent mouseEvent) throws IOException, InterruptedException {
         System.out.println("Pick card two");
 
-        System.out.println(currentHand.toString());
-
-        if(HelperFunctions.isTargeted(currentHand.get(1))) {
+        if (HelperFunctions.isTargeted(model.cardsOnHand.get(1))) {
             changeScene(PICK_PLAYER_SCENE);
+            pickedCard = 1;
+            selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(1));
         } else {
-            System.out.println(model.getUniqueName());
-            model.getLobbySpace().put(model.getUniqueName()); // Send the action to the server
+            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),0,"",""); // Send the action to the server
         }
     }
 
@@ -112,7 +121,8 @@ public class Controller {
         model.addIpToRemoteSpaces(urlForRemoteSpace);
         lobbyIds = new ArrayList<>();
 
-        changeScene(USER_NAME_SCENE);
+        //changeScene(USER_NAME_SCENE);
+        changeScene(PLAY_CARD_SCENE);
     }
 
     @FXML
@@ -120,7 +130,7 @@ public class Controller {
 
         String userNameString = userName.getText();
 
-        if(HelperFunctions.validName(userNameString)) {
+        if (HelperFunctions.validName(userNameString)) {
 
             createUserNameButton.setDisable(true);
             instructionsUserName.setText("");
@@ -128,10 +138,11 @@ public class Controller {
             model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, userNameString, "");
 
             // Blocks until user receives unique username (due to 'get')
+            // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID
             Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
                     new FormalField(Integer.class), new ActualField(userNameString), new FormalField(String.class));
 
-            if((int) tuple[2] == Model.OK) {
+            if ((int) tuple[2] == Model.OK) {
                 model.setUniqueName((String) tuple[4]); // Setting the user's name
                 System.out.println("Unique name:");
                 System.out.println(model.getUniqueName());
@@ -143,7 +154,7 @@ public class Controller {
                     e.printStackTrace();
                 }
                 // should ideally never happen, however can happen if the sanity check is bypassed client-side
-            } else if((int) tuple[2] == Model.BAD_REQUEST) {
+            } else if ((int) tuple[2] == Model.BAD_REQUEST) {
                 instructionsUserName.setText("Server denied username. Please try again.");
                 createUserNameButton.setDisable(false);
             }
@@ -163,18 +174,24 @@ public class Controller {
             ListView updateListView = ((ListView) root.lookup("#lobbyList"));
             updateListView.getItems().clear();
             lobbyIds.clear();
+
+            //[0] lobby code [1] Lobby name [2] Lobby ID
             List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
             for (Object[] obj : tuple) {
                 updateListView.getItems().add(obj[1]);
                 lobbyIds.add((UUID) obj[2]);
             }
-        } else if (sceneName == PLAY_CARD_SCENE){
+        } else if (sceneName == PLAY_CARD_SCENE) {
             ArrayList<String> hand = new ArrayList<>();
             hand.add("baron");
             hand.add("prince");
-            currentHand = hand;
+            model.cardsOnHand = hand;
             loadHand(hand, root);
-        } else if (sceneName == PICK_PLAYER_SCENE){
+
+        } else if (sceneName == PICK_PLAYER_SCENE) {
+
+            //TODO This needs to be updated
+
             ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
             targetablePlayers.getItems().clear();
 
@@ -197,14 +214,15 @@ public class Controller {
             dummyPlayers.add(alice);
             dummyPlayers.add(charles);
 
-            model.getLobbySpace().put(Model.GAMEPLAY_INFO, Model.PLAYERS_IN_ROUND, dummyPlayers);
+            //model.getLobbySpace().put(Model.GAMEPLAY_INFO, Model.PLAYERS_IN_ROUND, dummyPlayers);
             //LOAD DUMMY PLAYER END
 
-            Object[] tp = model.getLobbySpace().query(new ActualField(Model.GAMEPLAY_INFO), new ActualField(Model.PLAYERS_IN_ROUND), new FormalField(ArrayList.class));
+            //Object[] tp = model.getLobbySpace().query(new ActualField(Model.GAMEPLAY_INFO), new ActualField(Model.PLAYERS_IN_ROUND), new FormalField(ArrayList.class));
 
             int index = 1;
-            for (ArrayList<String> p : (ArrayList<ArrayList>) tp[2]) {
-                if(p.get(1) == "1") {
+            //for (ArrayList<String> p : (ArrayList<ArrayList>) tp[2]) {
+            for (ArrayList<String> p : dummyPlayers) {
+                if (p.get(1) == "1") {
                     targetablePlayers.getItems().add(index + ". " + p.get(0));
                 }
                 index++;
@@ -212,7 +230,7 @@ public class Controller {
         }
     }
 
-    public void loadHand(ArrayList<String> hand, Parent root){
+    public static void loadHand(ArrayList<String> hand, Parent root) {
         ImageView card1 = ((ImageView) root.lookup("#card1"));
         card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(0) + ".jpg"));
         ImageView card2 = ((ImageView) root.lookup("#card2"));
@@ -224,24 +242,25 @@ public class Controller {
 
         String lobbyNameString = lobbyName.getText();
 
-        if(HelperFunctions.validName(lobbyNameString)) {
+        if (HelperFunctions.validName(lobbyNameString)) {
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 
             model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
             // Wait for server to be created
+            // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
             Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(Integer.class),
                     new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
-            if((int) tuple[1] == Model.OK){
+            if ((int) tuple[1] == Model.OK) {
                 try {
                     changeScene(LOBBY_LIST_SCENE);
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if((int) tuple[1] == Model.BAD_REQUEST){
+            } else if ((int) tuple[1] == Model.BAD_REQUEST) {
                 instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
                 createLobbyButton.setDisable(false);
             }
@@ -254,7 +273,8 @@ public class Controller {
     public void queryServers(ActionEvent event) throws InterruptedException {
         lobbyList.getItems().clear();
         lobbyIds.clear();
-        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"),new FormalField(String.class),new FormalField(UUID.class));
+        //[0] lobby code [1] Lobby name [2] Lobby ID
+        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
             lobbyList.getItems().add(obj[1]);
@@ -274,7 +294,7 @@ public class Controller {
     }
 
     public static void sendDisconnectTuple() throws InterruptedException {
-        model.getLobbySpace().put(Model.LOBBY_REQ, Model.DISCONNECT,model.getUniqueName());
+        model.getLobbySpace().put(Model.LOBBY_REQ, Model.DISCONNECT, model.getUniqueName());
         connectedToLobby = false;
     }
 
@@ -293,14 +313,14 @@ public class Controller {
         chatTxtField.clear();
         scroll.setVvalue(1.0);
 
-        model.getLobbySpace().put("Chat",model.getUniqueName(),text);
+        model.getLobbySpace().put("Chat", model.getUniqueName(), text);
     }
 
 
     //TODO: implement Join-lobby button for highlighted choice
     public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException {
-        if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
-            if(mouseEvent.getClickCount() == 2){
+        if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+            if (mouseEvent.getClickCount() == 2) {
 
                 Object[] tuple = null;
 
@@ -311,11 +331,12 @@ public class Controller {
 
                 // Query the desired lobby-tuple (non-blocking)
 
+                //[0] lobby code [1] lobby name [2] lobby id
                 tuple = model.getLobbyListSpace().queryp(new ActualField("Lobby"),
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
-                if(tuple != null) {
+                if (tuple != null) {
 
                     model.joinLobby((UUID) tuple[2]);
 
@@ -330,7 +351,7 @@ public class Controller {
 
                 }
 
-                switch (model.getResponseFromLobby()){
+                switch (model.getResponseFromLobby()) {
                     case 0:
                         changeScene(LOBBY_LIST_SCENE);
                         model.changeResponseFromLobby(0);
@@ -345,12 +366,12 @@ public class Controller {
                         Scene scene = new Scene(root);
                         Main.appWindow.setScene(scene);
 
-                        ((Label)root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyList.getSelectionModel().getSelectedItem());
+                        ((Label) root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyList.getSelectionModel().getSelectedItem());
                         updatePlayerLobbyList(root);
 
                         connectedToLobby = true;
-                        if(model.leaderForCurrentLobby){
-                            ((Button)root.lookup("#beginButton")).disableProperty().setValue(false);
+                        if (model.leaderForCurrentLobby) {
+                            ((Button) root.lookup("#beginButton")).disableProperty().setValue(false);
                         }
 
                         updateAgent = new Thread(new ClientUpdateAgent(model, root));
@@ -365,7 +386,7 @@ public class Controller {
 
     @FXML
     public void enterIPField(javafx.scene.input.KeyEvent keyEvent) throws IOException, InterruptedException {
-        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             String urlForRemoteSpace = IP.getText();
             model = new Model();
             model.addIpToRemoteSpaces(urlForRemoteSpace);
@@ -377,34 +398,36 @@ public class Controller {
 
     @FXML
     public void requestNameVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
-        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             createUser(null);
         }
     }
 
     @FXML
     public void createLobbyVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
-        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             String lobbyNameString = lobbyName.getText();
 
-            if(HelperFunctions.validName(lobbyNameString)) {
+            if (HelperFunctions.validName(lobbyNameString)) {
                 createLobbyButton.setDisable(true);
                 instructionsLobbyName.setText("");
 
                 model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
 
                 // Wait for server to be created
+                // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
+
                 Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(Integer.class),
                         new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
-                if((int) tuple[1] == Model.OK){
+                if ((int) tuple[1] == Model.OK) {
                     try {
                         changeScene(LOBBY_LIST_SCENE);
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else if((int) tuple[1] == Model.BAD_REQUEST){
+                } else if ((int) tuple[1] == Model.BAD_REQUEST) {
                     instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
                     createLobbyButton.setDisable(false);
                 }
@@ -415,32 +438,30 @@ public class Controller {
     }
 
     public void updatePlayerLobbyList(Parent root) throws InterruptedException {
-        model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST,model.getUniqueName());
+        model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName());
 
-        Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP),new FormalField(ArrayList.class),new ActualField(model.getUniqueName()));
+        // [0] response code [1] list of playernames [2] username
+        Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getUniqueName()));
 
-        if(root == null) {
+        if (root == null) {
             listOfPlayers.getItems().clear();
-            for (String user : (ArrayList<String>)tuple[1]) {
+            for (String user : (ArrayList<String>) tuple[1]) {
                 listOfPlayers.getItems().add(new Label(user));
             }
         } else {
             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
             updatePlayerListView.getItems().clear();
-            for (String user : (ArrayList<String>)tuple[1]) {
-
-                String s = user;
-                s = s.substring(0, s.indexOf("#"));
-                updatePlayerListView.getItems().add(new Label(s));
+            for (String user : (ArrayList<String>) tuple[1]) {
+                updatePlayerListView.getItems().add(new Label(user));
             }
         }
     }
 
     @FXML
     public void pressBegin(ActionEvent event) throws InterruptedException {
-        if(model.leaderForCurrentLobby){
+        if (model.leaderForCurrentLobby) {
             System.out.println("BEGIN");
-            model.getLobbySpace().put(Model.LOBBY_REQ,Model.BEGIN,model.getUniqueName());
+            model.getLobbySpace().put(Model.LOBBY_REQ, Model.BEGIN, model.getUniqueName());
         }
     }
 
@@ -455,6 +476,47 @@ public class Controller {
         model.resetLobbyInfo();
 
         changeScene(LOBBY_LIST_SCENE);
+    }
+
+    @FXML
+    public void showCardList(ActionEvent event){
+        cardListPane.setVisible(true);
+        cardListPane.setMouseTransparent(false);
+
+    }
+
+    @FXML
+    public void hideCardList(ActionEvent event){
+        cardListPane.setVisible(false);
+        cardListPane.setMouseTransparent(true);
+    }
+
+    public void clickTarget(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException {
+        if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+            if (mouseEvent.getClickCount() == 2) {
+                indexOfTarget = targetablePlayers.getSelectionModel().getSelectedIndex();
+
+                if(!selectCardIsGuard) {
+                    model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), pickedCard, indexOfTarget, ""); // Send the action to the server
+                    pickedCard = 2;
+                    indexOfTarget = -1;
+                }else {
+                    changeScene("ChooseGuessScene");
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void GuessSelect(ActionEvent event) throws InterruptedException, IOException {
+        String text = ((Button)event.getSource()).getText();
+        String finalGuess = text.toLowerCase();
+        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), pickedCard, indexOfTarget, finalGuess); // Send the action to the server
+        pickedCard = 2;
+        indexOfTarget = -1;
+        selectCardIsGuard = false;
+
+        changeScene("GameScene");
     }
 
 }

@@ -59,6 +59,8 @@ public class Server {
         while (true) {
 
             //TODO: Re-evaluate req. and response codes - are they unnessacary as we have seperate spaces?
+
+            // [0] request code,[1] request type, [2] username to request/name of lobby, [3] null/username for lobby owner
             Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
 
             ExecutorService executor = Executors.newFixedThreadPool(5);//creating a pool of 5 threads

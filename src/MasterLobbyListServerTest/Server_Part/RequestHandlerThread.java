@@ -30,7 +30,7 @@ public class RequestHandlerThread implements Runnable {
 
                 UUID idForLobby = UUID.randomUUID();
 
-                Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, (String) tuple[3]);
+                Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user);
                 serverData.executor.execute(lobby);  //calling execute method of ExecutorService
 
                 try {

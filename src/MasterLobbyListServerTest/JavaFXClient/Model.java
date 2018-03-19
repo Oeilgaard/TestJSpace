@@ -4,6 +4,7 @@ import org.jspace.RemoteSpace;
 
 import java.io.IOException;
 import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Model {
@@ -43,6 +44,17 @@ public class Model {
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
 
+    // gameplay tuples
+    public final static int CLIENT_UPDATE = 10;
+    public final static int NEW_TURN = 11;
+    public final static int DISCARD = 12;
+    public final static int TARGETTED = 121;
+    public final static int UNTARGETTED = 122;
+    public final static int WIN = 13;
+    public final static int GAME_START_UPDATE = 16;
+
+    public final static int SERVER_UPDATE = 20;
+
     private int responseFromLobby = 0;
 
     private String uniqueName;
@@ -50,6 +62,10 @@ public class Model {
     private ServerResponseMonitor serverResponseMonitor;
 
     public boolean leaderForCurrentLobby = false;
+
+    public ArrayList<String> cardsOnHand = new ArrayList<>();
+
+    public ArrayList<String> actionHistory = new ArrayList<>();
 
     public Model(){
         serverResponseMonitor = new ServerResponseMonitor();
