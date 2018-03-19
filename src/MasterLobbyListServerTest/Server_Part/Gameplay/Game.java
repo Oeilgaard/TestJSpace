@@ -39,6 +39,7 @@ public class Game {
         }
 
         model.turn = 0;
+        model.playerPointer = 0;
         model.round++;
 
         model.deck.getCards().clear();
@@ -103,16 +104,19 @@ public class Game {
                     System.out.print(newLine);
 
                     // TODO: TURN TUPLE TO CURRENT PLAYER + INFO TO REST
+
                     for(Player p : model.players){
                         if(p.getName()==currentPlayer.getName()) {
                             try {
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString());
+                                // [0] Update, [1] update type, [2] receiver, [3] drawn card
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         } else {
                             try {
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "");
+                                // [0] Update, [1] update type, [2] receiver, [3] ...
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -121,31 +125,30 @@ public class Game {
 
                     // 2. DISCARD
 
-                    System.out.print("Discard " + one.getCharacter()
-                            + " (press 1) or " + two.getCharacter() +
-                            " (press 2)" + newLine);
-
                     // TODO: 'GET' RESPOND FROM SPECIFIC PLAYER
                     // TODO: DO SANITY CHECK OF PLAY
                     //cardPick = scanner.nextInt();
 
                     try {
-                        // [0]: Update, [1] update type, [2] sender, [3] card, [4] target (situational) , [5] guess (situational)
+                        // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
+                        //TODO: Lyt efter disconnect også
                         Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new ActualField(Model.DISCARD),
                                 new FormalField(String.class), new FormalField(String.class),
-                                new FormalField(Integer.class), new FormalField(String.class));
+                                new FormalField(String.class), new FormalField(String.class));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
 
-                    if(validTarget((int) tuple[4], (String) tuple[3])){
-                        chosenCharacter = currentPlayer.getHand().getCards().get(cardPick-1).getCharacter();
-                    } else {
-                        // Send tuple der requester nyt kort...
-                    }
+//                    if(validTarget((int) tuple[4], (String) tuple[3])){
+//                        chosenCharacter = currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter();
+//                    } else {
+//                        // Send tuple der requester nyt kort...
+//                    }
 
                     // 2. PLAY CARD
-                    playCard(chosenCharacter, currentPlayer);
+
+                    playCard(currentPlayer);
+
                     // TODO: INFO TO ALL
 
                     // 3. ROUND END CHECKS
@@ -160,86 +163,81 @@ public class Game {
         }
     }
 
-    private boolean validTarget(int targetPlayerIndex, String card){
+    private boolean validTarget(int targetPlayerIndex, Character character){
         Player target = model.players.get(targetPlayerIndex);
-        if(card == Character.PRINCE.toString()){ //TODO fix
+        if(character == Character.PRINCE){
             return !target.isHandMaidProtected() && target.isInRound();
         } else {
             return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getName());
         }
     }
 
-    private void playCard(Character chosenCharacter, Player currentPlayer) {
-
-        Scanner scanner = new Scanner(System.in);
-
-        // 2.1 TARGETED CASE
-        targetedCase:
-        if(chosenCharacter.isTargeted()) {
-
-            int i = 1;
-            boolean possibleTargets = false;
-
-            for(Player p : model.players) {
-
-                if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(currentPlayer.getName())) {
-                    possibleTargets = true;
-                    System.out.println("Target player " + p.getName() + " with " + chosenCharacter + " (press " + i + ")");
-                }
-                i++;
-            }
-
-            if(!possibleTargets){
-                // goto roundEndChecks;
-                model.noAction(model.indexOfCurrentPlayersTurn(), cardPick-1);
-                break targetedCase;
-            }
-
-            playerPick = scanner.nextInt();
-
-            if(chosenCharacter == Character.GUARD) {
-
-                int j = 1;
-                System.out.println("To guess: " + newLine);
-                for(Character c : Character.values()){
-                    if(c != Character.GUARD) {
-                        System.out.println(c + " (press " + j + ")");
-                        j++;
-                    }
-                }
-
-                guardGuess = scanner.nextInt();
-                guardGuessCharacter = Character.values()[guardGuess];
-                System.out.println("You guessed " + Character.values()[guardGuess]);
-                model.guardAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1, guardGuessCharacter);
-
-            } else if(chosenCharacter == Character.PRIEST) {
-                model.priestAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
-            } else if(chosenCharacter == Character.BARON) {
-                //System.out.println("Player index " + model.indexOfCurrentPlayersTurn() + " card index " + (cardPick-1) + " player index" + (playerPick-1));
-                model.baronAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
-            } else if(chosenCharacter == Character.PRINCE) {
-                model.princeAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
-            } else { // i.e. chosenCharacter == Character.KING
-                //currentPlayer.getHand().printHand();
-                System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerPick-1).getHand().getCards().get(0).getCharacter());
-                System.out.println(model.players.get(playerPick-1).getName() + " gets " + currentPlayer.getHand().getCards().get(cardPick%2).getCharacter());
-                model.kingAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
-
-            }
-            // 2.2 UNTARGETED CASE
-        } else {
-            if(chosenCharacter == Character.HANDMAID){
-                System.out.println(currentPlayer.getName() + " is handmaid protected until next turn...");
-                model.handmaidAction(model.indexOfCurrentPlayersTurn(), cardPick-1);
-            } else if(chosenCharacter == Character.COUNTESS) {
-                model.countessAction(model.indexOfCurrentPlayersTurn(), cardPick-1);
+    private void playCard(Player currentPlayer){
+        if(!legalCardIndex((int) tuple[3])){
+            // send error tuple eller vælg random...
+        }
+        // if Countess-rule is occurring, we force the play
+        if(model.countessRule(currentPlayer)){
+            if(currentPlayer.getHand().getCards().get(0).getCharacter() == Character.COUNTESS){
+                playUntargettedCard(currentPlayer.getHand().getCards().get(1).getCharacter(),currentPlayer,1);
             } else {
-                // Princess
-                model.princessAction(model.indexOfCurrentPlayersTurn(), cardPick-1);
+                playUntargettedCard(currentPlayer.getHand().getCards().get(0).getCharacter(),currentPlayer,0);
+            }
+        } else {
+            chosenCharacter = currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter();
+            int cardIndex = (int) tuple[3];
+
+            if(!currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter().isTargeted()){
+                playUntargettedCard(chosenCharacter, currentPlayer, cardIndex);
+            } else {
+                playTargettedCard(chosenCharacter, currentPlayer, cardIndex, (int) tuple[4], (int) tuple[5]);
             }
         }
+    }
 
+    private void playUntargettedCard(Character chosenCharacter, Player currentPlayer, int cardIndex){
+        if(chosenCharacter == Character.HANDMAID){
+            System.out.println(currentPlayer.getName() + " is handmaid protected until next turn...");
+            model.handmaidAction(model.indexOfCurrentPlayersTurn(), cardIndex);
+            // ... PUT INFO TO ALL
+        } else if(chosenCharacter == Character.COUNTESS) {
+            model.countessAction(model.indexOfCurrentPlayersTurn(), cardIndex);
+            // ... PUT INFO TO ALL
+        } else {
+            // Princess
+            model.princessAction(model.indexOfCurrentPlayersTurn(), cardIndex);
+            // ... PUT INFO TO ALL
+        }
+    }
+
+    private void playTargettedCard(Character chosenCharacter, Player currentPlayer, int cardIndex, int playerTargetIndex, int guardGuess) {
+
+        if(!possibleTargets()){
+            // play targetted card with no action
+            model.noAction(model.indexOfCurrentPlayersTurn(), cardIndex);
+        } else {
+            if(validTarget(playerTargetIndex, currentPlayer.getHand().getCards().get(cardIndex).getCharacter())) {
+                if(chosenCharacter == Character.GUARD) {
+                    guardGuessCharacter = Character.values()[guardGuess];
+                    //System.out.println("You guessed " + Character.values()[guardGuess]);
+                    model.guardAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex, guardGuessCharacter);
+                } else if(chosenCharacter == Character.PRIEST) {
+                    model.priestAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
+                } else if(chosenCharacter == Character.BARON) {
+                    //System.out.println("Player index " + model.indexOfCurrentPlayersTurn() + " card index " + (cardPick-1) + " player index" + (playerPick-1));
+                    model.baronAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
+                } else if(chosenCharacter == Character.PRINCE) {
+                    model.princeAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
+                } else { // i.e. chosenCharacter == Character.KING
+                    //currentPlayer.getHand().printHand();
+                    System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndex).getHand().getCards().get(0).getCharacter());
+                    System.out.println(model.players.get(playerPick-1).getName() + " gets " + currentPlayer.getHand().getCards().get(cardPick%2).getCharacter());
+                    model.kingAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
+                }
+            } else {
+
+            }
+        }
     }
 
     private void terminalTest(){
@@ -273,5 +271,18 @@ public class Game {
                 model.setRoundWon(true); // corresponds to draw...
             }
         }
+    }
+
+    private boolean possibleTargets(){
+        for(Player p : model.players){
+            if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(currentPlayer.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean legalCardIndex(int index){
+        return (index == 0 || index == 1);
     }
 }

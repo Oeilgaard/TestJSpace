@@ -188,6 +188,7 @@ public class Model {
         if(players.get(targetPlayer).getHand().getCards().get(0).getCharacter() == guess) {
             System.out.println("Correct!");
             knockOut(players.get(targetPlayer));
+            
 //         players.get(sender).getDiscardPile().addToDiscardPile(players.get(sender).getHand().getCards().get(index));
 //         players.get(sender).getHand().getCards().remove(index);
         } else {
@@ -260,4 +261,10 @@ public class Model {
     public void setRoundWon(boolean roundWon){
         this.roundWon = roundWon;
     }
+
+    public boolean countessRule(Player currentPlayer){
+        return (currentPlayer.getHand().getCards().contains(new Card(Character.COUNTESS)) && currentPlayer.getHand().getCards().contains(new Card(Character.PRINCE))) ||
+                (currentPlayer.getHand().getCards().contains(new Card(Character.COUNTESS)) && currentPlayer.getHand().getCards().contains(new Card(Character.KING)));
+    }
+
 }
