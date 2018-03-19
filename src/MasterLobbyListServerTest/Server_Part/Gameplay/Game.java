@@ -58,6 +58,12 @@ public class Game {
         for(Player p : model.players) {
             model.deck.drawCard(p.getHand());
             System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
+            try {
+                lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_START_UPDATE, p.getName(),
+                        p.getHand().getCards().get(0).getCharacter().toString(), "", "");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         System.out.print(newLine);
     }
