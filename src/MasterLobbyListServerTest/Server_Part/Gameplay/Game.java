@@ -3,9 +3,7 @@ package MasterLobbyListServerTest.Server_Part.Gameplay;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Game {
 
@@ -14,16 +12,13 @@ public class Game {
     private Model model;
     private SequentialSpace lobbySpace;
 
-    private int cardPick;
-    private Object[] tuple;
-    private int playerPick;
-    private int guardGuess;
     private Character guardGuessCharacter;
     private Character chosenCharacter;
     private Player currentPlayer;
+    private Object[] tuple;
 
     public Game(ArrayList<String> players, SequentialSpace lobbySpace) {
-        this.model = new Model(players);
+        this.model = new Model(players, lobbySpace);
         this.lobbySpace = lobbySpace;
     }
 
@@ -199,14 +194,11 @@ public class Game {
         if(chosenCharacter == Character.HANDMAID){
             System.out.println(currentPlayer.getName() + " is handmaid protected until next turn...");
             model.handmaidAction(model.indexOfCurrentPlayersTurn(), cardIndex);
-            // ... PUT INFO TO ALL
         } else if(chosenCharacter == Character.COUNTESS) {
             model.countessAction(model.indexOfCurrentPlayersTurn(), cardIndex);
-            // ... PUT INFO TO ALL
         } else {
             // Princess
             model.princessAction(model.indexOfCurrentPlayersTurn(), cardIndex);
-            // ... PUT INFO TO ALL
         }
     }
 
@@ -231,8 +223,8 @@ public class Game {
                 } else { // i.e. chosenCharacter == Character.KING
                     //currentPlayer.getHand().printHand();
                     System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndex).getHand().getCards().get(0).getCharacter());
-                    System.out.println(model.players.get(playerPick-1).getName() + " gets " + currentPlayer.getHand().getCards().get(cardPick%2).getCharacter());
-                    model.kingAction(model.indexOfCurrentPlayersTurn(), cardPick-1, playerPick-1);
+                    System.out.println(model.players.get(playerTargetIndex).getName() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getCharacter());
+                    model.kingAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
                 }
             } else {
 

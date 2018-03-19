@@ -1,5 +1,7 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import org.jspace.SequentialSpace;
+
 import java.util.ArrayList;
 
 public class Model {
@@ -24,7 +26,10 @@ public class Model {
     public final static int DISCARD = 12;
     public final static int TARGETTED = 121;
     public final static int UNTARGETTED = 122;
-    public final static int WIN = 13;
+    public final static int OUTCOME = 13;
+    public final static int KNOCK_OUT = 14;
+    public final static int WIN = 15;
+
 
     public final static int SERVER_UPDATE = 20;
     //public final static int DISCARD = 21;
@@ -38,14 +43,16 @@ public class Model {
     protected static boolean roundWon;
     protected static ArrayList<Card> revealedCards;
     protected static Card secretCard;
+    private static SequentialSpace lobbySpace;
 
-    public Model(ArrayList<String> players){
+    public Model(ArrayList<String> players, SequentialSpace lobbySpace){
 
         this.turn = 0;
         this.round = 0;
         this.deck = new Deck();
         this.roundWon = false;
         this.revealedCards = new ArrayList<Card>();
+        this.lobbySpace = lobbySpace;
 
         this.players = new ArrayList<Player>();
         for(String p : players) {
@@ -164,10 +171,20 @@ public class Model {
         return winners;
     }
 
-    public void knockOut(Player p) {
-        System.out.println("Player " + p.getName() + " is out of the round" + Game.newLine);
-        p.discardHand();
-        p.setInRound(false);
+    public void knockOut(Player knockedOut) {
+        System.out.println("Player " + knockedOut.getName() + " is out of the round" + Game.newLine);
+        knockedOut.discardHand();
+        knockedOut.setInRound(false);
+        for(Player p : players) {
+            // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name
+            try {
+                lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, p.getName(), knockedOut.getName(), "");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     public void drawSecretCard(Hand hand) {
@@ -181,6 +198,42 @@ public class Model {
         players.get(sender).discardCard(index);
     }
 
+    public void informPlayers(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex, int receiverIndex){
+        for(Player p : players){
+            if(p.getName() == players.get(senderIndex).getName()){
+                try {
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgSender);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else if(p.getName() == players.get(receiverIndex).getName()){
+                try {
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgTarget);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgOthers);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void informPlayersUntargetted(String card, int senderIndex, String msgOthers){
+        for(Player p : players){
+            if(p.getName() != players.get(senderIndex).getName()){
+                try {
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgOthers);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public void guardAction(int sender, int index, int targetPlayer, Character guess){
 
         players.get(sender).discardCard(index);
@@ -188,19 +241,37 @@ public class Model {
         if(players.get(targetPlayer).getHand().getCards().get(0).getCharacter() == guess) {
             System.out.println("Correct!");
             knockOut(players.get(targetPlayer));
-            
+
+            String msgSender = "You guessed correct! " + players.get(targetPlayer).getName() + " is out of the round.";
+            String msgTarget = players.get(sender).getName() + " correctly guessed that you have a " + guess + "! + " +
+                    "You are out of the round.";
+            String msgOthers = players.get(sender).getName() + " correctly guessed that " +
+                    players.get(targetPlayer).getName() + " has a " + guess + "! + " +
+                    players.get(targetPlayer).getName() + " is out of the round.";
+
+            informPlayers(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
+
 //         players.get(sender).getDiscardPile().addToDiscardPile(players.get(sender).getHand().getCards().get(index));
 //         players.get(sender).getHand().getCards().remove(index);
         } else {
-            System.out.println("Incorrect!");
+            //TODO: custom messages
+            String msgSender = "Incorrect!";
+            String msgTarget = "Incorrect!";
+            String msgOthers = "Incorrect!";
+            informPlayers(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
         }
     }
 
     public void priestAction(int sender, int index, int targetPlayer) {
         players.get(sender).discardCard(index);
-        System.out.print("Priest finds " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter() + Game.newLine);
+        //System.out.print("Priest finds " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter() + Game.newLine);
         //players.get(targetPlayer).getHand().printHand();
+        String msgSender = "foo";
+        String msgTarget = "bar";
+        String msgOthers = "moo";
+        informPlayers(Character.PRIEST.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
     }
+
     //                    PLAYER INDEX  CARD INDEX  PLAYER INDEX
     public void baronAction(int sender, int index, int targetPlayer) {
 
@@ -213,10 +284,25 @@ public class Model {
 
         if(players.get(sender).getHand().getCards().get(0).getCharacter().getValue() > players.get(targetPlayer).getHand().getCards().get(0).getCharacter().getValue()){
             knockOut(players.get(targetPlayer));
+
+            String msgSender = "foo";
+            String msgTarget = "bar";
+            String msgOthers = "moo";
+            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
         } else if(players.get(sender).getHand().getCards().get(0).getCharacter().getValue() < players.get(targetPlayer).getHand().getCards().get(0).getCharacter().getValue()){
             knockOut(players.get(sender));
-        } else { System.out.println("Tie! No one is knocked out..."); }
 
+            String msgSender = "foo";
+            String msgTarget = "bar";
+            String msgOthers = "moo";
+            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
+        } else {
+            System.out.println("Tie! No one is knocked out...");
+
+            String msgSender = "foo";
+            String msgTarget = "bar";
+            String msgOthers = "moo";
+            informPlayers(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);}
     }
 
     public void handmaidAction(int sender, int index){
@@ -230,8 +316,18 @@ public class Model {
 
         if ((!deck.getCards().isEmpty())) {
             deck.drawCard(players.get(targetPlayer).getHand());
+
+            String msgSender = "foo";
+            String msgTarget = "bar";
+            String msgOthers = "moo";
+            informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
         } else {
             drawSecretCard(players.get(targetPlayer).getHand());
+
+            String msgSender = "foo";
+            String msgTarget = "bar";
+            String msgOthers = "moo";
+            informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
         }
     }
 
@@ -246,16 +342,27 @@ public class Model {
         players.get(targetPlayer).discardHand();
         players.get(sender).getHand().getCards().add(targetCard);
         players.get(targetPlayer).getHand().getCards().add(senderCard);
+
+        String msgSender = "foo";
+        String msgTarget = "bar";
+        String msgOthers = "moo";
+        informPlayers(Character.KING.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer);
     }
 
     public void countessAction(int sender, int index){
         players.get(sender).discardCard(index);
+
+        String msgOthers = "moo";
+        informPlayersUntargetted(Character.COUNTESS.toString(),sender,msgOthers);
     }
 
     public void princessAction(int sender, int index) {
         players.get(sender).discardCard(index);
         players.get(sender).setInRound(false);
         players.get(sender).discardHand();
+
+        String msgOthers = "moo";
+        informPlayersUntargetted(Character.PRINCESS.toString(),sender,msgOthers);
     }
 
     public void setRoundWon(boolean roundWon){
