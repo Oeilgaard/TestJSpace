@@ -130,7 +130,8 @@ public class ClientUpdateAgent implements Runnable{
 //                                ImageView card2 = ((ImageView) root.lookup("#card2"));
 //                                card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
 
-
+                                Controller.gameAgent = new Thread(new ClientGameUpdate(model,root));
+                                Controller.gameAgent.start();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

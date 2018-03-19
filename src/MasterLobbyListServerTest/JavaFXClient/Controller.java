@@ -73,6 +73,7 @@ public class Controller {
     private static ArrayList<String> currentHand;
     private static Model model;
     public static Thread updateAgent;
+    public static Thread gameAgent;
 
     public static Boolean connectedToLobby = false;
 
