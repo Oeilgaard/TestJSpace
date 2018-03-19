@@ -359,7 +359,7 @@ public class Model {
         String msgOthers = "moo";
 
         informPlayers(Character.KING.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, targetCard.getCharacter().toString(), senderCard.getCharacter().toString());
-        
+
     }
 
     public void countessAction(int sender, int index){

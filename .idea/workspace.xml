@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="235">
-              <caret line="361" column="8" lean-forward="true" selection-start-line="361" selection-start-column="8" selection-end-line="361" selection-end-column="8" />
+              <caret line="361" column="0" lean-forward="true" selection-start-line="361" selection-start-column="0" selection-end-line="361" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2715#2716#0" expanded="true" />
@@ -81,8 +82,8 @@
                 <element signature="e#3382#3383#0" expanded="true" />
                 <element signature="e#5666#5667#0" expanded="true" />
                 <element signature="e#5720#5721#0" expanded="true" />
-                <element signature="e#15346#15347#0" expanded="true" />
-                <element signature="e#15386#15387#0" expanded="true" />
+                <element signature="e#15338#15339#0" expanded="true" />
+                <element signature="e#15378#15379#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -758,14 +759,7 @@
       <workItem from="1521013761010" duration="19134000" />
       <workItem from="1521108358133" duration="12534000" />
       <workItem from="1521195014347" duration="2646000" />
-      <workItem from="1521444423660" duration="25080000" />
-    </task>
-    <task id="LOCAL-00003" summary="test">
-      <created>1519636790317</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1519636790317</updated>
+      <workItem from="1521444423660" duration="25085000" />
     </task>
     <task id="LOCAL-00004" summary="Executor">
       <created>1519641169079</created>
@@ -1103,11 +1097,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521474709109</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Fixed King cards in model">
+      <created>1521474745191</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1521474745191</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126003000" />
+    <option name="totallyTimeSpent" value="126008000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1651,7 +1652,7 @@
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
-          <caret line="361" column="8" lean-forward="true" selection-start-line="361" selection-start-column="8" selection-end-line="361" selection-end-column="8" />
+          <caret line="361" column="0" lean-forward="true" selection-start-line="361" selection-start-column="0" selection-end-line="361" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2715#2716#0" expanded="true" />
@@ -1670,8 +1671,8 @@
             <element signature="e#3382#3383#0" expanded="true" />
             <element signature="e#5666#5667#0" expanded="true" />
             <element signature="e#5720#5721#0" expanded="true" />
-            <element signature="e#15346#15347#0" expanded="true" />
-            <element signature="e#15386#15387#0" expanded="true" />
+            <element signature="e#15338#15339#0" expanded="true" />
+            <element signature="e#15378#15379#0" expanded="true" />
           </folding>
         </state>
       </provider>
