@@ -203,19 +203,19 @@ public class Model {
         for(Player p : players){
             if(p.getName() == players.get(senderIndex).getName()){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgSender, kingCardToSender);
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, kingCardToSender);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             } else if(p.getName() == players.get(receiverIndex).getName()){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgTarget, kingCardToTarget);
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgTarget, kingCardToTarget);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgOthers, "");
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgOthers, "");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -373,8 +373,11 @@ public class Model {
         players.get(sender).setInRound(false);
         players.get(sender).discardHand();
 
+        knockOut(players.get(sender));
+
         String msgOthers = players.get(sender).getName() + " played PRINCESS and is out of the round.";
         informPlayersUntargetted(Character.PRINCESS.toString(),sender,msgOthers);
+
     }
 
     public void setRoundWon(boolean roundWon){

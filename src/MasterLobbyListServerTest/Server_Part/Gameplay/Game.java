@@ -121,7 +121,7 @@ public class Game {
                         } else {
                             try {
                                 // [0] Update, [1] update type, [2] receiver, [3] ...
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", "", "");
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", "","");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -140,9 +140,7 @@ public class Game {
                         Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new ActualField(Model.DISCARD),
                                 new FormalField(String.class), new FormalField(String.class),
                                 new FormalField(String.class), new FormalField(String.class));
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
 
 //                    if(validTarget((int) tuple[4], (String) tuple[3])){
 //                        chosenCharacter = currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter();
@@ -152,7 +150,11 @@ public class Game {
 
                     // 2. PLAY CARD
 
-                    playCard(currentPlayer);
+                        playCard(currentPlayer ,tuple);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                     // 3. ROUND END CHECKS
                     terminalTest();
@@ -174,8 +176,8 @@ public class Game {
         }
     }
 
-    private void playCard(Player currentPlayer){
-        if(!legalCardIndex((int) tuple[3])){
+    private void playCard(Player currentPlayer, Object[] tuple){
+        if(!legalCardIndex(Integer.parseInt((String)tuple[3]))){
             // send error tuple eller vælg random...
         }
         // if Countess-rule is occurring, we force the play
@@ -186,13 +188,17 @@ public class Game {
                 playUntargettedCard(currentPlayer.getHand().getCards().get(0).getCharacter(),currentPlayer,0);
             }
         } else {
-            chosenCharacter = currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter();
-            int cardIndex = (int) tuple[3];
+            chosenCharacter = currentPlayer.getHand().getCards().get(Integer.parseInt((String)tuple[3])).getCharacter();
+            int cardIndex = Integer.parseInt((String)tuple[3]);
 
-            if(!currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter().isTargeted()){
+            if(!currentPlayer.getHand().getCards().get(Integer.parseInt((String)tuple[3])).getCharacter().isTargeted()){
                 playUntargettedCard(chosenCharacter, currentPlayer, cardIndex);
             } else {
-                playTargettedCard(chosenCharacter, currentPlayer, cardIndex, (int) tuple[4], (int) tuple[5]);
+                if(tuple[5].equals("")){
+                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, Integer.parseInt((String)tuple[4]), 0);
+                } else {
+                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, Integer.parseInt((String) tuple[4]), Integer.parseInt((String) tuple[5]));
+                }
             }
         }
     }
