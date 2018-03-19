@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -754,7 +752,7 @@
       <workItem from="1521013761010" duration="19134000" />
       <workItem from="1521108358133" duration="12534000" />
       <workItem from="1521195014347" duration="2646000" />
-      <workItem from="1521444423660" duration="18964000" />
+      <workItem from="1521444423660" duration="19029000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1519632464009</created>
@@ -1092,11 +1090,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521464589414</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card">
+      <created>1521468142590</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1521468142590</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119887000" />
+    <option name="totallyTimeSpent" value="119952000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1226,7 +1231,8 @@
     <MESSAGE value="Started on TODOS in Game class" />
     <MESSAGE value="Refactoring Play/Discard step in the game" />
     <MESSAGE value="Tuple responses for different card plays (not all implemented however)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tuple responses for different card plays (not all implemented however)" />
+    <MESSAGE value="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
