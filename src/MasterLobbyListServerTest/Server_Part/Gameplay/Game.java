@@ -95,7 +95,6 @@ public class Game {
                             + (model.turn+1) + newLine + currentPlayer.getName() + "'s turn" + newLine);
 
                     // 1. DRAW
-
                     model.deck.drawCard(currentPlayer.getHand());
                     Card two = currentPlayer.getHand().getCards().get(1);
                     System.out.println(currentPlayer.getName() + " drew a " + two.getCharacter() + newLine);
@@ -110,7 +109,7 @@ public class Game {
                         if(p.getName()==currentPlayer.getName()) {
                             try {
                                 // [0] Update, [1] update type, [2] receiver, [3] drawn card
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), "","");
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), "", "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
