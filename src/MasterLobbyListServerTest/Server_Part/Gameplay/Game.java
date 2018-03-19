@@ -23,8 +23,13 @@ public class Game {
     }
 
     public void newRound(){
+        String msg = "";
 
         System.out.println("Shuffling cards...");
+
+        msg += "Shuffling cards...";
+
+
 
         for(Player p : model.players) {
             p.getHand().getCards().clear();
@@ -42,25 +47,25 @@ public class Game {
         model.deck.shuffle();
         model.setRoundWon(false);
 
-        System.out.println("The revealed cards are:");
+        msg += "The revealed cards are:";
         for(int i = 0; i < model.REVEALED_CARDS_TWO_PLAYER; i++) {
             model.deck.drawCard(model.revealedCards);
-            System.out.println(model.revealedCards.get(i).getCharacter());
+            msg += " " + model.revealedCards.get(i).getCharacter().toString() + " ";
         }
 
         // Secret card
-        System.out.println("and a secret card is set aside..." + newLine);
+        msg += "and a secret card is set aside..." + newLine;
         model.secretCard = model.deck.drawCard();
-        //System.out.println(model.secretCard.getCharacter() + newLine);
 
-        System.out.println("Each player draws a card..." + newLine);
+        msg += "Each player draws a card..." + newLine;
+
         //Both players draw a card
         for(Player p : model.players) {
             model.deck.drawCard(p.getHand());
             System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
             try {
                 lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_START_UPDATE, p.getName(),
-                        p.getHand().getCards().get(0).getCharacter().toString(), "", "");
+                        p.getHand().getCards().get(0).getCharacter().toString(), msg, "");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -151,7 +156,6 @@ public class Game {
 
                     // 3. ROUND END CHECKS
                     terminalTest();
-                    // TODO: IF GAME OVER, INFO TO ALL - SPECIAL TUPLE TO WINNER
 
                     model.turn++; // turn only increments if a turn is executed
                 }
