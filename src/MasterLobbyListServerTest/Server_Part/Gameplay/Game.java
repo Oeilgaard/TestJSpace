@@ -25,11 +25,7 @@ public class Game {
     public void newRound(){
         String msg = "";
 
-        System.out.println("Shuffling cards...");
-
-        msg += "Shuffling cards...";
-
-
+        //msg += "Shuffling cards...";
 
         for(Player p : model.players) {
             p.getHand().getCards().clear();
@@ -54,15 +50,17 @@ public class Game {
         }
 
         // Secret card
-        msg += "and a secret card is set aside..." + newLine;
+        msg += newLine + "and a secret card is set aside..." + newLine;
         model.secretCard = model.deck.drawCard();
 
-        msg += "Each player draws a card..." + newLine;
 
-        //Both players draw a card
+        msg += "Each player draws a card..." + newLine;
+        System.out.println(msg);
+        // Each players draw a card
         for(Player p : model.players) {
             model.deck.drawCard(p.getHand());
-            System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
+            //System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
+            msg += "you start with " + p.getHand().getCards().get(0).getCharacter().toString();
             try {
                 lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_START_UPDATE, p.getName(),
                         p.getHand().getCards().get(0).getCharacter().toString(), msg, "");
@@ -108,19 +106,17 @@ public class Game {
                     currentPlayer.getHand().printHand();
                     System.out.print(newLine);
 
-                    // TODO: TURN TUPLE TO CURRENT PLAYER + INFO TO REST
-
                     for(Player p : model.players){
                         if(p.getName()==currentPlayer.getName()) {
                             try {
-                                // [0] Update, [1] update type, [2] receiver, [3] drawn card
+                                // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4], [5]
                                 lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), "", "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         } else {
                             try {
-                                // [0] Update, [1] update type, [2] receiver, [3] ...
+                                // [0] Update, [1] update type, [2] receiver, [3] Empty string indicating not your turn, [4], [5]
                                 lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", "","");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -130,10 +126,7 @@ public class Game {
 
                     // 2. DISCARD
 
-                    // TODO: 'GET' RESPOND FROM SPECIFIC PLAYER
                     // TODO: DO SANITY CHECK OF PLAY
-                    //cardPick = scanner.nextInt();
-
                     try {
                         // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
                         //TODO: Lyt efter disconnect også
@@ -142,16 +135,25 @@ public class Game {
                                 new FormalField(String.class), new FormalField(String.class));
 
 
-//                    if(validTarget((int) tuple[4], (String) tuple[3])){
-//                        chosenCharacter = currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter();
-//                    } else {
-//                        // Send tuple der requester nyt kort...
-//                    }
-
-                    // 2. PLAY CARD
-
-                        playCard(currentPlayer ,tuple);
-
+//                        if(validTarget((int) tuple[4], (String) tuple[3])){
+//                            chosenCharacter = currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter();
+//                        } else {
+//                            // Send tuple der requester nyt kort...
+//                        }
+                        if(legalCardIndex(Integer.parseInt((String)tuple[3]))){
+                            if(currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter().isTargeted()){
+                                if(validTarget((int) tuple[4], currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter())){
+                                    playCard(currentPlayer, tuple);
+                                } else {
+                                    // request ny tuple
+                                    lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Target is unvalid.", "", "");
+                                }
+                            } else {
+                                playCard(currentPlayer, tuple);
+                            }
+                        } else {
+                            lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Card pick is unvalid.", "", "");
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

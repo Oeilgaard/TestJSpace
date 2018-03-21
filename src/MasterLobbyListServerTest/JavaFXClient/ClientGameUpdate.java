@@ -39,6 +39,7 @@ public class ClientGameUpdate implements Runnable{
 
                 if (tuple[1].equals(Model.NEW_TURN)) {
 
+                    //If not empty, you have drawn a card, i.e. it's your turn
                     if(!tuple[3].equals("")) {
 
                         Platform.runLater(new Runnable() {
@@ -108,6 +109,8 @@ public class ClientGameUpdate implements Runnable{
                 } else if (tuple[1].equals(Model.WIN)){
                     System.out.println("The round is over");
                     model.cardsOnHand.clear();
+                } else if (tuple[1].equals(Model.ACTION_DENIED)){
+
                 }
 
             } catch (InterruptedException e) {
