@@ -87,13 +87,12 @@ public class ClientUpdateAgent implements Runnable{
 
                     Platform.runLater(new Runnable() {
                         public void run() {
-                            Parent root = null;
                             try {
-                                root = FXMLLoader.load(getClass().getResource("LobbyListScene.fxml"));
-                                Scene scene = new Scene(root);
+                                model.currentRoot = FXMLLoader.load(getClass().getResource("LobbyListScene.fxml"));
+                                Scene scene = new Scene(model.currentRoot);
                                 Main.appWindow.setScene(scene);
 
-                                ListView updateListView = ((ListView) root.lookup("#lobbyList"));
+                                ListView updateListView = ((ListView) model.currentRoot.lookup("#lobbyList"));
 
                                 Controller.lobbyIds.clear();
                                 updateListView.getItems().clear();
@@ -121,8 +120,8 @@ public class ClientUpdateAgent implements Runnable{
                     Platform.runLater(new Runnable() {
                         public void run() {
                             try {
-                                root = FXMLLoader.load(getClass().getResource("GameScene.fxml"));
-                                Scene scene = new Scene(root);
+                                model.currentRoot = FXMLLoader.load(getClass().getResource("GameScene.fxml"));
+                                Scene scene = new Scene(model.currentRoot);
                                 Main.appWindow.setScene(scene);
 
 //                                ArrayList<String> hand = new ArrayList<>();
@@ -134,7 +133,7 @@ public class ClientUpdateAgent implements Runnable{
 //                                ImageView card2 = ((ImageView) root.lookup("#card2"));
 //                                card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
 
-                                Controller.gameAgent = new Thread(new ClientGameUpdate(model,root));
+                                Controller.gameAgent = new Thread(new ClientGameUpdate(model));
                                 Controller.gameAgent.start();
                             } catch (IOException e) {
                                 e.printStackTrace();

@@ -21,11 +21,9 @@ import java.util.UUID;
 public class ClientGameUpdate implements Runnable{
 
     private Model model;
-    private Parent root;
 
-    public ClientGameUpdate(Model model, Parent root){
+    public ClientGameUpdate(Model model){
         this.model = model;
-        this.root = root;
     }
 
     @Override
@@ -78,7 +76,23 @@ public class ClientGameUpdate implements Runnable{
 
                     System.out.println("Outcome of card : " + tuple[3]);
 
-                    model.actionHistory.add((String)tuple[4]);
+                    Label chatText = new Label((String)tuple[4]);
+                    chatText.setWrapText(true);
+                    chatText.prefWidth(184);
+
+                    System.out.println("Should have printed outcome : " + tuple[4]);
+
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+
+                            ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
+                            ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
+
+                            model.actionHistory.add((String)tuple[4]);
+                        }
+                    });
+
+
 
                     switch ((String)tuple[3]){
                         case "KING":
@@ -101,6 +115,8 @@ public class ClientGameUpdate implements Runnable{
 
                     Platform.runLater(new Runnable() {
                         public void run() {
+
+                            //Update GUI to tell who has been knocked out
 
                         }
                     });

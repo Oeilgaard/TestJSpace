@@ -1,5 +1,6 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
+import javafx.scene.Parent;
 import org.jspace.RemoteSpace;
 
 import java.io.IOException;
@@ -68,6 +69,8 @@ public class Model {
     public ArrayList<String> cardsOnHand = new ArrayList<>();
 
     public ArrayList<String> actionHistory = new ArrayList<>();
+
+    public Parent currentRoot;
 
     public Model(){
         serverResponseMonitor = new ServerResponseMonitor();
