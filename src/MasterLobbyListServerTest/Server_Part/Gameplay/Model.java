@@ -280,7 +280,7 @@ public class Model {
         informPlayers(Character.PRIEST.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
     }
 
-    //                    PLAYER INDEX  CARD INDEX  PLAYER INDEX
+    // PLAYER INDEX  CARD INDEX  PLAYER INDEX
     public void baronAction(int sender, int index, int targetPlayer) {
 
         String senderName = removeIDFromPlayername(players.get(sender).getName());
@@ -335,18 +335,18 @@ public class Model {
         if ((!deck.getCards().isEmpty())) {
             deck.drawCard(players.get(targetPlayer).getHand());
 
-            //TODO: custom messages
-            String msgSender = "foo";
-            String msgTarget = "bar";
-            String msgOthers = "moo";
+            String msgSender = "You play PRINCE on " + players.get(targetPlayer) + " who discard the hand and draws a new card.";
+            String msgTarget = players.get(sender).getName() + " plays PRINCE on you. You discard" +
+                    " your hand and draw a " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter().toString();
+            String msgOthers = players.get(sender).getName() + " played PRINCE on " + players.get(targetPlayer).getName() + " who draw a new card.";
             informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
         } else {
             drawSecretCard(players.get(targetPlayer).getHand());
 
-            //TODO: custom messages
-            String msgSender = "foo";
-            String msgTarget = "bar";
-            String msgOthers = "moo";
+            String msgSender = "You play PRINCE on " + players.get(targetPlayer) + " who draws the secret card.";
+            String msgTarget = players.get(sender).getName() + " plays PRINCE on you. You discard" +
+                    " your hand and draw the secret card " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter().toString();
+            String msgOthers = players.get(sender).getName() + " played PRINCE on " + players.get(targetPlayer).getName() + " who draw the secret card.";
             informPlayers(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, "", "");
         }
     }
@@ -367,9 +367,9 @@ public class Model {
         players.get(targetPlayer).getHand().getCards().add(senderCard);
 
         //TODO: custom messages
-        String msgSender = "You played KING on " + targetName + " ";
-        String msgTarget = "bar";
-        String msgOthers = "moo";
+        String msgSender = "You played KING on " + players.get(targetPlayer).getName() + " and got a " + targetCard.getCharacter().toString();
+        String msgTarget = players.get(sender).getName() + " played KING on you. You now have a " + senderCard.getCharacter().toString();
+        String msgOthers = players.get(targetPlayer).getName() + " played KING on " + players.get(sender).getName();
 
         informPlayers(Character.KING.toString(), msgSender, msgTarget, msgOthers, sender, targetPlayer, targetCard.getCharacter().toString(), senderCard.getCharacter().toString());
 
@@ -378,8 +378,7 @@ public class Model {
     public void countessAction(int sender, int index){
         players.get(sender).discardCard(index);
 
-        //TODO: custom messages
-        String msgOthers = "moo";
+        String msgOthers = players.get(sender).getName() + " played COUNTESS.";
         informPlayersUntargetted(Character.COUNTESS.toString(),sender,msgOthers);
     }
 
@@ -389,8 +388,8 @@ public class Model {
         players.get(sender).discardHand();
 
         knockOut(players.get(sender));
-        //TODO: custom messages
-        String msgOthers = "moo";
+
+        String msgOthers = players.get(sender).getName() + " played PRINCESS and is out of the round.";
         informPlayersUntargetted(Character.PRINCESS.toString(),sender,msgOthers);
 
     }
