@@ -293,8 +293,6 @@ public class Controller {
         }
     }
 
-    //TODO Add button to join selected lobby
-
     @FXML
     public void goToCreateLobbyScene(ActionEvent event) throws InterruptedException {
         try {
@@ -493,7 +491,6 @@ public class Controller {
     public void showCardList(ActionEvent event){
         cardListPane.setVisible(true);
         cardListPane.setMouseTransparent(false);
-
     }
 
     @FXML

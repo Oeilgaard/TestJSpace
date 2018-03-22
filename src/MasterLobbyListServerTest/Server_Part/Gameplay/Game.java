@@ -107,17 +107,20 @@ public class Game {
                     System.out.print(newLine);
 
                     for(Player p : model.players){
+                        String msg = "Round " + model.round + ", " + "Turn " + model.turn + " - ";
                         if(p.getName()==currentPlayer.getName()) {
                             try {
-                                // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4], [5]
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), "", "");
+                                msg += "Your turn";
+                                // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4] message, [5] -
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), two.toString(), msg, "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         } else {
                             try {
-                                // [0] Update, [1] update type, [2] receiver, [3] Empty string indicating not your turn, [4], [5]
-                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", "","");
+                                msg += currentPlayer.getName() + "'s turn";
+                                // [0] Update, [1] update type, [2] receiver, [3] - , [4] msg, [5] -
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", msg, "");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -141,8 +144,8 @@ public class Game {
 //                            // Send tuple der requester nyt kort...
 //                        }
                         if(legalCardIndex(Integer.parseInt((String)tuple[3]))){
-                            if(currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter().isTargeted()){
-                                if(validTarget((int) tuple[4], currentPlayer.getHand().getCards().get((int) tuple[3]).getCharacter())){
+                            if(currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter().isTargeted()){
+                                if(validTarget(Integer.parseInt((String) tuple[4]), currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter())){
                                     playCard(currentPlayer, tuple);
                                 } else {
                                     // request ny tuple

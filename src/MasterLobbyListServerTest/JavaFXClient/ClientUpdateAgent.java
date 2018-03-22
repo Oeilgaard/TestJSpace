@@ -88,7 +88,7 @@ public class ClientUpdateAgent implements Runnable{
                     Platform.runLater(new Runnable() {
                         public void run() {
                             try {
-                                model.currentRoot = FXMLLoader.load(getClass().getResource("LobbyListScene.fxml"));
+                                model.currentRoot = FXMLLoader.load(getClass().getResource(Controller.LOBBY_LIST_SCENE));
                                 Scene scene = new Scene(model.currentRoot);
                                 Main.appWindow.setScene(scene);
 
