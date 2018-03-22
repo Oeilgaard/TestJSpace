@@ -169,6 +169,7 @@ public class Controller {
     public void changeScene(String sceneName) throws IOException, InterruptedException {
 
         Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
+        model.currentRoot = root;
         Scene scene = new Scene(root);
         Main.appWindow.setScene(scene);
 
@@ -185,6 +186,19 @@ public class Controller {
             }
         } else if (sceneName == PLAY_CARD_SCENE) {
             loadHand(model.cardsOnHand, root);
+        } else if (sceneName.equals("GameScene")){
+            VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
+            ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
+            vb.getChildren().clear();
+            for (String message : model.actionHistory){
+                Label chatText = new Label(message);
+                chatText.setWrapText(true);
+                chatText.prefWidth(184);
+
+                vb.getChildren().add(chatText);
+                sp.setVvalue(1.0);
+            }
+
         } else if (sceneName == PICK_PLAYER_SCENE) {
 
             //TODO This needs to be updated
