@@ -12,6 +12,8 @@ public class Game {
     private Model model;
     private SequentialSpace lobbySpace;
 
+    private Thread posTargets;
+
     private Character guardGuessCharacter;
     private Character chosenCharacter;
     private Player currentPlayer;
@@ -20,6 +22,8 @@ public class Game {
     public Game(ArrayList<String> players, SequentialSpace lobbySpace) {
         this.model = new Model(players, lobbySpace);
         this.lobbySpace = lobbySpace;
+        posTargets = new Thread(new PossibleTargetsThread(lobbySpace,model));
+        posTargets.start();
     }
 
     public void newRound(){
@@ -169,7 +173,11 @@ public class Game {
                 model.playerPointer++; // player pointer increments for every index in the players array
             }
             System.out.println("Game is over");
+
         }
+
+        posTargets.interrupt();
+
     }
 
     private boolean validTarget(int targetPlayerIndex, Character character){

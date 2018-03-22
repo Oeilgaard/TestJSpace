@@ -55,7 +55,7 @@ public class Player {
     }
 
     public boolean isMe(String name) {
-        return this.name == name;
+        return this.name.equals(name);
     }
 
     public void discardCard(int index) {

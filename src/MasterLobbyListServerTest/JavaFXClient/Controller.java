@@ -88,8 +88,8 @@ public class Controller {
         System.out.println("Pick card one");
         System.out.println("Returned : " + model.cardsOnHand.get(0));
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(0))) {
-            changeScene(PICK_PLAYER_SCENE);
             pickedCard = 0;
+            changeScene(PICK_PLAYER_SCENE);
             selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(0));
         } else {
             model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"0","",""); // Send the action to the server
@@ -105,8 +105,8 @@ public class Controller {
         System.out.println("Pick card two");
         System.out.println("Returned : " + model.cardsOnHand.get(1));
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(1))) {
-            changeScene(PICK_PLAYER_SCENE);
             pickedCard = 1;
+            changeScene(PICK_PLAYER_SCENE);
             selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(1));
         } else {
             model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"1","",""); // Send the action to the server
@@ -201,41 +201,16 @@ public class Controller {
 
         } else if (sceneName == PICK_PLAYER_SCENE) {
 
-            //TODO This needs to be updated
-
             ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
             targetablePlayers.getItems().clear();
 
-            //LOAD DUMMY PLAYER ARRAY
-            ArrayList<ArrayList> dummyPlayers = new ArrayList();
+            model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)));
 
-            ArrayList<String> bob = new ArrayList();
-            bob.add("Bob");
-            bob.add("1");
-
-            ArrayList<String> alice = new ArrayList();
-            alice.add("Alice");
-            alice.add("1");
-
-            ArrayList<String> charles = new ArrayList();
-            charles.add("Charles");
-            charles.add("1");
-
-            dummyPlayers.add(bob);
-            dummyPlayers.add(alice);
-            dummyPlayers.add(charles);
-
-            //model.getLobbySpace().put(Model.GAMEPLAY_INFO, Model.PLAYERS_IN_ROUND, dummyPlayers);
-            //LOAD DUMMY PLAYER END
-
-            //Object[] tp = model.getLobbySpace().query(new ActualField(Model.GAMEPLAY_INFO), new ActualField(Model.PLAYERS_IN_ROUND), new FormalField(ArrayList.class));
+            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(ArrayList.class));
 
             int index = 0;
-            //for (ArrayList<String> p : (ArrayList<ArrayList>) tp[2]) {
-            for (ArrayList<String> p : dummyPlayers) {
-                if (p.get(1) == "1") {
-                    targetablePlayers.getItems().add(index + ". " + p.get(0));
-                }
+            for (String p : (ArrayList<String>) tuple[2]) {
+                targetablePlayers.getItems().add(index + ". " + p);
                 index++;
             }
         }

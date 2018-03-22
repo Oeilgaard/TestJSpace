@@ -10,4 +10,6 @@ public class HelperFunctions {
 
     public static boolean isGuard(String card) { return card.equals("GUARD") ;}
 
+    public static boolean isPrince(String card) { return card.equals("PRINCE");}
+
 }
