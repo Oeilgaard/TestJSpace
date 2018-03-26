@@ -132,10 +132,17 @@ public class ClientGameUpdate implements Runnable{
 
                 } else if (tuple[1].equals(Model.KNOCK_OUT)){
 
+                    Label chatText = new Label((String)tuple[4]);
+                    chatText.setWrapText(true);
+                    chatText.prefWidth(184);
+
                     Platform.runLater(new Runnable() {
                         public void run() {
-
                             //Update GUI to tell who has been knocked out
+                            ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
+                            ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
+
+                            model.actionHistory.add((String)tuple[4]);
 
                         }
                     });
