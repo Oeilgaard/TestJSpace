@@ -174,13 +174,14 @@ public class Model {
     }
 
     public void knockOut(Player knockedOut) {
-        System.out.println("Player " + knockedOut.getName() + " is out of the round" + Game.newLine);
+        System.out.println("Player " + removeIDFromPlayername(knockedOut.getName()) + " is out of the round" + Game.newLine);
+        String msg = "Player " + removeIDFromPlayername(knockedOut.getName()) + " is out of the round";
         knockedOut.discardHand();
         knockedOut.setInRound(false);
         for(Player p : players) {
-            // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name
+            // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name, [4]: Game-log message, [5]; -
             try {
-                lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, p.getName(), knockedOut.getName(), "");
+                lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, p.getName(), knockedOut.getName(), msg, "", "");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -341,7 +342,7 @@ public class Model {
         if ((!deck.getCards().isEmpty())) {
             deck.drawCard(players.get(targetPlayer).getHand());
 
-            String msgSender = "You play PRINCE on " + players.get(targetPlayer) + " who discard the hand and draws a new card.";
+            String msgSender = "You play PRINCE on " + senderName + " who discard the hand and draws a new card.";
             String msgTarget = senderName + " plays PRINCE on you. You discard" +
                     " your hand and draw a " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter().toString();
             String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
@@ -349,7 +350,7 @@ public class Model {
         } else {
             drawSecretCard(players.get(targetPlayer).getHand());
 
-            String msgSender = "You play PRINCE on " + players.get(targetPlayer) + " who draws the secret card.";
+            String msgSender = "You play PRINCE on " + targetName + " who draws the secret card.";
             String msgTarget = senderName + " plays PRINCE on you. You discard" +
                     " your hand and draw the secret card " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter().toString();
             String msgOthers = senderName + " played PRINCE on " + targetName + " who draw the secret card.";
@@ -372,7 +373,6 @@ public class Model {
         players.get(sender).getHand().getCards().add(targetCard);
         players.get(targetPlayer).getHand().getCards().add(senderCard);
 
-        //TODO: custom messages
         String msgSender = "You played KING on " + targetName + " and got a " + targetCard.getCharacter().toString();
         String msgTarget = senderName + " played KING on you. You now have a " + senderCard.getCharacter().toString();
         String msgOthers = targetName + " played KING on " + senderName;
