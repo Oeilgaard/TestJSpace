@@ -49,12 +49,13 @@ public class Model {
     public final static int CLIENT_UPDATE = 10;
     public final static int NEW_TURN = 11;
     public final static int DISCARD = 12;
-    public final static int TARGETTED = 121;
-    public final static int UNTARGETTED = 122;
+    //public final static int TARGETTED = 121;
+    //public final static int UNTARGETTED = 122;
     public final static int OUTCOME = 13;
     public final static int KNOCK_OUT = 14;
     public final static int WIN = 15;
     public final static int GAME_START_UPDATE = 16;
+    public final static int ACTION_DENIED = 17;
 
     public final static int SERVER_UPDATE = 20;
 

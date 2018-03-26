@@ -33,10 +33,13 @@ public class ClientGameUpdate implements Runnable{
         while(true) {
             try {
 
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE),new FormalField(Integer.class),new ActualField(model.getUniqueName()),new FormalField(String.class),new FormalField(String.class),new FormalField(String.class));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE),new FormalField(Integer.class),
+                        new ActualField(model.getUniqueName()),new FormalField(String.class),
+                        new FormalField(String.class),new FormalField(String.class));
 
                 if (tuple[1].equals(Model.NEW_TURN)) {
 
+                    //If not empty, you have drawn a card, i.e. it's your turn
                     if(!tuple[3].equals("")) {
 
                         Platform.runLater(new Runnable() {
@@ -52,6 +55,13 @@ public class ClientGameUpdate implements Runnable{
                                     Controller.loadHand(model.cardsOnHand, root);
                                     System.out.println("Hand : " + model.cardsOnHand.get(0) + " and " + model.cardsOnHand.get(1));
 
+                                    Label chatText = new Label((String)tuple[4]);
+                                    chatText.setWrapText(true);
+                                    chatText.prefWidth(184);
+                                    ((VBox) root.lookup("#vb1playcard")).getChildren().add(chatText);
+                                    ((ScrollPane) root.lookup("#scrollplaycard")).setVvalue(1.0);
+                                    model.actionHistory.add((String) tuple[4]);
+
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -59,10 +69,18 @@ public class ClientGameUpdate implements Runnable{
                         });
                     } else {
 
+                        Label chatText = new Label((String)tuple[4]);
+                        chatText.setWrapText(true);
+                        chatText.prefWidth(184);
+
                         Platform.runLater(new Runnable() {
                             public void run() {
 
                                 //Update GUI to show whos turn it is
+                                ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
+                                ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
+
+                                model.actionHistory.add((String) tuple[4]);
                             }
                         });
 
@@ -90,7 +108,8 @@ public class ClientGameUpdate implements Runnable{
 
                             model.actionHistory.add((String)tuple[4]);
                         }
-                    });
+                    }
+                    );
 
 
 
@@ -124,6 +143,8 @@ public class ClientGameUpdate implements Runnable{
                 } else if (tuple[1].equals(Model.WIN)){
                     System.out.println("The round is over");
                     model.cardsOnHand.clear();
+                } else if (tuple[1].equals(Model.ACTION_DENIED)){
+
                 }
 
             } catch (InterruptedException e) {

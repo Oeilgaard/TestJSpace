@@ -30,6 +30,7 @@ public class Model {
     public final static int KNOCK_OUT = 14;
     public final static int WIN = 15;
     public final static int GAME_START_UPDATE = 16;
+    public final static int ACTION_DENIED = 17;
 
 
     public final static int SERVER_UPDATE = 20;
@@ -227,7 +228,7 @@ public class Model {
         for(Player p : players){
             if(p.getName() != players.get(senderIndex).getName()){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, card, p.getName(), msgOthers, "");
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgOthers, "");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
