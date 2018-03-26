@@ -124,18 +124,34 @@ public class ClientUpdateAgent implements Runnable{
                                 Scene scene = new Scene(model.currentRoot);
                                 Main.appWindow.setScene(scene);
 
-//                                ArrayList<String> hand = new ArrayList<>();
-//                                hand.add("baron");
-//                                hand.add("prince");
+                                VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
+                                ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
+                                vb.getChildren().clear();
+                                for (String message : model.actionHistory){
+                                    Label chatText = new Label(message);
+                                    chatText.setWrapText(true);
+                                    chatText.prefWidth(184);
 
-//                                ImageView card1 = ((ImageView) root.lookup("#card1"));
-//                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(0) + ".jpg"));
-//                                ImageView card2 = ((ImageView) root.lookup("#card2"));
-//                                card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
+                                    vb.getChildren().add(chatText);
+                                    sp.setVvalue(1.0);
+                                }
+
+                                model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),2);
+                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(ArrayList.class));
+
+                                ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
+                                updatePlayerListView.getItems().clear();
+                                for (String user : (ArrayList<String>) tuple[2]) {
+
+                                    updatePlayerListView.getItems().add(new Label(user));
+
+                                }
 
                                 Controller.gameAgent = new Thread(new ClientGameUpdate(model));
                                 Controller.gameAgent.start();
                             } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }

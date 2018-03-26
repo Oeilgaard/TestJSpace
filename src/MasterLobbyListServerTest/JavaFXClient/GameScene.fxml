@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -10,19 +14,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
    <children>
        <ScrollPane fx:id="scroll" layoutX="14.0" layoutY="72.0" pannable="true" prefHeight="213.0" prefWidth="200.0" vbarPolicy="ALWAYS" vvalue="1.0">
            <content>
                <VBox fx:id="vb1" maxHeight="999999.0" prefHeight="212.0" prefWidth="184.0" />
            </content>
        </ScrollPane>
-      <ListView layoutX="413.0" layoutY="42.0" prefHeight="316.0" prefWidth="144.0" />
       <Label layoutX="54.0" layoutY="35.0" text="Actions" />
-      <Label layoutX="30.0" layoutY="350.0" text="Player 1: alive " />
-      <Label layoutX="129.0" layoutY="351.0" text="Player 2:  alive" />
-      <Label layoutX="215.0" layoutY="351.0" text="Player 3: alive " />
-      <Label layoutX="300.0" layoutY="351.0" text="Player 4: alive" />
       <Label layoutX="22.0" layoutY="368.0" text="Current turn" />
       <ImageView fx:id="cur_card" fitHeight="192.0" fitWidth="144.0" layoutX="252.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="291.0" layoutY="51.0" text="Current card" />
@@ -37,5 +36,6 @@
             <Button layoutX="76.0" layoutY="220.0" mnemonicParsing="false" onAction="#hideCardList" text="Close" />
          </children>
       </Pane>
+      <ListView fx:id="listOfPlayers" focusTraversable="false" layoutX="425.0" layoutY="72.0" mouseTransparent="true" prefHeight="213.0" prefWidth="125.0" />
    </children>
 </AnchorPane>

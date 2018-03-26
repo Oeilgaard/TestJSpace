@@ -43,6 +43,8 @@ public class Controller {
     @FXML
     private VBox vb1;
     @FXML
+    private VBox vb2;
+    @FXML
     private ListView lobbyList;
     @FXML
     private ListView listOfPlayers;
@@ -186,6 +188,7 @@ public class Controller {
             }
         } else if (sceneName == PLAY_CARD_SCENE) {
             loadHand(model.cardsOnHand, root);
+
         } else if (sceneName.equals("GameScene")){
             VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
             ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
@@ -197,6 +200,17 @@ public class Controller {
 
                 vb.getChildren().add(chatText);
                 sp.setVvalue(1.0);
+            }
+
+            model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),2);
+            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(ArrayList.class));
+
+            ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
+            updatePlayerListView.getItems().clear();
+            for (String user : (ArrayList<String>) tuple[2]) {
+
+                updatePlayerListView.getItems().add(new Label(user));
+
             }
 
         } else if (sceneName == PICK_PLAYER_SCENE) {
