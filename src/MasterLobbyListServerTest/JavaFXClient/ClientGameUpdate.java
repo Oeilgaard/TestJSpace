@@ -55,6 +55,13 @@ public class ClientGameUpdate implements Runnable{
                                     Controller.loadHand(model.cardsOnHand, root);
                                     System.out.println("Hand : " + model.cardsOnHand.get(0) + " and " + model.cardsOnHand.get(1));
 
+                                    Label chatText = new Label((String)tuple[4]);
+                                    chatText.setWrapText(true);
+                                    chatText.prefWidth(184);
+                                    ((VBox) root.lookup("#vb1playcard")).getChildren().add(chatText);
+                                    ((ScrollPane) root.lookup("#scrollplaycard")).setVvalue(1.0);
+                                    model.actionHistory.add((String) tuple[4]);
+
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }

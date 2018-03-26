@@ -38,7 +38,7 @@ public class Game {
             p.deactivateHandmaid();
         }
 
-        model.turn = 0;
+        model.turn = 1;
         model.playerPointer = 0;
         model.round++;
 
@@ -89,7 +89,6 @@ public class Game {
 
                 // temp. variables for current round
                 currentPlayer = model.players.get(model.indexOfCurrentPlayersTurn());
-                Card one = currentPlayer.getHand().getCards().get(0);
 
                 if(currentPlayer.isInRound()) {
 
@@ -122,7 +121,7 @@ public class Game {
                             }
                         } else {
                             try {
-                                msg += currentPlayer.getName() + "'s turn";
+                                msg += model.removeIDFromPlayername(currentPlayer.getName()) + "'s turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] - , [4] msg, [5] -
                                 lobbySpace.put(Model.CLIENT_UPDATE, Model.NEW_TURN, p.getName(), "", msg, "");
                             } catch (InterruptedException e) {

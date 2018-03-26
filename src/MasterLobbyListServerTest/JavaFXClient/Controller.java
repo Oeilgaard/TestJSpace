@@ -43,6 +43,10 @@ public class Controller {
     @FXML
     private VBox vb1;
     @FXML
+    private VBox vbplaycard;
+    @FXML
+    private ScrollPane scrollplaycard;
+    @FXML
     private ListView lobbyList;
     @FXML
     private ListView listOfPlayers;
@@ -186,7 +190,21 @@ public class Controller {
             }
         } else if (sceneName == PLAY_CARD_SCENE) {
             loadHand(model.cardsOnHand, root);
+
+            VBox vb = ((VBox) model.currentRoot.lookup("#vb1playcard"));
+            ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scrollplaycard"));
+            vb.getChildren().clear();
+            for (String message : model.actionHistory){
+                Label chatText = new Label(message);
+                chatText.setWrapText(true);
+                chatText.prefWidth(184);
+
+                vb.getChildren().add(chatText);
+                sp.setVvalue(1.0);
+            }
+
         } else if (sceneName.equals("GameScene")){
+
             VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
             ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
             vb.getChildren().clear();
