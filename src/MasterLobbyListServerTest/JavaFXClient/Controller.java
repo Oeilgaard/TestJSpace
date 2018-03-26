@@ -23,6 +23,7 @@ import org.jspace.FormalField;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -219,14 +220,14 @@ public class Controller {
             }
 
             model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),2);
-            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(ArrayList.class));
+            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(String[].class));
 
             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
             updatePlayerListView.getItems().clear();
-            for (String user : (ArrayList<String>) tuple[2]) {
-
-                updatePlayerListView.getItems().add(new Label(user));
-
+            for (int i = 0; i < 5; i++){
+                if( !((String[]) tuple[2])[i].equals("") ) {
+                    updatePlayerListView.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                }
             }
 
         } else if (sceneName == PICK_PLAYER_SCENE) {
@@ -236,12 +237,14 @@ public class Controller {
 
             model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)));
 
-            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(ArrayList.class));
+            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(String[].class));
 
-            int index = 0;
-            for (String p : (ArrayList<String>) tuple[2]) {
-                targetablePlayers.getItems().add(index + ". " + p);
-                index++;
+            for (int i = 0; i < 5; i++){
+                if( !((String[]) tuple[2])[i].equals("") ) {
+                    targetablePlayers.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                } else {
+                    targetablePlayers.getItems().add("");
+                }
             }
         }
     }

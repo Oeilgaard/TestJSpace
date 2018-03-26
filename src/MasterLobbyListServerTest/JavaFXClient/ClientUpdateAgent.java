@@ -137,14 +137,15 @@ public class ClientUpdateAgent implements Runnable{
                                 }
 
                                 model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),2);
-                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(ArrayList.class));
+                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(String[].class));
 
                                 ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
                                 updatePlayerListView.getItems().clear();
-                                for (String user : (ArrayList<String>) tuple[2]) {
 
-                                    updatePlayerListView.getItems().add(new Label(user));
-
+                                for (int i = 0; i < 5; i++){
+                                    if( !((String[]) tuple[2])[i].equals("") ) {
+                                        updatePlayerListView.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                                    }
                                 }
 
                                 Controller.gameAgent = new Thread(new ClientGameUpdate(model));

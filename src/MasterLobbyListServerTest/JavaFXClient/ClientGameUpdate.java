@@ -39,6 +39,8 @@ public class ClientGameUpdate implements Runnable{
 
                 if (tuple[1].equals(Model.NEW_TURN)) {
 
+                    System.out.println("New turn");
+
                     //If not empty, you have drawn a card, i.e. it's your turn
                     if(!tuple[3].equals("")) {
 

@@ -98,7 +98,7 @@ public class Game {
 
                     // States current player's turn
                     System.out.println("Round no. " + model.round + newLine + "Turn no. "
-                            + (model.turn+1) + newLine + currentPlayer.getName() + "'s turn" + newLine);
+                            + (model.turn) + newLine + currentPlayer.getName() + "'s turn" + newLine);
 
                     // 1. DRAW
                     model.deck.drawCard(currentPlayer.getHand());
@@ -152,12 +152,15 @@ public class Game {
                                     playCard(currentPlayer, tuple);
                                 } else {
                                     // request ny tuple
+                                    System.out.println("Fejl: Action denied linje 156");
                                     lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Target is unvalid.", "", "");
                                 }
                             } else {
+                                System.out.println("Linje 160 ");
                                 playCard(currentPlayer, tuple);
                             }
                         } else {
+                            System.out.println("Fejl: Action denied");
                             lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Card pick is unvalid.", "", "");
                         }
                     } catch (InterruptedException e) {
@@ -229,12 +232,16 @@ public class Game {
 
     private void playTargettedCard(Character chosenCharacter, Player currentPlayer, int cardIndex, int playerTargetIndex, int guardGuess) {
 
+        System.out.println("Targetted card was played");
+
         if(!possibleTargets()){
             // play targetted card with no action
+            System.out.println("FØRSTE GUARD FEJL");
             model.noAction(model.indexOfCurrentPlayersTurn(), cardIndex);
         } else {
             if(validTarget(playerTargetIndex, currentPlayer.getHand().getCards().get(cardIndex).getCharacter())) {
                 if(chosenCharacter == Character.GUARD) {
+                    System.out.println("It was a guard");
                     guardGuessCharacter = Character.values()[guardGuess];
                     //System.out.println("You guessed " + Character.values()[guardGuess]);
                     model.guardAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex, guardGuessCharacter);
@@ -252,7 +259,7 @@ public class Game {
                     model.kingAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
                 }
             } else {
-
+                System.out.println("Seems like an unvalid target");
             }
         }
     }
