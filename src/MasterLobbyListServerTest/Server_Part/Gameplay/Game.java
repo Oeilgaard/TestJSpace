@@ -148,7 +148,9 @@ public class Game {
 //                        }
                         if(legalCardIndex(Integer.parseInt((String)tuple[3]))){
                             if(currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter().isTargeted()){
-                                if(validTarget(Integer.parseInt((String) tuple[4]), currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter())){
+                                //TODO: no possible target case could automitically launch 'noAction' (currently double checking in playCard)
+                                if(!possibleTargets() || (validTarget(Integer.parseInt((String) tuple[4]),
+                                        currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter()))){
                                     playCard(currentPlayer, tuple);
                                 } else {
                                     // request ny tuple
