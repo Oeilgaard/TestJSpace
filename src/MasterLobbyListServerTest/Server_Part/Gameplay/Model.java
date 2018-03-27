@@ -242,28 +242,29 @@ public class Model {
         System.out.println(targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter() +
                 " of value " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue() + Game.newLine);
 
-        Character senderPlayerCharater = players.get(sendersIndex).getHand().getCards().get(0).getCharacter();
-        Character targetPlayerCharater = players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter();
+        Character senderPlayerCharacter = players.get(sendersIndex).getHand().getCards().get(0).getCharacter();
+        Character targetPlayerCharacter = players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter();
 
-        if(players.get(sendersIndex).getHand().getCards().get(0).getCharacter().getValue() > players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue()){
+        if(senderPlayerCharacter.getValue() > targetPlayerCharacter.getValue()){
             knockOut(targetPlayersIndex);
 
-            String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You win the duel!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ".";
-            String msgOthers = senderName + " wins the duel, and " + targetName + " is out of the round";
+            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You win the duel!";
+            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ".";
+            String msgOthers = senderName + " wins the duel.";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
-        } else if(players.get(sendersIndex).getHand().getCards().get(0).getCharacter().getValue() < players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue()){
+
+        } else if(senderPlayerCharacter.getValue() < targetPlayerCharacter.getValue()){
             knockOut(sendersIndex);
 
-            String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You are out of the round!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ". You win the duel!";
-            String msgOthers = targetName + " wins the duel, and " + senderName + " is out of the round";
+            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You lose the duel!";
+            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". You win the duel!";
+            String msgOthers = targetName + " wins the duel.";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
         } else {
             System.out.println("Tie! No one is knocked out...");
 
-            String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". It's a draw!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ". It's a draw!";
+            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". It's a draw!";
+            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". It's a draw!";
             String msgOthers = "It's a draw! No one is knocked out!";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");}
     }
@@ -419,7 +420,7 @@ public class Model {
 
         for(Player rcpt : players) { // 'rcpt' for recipient
             // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name, [4]: Game-log message, [5]; -
-            if(rcpt.getName() == p.getName()){
+            if(rcpt.getName().equals(p.getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, rcpt.getName(), p.getName(), msgSender, "");
                 } catch (InterruptedException e) {
@@ -441,13 +442,13 @@ public class Model {
                                                int receiverIndex, String kingCardToSender, String kingCardToTarget){
 
             for(Player p : players){
-            if(p.getName() == players.get(senderIndex).getName()){
+            if(p.getName().equals(players.get(senderIndex).getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, kingCardToSender);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } else if(p.getName() == players.get(receiverIndex).getName()){
+            } else if(p.getName().equals(players.get(receiverIndex).getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgTarget, kingCardToTarget);
                 } catch (InterruptedException e) {

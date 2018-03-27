@@ -54,17 +54,17 @@ public class Game {
         }
 
         // Secret card
-        msg += newLine + "and a secret card is set aside..." + newLine;
+        msg += newLine + "and a SECRET CARD is set aside..." + newLine;
         model.secretCard = model.deck.drawCard();
 
 
-        msg += "Each player draws a card..." + newLine;
+        //msg += "Each player draws a card..." + newLine;
         System.out.println(msg);
         // Each players draw a card
         for(Player p : model.players) {
             model.deck.drawCard(p.getHand());
             //System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
-            msg += "you start with " + p.getHand().getCards().get(0).getCharacter().toString();
+            //msg += "you start with " + p.getHand().getCards().get(0).getCharacter().toString();
             try {
                 lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_START_UPDATE, p.getName(),
                         p.getHand().getCards().get(0).getCharacter().toString(), msg, "");
