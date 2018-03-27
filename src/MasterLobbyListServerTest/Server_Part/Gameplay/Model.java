@@ -367,7 +367,6 @@ public class Model {
 
         players.get(sendersIndex).discardCard(cardIndex);
         players.get(sendersIndex).setInRound(false);
-        players.get(sendersIndex).discardHand();
 
         knockOut(sendersIndex);
 

@@ -194,7 +194,7 @@ public class Controller {
                 for (String message : model.actionHistory) {
                     Label chatText = new Label(message);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     vb.getChildren().add(chatText);
                     sp.setVvalue(1.0);
@@ -213,7 +213,7 @@ public class Controller {
                 for (String message : model.actionHistory) {
                     Label chatText = new Label(message);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     vb.getChildren().add(chatText);
                     sp.setVvalue(1.0);
@@ -345,7 +345,7 @@ public class Controller {
         s = s.substring(0, s.indexOf("#"));
         Label chatText = new Label(s + " : " + text);
         chatText.setWrapText(true);
-        chatText.prefWidth(254);
+        //chatText.prefWidth(254);
 
         vb1.getChildren().add(chatText);
         chatTxtField.clear();

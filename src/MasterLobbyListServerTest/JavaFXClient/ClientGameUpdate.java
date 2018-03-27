@@ -68,7 +68,7 @@ public class ClientGameUpdate implements Runnable{
                                     for (String message : model.actionHistory){
                                         Label chatText = new Label(message);
                                         chatText.setWrapText(true);
-                                        chatText.prefWidth(184);
+                                        //chatText.prefWidth(184);
 
                                         vb.getChildren().add(chatText);
                                         sp.setVvalue(1.0);
@@ -86,7 +86,7 @@ public class ClientGameUpdate implements Runnable{
 
                         Label chatText = new Label((String) tuple[4]);
                         chatText.setWrapText(true);
-                        chatText.prefWidth(184);
+                        //chatText.prefWidth(184);
 
                         Platform.runLater(() -> {
 
@@ -112,7 +112,7 @@ public class ClientGameUpdate implements Runnable{
 
                     Label chatText = new Label((String) tuple[4]);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     System.out.println("Should have printed outcome : " + tuple[4]);
 
@@ -147,7 +147,7 @@ public class ClientGameUpdate implements Runnable{
 
                     Label chatText = new Label((String) tuple[4]);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     Platform.runLater(() -> {
                         //Update GUI to tell who has been knocked out
