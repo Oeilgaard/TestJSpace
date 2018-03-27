@@ -1,15 +1,13 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
-import MasterLobbyListServerTest.Server_Part.Lobby;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
@@ -19,14 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static MasterLobbyListServerTest.JavaFXClient.Controller.LOBBY_LIST_SCENE;
-
 public class ClientUpdateAgent implements Runnable{
 
     private Model model;
     private Parent root;
 
-    public ClientUpdateAgent(Model model, Parent root){
+    ClientUpdateAgent(Model model, Parent root){
         this.model = model;
         this.root = root;
     }
@@ -34,50 +30,46 @@ public class ClientUpdateAgent implements Runnable{
     @Override
     public void run() {
 
-        updateLoop:
-        while(true) {
+        while (true) {
             try {
 
                 //[0] update code [1] type of update [2] name of user [3] chat text combined with username (situational)
-                Object[] tuple = model.getLobbySpace().get(new ActualField(model.LOBBY_UPDATE),new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class));
 
-                if (tuple[1].equals(model.CHAT_MESSAGE)) {
-                    Platform.runLater(new Runnable() {
-                        public void run() {
+                if (tuple[1].equals(Model.CHAT_MESSAGE)) {
+                    Platform.runLater(() -> {
 
-                            Label chatText = new Label((String)tuple[3]);
-                            chatText.setWrapText(true);
-                            chatText.prefWidth(254);
+                        Label chatText = new Label((String) tuple[3]);
+                        chatText.setWrapText(true);
+                        chatText.prefWidth(254);
 
-                            ((VBox) root.lookup("#vb1")).getChildren().add(chatText);
-                            ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
-                        }
+                        ((VBox) root.lookup("#vb1")).getChildren().add(chatText);
+                        ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
                     });
-                } else if (tuple[1].equals(model.CONNECT) || tuple[1].equals(model.DISCONNECT)){
-                    model.getLobbySpace().put(model.LOBBY_REQ,model.GET_PLAYERLIST,model.getUniqueName());
+                } else if (tuple[1].equals(Model.CONNECT) || tuple[1].equals(Model.DISCONNECT)) {
+                    model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName());
 
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                            Object[] tuple2 = new Object[0];
-                            try {
+                    Platform.runLater(() -> {
+                        Object[] tuple2;
+                        try {
 
-                                // [0] response code [1] list of playernames [2] username
-                                tuple2 = model.getLobbySpace().get(new ActualField(model.LOBBY_RESP),new FormalField(ArrayList.class),new ActualField(model.getUniqueName()));
+                            // [0] response code [1] list of playernames [2] username
+                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getUniqueName()));
 
 
-                                ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
-                                updatePlayerListView.getItems().clear();
-                                for (String user : (ArrayList<String>) tuple2[1]) {
+                            ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
+                            ObservableList updItems = updatePlayerListView.getItems();
+                            updItems.clear();
+                            for (String user : (ArrayList<String>) tuple2[1]) {
 
-                                    updatePlayerListView.getItems().add(new Label(user));
+                                updItems.add(new Label(user));
 
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
                             }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     });
-                } else if (tuple[1].equals(model.CLOSE)){
+                } else if (tuple[1].equals(Model.CLOSE)) {
 
                     System.out.println("DETECTED A SHUTDOWN");
 
@@ -93,29 +85,29 @@ public class ClientUpdateAgent implements Runnable{
                                 Main.appWindow.setScene(scene);
 
                                 ListView updateListView = ((ListView) model.currentRoot.lookup("#lobbyList"));
+                                ObservableList updItems = updateListView.getItems();
+                                updItems.clear();
+
 
                                 Controller.lobbyIds.clear();
-                                updateListView.getItems().clear();
-                                List<Object[]> tuple = null;
+                                List<Object[]> tuple;
 
                                 //[0] lobby code [1] Lobby name [2] Lobby ID
                                 tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
                                 for (Object[] obj : tuple) {
-                                    updateListView.getItems().add(obj[1]);
+                                    updItems.add(obj[1]);
                                     Controller.lobbyIds.add((UUID) obj[2]);
                                 }
 
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
+                            } catch (InterruptedException | IOException e) {
                                 e.printStackTrace();
                             }
                         }
                     });
 
-                    break updateLoop;
-                } else if (tuple[1].equals(model.BEGIN)){
+                    break;
+                } else if (tuple[1].equals(Model.BEGIN)) {
 
                     Platform.runLater(new Runnable() {
                         public void run() {
@@ -124,10 +116,14 @@ public class ClientUpdateAgent implements Runnable{
                                 Scene scene = new Scene(model.currentRoot);
                                 Main.appWindow.setScene(scene);
 
+                                Label label = (Label)model.currentRoot.lookup("#usernameLabel");
+                                label.setText(model.getUniqueName().substring(0, model.getUniqueName().indexOf("#")));
+
+
                                 VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
                                 ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
                                 vb.getChildren().clear();
-                                for (String message : model.actionHistory){
+                                for (String message : model.actionHistory) {
                                     Label chatText = new Label(message);
                                     chatText.setWrapText(true);
                                     chatText.prefWidth(184);
@@ -136,34 +132,32 @@ public class ClientUpdateAgent implements Runnable{
                                     sp.setVvalue(1.0);
                                 }
 
-                                model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),2);
-                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(String[].class));
+                                model.getLobbySpace().put("TargetablePlayersRequest", model.getUniqueName(), 2);
+                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
 
                                 ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
-                                updatePlayerListView.getItems().clear();
+                                ObservableList updItems = updatePlayerListView.getItems();
+                                updItems.clear();
 
-                                for (int i = 0; i < 5; i++){
-                                    if( !((String[]) tuple[2])[i].equals("") ) {
-                                        updatePlayerListView.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
-                                    }
+                                for (int i = 0; i < 5; i++) {
+                                    if (!((String[]) tuple[2])[i].equals(""))
+                                        updItems.add(i + ". " + ((String[]) tuple[2])[i]);
                                 }
 
                                 Controller.gameAgent = new Thread(new ClientGameUpdate(model));
                                 Controller.gameAgent.start();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (InterruptedException e) {
+                            } catch (IOException | InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
                     });
-                    break updateLoop;
+                    break;
                 }
 
             } catch (InterruptedException e) {
                 //e.printStackTrace();
                 System.out.println("Den er blevet catched!");
-                break updateLoop;
+                break;
             }
         }
 

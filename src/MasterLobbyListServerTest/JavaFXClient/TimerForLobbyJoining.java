@@ -1,19 +1,13 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
-import java.io.IOException;
-
 public class TimerForLobbyJoining implements Runnable{
 
     private static int connectionSucces = 0;
 
-    private int secondsBeforeFailure = 5;
-
     private Model model;
-    private Controller control;
 
-    public TimerForLobbyJoining(Model model,Controller control){
+    TimerForLobbyJoining(Model model){
         this.model = model;
-        this.control = control;
     }
 
     @Override
@@ -23,6 +17,7 @@ public class TimerForLobbyJoining implements Runnable{
         attemptAtConnecting.start();
 
         try {
+            int secondsBeforeFailure = 5;
             for (int i = 0; i < secondsBeforeFailure; i++) {
                 Thread.sleep(1000);
                 if (connectionSucces == 2) {

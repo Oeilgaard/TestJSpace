@@ -5,27 +5,26 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 import org.jspace.SpaceRepository;
-import org.jspace.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class Lobby implements Runnable {
 
-    public final static int LOBBY_REQ = 30;
-    public final static int CONNECT = 31;
-    public final static int DISCONNECT = 32;
-    public final static int BEGIN = 33;
-    public final static int CLOSE = 34;
+    private final static int LOBBY_REQ = 30;
+    private final static int CONNECT = 31;
+    private final static int DISCONNECT = 32;
+    private final static int BEGIN = 33;
+    private final static int CLOSE = 34;
 
-    public final static int LOBBY_RESP = 40;
-    public final static int CONNECT_DENIED = 41;
-    public final static int CONNECT_ACCEPTED = 42;
+    private final static int LOBBY_RESP = 40;
+    private final static int CONNECT_DENIED = 41;
+    private final static int CONNECT_ACCEPTED = 42;
 
     public final static int LOBBY_UPDATE = 50;
     public final static int CHAT_MESSAGE = 51;
 
-    protected final static int GET_PLAYERLIST = 61;
+    private final static int GET_PLAYERLIST = 61;
 
     private final static int MAX_PLAYER_PR_LOBBY = 5;
 
@@ -36,7 +35,6 @@ public class Lobby implements Runnable {
 
     private UUID lobbyID;
     private Boolean beginFlag;
-    private Boolean inGame;
 
     private String lobbyLeader;
     private int noPlayers;
@@ -47,7 +45,6 @@ public class Lobby implements Runnable {
         this.lobbyOverviewSpace = lobbyOverviewSpace;
         this.serverRepos = serverRepos;
         this.lobbyLeader = lobbyLeader;
-        this.inGame = false;
         this.beginFlag = false;
         this.players = new ArrayList<>();
     }
@@ -63,8 +60,7 @@ public class Lobby implements Runnable {
         Thread chatAgent = new Thread(new LobbyChatAgent(lobbySpace,players));
         chatAgent.start();
 
-        BeginLoop:
-        while(true) {
+        while (true) {
             try {
                 // [0] LOBBY-tuple code, [1] LOBBY action code, [2] User name (for some tuples)
                 Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(Integer.class), new FormalField(String.class));
@@ -76,7 +72,7 @@ public class Lobby implements Runnable {
                         players.add(name); // add player to players
                         noPlayers++;
                         Boolean isThisPlayerLobbyLeader = false;
-                        if(name.equals(lobbyLeader)){
+                        if (name.equals(lobbyLeader)) {
                             isThisPlayerLobbyLeader = true;
                         }
                         lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, name, isThisPlayerLobbyLeader);
@@ -89,7 +85,7 @@ public class Lobby implements Runnable {
                         System.out.println("The lobby leader left! Lobby is closing");
                         beginFlag = false;
                         updatePlayers(name, CLOSE);
-                        break BeginLoop;
+                        break;
                     }
                     players.remove(name); // remove player from players
                     noPlayers--;
@@ -98,20 +94,20 @@ public class Lobby implements Runnable {
                     System.out.println("Lobby is closing");
                     beginFlag = false;
                     updatePlayers(name, CLOSE);
-                    break BeginLoop;
+                    break;
                 } else if (req == BEGIN && name.equals(lobbyLeader)) {
                     if (noPlayers >= 2) {
                         System.out.println("Ready to begin!");
                         beginFlag = true;
                         updatePlayers(name, BEGIN);
-                        break BeginLoop;
+                        break;
                     } else {
                         System.out.println("Not enough players to begin");
                     }
                 } else if (req == GET_PLAYERLIST) {
 
                     ArrayList<String> usernames = new ArrayList<>();
-                    for (String user :  players) {
+                    for (String user : players) {
                         String s = user;
                         s = s.substring(0, s.indexOf("#"));
                         usernames.add(s);
@@ -139,7 +135,6 @@ public class Lobby implements Runnable {
 
         // Start the game
         if(beginFlag){
-            inGame = true;
             //GameplayDummy gp = new GameplayDummy(players);
             //gp.runGamePlay();
             Game game = new Game(players, lobbySpace);
@@ -150,15 +145,16 @@ public class Lobby implements Runnable {
         System.out.println("Lobby is closed");
     }
 
-    public void updatePlayers(String actingPlayer, int action) throws InterruptedException {
+    private void updatePlayers(String actingPlayer, int action) throws InterruptedException {
         if(action==BEGIN) {
             for(String p : players){
                 // burde 'responded' også stå her?
+                System.out.println("Informing : " + p + " that the game has started");
                 lobbySpace.put(LOBBY_UPDATE,action,p, "");
             }
         } else {
             for(String p : players) {
-                if(p != actingPlayer) {
+                if(!p.equals(actingPlayer)) {
                     lobbySpace.put(LOBBY_UPDATE,action,p, "");
                 }
             }

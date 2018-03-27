@@ -37,5 +37,6 @@
          </children>
       </Pane>
       <ListView fx:id="listOfPlayers" focusTraversable="false" layoutX="425.0" layoutY="72.0" mouseTransparent="true" prefHeight="213.0" prefWidth="125.0" />
+      <Label fx:id="usernameLabel" layoutX="523.0" layoutY="14.0" text="Username" />
    </children>
 </AnchorPane>

@@ -1,11 +1,9 @@
 package MasterLobbyListServerTest.Server_Part;
 
-import org.jspace.*;
+import org.jspace.ActualField;
+import org.jspace.FormalField;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -36,7 +34,6 @@ public class Server {
         ---------------------------------------
      */
 
-    protected static int REQUEST_CODE = 1;
     protected static int CREATE_LOBBY_REQ = 11;
     protected static int CREATE_USERNAME_REQ = 12;
     protected static int JOIN_LOBBY_REQ = 13;
@@ -48,22 +45,18 @@ public class Server {
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
 
-    private static ServerData serverData;
-
     public static void main(String[] argv) throws InterruptedException, IOException {
 
-        serverData = new ServerData();
+        ServerData serverData = new ServerData();
         System.out.println("ServerData is initialised");
 
-        PrimaryLoop:
         while (true) {
 
             //TODO: Re-evaluate req. and response codes - are they unnessacary as we have seperate spaces?
 
             // [0] request code,[1] request type, [2] username to request/name of lobby, [3] null/username for lobby owner
+            int REQUEST_CODE = 1;
             Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
-
-            ExecutorService executor = Executors.newFixedThreadPool(5);//creating a pool of 5 threads
 
             Runnable tempReqHandler = new RequestHandlerThread(serverData, tuple);
             serverData.executor.execute(tempReqHandler);//calling execute method of ExecutorService

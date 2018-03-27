@@ -1,16 +1,13 @@
 package MasterLobbyListServerTest.Server_Part;
 
-import java.util.ArrayList;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class RequestHandlerThread implements Runnable {
 
-    Object[] tuple;
-    ServerData serverData;
+    private Object[] tuple;
+    private ServerData serverData;
 
-    public RequestHandlerThread(ServerData serverData, Object[] tuple){
+    RequestHandlerThread(ServerData serverData, Object[] tuple){
         this.serverData = serverData;
         this.tuple = tuple;
     }
@@ -76,11 +73,11 @@ public class RequestHandlerThread implements Runnable {
         }
     }
 
-    public boolean validName(String name){
+    private boolean validName(String name){
         return name.matches("[a-zA-Z0-9_]+");
     }
 
-    public String uniqueUserName(String name){
+    private String uniqueUserName(String name){
         String id = "#" + UUID.randomUUID().toString();
         return name+id;
     }

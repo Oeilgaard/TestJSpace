@@ -4,14 +4,13 @@ import javafx.scene.Parent;
 import org.jspace.RemoteSpace;
 
 import java.io.IOException;
-import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class Model {
 
-    public static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
-    public static String serverIp;
+    private static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
+    private static String serverIp;
 
     protected final static int REQUEST_CODE = 1;
     protected final static int CREATE_LOBBY_REQ = 11;

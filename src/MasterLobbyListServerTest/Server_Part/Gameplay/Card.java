@@ -4,7 +4,7 @@ public class Card {
 
     private final Character character;
 
-    public Card(Character character) {
+    Card(Character character) {
         this.character = character;
     }
 

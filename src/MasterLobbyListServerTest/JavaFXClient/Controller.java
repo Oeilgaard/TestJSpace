@@ -5,25 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -31,11 +23,11 @@ import java.util.UUID;
 public class Controller {
 
     public static final String LOBBY_LIST_SCENE = "LobbyListScene";
-    public static final String USER_NAME_SCENE = "UserNameScene";
-    public static final String CREATE_LOBBY_SCENE = "CreateLobbyScene";
-    public static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
-    public static final String PLAY_CARD_SCENE = "PlayCardScene";
-    public static final String PICK_PLAYER_SCENE = "PickPlayerScene";
+    private static final String USER_NAME_SCENE = "UserNameScene";
+    private static final String CREATE_LOBBY_SCENE = "CreateLobbyScene";
+    private static final String LOADING_LOBBY_SCENE = "ConnectingToLobby";
+    private static final String PLAY_CARD_SCENE = "PlayCardScene";
+    private static final String PICK_PLAYER_SCENE = "PickPlayerScene";
 
     @FXML
     private ScrollPane scroll;
@@ -43,12 +35,6 @@ public class Controller {
     private TextField chatTxtField;
     @FXML
     private VBox vb1;
-    @FXML
-    private VBox vb2;
-    @FXML
-    private VBox vbplaycard;
-    @FXML
-    private ScrollPane scrollplaycard;
     @FXML
     private ListView lobbyList;
     @FXML
@@ -62,8 +48,6 @@ public class Controller {
     @FXML
     private Label instructionsUserName;
     @FXML
-    private Label lobbyTitle;
-    @FXML
     private TextField lobbyName;
     @FXML
     private Button createLobbyButton;
@@ -72,26 +56,27 @@ public class Controller {
     @FXML
     private Pane cardListPane;
     @FXML
-    private ImageView card1;
-    @FXML
-    private ImageView card2;
-    @FXML
     private ListView targetablePlayers;
 
 
     protected static ArrayList<UUID> lobbyIds;
     private static Model model;
-    public static Thread updateAgent;
+    private static Thread updateAgent;
     public static Thread gameAgent;
 
     public static Boolean connectedToLobby = false;
 
-    public static int pickedCard = 2;
-    public static boolean selectCardIsGuard = false;
-    public static int indexOfTarget = -1;
+    private static int pickedCard = 2;
+    private static boolean selectCardIsGuard = false;
+    private static int indexOfTarget = -1;
+
+    private static boolean[] playerEnableClick = {false,false,false,false,false};
+
+    public Controller() {
+    }
 
 
-    public void pickCardOne(MouseEvent mouseEvent) throws IOException, InterruptedException {
+    public void pickCardOne() throws IOException, InterruptedException {
         System.out.println("Pick card one");
         System.out.println("Returned : " + model.cardsOnHand.get(0));
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(0))) {
@@ -108,7 +93,7 @@ public class Controller {
         // else next player's turn
     }
 
-    public void pickCardTwo(MouseEvent mouseEvent) throws IOException, InterruptedException {
+    public void pickCardTwo() throws IOException, InterruptedException {
         System.out.println("Pick card two");
         System.out.println("Returned : " + model.cardsOnHand.get(1));
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(1))) {
@@ -123,7 +108,7 @@ public class Controller {
     }
 
     @FXML
-    public void joinServer(ActionEvent event) throws IOException, InterruptedException {
+    public void joinServer() throws IOException, InterruptedException {
 
         String urlForRemoteSpace = IP.getText();
         model = new Model();
@@ -135,7 +120,7 @@ public class Controller {
     }
 
     @FXML
-    public void createUser(ActionEvent event) throws InterruptedException {
+    public void createUser() throws InterruptedException {
 
         String userNameString = userName.getText();
 
@@ -173,81 +158,105 @@ public class Controller {
         }
     }
 
-    public void changeScene(String sceneName) throws IOException, InterruptedException {
+    private void changeScene(String sceneName) throws IOException, InterruptedException {
 
         Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
         model.currentRoot = root;
         Scene scene = new Scene(root);
         Main.appWindow.setScene(scene);
 
-        if (sceneName == LOBBY_LIST_SCENE) {
-            ListView updateListView = ((ListView) root.lookup("#lobbyList"));
-            updateListView.getItems().clear();
-            lobbyIds.clear();
+        switch (sceneName) {
+            case LOBBY_LIST_SCENE: {
+                Label label = (Label)model.currentRoot.lookup("#usernameLabel");
+                label.setText(removedIdFromUsername());
 
-            //[0] lobby code [1] Lobby name [2] Lobby ID
-            List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
-            for (Object[] obj : tuple) {
-                updateListView.getItems().add(obj[1]);
-                lobbyIds.add((UUID) obj[2]);
-            }
-        } else if (sceneName == PLAY_CARD_SCENE) {
-            loadHand(model.cardsOnHand, root);
+                ListView updateListView = ((ListView) root.lookup("#lobbyList"));
+                updateListView.getItems().clear();
+                lobbyIds.clear();
 
-            VBox vb = ((VBox) model.currentRoot.lookup("#vb1playcard"));
-            ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scrollplaycard"));
-            vb.getChildren().clear();
-            for (String message : model.actionHistory){
-                Label chatText = new Label(message);
-                chatText.setWrapText(true);
-                chatText.prefWidth(184);
-
-                vb.getChildren().add(chatText);
-                sp.setVvalue(1.0);
-            }
-
-        } else if (sceneName.equals("GameScene")){
-            VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
-            ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
-            vb.getChildren().clear();
-            for (String message : model.actionHistory){
-                Label chatText = new Label(message);
-                chatText.setWrapText(true);
-                chatText.prefWidth(184);
-
-                vb.getChildren().add(chatText);
-                sp.setVvalue(1.0);
-            }
-
-            model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),2);
-            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(String[].class));
-
-            ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
-            updatePlayerListView.getItems().clear();
-            for (int i = 0; i < 5; i++){
-                if( !((String[]) tuple[2])[i].equals("") ) {
-                    updatePlayerListView.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                //[0] lobby code [1] Lobby name [2] Lobby ID
+                List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+                for (Object[] obj : tuple) {
+                    updateListView.getItems().add(obj[1]);
+                    lobbyIds.add((UUID) obj[2]);
                 }
+                break;
             }
+            case PLAY_CARD_SCENE: {
+                Label label = (Label)model.currentRoot.lookup("#usernameLabel");
+                label.setText(removedIdFromUsername());
 
-            ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-            card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                loadHand(model.cardsOnHand, root);
 
-        } else if (sceneName == PICK_PLAYER_SCENE) {
+                VBox vb = ((VBox) model.currentRoot.lookup("#vb1playcard"));
+                ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scrollplaycard"));
+                vb.getChildren().clear();
+                for (String message : model.actionHistory) {
+                    Label chatText = new Label(message);
+                    chatText.setWrapText(true);
+                    chatText.prefWidth(184);
 
-            ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
-            targetablePlayers.getItems().clear();
-
-            model.getLobbySpace().put("TargetablePlayersRequest",model.getUniqueName(),HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)));
-
-            Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"),new ActualField(model.getUniqueName()), new FormalField(String[].class));
-
-            for (int i = 0; i < 5; i++){
-                if( !((String[]) tuple[2])[i].equals("") ) {
-                    targetablePlayers.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
-                } else {
-                    targetablePlayers.getItems().add("");
+                    vb.getChildren().add(chatText);
+                    sp.setVvalue(1.0);
                 }
+
+                break;
+            }
+            case "GameScene": {
+
+                Label label = (Label)model.currentRoot.lookup("#usernameLabel");
+                label.setText(removedIdFromUsername());
+
+                VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
+                ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
+                vb.getChildren().clear();
+                for (String message : model.actionHistory) {
+                    Label chatText = new Label(message);
+                    chatText.setWrapText(true);
+                    chatText.prefWidth(184);
+
+                    vb.getChildren().add(chatText);
+                    sp.setVvalue(1.0);
+                }
+
+                model.getLobbySpace().put("TargetablePlayersRequest", model.getUniqueName(), 2);
+                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
+
+                ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
+                updatePlayerListView.getItems().clear();
+                for (int i = 0; i < 5; i++) {
+                    if (!((String[]) tuple[2])[i].equals("")) {
+                        updatePlayerListView.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                    }
+                }
+
+                ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
+                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+
+                break;
+            }
+            case PICK_PLAYER_SCENE: {
+                Label label = (Label)model.currentRoot.lookup("#usernameLabel");
+                label.setText(removedIdFromUsername());
+
+
+                ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
+                targetablePlayers.getItems().clear();
+
+                model.getLobbySpace().put("TargetablePlayersRequest", model.getUniqueName(), HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)));
+
+                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
+
+                for (int i = 0; i < 5; i++) {
+                    if (!((String[]) tuple[2])[i].equals("")) {
+                        targetablePlayers.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                        playerEnableClick[i] = true;
+                    } else {
+                        targetablePlayers.getItems().add("");
+                        playerEnableClick[i] = false;
+                    }
+                }
+                break;
             }
         }
     }
@@ -260,7 +269,7 @@ public class Controller {
     }
 
     @FXML
-    public void createLobby(ActionEvent event) throws InterruptedException {
+    public void createLobby() throws InterruptedException {
 
         String lobbyNameString = lobbyName.getText();
 
@@ -292,7 +301,7 @@ public class Controller {
     }
 
     @FXML
-    public void queryServers(ActionEvent event) throws InterruptedException {
+    public void queryServers() throws InterruptedException {
         lobbyList.getItems().clear();
         lobbyIds.clear();
         //[0] lobby code [1] Lobby name [2] Lobby ID
@@ -305,7 +314,7 @@ public class Controller {
     }
 
     @FXML
-    public void goToCreateLobbyScene(ActionEvent event) throws InterruptedException {
+    public void goToCreateLobbyScene() throws InterruptedException {
         try {
             changeScene(CREATE_LOBBY_SCENE);
         } catch (IOException e) {
@@ -319,7 +328,7 @@ public class Controller {
     }
 
     @FXML
-    public void textToChat(ActionEvent e) throws InterruptedException {
+    public void textToChat() throws InterruptedException {
 
         String text = chatTxtField.getText();
 
@@ -342,7 +351,7 @@ public class Controller {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
 
-                Object[] tuple = null;
+                Object[] tuple;
 
                 int index = lobbyList.getSelectionModel().getSelectedIndex();
 
@@ -362,7 +371,7 @@ public class Controller {
 
                     model.getLobbySpace().put(Model.LOBBY_REQ, Model.CONNECT, model.getUniqueName());
 
-                    Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model, this));
+                    Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model));
                     tryToJoinLobby.start();
 
                     changeScene(LOADING_LOBBY_SCENE);
@@ -389,9 +398,12 @@ public class Controller {
                         ((Label) root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyList.getSelectionModel().getSelectedItem());
                         updatePlayerLobbyList(root);
 
+                        Label label = (Label)root.lookup("#usernameLabel");
+                        label.setText(removedIdFromUsername());
+
                         connectedToLobby = true;
                         if (model.leaderForCurrentLobby) {
-                            ((Button) root.lookup("#beginButton")).disableProperty().setValue(false);
+                            root.lookup("#beginButton").disableProperty().setValue(false);
                         }
 
                         updateAgent = new Thread(new ClientUpdateAgent(model, root));
@@ -419,7 +431,7 @@ public class Controller {
     @FXML
     public void requestNameVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-            createUser(null);
+            createUser();
         }
     }
 
@@ -457,7 +469,7 @@ public class Controller {
         }
     }
 
-    public void updatePlayerLobbyList(Parent root) throws InterruptedException {
+    private void updatePlayerLobbyList(Parent root) throws InterruptedException {
         model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName());
 
         // [0] response code [1] list of playernames [2] username
@@ -478,7 +490,7 @@ public class Controller {
     }
 
     @FXML
-    public void pressBegin(ActionEvent event) throws InterruptedException {
+    public void pressBegin() throws InterruptedException {
         if (model.leaderForCurrentLobby) {
             System.out.println("BEGIN");
             model.getLobbySpace().put(Model.LOBBY_REQ, Model.BEGIN, model.getUniqueName());
@@ -486,7 +498,7 @@ public class Controller {
     }
 
     @FXML
-    public void pressLeaveLobby(ActionEvent event) throws InterruptedException, IOException {
+    public void pressLeaveLobby() throws InterruptedException, IOException {
         model.leaderForCurrentLobby = false;
 
         updateAgent.interrupt();
@@ -499,13 +511,13 @@ public class Controller {
     }
 
     @FXML
-    public void showCardList(ActionEvent event){
+    public void showCardList(){
         cardListPane.setVisible(true);
         cardListPane.setMouseTransparent(false);
     }
 
     @FXML
-    public void hideCardList(ActionEvent event){
+    public void hideCardList(){
         cardListPane.setVisible(false);
         cardListPane.setMouseTransparent(true);
     }
@@ -514,6 +526,10 @@ public class Controller {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
                 indexOfTarget = targetablePlayers.getSelectionModel().getSelectedIndex();
+
+                if(!playerEnableClick[indexOfTarget]){
+                    return;
+                }
 
                 if(!selectCardIsGuard) {
                     model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), ""); // Send the action to the server
@@ -533,6 +549,31 @@ public class Controller {
         Button btn =(Button) event.getSource();
         model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), btn.getId()); // Send the action to the server
         model.cardsOnHand.remove(pickedCard);
+        pickedCard = 2;
+        indexOfTarget = -1;
+        selectCardIsGuard = false;
+
+        changeScene("GameScene");
+    }
+
+    private String removedIdFromUsername(){
+        String s = model.getUniqueName();
+        s = s.substring(0, s.indexOf("#"));
+        return s;
+    }
+
+    @FXML
+    private void returnToPickingCard() throws IOException, InterruptedException {
+        pickedCard = 2;
+        selectCardIsGuard = false;
+        changeScene(PLAY_CARD_SCENE);
+    }
+
+    @FXML
+    private void playCardWithNoTargets() throws InterruptedException, IOException {
+        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), "", ""); // Send the action to the server
+        model.cardsOnHand.remove(pickedCard);
+
         pickedCard = 2;
         indexOfTarget = -1;
         selectCardIsGuard = false;

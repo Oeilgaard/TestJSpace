@@ -17,7 +17,9 @@
     <children>
         <Label layoutX="343.0" layoutY="33.0" text="Play a card" textAlignment="CENTER" />
         <Label fx:id="instructionsUserName" layoutX="206.0" layoutY="172.0" text="" />
-      <ImageView fx:id="card1" fitHeight="242.0" fitWidth="181.0" layoutX="300.0" layoutY="124.0" onMouseClicked="#pickCardOne" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="usernameLabel" layoutX="523.0" layoutY="14.0" text="Username" />
+
+        <ImageView fx:id="card1" fitHeight="242.0" fitWidth="181.0" layoutX="300.0" layoutY="124.0" onMouseClicked="#pickCardOne" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="card2" fitHeight="242.0" fitWidth="181.0" layoutX="521.0" layoutY="124.0" onMouseClicked="#pickCardTwo" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="329.0" layoutY="455.0" mnemonicParsing="false" onAction="#showCardList" text="List of Cards" />
       <Pane fx:id="cardListPane" layoutX="274.0" layoutY="185.0" mouseTransparent="true" prefHeight="261.0" prefWidth="211.0" visible="false">
@@ -35,5 +37,6 @@
                 <VBox fx:id="vb1playcard" maxHeight="999999.0" prefHeight="212.0" prefWidth="184.0" />
          </content>
         </ScrollPane>
+
     </children>
 </AnchorPane>
