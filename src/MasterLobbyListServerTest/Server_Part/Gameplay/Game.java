@@ -40,7 +40,7 @@ public class Game {
 
         model.turn = 1;
         model.playerPointer = 0;
-        model.round++;
+        Model.nextRound();
 
         model.deck.getCards().clear();
         model.deck.fillDeck();
@@ -170,7 +170,7 @@ public class Game {
                     // 3. ROUND END CHECKS
                     terminalTest();
 
-                    model.turn++; // turn only increments if a turn is executed
+                    Model.nextTurn(); //turn only increments if a turn is executed
                 }
                 model.playerPointer++; // player pointer increments for every index in the players array
             }

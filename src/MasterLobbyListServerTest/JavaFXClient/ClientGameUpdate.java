@@ -57,12 +57,25 @@ public class ClientGameUpdate implements Runnable{
                                     Controller.loadHand(model.cardsOnHand, root);
                                     System.out.println("Hand : " + model.cardsOnHand.get(0) + " and " + model.cardsOnHand.get(1));
 
-                                    Label chatText = new Label((String)tuple[4]);
-                                    chatText.setWrapText(true);
-                                    chatText.prefWidth(184);
-                                    ((VBox) root.lookup("#vb1playcard")).getChildren().add(chatText);
-                                    ((ScrollPane) root.lookup("#scrollplaycard")).setVvalue(1.0);
                                     model.actionHistory.add((String) tuple[4]);
+//                                    Label chatText = new Label((String)tuple[4]);
+//                                    chatText.setWrapText(true);
+//                                    chatText.prefWidth(184);
+//                                    ((VBox) root.lookup("#vb1playcard")).getChildren().add(chatText);
+//                                    ((ScrollPane) root.lookup("#scrollplaycard")).setVvalue(1.0);
+                                    VBox vb = ((VBox) root.lookup("#vb1playcard"));
+                                    ScrollPane sp = ((ScrollPane) root.lookup("#scrollplaycard"));
+                                    vb.getChildren().clear();
+                                    for (String message : model.actionHistory){
+                                        Label chatText = new Label(message);
+                                        chatText.setWrapText(true);
+                                        chatText.prefWidth(184);
+
+                                        vb.getChildren().add(chatText);
+                                        sp.setVvalue(1.0);
+                                    }
+
+
 
                                 } catch (IOException e) {
                                     e.printStackTrace();
