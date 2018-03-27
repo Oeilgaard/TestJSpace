@@ -247,14 +247,23 @@ public class Controller {
 
                 Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
 
+                boolean noTargets = true;
+
                 for (int i = 0; i < 5; i++) {
                     if (!((String[]) tuple[2])[i].equals("")) {
                         targetablePlayers.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
                         playerEnableClick[i] = true;
+                        noTargets = false;
                     } else {
                         targetablePlayers.getItems().add("");
                         playerEnableClick[i] = false;
                     }
+                }
+
+                if (noTargets) {
+                    (model.currentRoot.lookup("#playNoTarget")).setDisable(false);
+                } else {
+                    (model.currentRoot.lookup("#playNoTarget")).setDisable(true);
                 }
                 break;
             }

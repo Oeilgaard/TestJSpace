@@ -284,7 +284,7 @@ public class Model {
             String msgTarget = senderName + " plays PRINCE on you. You discard" +
                     " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
             String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
-            informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+            informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
         } else {
             drawSecretCard(players.get(targetPlayersIndex).getHand());
 
@@ -292,7 +292,7 @@ public class Model {
             String msgTarget = senderName + " plays PRINCE on you. You discard" +
                     " your hand and draw the secret card " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
             String msgOthers = senderName + " played PRINCE on " + targetName + " who draw the secret card.";
-            informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+            informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
         }
     }
 
