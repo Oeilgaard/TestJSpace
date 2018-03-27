@@ -388,7 +388,7 @@ public class Model {
 
         for(Player rcpt : players) { // 'rcpt' for recipient
             // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name, [4]: Game-log message, [5]; -
-            if(rcpt.getName() == p.getName()){
+            if(rcpt.getName().equals(p.getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, rcpt.getName(), p.getName(), msgSender, "");
                 } catch (InterruptedException e) {
@@ -409,13 +409,13 @@ public class Model {
     public void informPlayersAboutTargetedPlay(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex, int receiverIndex, String kingCardToSender, String kingCardToTarget){
 
         for(Player p : players){
-            if(p.getName() == players.get(senderIndex).getName()){
+            if(p.getName().equals(players.get(senderIndex).getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, kingCardToSender);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } else if(p.getName() == players.get(receiverIndex).getName()){
+            } else if(p.getName().equals(players.get(receiverIndex).getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgTarget, kingCardToTarget);
                 } catch (InterruptedException e) {
@@ -433,7 +433,7 @@ public class Model {
 
     public void informPlayersAboutUntargetedPlay(String card, int senderIndex, String msgSender, String msgOthers){
         for(Player p : players){
-            if(p.getName() != players.get(senderIndex).getName()){
+            if(!p.getName().equals(players.get(senderIndex).getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgOthers, "");
                 } catch (InterruptedException e) {
