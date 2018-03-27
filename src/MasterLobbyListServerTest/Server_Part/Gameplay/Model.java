@@ -249,7 +249,7 @@ public class Model {
             knockOut(targetPlayersIndex);
 
             String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You win the duel!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ". You are out of the round!";
+            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ".";
             String msgOthers = senderName + " wins the duel, and " + targetName + " is out of the round";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
         } else if(players.get(sendersIndex).getHand().getCards().get(0).getCharacter().getValue() < players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue()){
@@ -272,19 +272,49 @@ public class Model {
 
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
         String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
 
         players.get(sendersIndex).discardCard(cardIndex);
+        Card discardedCard = players.get(sendersIndex).getHand().getCards().get(0);
         players.get(targetPlayersIndex).discardHand();
 
         if ((!deck.getCards().isEmpty())) {
             deck.drawCard(players.get(targetPlayersIndex).getHand());
 
-            String msgSender = "You play PRINCE on " + senderName + " who discard the hand and draws a new card.";
-            String msgTarget = senderName + " plays PRINCE on you. You discard" +
-                    " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
-            String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
-            informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
+            if(sendersIndex == targetPlayersIndex){
+
+                String msgSender = "You play " + cardName + " on yourself and discard "
+                        + discardedCard.getCharacter().toString() + " and draw "
+                        + players.get(targetPlayersIndex).getHand().getCards().get(0);
+                String msgOthers = senderName + " plays " + cardName + " on self and discards "
+                        + discardedCard.getCharacter().toString() + " and draws a new card";
+
+                for(Player p : players){
+                    if(p.getName().equals(players.get(sendersIndex).getName())){
+                        System.out.println("linie 291 " + senderName + " " + p.getName());
+                        try {
+                            lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), cardName, msgSender, players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), cardName, msgOthers, "");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            } else {
+                String msgSender = "You play PRINCE on " + senderName + " who discard the hand and draws a new card.";
+                String msgTarget = senderName + " plays PRINCE on you. You discard" +
+                        " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
+                String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
+
+                informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
+            }
         } else {
+            //TODO self-target scenario
             drawSecretCard(players.get(targetPlayersIndex).getHand());
 
             String msgSender = "You play PRINCE on " + targetName + " who draws the secret card.";
@@ -406,7 +436,8 @@ public class Model {
 
     // INFORM PLAYERS
 
-    public void informPlayersAboutTargetedPlay(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex, int receiverIndex, String kingCardToSender, String kingCardToTarget){
+    public void informPlayersAboutTargetedPlay(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex,
+                                               int receiverIndex, String kingCardToSender, String kingCardToTarget){
 
         for(Player p : players){
             if(p.getName().equals(players.get(senderIndex).getName())){
