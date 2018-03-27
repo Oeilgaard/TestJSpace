@@ -163,23 +163,6 @@ public class Model {
         return winners;
     }
 
-    public void knockOut(int knockedOutIndex) {
-        Player p = players.get(knockedOutIndex);
-        System.out.println("Player " + removeIDFromPlayername(p.getName()) + " is out of the round" + Game.newLine);
-        String msg = "Player " + removeIDFromPlayername(p.getName()) + " is out of the round";
-        p.discardHand();
-        p.setInRound(false);
-
-        for(Player rcpt : players) { // 'rcpt' for recipient
-            // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name, [4]: Game-log message, [5]; -
-            try {
-                lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, rcpt.getName(), p.getName(), msg, "", "");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void drawSecretCard(Hand hand) {
         hand.getCards().add(secretCard);
         secretCard = null;
@@ -339,30 +322,48 @@ public class Model {
     // Untargeted cases
 
     public void noAction(int sendersIndex, int cardIndex){
+
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
+
+        String msgSender = "You played " + cardName + " with no effect (no available targets)";
+        String msgOthers =  senderName  + " played " + cardName + " with no effect (no available targets)";
+
+        informPlayersAboutUntargetedPlay(cardName, sendersIndex, msgSender, msgOthers);
+
+        // Remove card from the hand
         players.get(sendersIndex).discardCard(cardIndex);
     }
 
     public void handmaidAction(int sendersIndex, int cardIndex){
+
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
+
         players.get(sendersIndex).discardCard(cardIndex);
         players.get(sendersIndex).activateHandmaid();
 
-        String msgOthers = "moo";
-        informPlayersAboutUntargetedPlay(Character.HANDMAID.toString(), sendersIndex, msgOthers);
-
+        String msgSender = "You played " + cardName + " and is untargetable until your next turn";
+        String msgOthers = senderName + " played " + cardName + " and is untargetable until " +
+                senderName + "'s next turn";
+        informPlayersAboutUntargetedPlay(cardName, sendersIndex, msgSender, msgOthers);
     }
 
     public void countessAction(int sendersIndex, int cardIndex){
 
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
 
         players.get(sendersIndex).discardCard(cardIndex);
 
-        String msgOthers = senderName + " played COUNTESS.";
-        informPlayersAboutUntargetedPlay(Character.COUNTESS.toString(),sendersIndex,msgOthers);
+        String msgSender = "You played " + cardName;
+        String msgOthers = senderName + " played " + cardName;
+        informPlayersAboutUntargetedPlay(cardName,sendersIndex, msgSender, msgOthers);
     }
 
     public void princessAction(int sendersIndex, int cardIndex) {
 
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
 
         players.get(sendersIndex).discardCard(cardIndex);
@@ -371,9 +372,38 @@ public class Model {
 
         knockOut(sendersIndex);
 
-        String msgOthers = senderName + " played PRINCESS and is out of the round.";
-        informPlayersAboutUntargetedPlay(Character.PRINCESS.toString(),sendersIndex,msgOthers);
+        String msgSender = "You played " + cardName;
+        String msgOthers = senderName + " played " + cardName;
+        informPlayersAboutUntargetedPlay(cardName, sendersIndex, msgSender, msgOthers);
+    }
 
+    // Knock-out scenario
+
+    public void knockOut(int knockedOutIndex) {
+        Player p = players.get(knockedOutIndex);
+        System.out.println("Player " + removeIDFromPlayername(p.getName()) + " is out of the round" + Game.newLine);
+        p.discardHand();
+        p.setInRound(false);
+
+        String msgOthers = "Player " + removeIDFromPlayername(p.getName()) + " is out of the round";
+        String msgSender = "You are out of the round";
+
+        for(Player rcpt : players) { // 'rcpt' for recipient
+            // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name, [4]: Game-log message, [5]; -
+            if(rcpt.getName() == p.getName()){
+                try {
+                    lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, rcpt.getName(), p.getName(), msgSender, "");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, rcpt.getName(), p.getName(), msgOthers, "");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     // INFORM PLAYERS
@@ -403,8 +433,7 @@ public class Model {
         }
     }
 
-    public void informPlayersAboutUntargetedPlay(String card, int senderIndex, String msgOthers){
-        //TODO: add message to sender as well
+    public void informPlayersAboutUntargetedPlay(String card, int senderIndex, String msgSender, String msgOthers){
         for(Player p : players){
             if(p.getName() != players.get(senderIndex).getName()){
                 try {
@@ -412,6 +441,13 @@ public class Model {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            } else {
+                try {
+                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, "");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
     }

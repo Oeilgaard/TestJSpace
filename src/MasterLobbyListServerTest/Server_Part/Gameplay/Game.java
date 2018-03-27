@@ -194,9 +194,7 @@ public class Game {
     private void playCard(Player currentPlayer, Object[] tuple){
         if(!legalCardIndex(Integer.parseInt((String)tuple[3]))){
             // send error tuple eller vælg random...
-        }
-        // if Countess-rule is occurring, we force the play
-        if(model.countessRule(currentPlayer)){
+        } else if(model.countessRule(currentPlayer)){ // if Countess-rule is occurring, we force the play
             if(currentPlayer.getHand().getCards().get(0).getCharacter() == Character.COUNTESS){
                 playUntargettedCard(currentPlayer.getHand().getCards().get(1).getCharacter(),currentPlayer,1);
             } else {
