@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,6 +14,9 @@ import org.jspace.ActualField;
 import org.jspace.FormalField;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class ClientGameUpdate implements Runnable{
 
@@ -52,16 +56,26 @@ public class ClientGameUpdate implements Runnable{
                                     Controller.loadHand(model.cardsOnHand, root);
                                     System.out.println("Hand : " + model.cardsOnHand.get(0) + " and " + model.cardsOnHand.get(1));
 
-                                    Label chatText = new Label((String) tuple[4]);
-                                    chatText.setWrapText(true);
-                                    chatText.prefWidth(184);
+                                    model.actionHistory.add((String) tuple[4]);
+//                                    Label chatText = new Label((String)tuple[4]);
+//                                    chatText.setWrapText(true);
+//                                    chatText.prefWidth(184);
+//                                    ((VBox) root.lookup("#vb1playcard")).getChildren().add(chatText);
+//                                    ((ScrollPane) root.lookup("#scrollplaycard")).setVvalue(1.0);
+                                    VBox vb = ((VBox) root.lookup("#vb1playcard"));
+                                    ScrollPane sp = ((ScrollPane) root.lookup("#scrollplaycard"));
+                                    vb.getChildren().clear();
+                                    for (String message : model.actionHistory){
+                                        Label chatText = new Label(message);
+                                        chatText.setWrapText(true);
+                                        chatText.prefWidth(184);
+
+                                        vb.getChildren().add(chatText);
+                                        sp.setVvalue(1.0);
+                                    }
 
                                     Label label = (Label)root.lookup("#usernameLabel");
                                     label.setText(model.getUniqueName().substring(0, model.getUniqueName().indexOf("#")));
-
-                                    ((VBox) root.lookup("#vb1playcard")).getChildren().add(chatText);
-                                    ((ScrollPane) root.lookup("#scrollplaycard")).setVvalue(1.0);
-                                    model.actionHistory.add((String) tuple[4]);
 
                                 } catch (IOException e) {
                                     e.printStackTrace();

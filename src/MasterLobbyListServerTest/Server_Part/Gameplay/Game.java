@@ -40,7 +40,7 @@ public class Game {
 
         model.turn = 1;
         model.playerPointer = 0;
-        model.round++;
+        Model.nextRound();
 
         model.deck.getCards().clear();
         model.deck.fillDeck();
@@ -170,7 +170,7 @@ public class Game {
                     // 3. ROUND END CHECKS
                     terminalTest();
 
-                    model.turn++; // turn only increments if a turn is executed
+                    Model.nextTurn(); //turn only increments if a turn is executed
                 }
                 model.playerPointer++; // player pointer increments for every index in the players array
             }
@@ -194,9 +194,7 @@ public class Game {
     private void playCard(Player currentPlayer, Object[] tuple){
         if(!legalCardIndex(Integer.parseInt((String)tuple[3]))){
             // send error tuple eller vælg random...
-        }
-        // if Countess-rule is occurring, we force the play
-        if(model.countessRule(currentPlayer)){
+        } else if(model.countessRule(currentPlayer)){ // if Countess-rule is occurring, we force the play
             if(currentPlayer.getHand().getCards().get(0).getCharacter() == Character.COUNTESS){
                 playUntargettedCard(currentPlayer.getHand().getCards().get(1).getCharacter(),currentPlayer,1);
             } else {
