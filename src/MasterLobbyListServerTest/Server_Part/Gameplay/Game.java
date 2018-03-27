@@ -147,9 +147,10 @@ public class Game {
 //                            // Send tuple der requester nyt kort...
 //                        }
                         if(legalCardIndex(Integer.parseInt((String)tuple[3]))){
-                            if(currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter().isTargeted()){
+                            Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter();
+                            if(c.isTargeted()){
                                 //TODO: no possible target case could automitically launch 'noAction' (currently double checking in playCard)
-                                if(!possibleTargets() || (validTarget(Integer.parseInt((String) tuple[4]),
+                                if(!possibleTargets(c) || (validTarget(Integer.parseInt((String) tuple[4]),
                                         currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter()))){
                                     playCard(currentPlayer, tuple);
                                 } else {
@@ -235,7 +236,7 @@ public class Game {
 
         System.out.println("Targetted card was played");
 
-        if(!possibleTargets()){
+        if(!possibleTargets(chosenCharacter)){
             // play targetted card with no action
             System.out.println("FØRSTE GUARD FEJL");
             model.noAction(model.indexOfCurrentPlayersTurn(), cardIndex);
@@ -338,13 +339,17 @@ public class Game {
         }
     }
 
-    private boolean possibleTargets(){
-        for(Player p : model.players){
-            if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(currentPlayer.getName())){
-                return true;
+    private boolean possibleTargets(Character c){
+        if(c == Character.PRINCE){
+            return true;
+        } else {
+            for(Player p : model.players){
+                if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(currentPlayer.getName())){
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
     }
 
     private boolean legalCardIndex(int index){
