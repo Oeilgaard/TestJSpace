@@ -209,10 +209,11 @@ public class Game {
             if(!currentPlayer.getHand().getCards().get(Integer.parseInt((String)tuple[3])).getCharacter().isTargeted()){
                 playUntargettedCard(chosenCharacter, currentPlayer, cardIndex);
             } else {
+                // ikke-Guard
                 if(tuple[5].equals("")){
-                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, Integer.parseInt((String)tuple[4]), 0);
-                } else {
-                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, Integer.parseInt((String) tuple[4]), Integer.parseInt((String) tuple[5]));
+                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, ((String) tuple[4]), 0);
+                } else { //Guard
+                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, ((String) tuple[4]), Integer.parseInt((String) tuple[5]));
                 }
             }
         }
@@ -230,7 +231,7 @@ public class Game {
         }
     }
 
-    private void playTargettedCard(Character chosenCharacter, Player currentPlayer, int cardIndex, int playerTargetIndex, int guardGuess) {
+    private void playTargettedCard(Character chosenCharacter, Player currentPlayer, int cardIndex, String playerTargetIndex, int guardGuess) {
 
         System.out.println("Targetted card was played");
 
@@ -239,24 +240,25 @@ public class Game {
             System.out.println("FØRSTE GUARD FEJL");
             model.noAction(model.indexOfCurrentPlayersTurn(), cardIndex);
         } else {
-            if(validTarget(playerTargetIndex, currentPlayer.getHand().getCards().get(cardIndex).getCharacter())) {
+            int playerTargetIndexInt = Integer.parseInt(playerTargetIndex);
+            if(validTarget(playerTargetIndexInt, currentPlayer.getHand().getCards().get(cardIndex).getCharacter())) {
                 if(chosenCharacter == Character.GUARD) {
                     System.out.println("It was a guard");
                     guardGuessCharacter = Character.values()[guardGuess];
                     //System.out.println("You guessed " + Character.values()[guardGuess]);
-                    model.guardAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex, guardGuessCharacter);
+                    model.guardAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt, guardGuessCharacter);
                 } else if(chosenCharacter == Character.PRIEST) {
-                    model.priestAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
+                    model.priestAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                 } else if(chosenCharacter == Character.BARON) {
                     //System.out.println("Player index " + model.indexOfCurrentPlayersTurn() + " card index " + (cardPick-1) + " player index" + (playerPick-1));
-                    model.baronAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
+                    model.baronAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                 } else if(chosenCharacter == Character.PRINCE) {
-                    model.princeAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
+                    model.princeAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                 } else { // i.e. chosenCharacter == Character.KING
                     //currentPlayer.getHand().printHand();
-                    System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndex).getHand().getCards().get(0).getCharacter());
-                    System.out.println(model.players.get(playerTargetIndex).getName() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getCharacter());
-                    model.kingAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndex);
+                    System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndexInt).getHand().getCards().get(0).getCharacter());
+                    System.out.println(model.players.get(playerTargetIndexInt).getName() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getCharacter());
+                    model.kingAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                 }
             } else {
                 System.out.println("Seems like an unvalid target");

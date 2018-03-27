@@ -249,7 +249,7 @@ public class Model {
             knockOut(targetPlayersIndex);
 
             String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You win the duel!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ". You are out of the round!";
+            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ".";
             String msgOthers = senderName + " wins the duel, and " + targetName + " is out of the round";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
         } else if(players.get(sendersIndex).getHand().getCards().get(0).getCharacter().getValue() < players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue()){
@@ -283,6 +283,7 @@ public class Model {
             String msgTarget = senderName + " plays PRINCE on you. You discard" +
                     " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
             String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
+
             informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
         } else {
             drawSecretCard(players.get(targetPlayersIndex).getHand());
@@ -409,6 +410,21 @@ public class Model {
 
     public void informPlayersAboutTargetedPlay(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex, int receiverIndex, String kingCardToSender, String kingCardToTarget){
 
+        // hvis den samme ...
+        if(senderIndex == receiverIndex) {
+            for(Player p : players){
+                if(p.getName() == players.get(senderIndex).getName()){
+
+                    try {
+                        lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, kingCardToSender);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        //else {
         for(Player p : players){
             if(p.getName() == players.get(senderIndex).getName()){
                 try {
