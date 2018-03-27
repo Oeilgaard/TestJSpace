@@ -230,6 +230,9 @@ public class Controller {
                 }
             }
 
+            ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
+            card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+
         } else if (sceneName == PICK_PLAYER_SCENE) {
 
             ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));

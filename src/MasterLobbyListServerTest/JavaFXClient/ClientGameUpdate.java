@@ -105,6 +105,9 @@ public class ClientGameUpdate implements Runnable{
                     System.out.println("New card for the new round");
                     model.cardsOnHand.add((String)tuple[3]);
 
+                    ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
+                    card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+
                 } else if (tuple[1].equals(Model.OUTCOME)){
 
                     System.out.println("Outcome of card : " + tuple[3]);
