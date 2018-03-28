@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="Starting working on fixing Countess-rule server and client site">
+    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -756,14 +752,7 @@
       <workItem from="1521707043851" duration="6956000" />
       <workItem from="1522066146072" duration="9605000" />
       <workItem from="1522134203974" duration="20467000" />
-      <workItem from="1522220862133" duration="13208000" />
-    </task>
-    <task id="LOCAL-00022" summary="...">
-      <created>1519916494591</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1519916494591</updated>
+      <workItem from="1522220862133" duration="13308000" />
     </task>
     <task id="LOCAL-00023" summary="Tested the system. Small tweaks. We get succesfully denied when do not get a respond from the server.">
       <created>1519918357593</created>
@@ -1101,11 +1090,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522224116313</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)">
+      <created>1522236569745</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1522236569746</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186876000" />
+    <option name="totallyTimeSpent" value="186976000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1211,7 +1207,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Work on pick player scene" />
     <MESSAGE value="Imported the game as a sub-package of 'Server_Part' (dubbed 'Gameplay'). Fixed a few errors during import. Game can start now, however, GUI does not update." />
     <MESSAGE value="Refactored naming a bit in Game-class (introduced &quot;currentPlayer&quot;)" />
     <MESSAGE value="Refactored Game-loop in Game-class (introduced various new methods)" />
@@ -1236,7 +1231,8 @@
     <MESSAGE value="Prince self-target works" />
     <MESSAGE value="Refactoring senderPlayerCharacter..." />
     <MESSAGE value="Starting working on fixing Countess-rule server and client site" />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting working on fixing Countess-rule server and client site" />
+    <MESSAGE value="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
