@@ -72,13 +72,15 @@ public class Controller {
 
     private static boolean[] playerEnableClick = {false,false,false,false,false};
 
-    public Controller() {
-    }
+    public Controller() {}
 
 
     public void pickCardOne() throws IOException, InterruptedException {
         System.out.println("Pick card one");
         System.out.println("Returned : " + model.cardsOnHand.get(0));
+
+
+
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(0))) {
             pickedCard = 0;
             changeScene(PICK_PLAYER_SCENE);

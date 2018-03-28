@@ -172,13 +172,18 @@ public class Model {
     }
 
     public boolean countessRule(Player p){
-        System.out.print("Countess rule is ");
-        //ArrayList<Card> hand = p.getHand().getCards();
-        System.out.println((p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.PRINCE))) ||
-                (p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.KING))));
 
-        return (p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.PRINCE))) ||
-                (p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.KING)));
+        String cardOne = p.getHand().getCards().get(0).getCharacter().toString();
+        String cardTwo = p.getHand().getCards().get(1).getCharacter().toString();
+
+        System.out.print("Countess rule is ");
+        System.out.println(((cardOne.equals(Character.COUNTESS.toString()) || cardTwo.equals(Character.COUNTESS.toString())) &&
+                ( (cardOne.equals(Character.PRINCE.toString()) || cardOne.equals(Character.KING.toString())) ||
+                        (cardTwo.equals(Character.PRINCE.toString()) || cardTwo.equals(Character.KING.toString())))));
+
+        return ((cardOne.equals(Character.COUNTESS.toString()) || cardTwo.equals(Character.COUNTESS.toString())) &&
+                ( (cardOne.equals(Character.PRINCE.toString()) || cardOne.equals(Character.KING.toString())) ||
+                (cardTwo.equals(Character.PRINCE.toString()) || cardTwo.equals(Character.KING.toString()))));
     }
 
     public String removeIDFromPlayername(String username){
