@@ -43,6 +43,8 @@ public class Game {
         model.playerPointer = 0;
         model.nextRound();
 
+        model.revealedCards.clear();
+        model.secretCard = null;
         model.deck.getCards().clear();
         model.deck.fillDeck();
         model.deck.shuffle();
@@ -355,17 +357,31 @@ public class Game {
         if(model.isLastManStanding()) {
 
             model.lastMan().incrementAffection();
-            String msg = model.lastMan().getName() + " won the round as last man standing!" +
-                    model.lastMan().getName() + "'s affection is now " + model.lastMan().getAffection() + newLine;
+
+            String msgOthers = model.removeIDFromPlayername(model.lastMan().getName()) + " won the round as last man standing!" +
+                    model.removeIDFromPlayername(model.lastMan().getName()) + "'s affection is now " + model.lastMan().getAffection()
+                    + ". Just " + (model.affectionGoal-model.lastMan().getAffection()) + " points away from winning!";
+            String msgWinner = "You won the round as last man standing! Your affection is now " + model.lastMan().getAffection()
+                    + ". Just " + (model.affectionGoal-model.lastMan().getAffection()) + " points away from winning!";
 
             model.setRoundWon(true);
 
             for(Player p : model.players){
-                try {
-                    // [0] update [1] type [2] tuple recipient [3] winner's name [4] winner's affection [5] Game Log msg
-                    lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), model.lastMan().getName(), Integer.toString(model.lastMan().getAffection()), "");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                if(p.getName().equals(model.lastMan().getName())){
+                    try {
+                        lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), msgWinner, model.lastMan().getName(),
+                                Integer.toString(model.lastMan().getAffection()));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        // [0] update [1] type [2] tuple recipient [3] Game Log msg [4] winner's name [5] winner's affection
+                        lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), msgOthers, model.lastMan().getName(),
+                                Integer.toString(model.lastMan().getAffection()));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             // 3.2 EMPTY DECK
@@ -373,46 +389,74 @@ public class Game {
             if(model.nearestToPrincess().size() == 1){
                 model.nearestToPrincess().get(0).incrementAffection();
 
-                String msg = "The deck is empty! " + model.nearestToPrincess().get(0).getName() + " won the round with the highest card!" +
-                        model.nearestToPrincess().get(0).getName() + "'s affection is now " + model.nearestToPrincess().get(0).getAffection() + newLine;
-                System.out.println(msg);
+                String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + " won the round with the highest card!" +
+                        model.nearestToPrincess().get(0).getName() + "'s affection is now " + model.nearestToPrincess().get(0).getAffection()
+                        + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";;
+                String msgWinner = "The deck is empty! You won the round with the highest card!" +
+                        "Your affection is now " + model.nearestToPrincess().get(0).getAffection()
+                        + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";;
 
                 model.setRoundWon(true);
 
                 for(Player p : model.players){
-                    try {
-                        // [0] update [1] type [2] tuple recipient [3] winner's name [4] winner's affection [5] Message for GameLog
-                        lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(),
-                                model.nearestToPrincess().get(0).getName(), Integer.toString(model.nearestToPrincess().get(0).getAffection()), msg);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else if(model.nearestToPrincess().size() > 1) {
-                if(model.compareHandWinners().size() == 1) {
-                    model.compareHandWinners().get(0).incrementAffection();
-                    String msg = "The deck is empty! " + model.compareHandWinners().get(0).getName() + " won the round with the highest discard pile! " +
-                    model.compareHandWinners().get(0).getName() + "'s affection is now " + model.compareHandWinners().get(0).getAffection() + newLine;
-                    System.out.println(msg);
-                    model.setRoundWon(true);
-                    for(Player p : model.players){
+                    if(p.getName().equals(model.lastMan().getName())){
                         try {
-                            // [0] update [1] type [2] tuple recipient [3] winner's name [4] winner's affection [5] empty
-                            lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(),
-                                    model.compareHandWinners().get(0).getName(), Integer.toString(model.compareHandWinners().get(0).getAffection()), msg);
+                            // [0] update [1] type [2] tuple recipient [3] Message for GameLog [4] winner's name [5] winner's affection
+                            lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), msgWinner,
+                                    model.nearestToPrincess().get(0).getName(), Integer.toString(model.nearestToPrincess().get(0).getAffection()));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), msgOthers,
+                                    model.nearestToPrincess().get(0).getName(), Integer.toString(model.nearestToPrincess().get(0).getAffection()));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
                 }
+            } else if(model.nearestToPrincess().size() > 1) {
+                if(model.compareHandWinners().size() == 1) {
+                    model.compareHandWinners().get(0).incrementAffection();
 
+                    String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.compareHandWinners().get(0).getName()) +
+                            " won the round with the highest discard pile! " +
+                            model.removeIDFromPlayername(model.compareHandWinners().get(0).getName()) + "'s affection is now " +
+                            model.compareHandWinners().get(0).getAffection()
+                            + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";
+                    String msgWinner = "The deck is empty! " + " You won the round with the highest discard pile! " +
+                            "Your affection is now " + model.compareHandWinners().get(0).getAffection()
+                            + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";;
+                    model.setRoundWon(true);
+
+                    for(Player p : model.players){
+                        if(p.getName().equals(model.lastMan().getName())) {
+                            try {
+                                // [0] update [1] type [2] tuple recipient [3] Message for GameLog [4] winner's name [5] winner's affection
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), msgWinner,
+                                        model.compareHandWinners().get(0).getName(), Integer.toString(model.compareHandWinners().get(0).getAffection()));
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            // [0] update [1] type [2] tuple recipient [3] Message for GameLog [4] winner's name [5] winner's affection
+                            try {
+                                lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), msgOthers,
+                                        model.compareHandWinners().get(0).getName(), Integer.toString(model.compareHandWinners().get(0).getAffection()));
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
             } else {
                 model.setRoundWon(true); // corresponds to draw...
                 String msg = "Cards and discard piles were tied! No one wins the round.";
                 for(Player p : model.players){
                     try {
-                        // [0] update [1] type [2] tuple recipient [3] winner's name [4] winner's affection [5] Game log msg
-                        lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), "", "", msg);
+                        // [0] update [1] type [2] tuple recipient [3] Game log msg [4] - [5] -
+                        lobbySpace.put(Model.CLIENT_UPDATE, Model.WIN, p.getName(), msg, "", "");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

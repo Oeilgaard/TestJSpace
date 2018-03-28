@@ -17,10 +17,10 @@
     <children>
         <Label layoutX="343.0" layoutY="33.0" text="Play a card" textAlignment="CENTER" />
         <Label fx:id="instructionsUserName" layoutX="206.0" layoutY="172.0" text="" />
-        <Label fx:id="usernameLabel" layoutX="523.0" layoutY="14.0" text="Username" />
+        <Label fx:id="usernameLabel" layoutX="609.0" layoutY="33.0" text="Username" />
 
-        <ImageView fx:id="card1" fitHeight="242.0" fitWidth="181.0" layoutX="300.0" layoutY="124.0" onMouseClicked="#pickCardOne" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="card2" fitHeight="242.0" fitWidth="181.0" layoutX="521.0" layoutY="124.0" onMouseClicked="#pickCardTwo" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="card1" fitHeight="242.0" fitWidth="181.0" layoutX="329.0" layoutY="124.0" onMouseClicked="#pickCardOne" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="card2" fitHeight="242.0" fitWidth="181.0" layoutX="544.0" layoutY="124.0" onMouseClicked="#pickCardTwo" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="329.0" layoutY="455.0" mnemonicParsing="false" onAction="#showCardList" text="List of Cards" />
       <Pane fx:id="cardListPane" layoutX="274.0" layoutY="185.0" mouseTransparent="true" prefHeight="261.0" prefWidth="211.0" visible="false">
          <children>
@@ -32,9 +32,9 @@
             <Button layoutX="76.0" layoutY="220.0" mnemonicParsing="false" onAction="#hideCardList" text="Close" />
          </children>
       </Pane>
-        <ScrollPane fx:id="scrollplaycard" layoutX="38.0" layoutY="139.0" pannable="true" prefHeight="213.0" prefWidth="200.0" vbarPolicy="ALWAYS" vvalue="1.0">
+        <ScrollPane fx:id="scrollplaycard" layoutX="38.0" layoutY="60.0" pannable="true" prefHeight="366.0" prefWidth="255.0" vbarPolicy="ALWAYS" vvalue="1.0">
          <content>
-                <VBox fx:id="vb1playcard" maxHeight="999999.0" prefWidth="184.0" />
+                <VBox fx:id="vb1playcard" maxHeight="999999.0"  />
          </content>
         </ScrollPane>
 

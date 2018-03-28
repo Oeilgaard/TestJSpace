@@ -31,6 +31,7 @@ public class ClientGameUpdate implements Runnable{
     public void run() {
 
         while (true) {
+
             try {
 
                 Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(Integer.class),
@@ -164,6 +165,19 @@ public class ClientGameUpdate implements Runnable{
 
                 } else if (tuple[1].equals(Model.WIN)) {
                     model.cardsOnHand.clear();
+                    Label chatText = new Label((String) tuple[3]);
+                    chatText.setWrapText(true);
+                    //chatText.prefWidth(184);
+
+                    Platform.runLater(() -> {
+                        //Update GUI to tell who has been knocked out
+                        ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
+                        ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
+
+                        model.actionHistory.add((String) tuple[3]);
+
+                    });
+
                 } else if (tuple[1].equals(Model.GAME_ENDING)){
 
                     System.out.println("The game is over! " + tuple[4] + " has won the game");
