@@ -543,7 +543,7 @@ public class Controller {
         Button btn =(Button) event.getSource();
         model.cardsOnHand.remove(pickedCard);
         changeScene(GAME_SCENE);
-        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), btn.getId()); // Send the action to the server
+        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), btn.getId()); // Send the action to the server //
         pickedCard = 2;
         indexOfTarget = -1;
         selectCardIsGuard = false;

@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" />
       <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,68 +18,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-294">
-              <caret line="284" column="23" lean-forward="false" selection-start-line="284" selection-start-column="23" selection-end-line="284" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1475">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="162" column="9" lean-forward="false" selection-start-line="162" selection-start-column="9" selection-end-line="162" selection-end-column="9" />
+            <state relative-caret-position="711">
+              <caret line="328" column="62" lean-forward="true" selection-start-line="328" selection-start-column="62" selection-end-line="328" selection-end-column="62" />
               <folding>
-                <element signature="e#20125#20126#0" expanded="true" />
-                <element signature="e#20174#20175#0" expanded="true" />
+                <element signature="method#terminalTest#0;class#Game#0" expanded="false" />
+                <element signature="e#20973#20974#0" expanded="true" />
+                <element signature="e#21022#21023#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientUpdateAgent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
+      <file leaf-file-name="Character.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="151" column="44" lean-forward="false" selection-start-line="151" selection-start-column="44" selection-end-line="151" selection-end-column="44" />
+            <state relative-caret-position="380">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameScene.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
+      <file leaf-file-name="Deck.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="21" column="82" lean-forward="true" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
-              <folding />
+            <state relative-caret-position="526">
+              <caret line="69" column="9" lean-forward="false" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+              <folding>
+                <element signature="e#2962#2963#0" expanded="true" />
+                <element signature="e#3009#3010#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,28 +58,18 @@
       <file leaf-file-name="ClientGameUpdate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2020">
-              <caret line="212" column="8" lean-forward="false" selection-start-line="212" selection-start-column="8" selection-end-line="212" selection-end-column="8" />
+            <state relative-caret-position="-1155">
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JOptionPane.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/javax/swing/JOptionPane.java">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="648" column="5" lean-forward="true" selection-start-line="648" selection-start-column="5" selection-end-line="648" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="57" column="33" lean-forward="true" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+            <state relative-caret-position="507">
+              <caret line="549" column="0" lean-forward="true" selection-start-line="549" selection-start-column="0" selection-end-line="549" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,8 +78,52 @@
       <file leaf-file-name="ServerData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+            <state relative-caret-position="380">
+              <caret line="25" column="79" lean-forward="false" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1725">
+              <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+              <folding>
+                <element signature="e#5098#5099#0" expanded="true" />
+                <element signature="e#5138#5139#0" expanded="true" />
+                <element signature="method#informPlayersAboutUntargetedPlay#0;class#Model#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Card.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="69" column="11" lean-forward="false" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -127,48 +135,44 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>joinServerButtonjoinServerButton</find>
-      <find>requestEnLobby</find>
-      <find>instruc</find>
+      <find>lookup</find>
+      <find>arraylist</find>
+      <find>updateListView</find>
+      <find>listOfPlayers</find>
+      <find>changescene</find>
+      <find>loadhand</find>
+      <find>model.getLobbySpace().put</find>
       <find>changeScene</find>
-      <find>LOBBY_MESSAGE</find>
-      <find>query</find>
-      <find>connectedToLobby</find>
+      <find>model.players.get(model.indexOfCurrentPlayersTurn())</find>
+      <find>currentPlayer.getHand().getCards().get(1)</find>
+      <find>model.</find>
+      <find>validtarget</find>
+      <find>playCard</find>
+      <find>getHand().getCards()</find>
+      <find>knock_out</find>
+      <find>game_start_update</find>
+      <find>root</find>
+      <find>model.turn</find>
+      <find>knock</find>
+      <find>getName</find>
+      <find>knockout</find>
+      <find>knockOut</find>
+      <find>vbox</find>
+      <find>prince</find>
+      <find>==</find>
+      <find>baron</find>
+      <find>force</find>
       <find>get</find>
-      <find>getRequest</find>
-      <find>Play_</find>
-      <find>ClientUpdateAgent</find>
-      <find>lobbyIds</find>
-      <find>TODO</find>
-      <find>BEGIN</find>
-      <find>tuple</find>
-      <find>players.get(sender).getName()</find>
-      <find>players.get(targetPlayer).getName()</find>
-      <find>model.actionhistory</find>
-      <find>possibleTargetsTh</find>
-      <find>posTargets</find>
-      <find>selectCardIsGuard</find>
-      <find>chang</find>
-      <find>setText</find>
-      <find>prefW</find>
-      <find>prefWi</find>
-      <find>GameScene</find>
-      <find>GAME_SCENE</find>
-      <find>gamescene</find>
-      <find>image</find>
-      <find>System</find>
+      <find>try</find>
+      <find>countess</find>
     </findStrings>
-    <replaceStrings>
-      <replace>targetName</replace>
-      <replace>senderName</replace>
-    </replaceStrings>
     <dirStrings>
       <dir>C:\Users\Ole\IdeaProjects\TestJSpace</dir>
     </dirStrings>
@@ -178,7 +182,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="executor_service" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
@@ -190,7 +194,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/common/src/main/Server.java" />
+        <option value="$PROJECT_DIR$/src/LobbyTesting/ServerAcceptManager.java" />
+        <option value="$PROJECT_DIR$/src/LobbyTesting/GamePlay.java" />
+        <option value="$PROJECT_DIR$/src/LobbyTesting/LobbyDisconnectManager.java" />
+        <option value="$PROJECT_DIR$/src/LobbyTesting/TestOfLobby.java" />
         <option value="$PROJECT_DIR$/src/LobbyTesting/Server.java" />
+        <option value="$PROJECT_DIR$/src/LobbyTesting/Lobby.java" />
         <option value="$PROJECT_DIR$/src/LockedSpaceTest/Server.java" />
         <option value="$PROJECT_DIR$/src/LockedSpaceTest/Client.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Client.java" />
@@ -198,49 +208,43 @@
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Lobby.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Client_Part/Client.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java" />
         <option value="$PROJECT_DIR$/src/LobbyTesting/LobbyAcceptManager.java" />
         <option value="$PROJECT_DIR$/src/LobbyTesting/Client.java" />
         <option value="$PROJECT_DIR$/src/org/jspace/gate/KeepServerGate.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/sample/sample2.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample2.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/sample.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ConnectingToLobby.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/JoinServerScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/JoinServerScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/UserNameScene.fxml" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyUpdateAgent.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForUpdatesAgent.java" />
-        <option value="$PROJECT_DIR$/src/LobbyTesting/Lobby.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientChatUpdateAgent.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/VictoryScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ChooseGuessScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PickPlayerScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ConnectingToLobby.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/animations/LampAnimations.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Main.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PickPlayerScene.fxml" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ChooseGuessScene.fxml" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
       </list>
     </option>
   </component>
@@ -251,9 +255,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="19" />
+    <option name="y" value="22" />
+    <option name="width" value="1920" />
+    <option name="height" value="1174" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -297,57 +302,41 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
               <item name="JavaFXClient" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaFXClient" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
               <item name="Server_Part" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Tuple_Letter_Clone" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tuple_Letter_Clone" type="462c0819:PsiDirectoryNode" />
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
               <item name="Server_Part" type="462c0819:PsiDirectoryNode" />
@@ -357,30 +346,33 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TestJSpace-executor_service" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="ToolWindowVersion Control.ShowToolbar" value="false" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Ole\IdeaProjects\Tuple_Letter_Clone\src\MasterLobbyListServerTest\JavaFXClient\resources" />
-      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src\MasterLobbyListServerTest" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources" />
+      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient" />
+      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="MasterLobbyListServerTest.JavaFXClient" />
       <recent name="LobbyTesting" />
       <recent name="common.src.main" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay" />
+      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src\MasterLobbyListServerTest" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -397,12 +389,16 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -511,7 +507,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Server (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -740,111 +736,18 @@
       <workItem from="1519890449486" duration="22243000" />
       <workItem from="1519924064309" duration="268000" />
       <workItem from="1520237507684" duration="14603000" />
-    </task>
-    <task id="LOCAL-00009" summary="Executor + More lobby extensions">
-      <created>1519810665303</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1519810665303</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Executor + More lobby extensions">
-      <created>1519810791070</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1519810791070</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Executor + JavaFXClient added">
-      <created>1519811780212</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1519811780212</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Executor + JavaFXClient added">
-      <created>1519811785154</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1519811785154</updated>
-    </task>
-    <task id="LOCAL-00013" summary="UserNameScene + UniqueName generation + a bit of renaming clean up...">
-      <created>1519822554526</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1519822554526</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Refactoring changeScene etc.">
-      <created>1519829649784</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1519829649784</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Refactoring changeScene etc.">
-      <created>1519829779616</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1519829779616</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Refactoring changeScene etc.">
-      <created>1519829785850</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1519829785850</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Lobbies are nameable&#10;Lobbies are 'clickable' (in ListView)">
-      <created>1519902166711</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1519902166711</updated>
-    </task>
-    <task id="LOCAL-00018" summary="UUID Lobby array and a bit of other work">
-      <created>1519915210279</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1519915210279</updated>
-    </task>
-    <task id="LOCAL-00019" summary="UUID Lobby array and a bit of other work">
-      <created>1519915468829</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1519915468829</updated>
-    </task>
-    <task id="LOCAL-00020" summary="...">
-      <created>1519916442613</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1519916442613</updated>
-    </task>
-    <task id="LOCAL-00021" summary="...">
-      <created>1519916469251</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1519916469251</updated>
-    </task>
-    <task id="LOCAL-00022" summary="...">
-      <created>1519916494591</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1519916494591</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Tested the system. Small tweaks. We get succesfully denied when do not get a respond from the server.">
-      <created>1519918357593</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1519918357593</updated>
+      <workItem from="1520505187019" duration="1194000" />
+      <workItem from="1521013761010" duration="19134000" />
+      <workItem from="1521108358133" duration="12534000" />
+      <workItem from="1521195014347" duration="2646000" />
+      <workItem from="1521444423660" duration="30222000" />
+      <workItem from="1521538484397" duration="598000" />
+      <workItem from="1521548038798" duration="363000" />
+      <workItem from="1521623661814" duration="4534000" />
+      <workItem from="1521707043851" duration="6956000" />
+      <workItem from="1522066146072" duration="9605000" />
+      <workItem from="1522134203974" duration="20467000" />
+      <workItem from="1522220862133" duration="15715000" />
     </task>
     <task id="LOCAL-00024" summary="- A bit refactoring/renaming ('HTTP style')&#10;- We now handle if a client manage to send an invalid name - the server will send a 'BAD_REQUEST' respond">
       <created>1520244762197</created>
@@ -874,221 +777,326 @@
       <option name="project" value="LOCAL" />
       <updated>1520260475102</updated>
     </task>
-    <task id="LOCAL-00028" summary="Lobby chat working">
-      <created>1520496243291</created>
+    <task id="LOCAL-00028" summary="merge ex into single lobby&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;&#9;src/MasterLobbyListServerTest/JavaFXClient/Controller.java&#10;&#9;src/MasterLobbyListServerTest/Server_Part/Lobby.java&#10;&#9;src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java&#10;&#9;src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+      <created>1520506328643</created>
       <option name="number" value="00028" />
       <option name="presentableId" value="LOCAL-00028" />
       <option name="project" value="LOCAL" />
-      <updated>1520496243291</updated>
+      <updated>1520506328643</updated>
     </task>
-    <task id="LOCAL-00029" summary="Lobby chat working">
-      <created>1520498656831</created>
+    <task id="LOCAL-00029" summary="Fixed some missing changes (on server)">
+      <created>1520507599376</created>
       <option name="number" value="00029" />
       <option name="presentableId" value="LOCAL-00029" />
       <option name="project" value="LOCAL" />
-      <updated>1520498656831</updated>
+      <updated>1520507599377</updated>
     </task>
-    <task id="LOCAL-00030" summary="Lobby chat working">
-      <created>1520503038301</created>
+    <task id="LOCAL-00030" summary="Fixed some missing changes (on server)">
+      <created>1520507618624</created>
       <option name="number" value="00030" />
       <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1520503038301</updated>
+      <updated>1520507618624</updated>
     </task>
-    <task id="LOCAL-00031" summary="Lobby chat working">
-      <created>1520503445623</created>
+    <task id="LOCAL-00031" summary="Fixed some missing changes (on server)">
+      <created>1520507627224</created>
       <option name="number" value="00031" />
       <option name="presentableId" value="LOCAL-00031" />
       <option name="project" value="LOCAL" />
-      <updated>1520503445623</updated>
+      <updated>1520507627224</updated>
     </task>
-    <task id="LOCAL-00032" summary="Lobby updates working + QOL changes">
-      <created>1520520619001</created>
+    <task id="LOCAL-00032" summary="Cards loads and are clickable">
+      <created>1520520846846</created>
       <option name="number" value="00032" />
       <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1520520619001</updated>
+      <updated>1520520846846</updated>
     </task>
-    <task id="LOCAL-00033" summary="Lobby updates working + QOL changes">
-      <created>1520520725538</created>
+    <task id="LOCAL-00033" summary="Cards loads and are clickable">
+      <created>1521016096158</created>
       <option name="number" value="00033" />
       <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1520520725538</updated>
+      <updated>1521016096159</updated>
     </task>
-    <task id="LOCAL-00034" summary="Lobby updates working + QOL changes">
-      <created>1521014360444</created>
+    <task id="LOCAL-00034" summary="Work on pick player scene">
+      <created>1521016309260</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1521014360444</updated>
+      <updated>1521016309260</updated>
     </task>
-    <task id="LOCAL-00035" summary="Fixes">
-      <created>1521016126347</created>
+    <task id="LOCAL-00035" summary="Work on pick player scene">
+      <created>1521033601143</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1521016126347</updated>
+      <updated>1521033601143</updated>
     </task>
-    <task id="LOCAL-00036" summary="Leave lobby + begin">
-      <created>1521033352742</created>
+    <task id="LOCAL-00036" summary="Work on pick player scene">
+      <created>1521033734426</created>
       <option name="number" value="00036" />
       <option name="presentableId" value="LOCAL-00036" />
       <option name="project" value="LOCAL" />
-      <updated>1521033352742</updated>
+      <updated>1521033734426</updated>
     </task>
-    <task id="LOCAL-00037" summary="Leave lobby + begin">
-      <created>1521036693829</created>
+    <task id="LOCAL-00037" summary="Imported the game as a sub-package of 'Server_Part' (dubbed 'Gameplay'). Fixed a few errors during import. Game can start now, however, GUI does not update.">
+      <created>1521036459673</created>
       <option name="number" value="00037" />
       <option name="presentableId" value="LOCAL-00037" />
       <option name="project" value="LOCAL" />
-      <updated>1521036693829</updated>
+      <updated>1521036459673</updated>
     </task>
-    <task id="LOCAL-00038" summary="Small fixes and 2 new scenes">
-      <created>1521040398638</created>
+    <task id="LOCAL-00038" summary="Imported the game as a sub-package of 'Server_Part' (dubbed 'Gameplay'). Fixed a few errors during import. Game can start now, however, GUI does not update.">
+      <created>1521036473067</created>
       <option name="number" value="00038" />
       <option name="presentableId" value="LOCAL-00038" />
       <option name="project" value="LOCAL" />
-      <updated>1521040398638</updated>
+      <updated>1521036473067</updated>
     </task>
-    <task id="LOCAL-00039" summary="Small fixes and 2 new scenes">
-      <created>1521116939158</created>
+    <task id="LOCAL-00039" summary="Refactored naming a bit in Game-class (introduced &quot;currentPlayer&quot;)">
+      <created>1521038391053</created>
       <option name="number" value="00039" />
       <option name="presentableId" value="LOCAL-00039" />
       <option name="project" value="LOCAL" />
-      <updated>1521116939158</updated>
+      <updated>1521038391053</updated>
     </task>
-    <task id="LOCAL-00040" summary="Small fixes and 2 new scenes">
-      <created>1521444772713</created>
+    <task id="LOCAL-00040" summary="Refactored Game-loop in Game-class (introduced various new methods)">
+      <created>1521040400356</created>
       <option name="number" value="00040" />
       <option name="presentableId" value="LOCAL-00040" />
       <option name="project" value="LOCAL" />
-      <updated>1521444772713</updated>
+      <updated>1521040400356</updated>
     </task>
-    <task id="LOCAL-00041" summary="Small fixes and 2 new scenes">
-      <created>1521445007543</created>
+    <task id="LOCAL-00041" summary="Refactored Game-loop in Game-class (introduced various new methods)">
+      <created>1521040408797</created>
       <option name="number" value="00041" />
       <option name="presentableId" value="LOCAL-00041" />
       <option name="project" value="LOCAL" />
-      <updated>1521445007543</updated>
+      <updated>1521040408797</updated>
     </task>
-    <task id="LOCAL-00042" summary="Client actions">
-      <created>1521468139156</created>
+    <task id="LOCAL-00042" summary="Optimized further on Game-class">
+      <created>1521116357518</created>
       <option name="number" value="00042" />
       <option name="presentableId" value="LOCAL-00042" />
       <option name="project" value="LOCAL" />
-      <updated>1521468139156</updated>
+      <updated>1521116357518</updated>
     </task>
-    <task id="LOCAL-00043" summary="Fixes for first gameplay steps">
-      <created>1521474703858</created>
+    <task id="LOCAL-00043" summary="Started on TODO &quot;TURN TUPLE TO CURRENT PLAYER + INFO TO REST&quot;">
+      <created>1521118572689</created>
       <option name="number" value="00043" />
       <option name="presentableId" value="LOCAL-00043" />
       <option name="project" value="LOCAL" />
-      <updated>1521474703858</updated>
+      <updated>1521118572689</updated>
     </task>
-    <task id="LOCAL-00044" summary="Small fixes">
-      <created>1521479005034</created>
+    <task id="LOCAL-00044" summary="Started on TODOS in Game class">
+      <created>1521125856164</created>
       <option name="number" value="00044" />
       <option name="presentableId" value="LOCAL-00044" />
       <option name="project" value="LOCAL" />
-      <updated>1521479005034</updated>
+      <updated>1521125856164</updated>
     </task>
-    <task id="LOCAL-00045" summary="Messages for different actions implemented">
-      <created>1521627401397</created>
+    <task id="LOCAL-00045" summary="Started on TODOS in Game class">
+      <created>1521200302546</created>
       <option name="number" value="00045" />
       <option name="presentableId" value="LOCAL-00045" />
       <option name="project" value="LOCAL" />
-      <updated>1521627401397</updated>
+      <updated>1521200302546</updated>
     </task>
-    <task id="LOCAL-00046" summary="Messages for different actions implemented">
-      <created>1521627684915</created>
+    <task id="LOCAL-00046" summary="Started on TODOS in Game class">
+      <created>1521200394734</created>
       <option name="number" value="00046" />
       <option name="presentableId" value="LOCAL-00046" />
       <option name="project" value="LOCAL" />
-      <updated>1521627684915</updated>
+      <updated>1521200394734</updated>
     </task>
-    <task id="LOCAL-00047" summary="Updated target list">
-      <created>1521719591778</created>
+    <task id="LOCAL-00047" summary="Refactoring Play/Discard step in the game">
+      <created>1521456412045</created>
       <option name="number" value="00047" />
       <option name="presentableId" value="LOCAL-00047" />
       <option name="project" value="LOCAL" />
-      <updated>1521719591778</updated>
+      <updated>1521456412045</updated>
     </task>
-    <task id="LOCAL-00048" summary="Updating player list in gamescene">
-      <created>1522070697574</created>
+    <task id="LOCAL-00048" summary="Tuple responses for different card plays (not all implemented however)">
+      <created>1521464589414</created>
       <option name="number" value="00048" />
       <option name="presentableId" value="LOCAL-00048" />
       <option name="project" value="LOCAL" />
-      <updated>1522070697575</updated>
+      <updated>1521464589414</updated>
     </task>
-    <task id="LOCAL-00049" summary="Updating player list in gamescene">
-      <created>1522074760311</created>
+    <task id="LOCAL-00049" summary="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card">
+      <created>1521468142590</created>
       <option name="number" value="00049" />
       <option name="presentableId" value="LOCAL-00049" />
       <option name="project" value="LOCAL" />
-      <updated>1522074760311</updated>
+      <updated>1521468142590</updated>
     </task>
-    <task id="LOCAL-00050" summary="Card picture in game scene">
-      <created>1522075379671</created>
+    <task id="LOCAL-00050" summary="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card">
+      <created>1521468179316</created>
       <option name="number" value="00050" />
       <option name="presentableId" value="LOCAL-00050" />
       <option name="project" value="LOCAL" />
-      <updated>1522075379672</updated>
+      <updated>1521468179316</updated>
     </task>
-    <task id="LOCAL-00051" summary="prince fix">
-      <created>1522142312308</created>
+    <task id="LOCAL-00051" summary="Fixed King cards in model">
+      <created>1521474709108</created>
       <option name="number" value="00051" />
       <option name="presentableId" value="LOCAL-00051" />
       <option name="project" value="LOCAL" />
-      <updated>1522142312308</updated>
+      <updated>1521474709109</updated>
     </task>
-    <task id="LOCAL-00052" summary="Play with no target fix">
-      <created>1522144776242</created>
+    <task id="LOCAL-00052" summary="Fixed King cards in model">
+      <created>1521474745191</created>
       <option name="number" value="00052" />
       <option name="presentableId" value="LOCAL-00052" />
       <option name="project" value="LOCAL" />
-      <updated>1522144776242</updated>
+      <updated>1521474745191</updated>
     </task>
-    <task id="LOCAL-00053" summary="Princess Bug fix">
-      <created>1522152734594</created>
+    <task id="LOCAL-00053" summary="Fixed King cards in model">
+      <created>1521474753066</created>
       <option name="number" value="00053" />
       <option name="presentableId" value="LOCAL-00053" />
       <option name="project" value="LOCAL" />
-      <updated>1522152734594</updated>
+      <updated>1521474753066</updated>
     </task>
-    <task id="LOCAL-00054" summary="String comparison fix">
-      <created>1522153901607</created>
+    <task id="LOCAL-00054" summary="Wrote Custom Msg's for different card events">
+      <created>1521475559759</created>
       <option name="number" value="00054" />
       <option name="presentableId" value="LOCAL-00054" />
       <option name="project" value="LOCAL" />
-      <updated>1522153901607</updated>
+      <updated>1521475559759</updated>
     </task>
-    <task id="LOCAL-00055" summary="No view from model bug fix">
-      <created>1522222165983</created>
+    <task id="LOCAL-00055" summary="Wrote Custom Msg's for different card events&#10;Server now send win messages">
+      <created>1521478010581</created>
       <option name="number" value="00055" />
       <option name="presentableId" value="LOCAL-00055" />
       <option name="project" value="LOCAL" />
-      <updated>1522222165984</updated>
+      <updated>1521478010581</updated>
     </task>
-    <task id="LOCAL-00056" summary="No view from model bug fix">
-      <created>1522224157326</created>
+    <task id="LOCAL-00056" summary="...">
+      <created>1521479400924</created>
       <option name="number" value="00056" />
       <option name="presentableId" value="LOCAL-00056" />
       <option name="project" value="LOCAL" />
-      <updated>1522224157326</updated>
+      <updated>1521479400924</updated>
     </task>
-    <task id="LOCAL-00057" summary="Denied action client side">
-      <created>1522236632581</created>
+    <task id="LOCAL-00057" summary="...">
+      <created>1521479853987</created>
       <option name="number" value="00057" />
       <option name="presentableId" value="LOCAL-00057" />
       <option name="project" value="LOCAL" />
-      <updated>1522236632581</updated>
+      <updated>1521479853987</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="...">
+      <created>1521479885113</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1521479885113</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Various small refactorings">
+      <created>1521627421443</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1521627421444</updated>
+    </task>
+    <task id="LOCAL-00060" summary="New Turn msg's to all +&#10;various small refactorings">
+      <created>1521715622337</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1521715622338</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Fixed turn numbering&#10;Fixed ID of 'Round x, Turn y, Alice's turn&quot;&#10;Perhaps older things I have forgotton about unfortunately">
+      <created>1522070585227</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1522070585227</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Worked on KNOCK_OUT">
+      <created>1522074781778</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1522074781778</updated>
+    </task>
+    <task id="LOCAL-00063" summary="- Worked further on KNOCK_OUT&#10;- Changed knockOut-method's input to int&#10;- Refactored variable names of card actions (e.g. sender -&gt; sendersIndex)">
+      <created>1522137016871</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1522137016874</updated>
+    </task>
+    <task id="LOCAL-00064" summary="- Worked further on KNOCK_OUT&#10;- Changed knockOut-method's input to int&#10;- Refactored variable names of card actions (e.g. sender -&gt; sendersIndex)&#10;- Added all card .jpg's">
+      <created>1522140471089</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1522140471089</updated>
+    </task>
+    <task id="LOCAL-00065" summary="- Worked further on KNOCK_OUT&#10;- Changed knockOut-method's input to int&#10;- Refactored variable names of card actions (e.g. sender -&gt; sendersIndex)&#10;- Added all card .jpg's">
+      <created>1522141899524</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1522141899524</updated>
+    </task>
+    <task id="LOCAL-00066" summary="- (hope) I implemented the possibility to play a targetted card w. no effect if no possible targets available.">
+      <created>1522143845663</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1522143845663</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Fixed a parsing error (with playerTargetIndexInt)">
+      <created>1522149685128</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1522149685128</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Prince self-target works">
+      <created>1522153887475</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1522153887475</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Refactoring senderPlayerCharacter...">
+      <created>1522157775847</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1522157775847</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Starting working on fixing Countess-rule server and client site">
+      <created>1522224116311</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1522224116313</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)">
+      <created>1522236569745</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1522236569746</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)">
+      <created>1522236601690</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1522236601690</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53652000" />
+    <option name="totallyTimeSpent" value="189383000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1100,37 +1108,65 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-10" y="22" width="1920" height="1174" extended-state="6" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35418877" sideWeight="0.4890625" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35480943" sideWeight="0.48229167" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19512194" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26086956" sideWeight="0.50208336" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.48802084" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.207804" sideWeight="0.51770836" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15052083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14895834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39927405" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940108" sideWeight="0.4956699" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35480943" sideWeight="0.484375" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24863884" sideWeight="0.5043301" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20696828" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940108" sideWeight="0.4956699" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1165,158 +1201,242 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactoring changeScene etc." />
-    <MESSAGE value="Lobbies are nameable&#10;Lobbies are 'clickable' (in ListView)" />
-    <MESSAGE value="UUID Lobby array and a bit of other work" />
-    <MESSAGE value="Tested the system. Small tweaks. We get succesfully denied when do not get a respond from the server." />
-    <MESSAGE value="- A bit refactoring/renaming ('HTTP style')&#10;- We now handle if a client manage to send an invalid name - the server will send a 'BAD_REQUEST' respond" />
-    <MESSAGE value="- We now handle if a client manage to send an invalid SERVER name - the server will send a 'BAD_REQUEST' respond" />
+    <MESSAGE value="Imported the game as a sub-package of 'Server_Part' (dubbed 'Gameplay'). Fixed a few errors during import. Game can start now, however, GUI does not update." />
+    <MESSAGE value="Refactored naming a bit in Game-class (introduced &quot;currentPlayer&quot;)" />
+    <MESSAGE value="Refactored Game-loop in Game-class (introduced various new methods)" />
+    <MESSAGE value="Optimized further on Game-class" />
+    <MESSAGE value="Started on TODO &quot;TURN TUPLE TO CURRENT PLAYER + INFO TO REST&quot;" />
+    <MESSAGE value="Started on TODOS in Game class" />
+    <MESSAGE value="Refactoring Play/Discard step in the game" />
+    <MESSAGE value="Tuple responses for different card plays (not all implemented however)" />
+    <MESSAGE value="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card" />
+    <MESSAGE value="Fixed King cards in model" />
+    <MESSAGE value="Wrote Custom Msg's for different card events" />
+    <MESSAGE value="Wrote Custom Msg's for different card events&#10;Server now send win messages" />
     <MESSAGE value="..." />
-    <MESSAGE value="Lobby chat working" />
-    <MESSAGE value="Lobby updates working + QOL changes" />
-    <MESSAGE value="Fixes" />
-    <MESSAGE value="Leave lobby + begin" />
-    <MESSAGE value="Small fixes and 2 new scenes" />
-    <MESSAGE value="Client actions" />
-    <MESSAGE value="Fixes for first gameplay steps" />
-    <MESSAGE value="Small fixes" />
-    <MESSAGE value="Messages for different actions implemented" />
-    <MESSAGE value="Updated target list" />
-    <MESSAGE value="Updating player list in gamescene" />
-    <MESSAGE value="Card picture in game scene" />
-    <MESSAGE value="prince fix" />
-    <MESSAGE value="Play with no target fix" />
-    <MESSAGE value="Princess Bug fix" />
-    <MESSAGE value="String comparison fix" />
-    <MESSAGE value="No view from model bug fix" />
-    <MESSAGE value="Denied action client side" />
-    <option name="LAST_COMMIT_MESSAGE" value="Denied action client side" />
+    <MESSAGE value="Various small refactorings" />
+    <MESSAGE value="New Turn msg's to all +&#10;various small refactorings" />
+    <MESSAGE value="Fixed turn numbering&#10;Fixed ID of 'Round x, Turn y, Alice's turn&quot;&#10;Perhaps older things I have forgotton about unfortunately" />
+    <MESSAGE value="Worked on KNOCK_OUT" />
+    <MESSAGE value="- Worked further on KNOCK_OUT&#10;- Changed knockOut-method's input to int&#10;- Refactored variable names of card actions (e.g. sender -&gt; sendersIndex)" />
+    <MESSAGE value="- Worked further on KNOCK_OUT&#10;- Changed knockOut-method's input to int&#10;- Refactored variable names of card actions (e.g. sender -&gt; sendersIndex)&#10;- Added all card .jpg's" />
+    <MESSAGE value="- (hope) I implemented the possibility to play a targetted card w. no effect if no possible targets available." />
+    <MESSAGE value="Fixed a parsing error (with playerTargetIndexInt)" />
+    <MESSAGE value="Prince self-target works" />
+    <MESSAGE value="Refactoring senderPlayerCharacter..." />
+    <MESSAGE value="Starting working on fixing Countess-rule server and client site" />
+    <MESSAGE value="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay.java" />
-    <entry file="file://$PROJECT_DIR$/src/org/jspace/SequentialSpace.java">
+    <entry file="file://$PROJECT_DIR$/src/org/jspace/SpaceFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/VictoryScene.fxml">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/package-info.java" />
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/JoinServerScene.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="67" lean-forward="false" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.graphics/javafx/scene/image/Image.java">
+    <entry file="file://$PROJECT_DIR$/src/org/jspace/RemoteSpace.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="615" column="11" lean-forward="false" selection-start-line="615" selection-start-column="11" selection-end-line="615" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="-4">
+          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="270" lean-forward="false" selection-start-line="10" selection-start-column="221" selection-end-line="10" selection-end-column="270" />
+        <state relative-caret-position="247">
+          <caret line="13" column="69" lean-forward="false" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="69" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/Button.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="74" column="13" lean-forward="false" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ChooseGuessScene.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
+        <state relative-caret-position="247">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="44" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/util/Preconditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/ListView.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ConnectingToLobby.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2465">
-          <caret line="411" column="35" lean-forward="false" selection-start-line="411" selection-start-column="35" selection-end-line="411" selection-end-column="35" />
+        <state relative-caret-position="323">
+          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
+        <state relative-caret-position="38">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-579">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding>
-            <element signature="e#214#215#0" expanded="false" />
-            <element signature="e#248#249#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="338">
+          <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/Labeled.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyScene.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1180">
-          <caret line="146" column="29" lean-forward="false" selection-start-line="146" selection-start-column="22" selection-end-line="146" selection-end-column="29" />
-          <folding>
-            <element signature="e#3355#3356#0" expanded="false" />
-            <element signature="e#3384#3385#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="494">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/Label.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java" />
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/UserNameScene.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="110" column="20" lean-forward="false" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="20" />
+        <state relative-caret-position="323">
+          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jspace/SequentialSpace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/animations/LampAnimations.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/javafx.graphics/javafx/scene/image/Image.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3646">
+          <caret line="1098" column="0" lean-forward="false" selection-start-line="1098" selection-start-column="0" selection-end-line="1098" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="515" column="13" lean-forward="false" selection-start-line="515" selection-start-column="13" selection-end-line="515" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Enum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="131" column="18" lean-forward="false" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2223">
+          <caret line="136" column="61" lean-forward="false" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/king.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="44" column="38" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/priest.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="37" column="1" lean-forward="true" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/princess.jpg">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="838">
+          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1159">
+          <caret line="85" column="19" lean-forward="false" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/baron.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1336,7 +1456,12 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/baron.jpg">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/king.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/priest.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1346,264 +1471,153 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/list_of_cards.jpg">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources/princess.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyScene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="20" column="84" lean-forward="false" selection-start-line="20" selection-start-column="84" selection-end-line="20" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PickPlayerScene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="33" />
+        <state relative-caret-position="285">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ChooseGuessScene.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="36" column="62" lean-forward="false" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
+        <state relative-caret-position="380">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="437">
+          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding>
+            <marker date="1522223157000" expanded="true" signature="638:639" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="348">
+          <caret line="69" column="11" lean-forward="false" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="190">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="63" column="77" lean-forward="false" selection-start-line="63" selection-start-column="77" selection-end-line="63" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="66" column="16" lean-forward="false" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="45" />
-          <folding>
-            <element signature="e#2861#2862#0" expanded="true" />
-            <element signature="e#2884#2885#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ConnectingToLobby.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3425">
-          <caret line="144" column="13" lean-forward="true" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/javax/swing/JOptionPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="648" column="5" lean-forward="true" selection-start-line="648" selection-start-column="5" selection-end-line="648" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="57" column="33" lean-forward="true" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="21" column="82" lean-forward="true" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1475">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="151" column="44" lean-forward="false" selection-start-line="151" selection-start-column="44" selection-end-line="151" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-294">
-          <caret line="284" column="23" lean-forward="false" selection-start-line="284" selection-start-column="23" selection-end-line="284" selection-end-column="23" />
+        <state relative-caret-position="228">
+          <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2020">
-          <caret line="212" column="8" lean-forward="false" selection-start-line="212" selection-start-column="8" selection-end-line="212" selection-end-column="8" />
+        <state relative-caret-position="-1155">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1725">
+          <caret line="187" column="0" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+          <folding>
+            <element signature="e#5098#5099#0" expanded="true" />
+            <element signature="e#5138#5139#0" expanded="true" />
+            <element signature="method#informPlayersAboutUntargetedPlay#0;class#Model#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="25" column="79" lean-forward="false" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="69" column="9" lean-forward="false" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+          <folding>
+            <element signature="e#2962#2963#0" expanded="true" />
+            <element signature="e#3009#3010#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="162" column="9" lean-forward="false" selection-start-line="162" selection-start-column="9" selection-end-line="162" selection-end-column="9" />
+        <state relative-caret-position="711">
+          <caret line="328" column="62" lean-forward="true" selection-start-line="328" selection-start-column="62" selection-end-line="328" selection-end-column="62" />
           <folding>
-            <element signature="e#20125#20126#0" expanded="true" />
-            <element signature="e#20174#20175#0" expanded="true" />
+            <element signature="method#terminalTest#0;class#Game#0" expanded="false" />
+            <element signature="e#20973#20974#0" expanded="true" />
+            <element signature="e#21022#21023#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="549" column="0" lean-forward="true" selection-start-line="549" selection-start-column="0" selection-end-line="549" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1647,7 +1661,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9.0</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
