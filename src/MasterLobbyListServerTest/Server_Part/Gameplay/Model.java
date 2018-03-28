@@ -181,9 +181,19 @@ public class Model {
         this.roundWon = roundWon;
     }
 
-    public boolean countessRule(Player currentPlayer){
-        return (currentPlayer.getHand().getCards().contains(new Card(Character.COUNTESS)) && currentPlayer.getHand().getCards().contains(new Card(Character.PRINCE))) ||
-                (currentPlayer.getHand().getCards().contains(new Card(Character.COUNTESS)) && currentPlayer.getHand().getCards().contains(new Card(Character.KING)));
+    public boolean countessRule(Player p){
+
+        String cardOne = p.getHand().getCards().get(0).getCharacter().toString();
+        String cardTwo = p.getHand().getCards().get(1).getCharacter().toString();
+
+        System.out.print("Countess rule is ");
+        System.out.println(((cardOne.equals(Character.COUNTESS.toString()) || cardTwo.equals(Character.COUNTESS.toString())) &&
+                ( (cardOne.equals(Character.PRINCE.toString()) || cardOne.equals(Character.KING.toString())) ||
+                        (cardTwo.equals(Character.PRINCE.toString()) || cardTwo.equals(Character.KING.toString())))));
+
+        return ((cardOne.equals(Character.COUNTESS.toString()) || cardTwo.equals(Character.COUNTESS.toString())) &&
+                ( (cardOne.equals(Character.PRINCE.toString()) || cardOne.equals(Character.KING.toString())) ||
+                (cardTwo.equals(Character.PRINCE.toString()) || cardTwo.equals(Character.KING.toString()))));
     }
 
     public String removeIDFromPlayername(String username){
@@ -252,28 +262,29 @@ public class Model {
         System.out.println(targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter() +
                 " of value " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue() + Game.newLine);
 
-        Character senderPlayerCharater = players.get(sendersIndex).getHand().getCards().get(0).getCharacter();
-        Character targetPlayerCharater = players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter();
+        Character senderPlayerCharacter = players.get(sendersIndex).getHand().getCards().get(0).getCharacter();
+        Character targetPlayerCharacter = players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter();
 
-        if(players.get(sendersIndex).getHand().getCards().get(0).getCharacter().getValue() > players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue()){
+        if(senderPlayerCharacter.getValue() > targetPlayerCharacter.getValue()){
             knockOut(targetPlayersIndex);
 
-            String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You win the duel!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ".";
-            String msgOthers = senderName + " wins the duel, and " + targetName + " is out of the round";
+            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You win the duel!";
+            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ".";
+            String msgOthers = senderName + " wins the duel.";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
-        } else if(players.get(sendersIndex).getHand().getCards().get(0).getCharacter().getValue() < players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue()){
+
+        } else if(senderPlayerCharacter.getValue() < targetPlayerCharacter.getValue()){
             knockOut(sendersIndex);
 
-            String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". You are out of the round!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ". You win the duel!";
-            String msgOthers = targetName + " wins the duel, and " + senderName + " is out of the round";
+            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You lose the duel!";
+            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". You win the duel!";
+            String msgOthers = targetName + " wins the duel.";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
         } else {
             System.out.println("Tie! No one is knocked out...");
 
-            String msgSender = "Target player has a " + targetPlayerCharater.toString() + ". It's a draw!";
-            String msgTarget = senderName + " has a " + senderPlayerCharater.toString() + ". It's a draw!";
+            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". It's a draw!";
+            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". It's a draw!";
             String msgOthers = "It's a draw! No one is knocked out!";
             informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");}
     }

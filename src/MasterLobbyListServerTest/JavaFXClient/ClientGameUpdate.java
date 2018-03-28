@@ -23,8 +23,6 @@ public class ClientGameUpdate implements Runnable{
 
     private Model model;
 
-
-
     ClientGameUpdate(Model model){
         this.model = model;
     }
@@ -99,6 +97,21 @@ public class ClientGameUpdate implements Runnable{
                     ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                     card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
 
+
+                    Label chatText = new Label((String) tuple[4]);
+                    chatText.setWrapText(true);
+                    chatText.prefWidth(184);
+
+                    System.out.println("Should have printed outcome : " + tuple[4]);
+
+                    Platform.runLater(() -> {
+
+                                ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
+                                ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
+
+                                model.actionHistory.add((String) tuple[4]);
+                            }
+                    );
 
                 } else if (tuple[1].equals(Model.OUTCOME)) {
 

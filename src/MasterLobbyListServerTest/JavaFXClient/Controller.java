@@ -74,8 +74,7 @@ public class Controller {
 
     private static boolean[] playerEnableClick = {false,false,false,false,false};
 
-    public Controller() {
-    }
+    public Controller() {}
 
 
     public void pickCardOne() throws IOException, InterruptedException {

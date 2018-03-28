@@ -53,7 +53,7 @@ public class Deck {
             return drawnCard;
         }
     }
-
+    /*
     public void fillDeck(){
         for(Character ch : Character.values()) {
             if(ch == Character.GUARD){
@@ -61,11 +61,31 @@ public class Deck {
                     cards.add(new Card(ch));
                 }
             } else if (ch == Character.PRIEST || ch == Character.BARON || ch == Character.PRINCE || ch == Character.HANDMAID) {
-                for (int i = 0; i < Model.NO_OF_PRIEST; i++) {
+                for (int i = 0; i <  ; i++) { // Model.NO_OF_PRIEST
                     cards.add(new Card(ch));
                 }
             } else {
                 cards.add(new Card(ch));
+            }
+        }
+
+    }
+    */
+
+    public void fillDeck(){
+        for(Character ch : Character.values()) {
+            if(ch == Character.COUNTESS){
+                for(int i = 0; i < 4; i++) {
+                    cards.add(new Card(ch));
+                }
+            } else if(ch == Character.PRINCE){
+                for(int i = 0; i < 4; i++) {
+                    cards.add(new Card(ch));
+                }
+            } else if(ch == Character.KING){
+                for(int i = 0; i < 4; i++) {
+                    cards.add(new Card(ch));
+                }
             }
         }
 
