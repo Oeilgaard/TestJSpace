@@ -135,7 +135,7 @@ public class Model {
     public ArrayList<Player> nearestToPrincess(){
         ArrayList<Player> winners = new ArrayList<>();
         for(Player p : players){
-            if(p.getHand().getCards().get(0).getValue() == highestCard()) {
+            if(p.isInRound() && p.getHand().getCards().get(0).getValue() == highestCard()) {
                 winners.add(p);
             }
         }
@@ -145,7 +145,7 @@ public class Model {
     public int highestCard(){
         int max = -1;
         for(Player p : players){
-            if(p.getHand().getCards().get(0).getValue() > max) {
+            if(p.isInRound() && p.getHand().getCards().get(0).getValue() > max) {
                 max = p.getHand().getCards().get(0).getValue();
             }
         }
@@ -215,12 +215,10 @@ public class Model {
         if(players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter() == guess) {
             knockOut(targetPlayersIndex);
 
-            String msgSender = "You guessed correct! " + targetName + " is out of the round.";
-            String msgTarget = senderName + " correctly guessed that you have a " + guess.toString() + "! + " +
-                    "You are out of the round.";
-            String msgOthers = senderName + " correctly guessed that " +
-                    targetName + " has a " + guess.toString() + "! + " +
-                    targetName + " is out of the round.";
+            String msgSender = "You guessed correct!";
+            String msgTarget = senderName + " uses GUARD on you and correctly guesses that you have a " + guess.toString();
+            String msgOthers = senderName + " uses GUARD on correctly guessed that " +
+                    targetName + " has a " + guess.toString();
 
             informPlayersAboutTargetedPlay(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
 
@@ -241,12 +239,11 @@ public class Model {
         String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
 
         players.get(sendersIndex).discardCard(cardIndex);
-        //System.out.print("Priest finds " + players.get(targetPlayer).getHand().getCards().get(0).getCharacter() + Game.newLine);
-        //players.get(targetPlayer).getHand().printHand();
-        //TODO: custom messages
-        String msgSender = targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0);
-        String msgTarget = senderName + " uses Priest";
-        String msgOthers = "moo";
+
+        String msgSender = "You place PRIEST on " + targetName + ". + " +
+                targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0);
+        String msgTarget = senderName + " uses PRIEST on you.";
+        String msgOthers = senderName + " plays PRIEST on " + targetName;
         informPlayersAboutTargetedPlay(Character.PRIEST.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
     }
 
