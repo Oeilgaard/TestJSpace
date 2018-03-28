@@ -17,7 +17,6 @@ public class Game {
     private Character guardGuessCharacter;
     private Character chosenCharacter;
     private Player currentPlayer;
-    private Object[] tuple;
 
     public Game(ArrayList<String> players, SequentialSpace lobbySpace) {
         this.model = new Model(players, lobbySpace);
@@ -75,7 +74,7 @@ public class Game {
         System.out.print(newLine);
     }
 
-    public void startGame() {
+    public void startGame() throws InterruptedException {
 
         model.determineAffectionGoal();
 
@@ -146,6 +145,9 @@ public class Game {
 //                        } else {
 //                            // Send tuple der requester nyt kort...
 //                        }
+                        if(tuple[2].equals(currentPlayer.getName())){
+
+                        }
                         if(legalCardIndex(Integer.parseInt((String)tuple[3]))){
                             Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter();
                             if(c.isTargeted()){
@@ -155,15 +157,12 @@ public class Game {
                                     playCard(currentPlayer, tuple);
                                 } else {
                                     // request ny tuple
-                                    System.out.println("Fejl: Action denied linje 156");
                                     lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Target is unvalid.", "", "");
                                 }
                             } else {
-                                System.out.println("Linje 160 ");
                                 playCard(currentPlayer, tuple);
                             }
                         } else {
-                            System.out.println("Fejl: Action denied");
                             lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Card pick is unvalid.", "", "");
                         }
                     } catch (InterruptedException e) {
@@ -182,6 +181,13 @@ public class Game {
         }
 
         posTargets.interrupt();
+
+        String winner = model.getWinner(model.affectionGoal);
+        winner = winner.substring(0,winner.indexOf("#"));
+
+        for(Player p : model.players) {
+            lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_ENDING, p.getName(),winner,"","");
+        }
 
     }
 

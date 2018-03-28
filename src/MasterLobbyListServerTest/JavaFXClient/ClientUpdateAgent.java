@@ -112,7 +112,8 @@ public class ClientUpdateAgent implements Runnable{
                     Platform.runLater(new Runnable() {
                         public void run() {
                             try {
-                                model.currentRoot = FXMLLoader.load(getClass().getResource("GameScene.fxml"));
+                                System.out.println(model.currentRoot==null);
+                                model.currentRoot = FXMLLoader.load(getClass().getResource(Controller.GAME_SCENE + ".fxml"));
                                 Scene scene = new Scene(model.currentRoot);
                                 Main.appWindow.setScene(scene);
 
@@ -146,6 +147,9 @@ public class ClientUpdateAgent implements Runnable{
 
                                 Controller.gameAgent = new Thread(new ClientGameUpdate(model));
                                 Controller.gameAgent.start();
+
+                                model = null;
+                                root = null;
                             } catch (IOException | InterruptedException e) {
                                 e.printStackTrace();
                             }

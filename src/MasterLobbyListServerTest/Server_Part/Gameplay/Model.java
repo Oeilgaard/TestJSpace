@@ -31,6 +31,7 @@ public class Model {
     public final static int WIN = 15;
     public final static int GAME_START_UPDATE = 16;
     public final static int ACTION_DENIED = 17;
+    public final static int GAME_ENDING = 18;
 
     public final static int SERVER_UPDATE = 20;
     //public final static int DISCARD = 21;
@@ -118,6 +119,15 @@ public class Model {
     public Player lastMan() {
         for(Player p : players) {
             if(p.isInRound()){ return p; }
+        }
+        return null;
+    }
+
+    public String getWinner(int winningAffectionAmount){
+        for(Player p : players){
+            if(p.getAffection()==winningAffectionAmount){
+                return p.getName();
+            }
         }
         return null;
     }

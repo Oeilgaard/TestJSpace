@@ -58,8 +58,8 @@ public class Server {
             int REQUEST_CODE = 1;
             Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
 
-            Runnable tempReqHandler = new RequestHandlerThread(serverData, tuple);
-            serverData.executor.execute(tempReqHandler);//calling execute method of ExecutorService
+            Runnable reqHandler = new RequestHandlerThread(serverData, tuple);
+            serverData.executor.execute(reqHandler);//calling execute method of ExecutorService
 
         }
     }

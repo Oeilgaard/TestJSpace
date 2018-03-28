@@ -138,7 +138,11 @@ public class Lobby implements Runnable {
             //GameplayDummy gp = new GameplayDummy(players);
             //gp.runGamePlay();
             Game game = new Game(players, lobbySpace);
-            game.startGame();
+            try {
+                game.startGame();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         serverRepos.remove(lobbyID.toString());

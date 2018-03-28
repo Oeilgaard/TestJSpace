@@ -25,6 +25,8 @@ public class LookForConnectionAccept implements Runnable {
                 model.leaderForCurrentLobby = true;
             }
 
+            model = null;
+
         } catch (InterruptedException e) {
             //e.printStackTrace();
         }
