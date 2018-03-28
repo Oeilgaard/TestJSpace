@@ -1,5 +1,6 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
+import LobbyTesting.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,7 +64,6 @@ public class Controller {
 
     public static ArrayList<UUID> lobbyIds;
     private static Model model;
-    private static Thread updateAgent;
     public static Thread gameAgent;
 
     public static Boolean connectedToLobby = false;
@@ -71,8 +71,11 @@ public class Controller {
     private static int pickedCard = 2;
     private static boolean selectCardIsGuard = false;
     private static int indexOfTarget = -1;
+    private static int threadGlobalId = 0;
 
     private static boolean[] playerEnableClick = {false,false,false,false,false};
+
+    private static String lobbyTitelname;
 
     public Controller() {}
 
@@ -262,7 +265,8 @@ public class Controller {
                 break;
             }
             case LOBBY_SCENE: {
-                ((Label) root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyList.getSelectionModel().getSelectedItem());
+
+                ((Label) root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyTitelname);
                 updatePlayerLobbyList(root);
 
                 Label label = (Label)root.lookup("#usernameLabel");
@@ -273,9 +277,12 @@ public class Controller {
                     root.lookup("#beginButton").disableProperty().setValue(false);
                 }
 
-                updateAgent = new Thread(new ClientUpdateAgent(model, root));
-                updateAgent.start();
-
+                model.updateAgent = new Thread(new ClientUpdateAgent(model, root,threadGlobalId));
+                model.updateAgent.start();
+                threadGlobalId++;
+                if(threadGlobalId > 9){
+                    threadGlobalId = 0;
+                }
                 break;
             }
         }
@@ -344,7 +351,7 @@ public class Controller {
     }
 
     public static void sendDisconnectTuple() throws InterruptedException {
-        model.getLobbySpace().put(Model.LOBBY_REQ, Model.DISCONNECT, model.getUniqueName());
+        model.getLobbySpace().put(Model.LOBBY_REQ, Model.DISCONNECT, model.getUniqueName(),-1);
         connectedToLobby = false;
     }
 
@@ -378,11 +385,13 @@ public class Controller {
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
+                lobbyTitelname = (String) tuple[1];
+
                 if (tuple != null) {
 
                     model.joinLobby((UUID) tuple[2]);
 
-                    model.getLobbySpace().put(Model.LOBBY_REQ, Model.CONNECT, model.getUniqueName());
+                    model.getLobbySpace().put(Model.LOBBY_REQ, Model.CONNECT, model.getUniqueName(), Controller.threadGlobalId);
 
                     Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(model));
                     tryToJoinLobby.start();
@@ -465,7 +474,7 @@ public class Controller {
     }
 
     private void updatePlayerLobbyList(Parent root) throws InterruptedException {
-        model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName());
+        model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName(), -1);
 
         // [0] response code [1] list of playernames [2] username
         Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getUniqueName()));
@@ -487,7 +496,7 @@ public class Controller {
     @FXML
     public void pressBegin() throws InterruptedException {
         if (model.leaderForCurrentLobby) {
-            model.getLobbySpace().put(Model.LOBBY_REQ, Model.BEGIN, model.getUniqueName());
+            model.getLobbySpace().put(Model.LOBBY_REQ, Model.BEGIN, model.getUniqueName(),-1);
         }
     }
 
@@ -495,7 +504,9 @@ public class Controller {
     public void pressLeaveLobby() throws InterruptedException, IOException {
         model.leaderForCurrentLobby = false;
 
-        updateAgent.interrupt();
+        model.updateAgent.interrupt();
+
+        //updateAgent = null;
 
         sendDisconnectTuple();
 

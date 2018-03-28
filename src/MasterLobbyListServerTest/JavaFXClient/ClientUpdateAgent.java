@@ -21,20 +21,28 @@ public class ClientUpdateAgent implements Runnable{
 
     private Model model;
     private Parent root;
+    private int threadId;
 
-    ClientUpdateAgent(Model model, Parent root){
+    ClientUpdateAgent(Model model, Parent root, int threadId){
         this.model = model;
         this.root = root;
+        this.threadId = threadId;
+        System.out.println("This threads nr is " + threadId);
     }
 
     @Override
     public void run() {
 
-        while (true) {
+        boolean running = true;
+
+        while (running) {
             try {
 
                 //[0] update code [1] type of update [2] name of user [3] chat text combined with username (situational)
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class),new ActualField(threadId));
+
+                System.out.println("Received tuple " + tuple[1]);
+
 
                 if (tuple[1].equals(Model.CHAT_MESSAGE)) {
                     Platform.runLater(() -> {
@@ -47,7 +55,7 @@ public class ClientUpdateAgent implements Runnable{
                         ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
                     });
                 } else if (tuple[1].equals(Model.CONNECT) || tuple[1].equals(Model.DISCONNECT)) {
-                    model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName());
+                    model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName(), -1);
 
                     Platform.runLater(() -> {
                         Object[] tuple2;
@@ -106,13 +114,12 @@ public class ClientUpdateAgent implements Runnable{
                         }
                     });
 
-                    break;
+                    running = false;
                 } else if (tuple[1].equals(Model.BEGIN)) {
 
                     Platform.runLater(new Runnable() {
                         public void run() {
                             try {
-                                System.out.println(model.currentRoot==null);
                                 model.currentRoot = FXMLLoader.load(getClass().getResource(Controller.GAME_SCENE + ".fxml"));
                                 Scene scene = new Scene(model.currentRoot);
                                 Main.appWindow.setScene(scene);
@@ -155,13 +162,15 @@ public class ClientUpdateAgent implements Runnable{
                             }
                         }
                     });
-                    break;
+                    running = false;
                 }
 
             } catch (InterruptedException e) {
                 //e.printStackTrace();
                 System.out.println("Den er blevet catched!");
-                break;
+                model = null;
+                root = null;
+                return;
             }
         }
 

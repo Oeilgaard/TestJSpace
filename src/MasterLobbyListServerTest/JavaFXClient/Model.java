@@ -77,6 +77,8 @@ public class Model {
         serverResponseMonitor = new ServerResponseMonitor();
     }
 
+    public Thread updateAgent;
+
     public void addIpToRemoteSpaces(String ip) throws IOException {
         requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
         lobbyListSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
