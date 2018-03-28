@@ -86,7 +86,7 @@ public class Controller {
         } else {
             model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"0","",""); // Send the action to the server
             model.cardsOnHand.remove(0);
-            changeScene("GameScene");
+            //changeScene("GameScene");
         }
         // if card one is targeted
         // go to pick player scene
@@ -103,7 +103,7 @@ public class Controller {
         } else {
             model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"1","",""); // Send the action to the server
             model.cardsOnHand.remove(1);
-            changeScene("GameScene");
+            //changeScene("GameScene");
         }
     }
 
@@ -545,7 +545,7 @@ public class Controller {
                     model.cardsOnHand.remove(pickedCard);
                     pickedCard = 2;
                     indexOfTarget = -1;
-                    changeScene("GameScene");
+                    //changeScene("GameScene");
                 }else {
                     changeScene("ChooseGuessScene");
                 }
@@ -562,7 +562,7 @@ public class Controller {
         indexOfTarget = -1;
         selectCardIsGuard = false;
 
-        changeScene("GameScene");
+        //changeScene("GameScene");
     }
 
     private String removedIdFromUsername(){
@@ -587,7 +587,7 @@ public class Controller {
         indexOfTarget = -1;
         selectCardIsGuard = false;
 
-        changeScene("GameScene");
+        //changeScene("GameScene");
     }
 
 }

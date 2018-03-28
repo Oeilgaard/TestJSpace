@@ -111,7 +111,7 @@ public class Game {
 
                     for(Player p : model.players){
                         String msg = "Round " + model.round + ", " + "Turn " + model.turn + " - ";
-                        if(p.getName()==currentPlayer.getName()) {
+                        if(p.getName().equals(currentPlayer.getName())) {
                             try {
                                 msg += "Your turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4] message, [5] -
