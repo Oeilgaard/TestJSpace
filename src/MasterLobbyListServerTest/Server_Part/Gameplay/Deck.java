@@ -1,6 +1,5 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
-import javax.lang.model.element.ModuleElement;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -69,10 +68,9 @@ public class Deck {
                 cards.add(new Card(ch));
             }
         }
-
     }
 
-/*
+    /*
     public void fillDeck(){
         for(Character ch : Character.values()) {
             if(ch == Character.COUNTESS){
@@ -89,9 +87,8 @@ public class Deck {
                 }
             }
         }
-
-
-    }*/
+    }
+    */
 
     public void shuffle(){
         Collections.shuffle(this.cards);

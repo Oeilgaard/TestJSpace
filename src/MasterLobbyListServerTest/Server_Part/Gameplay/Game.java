@@ -212,11 +212,15 @@ public class Game {
     }
 
     private boolean validTarget(int targetPlayerIndex, Character character){
-        Player target = model.players.get(targetPlayerIndex);
-        if(character == Character.PRINCE){
-            return !target.isHandMaidProtected() && target.isInRound();
+        if(targetPlayerIndex > model.players.size()-1 || targetPlayerIndex < 0){
+            return false;
         } else {
-            return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getName());
+            Player target = model.players.get(targetPlayerIndex);
+            if(character == Character.PRINCE){
+                return !target.isHandMaidProtected() && target.isInRound();
+            } else {
+                return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getName());
+            }
         }
     }
 
@@ -231,8 +235,10 @@ public class Game {
                 e.printStackTrace();
             }
         } else if(model.countessRule(currentPlayer) &&
-                (currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[4])).getCharacter() == Character.PRINCE ||
-                currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[4])).getCharacter() == Character.KING)){
+                (currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.PRINCE ||
+                currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.KING)){
+
+            System.out.println("linie 236");
 
             try {
                 lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Card index is unvalid.",
@@ -296,7 +302,7 @@ public class Game {
             int playerTargetIndexInt = Integer.parseInt(playerTargetIndex);
 
             if(validTarget(playerTargetIndexInt, currentPlayer.getHand().getCards().get(cardIndex).getCharacter())) {
-                if(chosenCharacter == Character.GUARD && (guardGuess >= 0 && guardGuess <= 7)) {
+                if(chosenCharacter == Character.GUARD && (guardGuess >= 1 && guardGuess <= 7)) {
                     System.out.println("It was a guard");
                     guardGuessCharacter = Character.values()[guardGuess];
                     //System.out.println("You guessed " + Character.values()[guardGuess]);
@@ -312,12 +318,23 @@ public class Game {
                 } else if(chosenCharacter == Character.PRINCE) {
                     model.princeAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                     legalPlay = true;
-                } else { // i.e. chosenCharacter == Character.KING
+                } else if(chosenCharacter == Character.KING) { // i.e. chosenCharacter == Character.KING
                     //currentPlayer.getHand().printHand();
                     System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndexInt).getHand().getCards().get(0).getCharacter());
                     System.out.println(model.players.get(playerTargetIndexInt).getName() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getCharacter());
                     model.kingAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                     legalPlay = true;
+                } else {
+                    //ACTION DENIED
+                    System.out.println("Invalid Guard guess");
+                    try {
+                        lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Invalid Guard guess.",
+                                currentPlayer.getHand().getCards().get(0).getCharacter().toString(),
+                                currentPlayer.getHand().getCards().get(1).getCharacter().toString());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             } else {
                 //ACTION DENIED
