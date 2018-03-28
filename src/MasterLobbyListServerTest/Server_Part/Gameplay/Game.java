@@ -155,9 +155,16 @@ public class Game {
 
         posTargets.interrupt();
 
+        String winner = model.getWinner(model.affectionGoal);
+        winner = winner.substring(0,winner.indexOf("#"));
+
+        for(Player p : model.players) {
+            lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_ENDING, p.getName(),winner,"","");
+        }
+
     }
 
-    private void waitForDiscard(){
+    private void waitForDiscard() throws InterruptedException {
         try {
             // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
             //TODO: Lyt efter disconnect også
@@ -200,15 +207,6 @@ public class Game {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-
-        posTargets.interrupt();
-
-        String winner = model.getWinner(model.affectionGoal);
-        winner = winner.substring(0,winner.indexOf("#"));
-
-        for(Player p : model.players) {
-            lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_ENDING, p.getName(),winner,"","");
         }
 
     }
