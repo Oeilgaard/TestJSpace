@@ -199,8 +199,10 @@ public class Game {
             // send error tuple eller vælg random...
         } else if(model.countessRule(currentPlayer)){ // if Countess-rule is occurring, we force the play
             if(currentPlayer.getHand().getCards().get(0).getCharacter() == Character.COUNTESS){
+                System.out.println("We force " + currentPlayer.getHand().getCards().get(1).getCharacter() + "discard");
                 playUntargettedCard(currentPlayer.getHand().getCards().get(1).getCharacter(),currentPlayer,1);
             } else {
+                System.out.println("We force " + currentPlayer.getHand().getCards().get(0).getCharacter() + "discard");
                 playUntargettedCard(currentPlayer.getHand().getCards().get(0).getCharacter(),currentPlayer,0);
             }
         } else {

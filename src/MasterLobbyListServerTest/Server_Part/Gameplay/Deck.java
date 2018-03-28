@@ -61,7 +61,7 @@ public class Deck {
                     cards.add(new Card(ch));
                 }
             } else if (ch == Character.PRIEST || ch == Character.BARON || ch == Character.PRINCE || ch == Character.HANDMAID) {
-                for (int i = 0; i < Model.NO_OF_PRIEST; i++) {
+                for (int i = 0; i < 0 ; i++) { // Model.NO_OF_PRIEST
                     cards.add(new Card(ch));
                 }
             } else {

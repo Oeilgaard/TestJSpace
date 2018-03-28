@@ -1,5 +1,7 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
+import java.util.ArrayList;
+
 public class HelperFunctions {
 
     public static boolean validName(String name){
@@ -16,6 +18,13 @@ public class HelperFunctions {
         } else {
             return 0;
         }
+    }
+
+    public boolean countessRule(ArrayList<String> hand){
+        System.out.print("Countess rule is ");
+
+        return ((hand.contains("COUNTESS") && hand.contains("PRINCE")) ||
+                (hand.contains("COUNTESS") && hand.contains("GUARD")));
     }
 
 }

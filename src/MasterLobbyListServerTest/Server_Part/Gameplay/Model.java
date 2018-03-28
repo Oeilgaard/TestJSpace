@@ -171,9 +171,14 @@ public class Model {
         this.roundWon = roundWon;
     }
 
-    public boolean countessRule(Player currentPlayer){
-        return (currentPlayer.getHand().getCards().contains(new Card(Character.COUNTESS)) && currentPlayer.getHand().getCards().contains(new Card(Character.PRINCE))) ||
-                (currentPlayer.getHand().getCards().contains(new Card(Character.COUNTESS)) && currentPlayer.getHand().getCards().contains(new Card(Character.KING)));
+    public boolean countessRule(Player p){
+        System.out.print("Countess rule is ");
+        //ArrayList<Card> hand = p.getHand().getCards();
+        System.out.println((p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.PRINCE))) ||
+                (p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.KING))));
+
+        return (p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.PRINCE))) ||
+                (p.getHand().getCards().contains(new Card(Character.COUNTESS)) && p.getHand().getCards().contains(new Card(Character.KING)));
     }
 
     public String removeIDFromPlayername(String username){
