@@ -68,7 +68,7 @@ public class ClientGameUpdate implements Runnable{
                                     for (String message : model.actionHistory){
                                         Label chatText = new Label(message);
                                         chatText.setWrapText(true);
-                                        chatText.prefWidth(184);
+                                        //chatText.prefWidth(184);
 
                                         vb.getChildren().add(chatText);
                                         sp.setVvalue(1.0);
@@ -86,7 +86,7 @@ public class ClientGameUpdate implements Runnable{
 
                         Label chatText = new Label((String) tuple[4]);
                         chatText.setWrapText(true);
-                        chatText.prefWidth(184);
+                        //chatText.prefWidth(184);
 
                         Platform.runLater(() -> {
 
@@ -100,11 +100,11 @@ public class ClientGameUpdate implements Runnable{
                     }
                 } else if (tuple[1].equals(Model.GAME_START_UPDATE)) {
 
-                    System.out.println("New card for the new round " + (String) tuple[3]);
                     model.cardsOnHand.add((String) tuple[3]);
 
                     ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                     card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+
 
                     Label chatText = new Label((String) tuple[4]);
                     chatText.setWrapText(true);
@@ -127,7 +127,7 @@ public class ClientGameUpdate implements Runnable{
 
                     Label chatText = new Label((String) tuple[4]);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     System.out.println("Should have printed outcome : " + tuple[4]);
 
@@ -162,7 +162,7 @@ public class ClientGameUpdate implements Runnable{
 
                     Label chatText = new Label((String) tuple[4]);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     Platform.runLater(() -> {
                         //Update GUI to tell who has been knocked out

@@ -34,7 +34,7 @@
       </Pane>
         <ScrollPane fx:id="scrollplaycard" layoutX="38.0" layoutY="139.0" pannable="true" prefHeight="213.0" prefWidth="200.0" vbarPolicy="ALWAYS" vvalue="1.0">
          <content>
-                <VBox fx:id="vb1playcard" maxHeight="999999.0" prefHeight="212.0" prefWidth="184.0" />
+                <VBox fx:id="vb1playcard" maxHeight="999999.0" prefWidth="184.0" />
          </content>
         </ScrollPane>
 

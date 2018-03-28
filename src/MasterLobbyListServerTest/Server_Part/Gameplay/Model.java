@@ -35,16 +35,16 @@ public class Model {
     public final static int SERVER_UPDATE = 20;
     //public final static int DISCARD = 21;
 
-    protected static ArrayList<Player> players;
-    protected static int turn;
-    protected static int affectionGoal;
-    protected static int playerPointer; // index of the current player's turn
-    protected static int round;
-    protected static Deck deck;
-    protected static boolean roundWon;
-    protected static ArrayList<Card> revealedCards;
-    protected static Card secretCard;
-    private static SequentialSpace lobbySpace;
+    protected ArrayList<Player> players;
+    protected int turn;
+    protected int affectionGoal;
+    protected int playerPointer; // index of the current player's turn
+    protected int round;
+    protected Deck deck;
+    protected boolean roundWon;
+    protected ArrayList<Card> revealedCards;
+    protected Card secretCard;
+    private SequentialSpace lobbySpace;
 
     public Model(ArrayList<String> players, SequentialSpace lobbySpace){
 
@@ -65,7 +65,7 @@ public class Model {
 
     // RULES & UTILITY
 
-    public static void determineAffectionGoal(){
+    public void determineAffectionGoal(){
         switch (players.size()) {
             case 2:
                 affectionGoal = AFFECTION_GOAL_TWO_PLAYERS;
@@ -81,15 +81,15 @@ public class Model {
         }
     }
 
-    public static ArrayList<Player> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public static void nextTurn() {
+    public void nextTurn() {
         turn++;
     }
 
-    public static void nextRound() {
+    public void nextRound() {
         round++;
     }
 
@@ -403,7 +403,6 @@ public class Model {
 
         players.get(sendersIndex).discardCard(cardIndex);
         players.get(sendersIndex).setInRound(false);
-        players.get(sendersIndex).discardHand();
 
         knockOut(sendersIndex);
 
@@ -446,7 +445,7 @@ public class Model {
     public void informPlayersAboutTargetedPlay(String card, String msgSender, String msgTarget, String msgOthers, int senderIndex,
                                                int receiverIndex, String kingCardToSender, String kingCardToTarget){
 
-            for(Player p : players){
+        for(Player p : players){
             if(p.getName().equals(players.get(senderIndex).getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, kingCardToSender);
@@ -471,7 +470,7 @@ public class Model {
 
     public void informPlayersAboutUntargetedPlay(String card, int senderIndex, String msgSender, String msgOthers){
         for(Player p : players){
-            if(p.getName() != players.get(senderIndex).getName()){
+            if(!p.getName().equals(players.get(senderIndex).getName())){
                 try {
                     lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgOthers, "");
                 } catch (InterruptedException e) {

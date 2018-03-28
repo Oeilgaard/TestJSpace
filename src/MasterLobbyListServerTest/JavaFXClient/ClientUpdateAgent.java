@@ -41,7 +41,7 @@ public class ClientUpdateAgent implements Runnable{
 
                         Label chatText = new Label((String) tuple[3]);
                         chatText.setWrapText(true);
-                        chatText.prefWidth(254);
+                        //chatText.prefWidth(254);
 
                         ((VBox) root.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
@@ -126,7 +126,7 @@ public class ClientUpdateAgent implements Runnable{
                                 for (String message : model.actionHistory) {
                                     Label chatText = new Label(message);
                                     chatText.setWrapText(true);
-                                    chatText.prefWidth(184);
+                                    //chatText.prefWidth(184);
 
                                     vb.getChildren().add(chatText);
                                     sp.setVvalue(1.0);

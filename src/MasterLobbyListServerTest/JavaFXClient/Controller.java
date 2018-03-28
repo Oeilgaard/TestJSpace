@@ -84,9 +84,9 @@ public class Controller {
             changeScene(PICK_PLAYER_SCENE);
             selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(0));
         } else {
-            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"0","",""); // Send the action to the server
             model.cardsOnHand.remove(0);
             changeScene("GameScene");
+            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"0","",""); // Send the action to the server
         }
         // if card one is targeted
         // go to pick player scene
@@ -101,9 +101,9 @@ public class Controller {
             changeScene(PICK_PLAYER_SCENE);
             selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(1));
         } else {
-            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"1","",""); // Send the action to the server
             model.cardsOnHand.remove(1);
             changeScene("GameScene");
+            model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(),"1","",""); // Send the action to the server
         }
     }
 
@@ -194,7 +194,7 @@ public class Controller {
                 for (String message : model.actionHistory) {
                     Label chatText = new Label(message);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     vb.getChildren().add(chatText);
                     sp.setVvalue(1.0);
@@ -203,6 +203,9 @@ public class Controller {
                 break;
             }
             case "GameScene": {
+
+                ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
+                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
 
                 Label label = (Label)model.currentRoot.lookup("#usernameLabel");
                 label.setText(removedIdFromUsername());
@@ -213,7 +216,7 @@ public class Controller {
                 for (String message : model.actionHistory) {
                     Label chatText = new Label(message);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     vb.getChildren().add(chatText);
                     sp.setVvalue(1.0);
@@ -229,9 +232,6 @@ public class Controller {
                         updatePlayerListView.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
                     }
                 }
-
-                ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
 
                 break;
             }
@@ -345,7 +345,7 @@ public class Controller {
         s = s.substring(0, s.indexOf("#"));
         Label chatText = new Label(s + " : " + text);
         chatText.setWrapText(true);
-        chatText.prefWidth(254);
+        //chatText.prefWidth(254);
 
         vb1.getChildren().add(chatText);
         chatTxtField.clear();
@@ -541,11 +541,11 @@ public class Controller {
                 }
 
                 if(!selectCardIsGuard) {
-                    model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), ""); // Send the action to the server
                     model.cardsOnHand.remove(pickedCard);
+                    changeScene("GameScene");
+                    model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), ""); // Send the action to the server
                     pickedCard = 2;
                     indexOfTarget = -1;
-                    changeScene("GameScene");
                 }else {
                     changeScene("ChooseGuessScene");
                 }
@@ -556,13 +556,13 @@ public class Controller {
     @FXML
     private void GuessSelect(ActionEvent event) throws InterruptedException, IOException {
         Button btn =(Button) event.getSource();
-        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), btn.getId()); // Send the action to the server
         model.cardsOnHand.remove(pickedCard);
+        changeScene("GameScene");
+        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), Integer.toString(indexOfTarget), btn.getId()); // Send the action to the server
         pickedCard = 2;
         indexOfTarget = -1;
         selectCardIsGuard = false;
 
-        changeScene("GameScene");
     }
 
     private String removedIdFromUsername(){
@@ -580,14 +580,14 @@ public class Controller {
 
     @FXML
     private void playCardWithNoTargets() throws InterruptedException, IOException {
-        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), "", ""); // Send the action to the server
         model.cardsOnHand.remove(pickedCard);
+        changeScene("GameScene");
+        model.getLobbySpace().put(Model.SERVER_UPDATE, Model.DISCARD, model.getUniqueName(), Integer.toString(pickedCard), "", ""); // Send the action to the server
 
         pickedCard = 2;
         indexOfTarget = -1;
         selectCardIsGuard = false;
 
-        changeScene("GameScene");
     }
 
 }

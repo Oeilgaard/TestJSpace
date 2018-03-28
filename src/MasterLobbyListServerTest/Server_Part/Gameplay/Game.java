@@ -40,7 +40,7 @@ public class Game {
 
         model.turn = 1;
         model.playerPointer = 0;
-        Model.nextRound();
+        model.nextRound();
 
         model.deck.getCards().clear();
         model.deck.fillDeck();
@@ -111,7 +111,7 @@ public class Game {
 
                     for(Player p : model.players){
                         String msg = "Round " + model.round + ", " + "Turn " + model.turn + " - ";
-                        if(p.getName()==currentPlayer.getName()) {
+                        if(p.getName().equals(currentPlayer.getName())) {
                             try {
                                 msg += "Your turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4] message, [5] -
@@ -173,7 +173,7 @@ public class Game {
                     // 3. ROUND END CHECKS
                     terminalTest();
 
-                    Model.nextTurn(); //turn only increments if a turn is executed
+                    model.nextTurn(); //turn only increments if a turn is executed
                 }
                 model.playerPointer++; // player pointer increments for every index in the players array
             }
