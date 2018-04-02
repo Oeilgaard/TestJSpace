@@ -18,7 +18,7 @@
    <children>
        <ScrollPane fx:id="scroll" layoutX="31.0" layoutY="56.0" pannable="true" prefHeight="359.0" prefWidth="275.0" vbarPolicy="ALWAYS" vvalue="1.0">
            <content>
-               <VBox fx:id="vb1" maxHeight="999999.0" prefWidth="184.0" />
+               <VBox fx:id="vb1" maxHeight="999999.0" prefWidth="230.0" />
            </content>
        </ScrollPane>
       <Label layoutX="31.0" layoutY="27.0" text="Actions" />

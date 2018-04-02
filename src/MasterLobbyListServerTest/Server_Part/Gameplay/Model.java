@@ -294,7 +294,12 @@ public class Model {
 
         players.get(sendersIndex).discardCard(cardIndex);
         Card discardedCard = players.get(sendersIndex).getHand().getCards().get(0);
-        players.get(targetPlayersIndex).discardHand();
+
+        if(players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter() == Character.PRINCESS){
+            knockOut(targetPlayersIndex);
+        } else {
+            players.get(targetPlayersIndex).discardHand();
+        }
 
         if ((!deck.getCards().isEmpty())) {
             deck.drawCard(players.get(targetPlayersIndex).getHand());
@@ -324,7 +329,7 @@ public class Model {
                     }
                 }
             } else {
-                String msgSender = "You play PRINCE on " + senderName + " who discard the hand and draws a new card.";
+                String msgSender = "You play PRINCE on " + targetName + " who discard the hand and draws a new card.";
                 String msgTarget = senderName + " plays PRINCE on you. You discard" +
                         " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
                 String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";

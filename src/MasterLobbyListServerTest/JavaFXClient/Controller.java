@@ -13,6 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
@@ -210,9 +211,16 @@ public class Controller {
                 VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
                 ScrollPane sp = ((ScrollPane) model.currentRoot.lookup("#scroll"));
                 vb.getChildren().clear();
+                int everyOtherCounter = 0;
                 for (String message : model.actionHistory) {
                     Label chatText = new Label(message);
                     chatText.setWrapText(true);
+                    if(everyOtherCounter == 1) {
+                        chatText.setTextFill(Color.web("#0F487F"));
+                        everyOtherCounter = 0;
+                    } else {
+                        everyOtherCounter = 1;
+                    }
                     //chatText.prefWidth(184);
 
                     vb.getChildren().add(chatText);

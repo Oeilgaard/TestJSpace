@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
@@ -60,8 +61,15 @@ public class ClientGameUpdate implements Runnable{
                                     VBox vb = ((VBox) root.lookup("#vb1playcard"));
                                     ScrollPane sp = ((ScrollPane) root.lookup("#scrollplaycard"));
                                     vb.getChildren().clear();
+                                    int everyOtherCounter = 0;
                                     for (String message : model.actionHistory){
                                         Label chatText = new Label(message);
+                                        if(everyOtherCounter == 1) {
+                                            chatText.setTextFill(Color.web("#0F487F"));
+                                            everyOtherCounter = 0;
+                                        } else {
+                                            everyOtherCounter = 1;
+                                        }
                                         chatText.setWrapText(true);
 
                                         vb.getChildren().add(chatText);
@@ -79,6 +87,7 @@ public class ClientGameUpdate implements Runnable{
                     } else {
 
                         Label chatText = new Label((String) tuple[4]);
+                        chatText.setTextFill(Color.web("#0F487F"));
                         chatText.setWrapText(true);
 
                         Platform.runLater(() -> {
@@ -101,7 +110,7 @@ public class ClientGameUpdate implements Runnable{
 
                     Label chatText = new Label((String) tuple[4]);
                     chatText.setWrapText(true);
-                    chatText.prefWidth(184);
+                    //chatText.prefWidth(184);
 
                     System.out.println("Should have printed outcome : " + tuple[4]);
 

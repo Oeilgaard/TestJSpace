@@ -27,7 +27,6 @@ public class ClientUpdateAgent implements Runnable{
         this.model = model;
         this.root = root;
         this.threadId = threadId;
-        System.out.println("This threads nr is " + threadId);
     }
 
     @Override
@@ -40,9 +39,6 @@ public class ClientUpdateAgent implements Runnable{
 
                 //[0] update code [1] type of update [2] name of user [3] chat text combined with username (situational)
                 Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class),new ActualField(threadId));
-
-                System.out.println("Received tuple " + tuple[1]);
-
 
                 if (tuple[1].equals(Model.CHAT_MESSAGE)) {
                     Platform.runLater(() -> {

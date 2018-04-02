@@ -64,7 +64,7 @@ public class Lobby implements Runnable {
 
         while (true) {
             try {
-                // [0] LOBBY-tuple code, [1] LOBBY action code, [2] User name (for some tuples)
+                // [0] LOBBY-tuple code, [1] LOBBY action code, [2] User name (for some tuples) [3] thread nr for the specific user
                 Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class));
                 int req = (int) tuple[1];
                 String name = (String) tuple[2];
@@ -72,7 +72,6 @@ public class Lobby implements Runnable {
                 if (req == CONNECT) {
                     if (noPlayers < MAX_PLAYER_PR_LOBBY) {
                         players.add(name); // add player to players
-                        System.out.println("New thread id is " + tuple[3]);
                         threadIdsForClients.add((int)tuple[3]);
                         noPlayers++;
                         Boolean isThisPlayerLobbyLeader = false;
@@ -94,7 +93,6 @@ public class Lobby implements Runnable {
                     int threadId = players.indexOf(name);
                     players.remove(name); // remove player from players
                     threadIdsForClients.remove(threadId);
-                    System.out.println(threadIdsForClients);
                     noPlayers--;
                     updatePlayers(name, DISCONNECT);
                 } else if (req == CLOSE) {
