@@ -173,6 +173,8 @@ public class ClientGameUpdate implements Runnable{
                     });
 
                 } else if (tuple[1].equals(Model.WIN)) {
+
+                    model.actionHistory.clear();
                     model.cardsOnHand.clear();
                     Label chatText = new Label((String) tuple[3]);
                     chatText.setWrapText(true);
@@ -215,6 +217,8 @@ public class ClientGameUpdate implements Runnable{
                                 updateListView.getItems().add(obj[1]);
                                 Controller.lobbyIds.add((UUID) obj[2]);
                             }
+
+                            model.actionHistory.clear();
 
                             model.leaderForCurrentLobby = false;
 

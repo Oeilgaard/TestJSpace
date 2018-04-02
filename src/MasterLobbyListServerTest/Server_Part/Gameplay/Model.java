@@ -38,7 +38,7 @@ public class Model {
 
     protected ArrayList<Player> players;
     protected int turn;
-    protected int affectionGoal;
+    protected int affectionGoal = 1;
     protected int playerPointer; // index of the current player's turn
     protected int round;
     protected Deck deck;
@@ -123,9 +123,9 @@ public class Model {
         return null;
     }
 
-    public String getWinner(int winningAffectionAmount){
+    public String getWinner(){
         for(Player p : players){
-            if(p.getAffection()==winningAffectionAmount){
+            if(p.getAffection()==affectionGoal){
                 return p.getName();
             }
         }
@@ -240,7 +240,7 @@ public class Model {
 
         players.get(sendersIndex).discardCard(cardIndex);
 
-        String msgSender = "You place PRIEST on " + targetName + ". + " +
+        String msgSender = "You play PRIEST on " + targetName + ". " +
                 targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0);
         String msgTarget = senderName + " uses PRIEST on you.";
         String msgOthers = senderName + " plays PRIEST on " + targetName;

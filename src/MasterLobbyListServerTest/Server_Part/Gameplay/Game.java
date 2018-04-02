@@ -80,10 +80,10 @@ public class Game {
 
     public void startGame() throws InterruptedException {
 
-        model.determineAffectionGoal();
+        //model.determineAffectionGoal();
 
         // Game loop
-        while (model.currentMaxAffection()< model.affectionGoal) {
+        while (model.currentMaxAffection() < model.affectionGoal) {
 
             newRound();
 
@@ -149,20 +149,21 @@ public class Game {
                     model.nextTurn(); //turn only increments if a turn is executed
                 }
                 model.playerPointer++; // player pointer increments for every index in the players array
-
             }
             System.out.println("Game is over");
-
         }
 
         posTargets.interrupt();
 
-        String winner = model.getWinner(model.affectionGoal);
+        String winner = model.getWinner();
         winner = winner.substring(0,winner.indexOf("#"));
 
         for(Player p : model.players) {
             lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_ENDING, p.getName(),winner,"","");
         }
+
+        // Players have 30 s to receive the GAME_ENDING-tuple before the space closes
+        Thread.sleep(30000);
 
     }
 
@@ -390,11 +391,11 @@ public class Game {
                 model.nearestToPrincess().get(0).incrementAffection();
 
                 String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + " won the round with the highest card!" +
-                        model.nearestToPrincess().get(0).getName() + "'s affection is now " + model.nearestToPrincess().get(0).getAffection()
-                        + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";;
+                        model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + "'s affection is now " + model.nearestToPrincess().get(0).getAffection()
+                        + ". Just " + (model.affectionGoal-model.nearestToPrincess().get(0).getAffection()) + " points away from winning!";;
                 String msgWinner = "The deck is empty! You won the round with the highest card!" +
                         "Your affection is now " + model.nearestToPrincess().get(0).getAffection()
-                        + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";;
+                        + ". Just " + (model.affectionGoal-model.nearestToPrincess().get(0).getAffection()) + " points away from winning!";;
 
                 model.setRoundWon(true);
 
