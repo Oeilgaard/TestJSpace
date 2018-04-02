@@ -17,7 +17,13 @@ import javafx.scene.paint.Color;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SealedObject;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -109,27 +115,34 @@ public class Controller {
     }
 
     @FXML
-    public void joinServer() throws IOException, InterruptedException {
+    public void joinServer() throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
 
         String urlForRemoteSpace = IP.getText();
         model = new Model();
         model.addIpToRemoteSpaces(urlForRemoteSpace);
         lobbyIds = new ArrayList<>();
 
+        // (Blocking) query of the server's public key and set it in client's model
+        Object[] tuple = model.getRequestSpace().query(new FormalField(PublicKey.class));
+        model.setPublicKey((PublicKey) tuple[0]);
+
         changeScene(USER_NAME_SCENE);
     }
 
     @FXML
-    public void createUser() throws InterruptedException {
+    public void createUser() throws InterruptedException, IOException, IllegalBlockSizeException {
 
         String userNameString = userName.getText();
+        System.out.println(userNameString);
+        System.out.println("136: " + model.getCipher() == null);
+        SealedObject encryptedUserNameString = new SealedObject(userNameString, model.getCipher());
 
         if (HelperFunctions.validName(userNameString)) {
 
             createUserNameButton.setDisable(true);
             instructionsUserName.setText("");
 
-            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, userNameString, "");
+            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, encryptedUserNameString, "");
 
             // Blocks until user receives unique username (due to 'get')
             // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID
@@ -305,15 +318,16 @@ public class Controller {
     }
 
     @FXML
-    public void createLobby() throws InterruptedException {
+    public void createLobby() throws InterruptedException, IOException, IllegalBlockSizeException {
 
         String lobbyNameString = lobbyName.getText();
+        SealedObject encryptedLobbyNameString = new SealedObject(lobbyNameString, model.getCipher());
 
         if (HelperFunctions.validName(lobbyNameString)) {
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 
-            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
+            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString, model.getUniqueName());
 
             // Wait for server to be created
             // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
@@ -430,54 +444,23 @@ public class Controller {
     }
 
     @FXML
-    public void enterIPField(javafx.scene.input.KeyEvent keyEvent) throws IOException, InterruptedException {
+    public void enterIPField(javafx.scene.input.KeyEvent keyEvent) throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-            String urlForRemoteSpace = IP.getText();
-            model = new Model();
-            model.addIpToRemoteSpaces(urlForRemoteSpace);
-            lobbyIds = new ArrayList<>();
-
-            changeScene(USER_NAME_SCENE);
+            joinServer();
         }
     }
 
     @FXML
-    public void requestNameVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
+    public void requestNameVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException, IOException, IllegalBlockSizeException {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             createUser();
         }
     }
 
     @FXML
-    public void createLobbyVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException {
+    public void createLobbyVhaEnter(javafx.scene.input.KeyEvent keyEvent) throws InterruptedException, IOException, IllegalBlockSizeException {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
-            String lobbyNameString = lobbyName.getText();
-
-            if (HelperFunctions.validName(lobbyNameString)) {
-                createLobbyButton.setDisable(true);
-                instructionsLobbyName.setText("");
-
-                model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, lobbyNameString, model.getUniqueName());
-
-                // Wait for server to be created
-                // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
-                Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(Integer.class),
-                        new ActualField(model.getUniqueName()), new FormalField(UUID.class));
-
-                if ((int) tuple[1] == Model.OK) {
-                    try {
-                        changeScene(LOBBY_LIST_SCENE);
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else if ((int) tuple[1] == Model.BAD_REQUEST) {
-                    instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
-                    createLobbyButton.setDisable(false);
-                }
-            } else {
-                instructionsLobbyName.setText("Please only apply alphabetic characters (between 2-15 characters).");
-            }
+            createLobby();
         }
     }
 

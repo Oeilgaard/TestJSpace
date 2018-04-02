@@ -40,6 +40,8 @@ public class ClientUpdateAgent implements Runnable{
                 //[0] update code [1] type of update [2] name of user [3] chat text combined with username (situational)
                 Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class),new ActualField(threadId));
 
+
+
                 if (tuple[1].equals(Model.CHAT_MESSAGE)) {
                     Platform.runLater(() -> {
 

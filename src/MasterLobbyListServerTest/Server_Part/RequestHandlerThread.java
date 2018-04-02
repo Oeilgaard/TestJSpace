@@ -1,5 +1,9 @@
 package MasterLobbyListServerTest.Server_Part;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SealedObject;
+import java.io.IOException;
 import java.util.UUID;
 
 public class RequestHandlerThread implements Runnable {
@@ -18,7 +22,21 @@ public class RequestHandlerThread implements Runnable {
 
             System.out.println("Creating a lobby with the name : " + tuple[2] + "\n");
 
-            String serverName = (String) tuple[2];
+            SealedObject encryptedLobbyName = (SealedObject) tuple[2];
+            //String serverName = (String) tuple[2];
+            String serverName = null;
+            try {
+                serverName = (String) encryptedLobbyName.getObject(serverData.cipher);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            }
+
             String user = (String) tuple[3];
             if(validName(serverName)) {
 
@@ -52,7 +70,21 @@ public class RequestHandlerThread implements Runnable {
 
         } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
 
-            String userName = (String) tuple[2];
+            SealedObject encryptedUserName = (SealedObject) tuple[2];
+
+            //String userName = (String) tuple[2];
+            String userName = null;
+            try {
+                userName = (String) encryptedUserName.getObject(serverData.cipher);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            }
 
             if(validName(userName)) {
                 String uniqueName = uniqueUserName(userName);

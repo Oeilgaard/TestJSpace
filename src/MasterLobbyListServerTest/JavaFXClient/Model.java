@@ -3,7 +3,12 @@ package MasterLobbyListServerTest.JavaFXClient;
 import javafx.scene.Parent;
 import org.jspace.RemoteSpace;
 
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -73,11 +78,15 @@ public class Model {
 
     public Parent currentRoot;
 
+    private PublicKey serverPublicKey;
+    private Cipher serverCipher;
+
     public Model(){
         serverResponseMonitor = new ServerResponseMonitor();
     }
 
     public Thread updateAgent;
+
 
     public void addIpToRemoteSpaces(String ip) throws IOException {
         requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
@@ -85,6 +94,19 @@ public class Model {
         serverIp = ip;
         responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
     }
+
+    public void setPublicKey(PublicKey pk) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        serverPublicKey = pk;
+
+        serverCipher = Cipher.getInstance("RSA");
+        serverCipher.init(Cipher.ENCRYPT_MODE, pk);
+
+    }
+
+    public Cipher getCipher(){
+        return serverCipher;
+    }
+
 
     public RemoteSpace getLobbyListSpace(){
         return lobbyListSpace;

@@ -3,7 +3,11 @@ package MasterLobbyListServerTest.Server_Part;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SealedObject;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -45,7 +49,7 @@ public class Server {
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
 
-    public static void main(String[] argv) throws InterruptedException, IOException {
+    public static void main(String[] argv) throws InterruptedException, IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
 
         ServerData serverData = new ServerData();
         System.out.println("ServerData is initialised");
@@ -56,7 +60,7 @@ public class Server {
 
             // [0] request code,[1] request type, [2] username to request/name of lobby, [3] null/username for lobby owner
             int REQUEST_CODE = 1;
-            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(String.class));
+            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(String.class));
 
             Runnable reqHandler = new RequestHandlerThread(serverData, tuple);
             serverData.executor.execute(reqHandler);//calling execute method of ExecutorService
