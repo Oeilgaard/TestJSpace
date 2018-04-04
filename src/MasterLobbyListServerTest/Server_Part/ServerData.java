@@ -23,7 +23,7 @@ public class ServerData{
     SequentialSpace responseSpace = new SequentialSpace();
     SpaceRepository serverRepos = new SpaceRepository();
     KeyPairGenerator kpg;
-    Cipher cipher;
+    public Cipher cipher;
 
     ExecutorService executor = Executors.newFixedThreadPool(MAXIMUM_LOBBIES);//creating a pool of 5 threads
 

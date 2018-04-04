@@ -6,6 +6,11 @@ import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 import org.jspace.SpaceRepository;
 
+import javax.crypto.*;
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -40,8 +45,10 @@ public class Lobby implements Runnable {
     private int noPlayers;
     private ArrayList<String> players;
     private ArrayList<Integer> threadIdsForClients;
+    private ServerData serverData;
+    private ArrayList<Cipher> cipherFromPlayers;
 
-    public Lobby(UUID lobbyID, SequentialSpace lobbyOverviewSpace, SpaceRepository serverRepos, String lobbyLeader){
+    public Lobby(UUID lobbyID, SequentialSpace lobbyOverviewSpace, SpaceRepository serverRepos, String lobbyLeader, ServerData serverData){
         this.lobbyID = lobbyID;
         this.lobbyOverviewSpace = lobbyOverviewSpace;
         this.serverRepos = serverRepos;
@@ -49,6 +56,8 @@ public class Lobby implements Runnable {
         this.beginFlag = false;
         this.players = new ArrayList<>();
         this.threadIdsForClients = new ArrayList<>();
+        this.serverData = serverData;
+        this.cipherFromPlayers = new ArrayList<>();
     }
 
     @Override
@@ -59,26 +68,37 @@ public class Lobby implements Runnable {
 
         System.out.println("Lobby is now running\n");
 
-        Thread chatAgent = new Thread(new LobbyChatAgent(lobbySpace,players,threadIdsForClients));
+        Thread chatAgent = new Thread(new LobbyChatAgent(lobbySpace,players,threadIdsForClients,serverData.cipher));
         chatAgent.start();
 
         while (true) {
             try {
-                // [0] LOBBY-tuple code, [1] LOBBY action code, [2] User name (for some tuples) [3] thread nr for the specific user
-                Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class));
-                int req = (int) tuple[1];
-                String name = (String) tuple[2];
+                // [0] LOBBY-tuple code, [1] (int)LOBBY action code, [2] (String)User name (for some tuples) [3] (int)thread nr for the specific user
+                Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
+
+                String decryptedString = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
+
+                String field1 = decryptedString.substring(0,decryptedString.indexOf('!'));
+                String field2 = decryptedString.substring(decryptedString.indexOf('!')+1,decryptedString.indexOf('?'));
+                String field3 = decryptedString.substring(decryptedString.indexOf('?')+1,decryptedString.length());
+
+                int req = Integer.parseInt(field1);
+                String name = field2;
 
                 if (req == CONNECT) {
                     if (noPlayers < MAX_PLAYER_PR_LOBBY) {
                         players.add(name); // add player to players
-                        threadIdsForClients.add((int)tuple[3]);
+                        threadIdsForClients.add(Integer.parseInt(field3));
+                        Key key = (Key) ((SealedObject)tuple[2]).getObject(serverData.cipher);
+                        Cipher cipher = Cipher.getInstance("AES");
+                        cipher.init(Cipher.ENCRYPT_MODE,key);
+                        cipherFromPlayers.add(cipher);
                         noPlayers++;
                         Boolean isThisPlayerLobbyLeader = false;
                         if (name.equals(lobbyLeader)) {
                             isThisPlayerLobbyLeader = true;
                         }
-                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, name, isThisPlayerLobbyLeader);
+                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, name, isThisPlayerLobbyLeader,(int) players.indexOf(name));
                         updatePlayers(name, CONNECT);
                     } else { // lobby full
                         lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, name, false);
@@ -90,9 +110,10 @@ public class Lobby implements Runnable {
                         updatePlayers(name, CLOSE);
                         break;
                     }
-                    int threadId = players.indexOf(name);
+                    int indexForPlayer = players.indexOf(name);
                     players.remove(name); // remove player from players
-                    threadIdsForClients.remove(threadId);
+                    threadIdsForClients.remove(indexForPlayer);
+                    cipherFromPlayers.remove(indexForPlayer);
                     noPlayers--;
                     updatePlayers(name, DISCONNECT);
                 } else if (req == CLOSE) {
@@ -121,9 +142,23 @@ public class Lobby implements Runnable {
                     lobbySpace.put(LOBBY_RESP, usernames, name);
                 } else {
                     System.out.println("Unknown request");
-                    System.out.println(tuple[1].toString());
+                    System.out.println(field1.toString());
                 }
             } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
                 e.printStackTrace();
             }
         }
@@ -142,7 +177,7 @@ public class Lobby implements Runnable {
         if(beginFlag){
             //GameplayDummy gp = new GameplayDummy(players);
             //gp.runGamePlay();
-            Game game = new Game(players, lobbySpace);
+            Game game = new Game(players, lobbySpace, serverData);
             try {
                 game.startGame();
             } catch (InterruptedException e) {

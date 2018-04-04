@@ -6,13 +6,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 public class Main extends Application {
 
     static Stage appWindow;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
         System.out.println("Starting main");
         launch(args);
         System.out.println("Elegant closing");
@@ -29,7 +36,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void stop() throws InterruptedException {
+    public void stop() throws InterruptedException, IOException, IllegalBlockSizeException {
         if(Controller.connectedToLobby) {
             Controller.sendDisconnectTuple();
         }

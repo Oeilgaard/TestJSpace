@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SealedObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +55,14 @@ public class ClientUpdateAgent implements Runnable{
                         ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
                     });
                 } else if (tuple[1].equals(Model.CONNECT) || tuple[1].equals(Model.DISCONNECT)) {
-                    model.getLobbySpace().put(Model.LOBBY_REQ, Model.GET_PLAYERLIST, model.getUniqueName(), -1);
+
+                    //Tuple 1 - 3 sealed object
+
+                    String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUniqueName() + "?" + -1;
+
+                    SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getCipher());
+
+                    model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage);
 
                     Platform.runLater(() -> {
                         Object[] tuple2;
@@ -138,7 +147,9 @@ public class ClientUpdateAgent implements Runnable{
                                     sp.setVvalue(1.0);
                                 }
 
-                                model.getLobbySpace().put("TargetablePlayersRequest", model.getUniqueName(), 2);
+                                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2, model.getCipher());
+
+                                model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
                                 Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
 
                                 ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
@@ -157,6 +168,8 @@ public class ClientUpdateAgent implements Runnable{
                                 root = null;
                             } catch (IOException | InterruptedException e) {
                                 e.printStackTrace();
+                            } catch (IllegalBlockSizeException e) {
+                                e.printStackTrace();
                             }
                         }
                     });
@@ -169,6 +182,10 @@ public class ClientUpdateAgent implements Runnable{
                 model = null;
                 root = null;
                 return;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
             }
         }
 

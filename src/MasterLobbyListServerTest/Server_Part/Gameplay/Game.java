@@ -1,8 +1,14 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import MasterLobbyListServerTest.Server_Part.ServerData;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SealedObject;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Game {
@@ -20,11 +26,14 @@ public class Game {
     private Object[] tuple;
     private boolean legalPlay;
 
-    public Game(ArrayList<String> players, SequentialSpace lobbySpace) {
+    private ServerData serverData;
+
+    public Game(ArrayList<String> players, SequentialSpace lobbySpace, ServerData serverData) {
         this.model = new Model(players, lobbySpace);
         this.lobbySpace = lobbySpace;
-        posTargets = new Thread(new PossibleTargetsThread(lobbySpace,model));
+        posTargets = new Thread(new PossibleTargetsThread(lobbySpace,model,serverData));
         posTargets.start();
+        this.serverData = serverData;
     }
 
     public void newRound(){
@@ -171,26 +180,42 @@ public class Game {
         try {
             // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
             //TODO: Lyt efter disconnect også
-            Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new ActualField(Model.DISCARD),
-                    new FormalField(String.class), new FormalField(String.class),
-                    new FormalField(String.class), new FormalField(String.class));
+            //TODO: Er Model.DISCARD nødvendigt at lytte på ?
+            Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class));
+
+            String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
+
+            String field1 = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
+            String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.indexOf('?'));
+            String field3 = decryptedMessage.substring(decryptedMessage.indexOf('?')+1,decryptedMessage.indexOf('='));
+            String field4 = decryptedMessage.substring(decryptedMessage.indexOf('=')+1,decryptedMessage.indexOf('*'));
+            String field5 = decryptedMessage.substring(decryptedMessage.indexOf('*')+1,decryptedMessage.length());
+
+            String[] decryptedTuple = new String[6];
+            decryptedTuple[0] = "filler";
+            decryptedTuple[1] = field1;
+            decryptedTuple[2] = field2;
+            decryptedTuple[3] = field3;
+            decryptedTuple[4] = field4;
+            decryptedTuple[5] = field5;
+
 
             // If we receive a tuple matching the pattern, however, the sender is not the current player, we do nothing
-            if(!(tuple[2]).equals(currentPlayer.getName())){
+            if(!(field2).equals(currentPlayer.getName())){
                 return;
             }
 
             // If the card index is legal, we proceed, else we send ACTION_DENIED tuple
-            if(legalCardIndex(Integer.parseInt((String)tuple[3]))){
+            if(legalCardIndex(Integer.parseInt((String)field3))){
 
                 // temp. variable for the Character corresponding to the card index sent
-                Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter();
+                Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter();
 
                 if(c.isTargeted()){
                     //TODO: no possible target case could automitically launch 'noAction' (currently double checking in playCard)
-                    if(!possibleTargets(c) || (validTarget(Integer.parseInt((String) tuple[4]),
-                            currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter()))){
-                        playCard(currentPlayer, tuple);
+                    if(!possibleTargets(c) || (validTarget(Integer.parseInt((String) field4),
+                            currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter()))){
+                        playCard(currentPlayer, decryptedTuple);
                     } else {
                         // Unvalid target case
                         lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Target is unvalid.",
@@ -198,7 +223,7 @@ public class Game {
                                 currentPlayer.getHand().getCards().get(1).getCharacter().toString());
                     }
                 } else {
-                    playCard(currentPlayer, tuple);
+                    playCard(currentPlayer, decryptedTuple);
                 }
 
             } else {
@@ -209,6 +234,14 @@ public class Game {
                         currentPlayer.getHand().getCards().get(1).getCharacter().toString());
             }
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 

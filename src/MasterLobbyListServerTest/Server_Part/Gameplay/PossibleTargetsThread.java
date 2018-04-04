@@ -1,20 +1,27 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import MasterLobbyListServerTest.Server_Part.ServerData;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SealedObject;
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PossibleTargetsThread implements Runnable{
 
     SequentialSpace lobbySpace;
     Model model;
+    ServerData serverData;
 
-
-    public PossibleTargetsThread(SequentialSpace lobbySpace, Model model){
+    public PossibleTargetsThread(SequentialSpace lobbySpace, Model model, ServerData serverData){
         this.lobbySpace = lobbySpace;
         this.model = model;
+        this.serverData = serverData;
     }
 
     @Override
@@ -22,22 +29,28 @@ public class PossibleTargetsThread implements Runnable{
         while(true) {
             try {
 
-                Object[] tuple = lobbySpace.get(new ActualField("TargetablePlayersRequest"), new FormalField(String.class), new FormalField(Integer.class));
+                Object[] tuple = lobbySpace.get(new ActualField("TargetablePlayersRequest"), new FormalField(SealedObject.class));
 
                 String[] targets = {"","","","",""};
+                
+                String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
+                
+                String field1 = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
+                String field2String = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.length());
+                int field2 = Integer.parseInt(field2String);
 
                 int index = 0;
 
-                if ((Integer) tuple[2] == 0) {
+                if ((Integer) field2 == 0) {
                     for (Player p : model.players) {
-                        if (p.isInRound() && !p.isHandMaidProtected() && !p.isMe((String) tuple[1])) {
+                        if (p.isInRound() && !p.isHandMaidProtected() && !p.isMe((String) field1)) {
                             String s = p.getName();
                             s = s.substring(0, s.indexOf("#"));
                             targets[index] = s;
                         }
                         index++;
                     }
-                } else if ((Integer) tuple[2] == 1){
+                } else if ((Integer) field2 == 1){
                     for (Player p : model.players) {
                         if (p.isInRound() && !p.isHandMaidProtected()) {
                             String s = p.getName();
@@ -46,7 +59,7 @@ public class PossibleTargetsThread implements Runnable{
                         }
                         index++;
                     }
-                } else if ((Integer) tuple[2] == 2){
+                } else if ((Integer) field2 == 2){
                     for (Player p : model.players) {
                         if (p.isInRound()){
                             String s = p.getName();
@@ -61,11 +74,19 @@ public class PossibleTargetsThread implements Runnable{
                     }
                 }
 
-                lobbySpace.put("TargetablePlayersResponse", tuple[1], targets);
+                lobbySpace.put("TargetablePlayersResponse", field1, targets);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }

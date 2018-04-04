@@ -20,13 +20,11 @@ public class RequestHandlerThread implements Runnable {
     public void run() {
         if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
 
-            System.out.println("Creating a lobby with the name : " + tuple[2] + "\n");
-
             SealedObject encryptedLobbyName = (SealedObject) tuple[2];
             //String serverName = (String) tuple[2];
-            String serverName = null;
+            String deCryptedMessage = null;
             try {
-                serverName = (String) encryptedLobbyName.getObject(serverData.cipher);
+                deCryptedMessage = (String) encryptedLobbyName.getObject(serverData.cipher);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -37,7 +35,11 @@ public class RequestHandlerThread implements Runnable {
                 e.printStackTrace();
             }
 
-            String user = (String) tuple[3];
+            String serverName = deCryptedMessage.substring(0,deCryptedMessage.indexOf('!'));
+
+            System.out.println("Creating a lobby with the name : " + serverName + "\n");
+
+            String user = deCryptedMessage.substring(deCryptedMessage.indexOf('!')+1,deCryptedMessage.length());
             if(validName(serverName)) {
 
 
@@ -45,7 +47,7 @@ public class RequestHandlerThread implements Runnable {
 
                 UUID idForLobby = UUID.randomUUID();
 
-                Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user);
+                Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user, serverData);
                 serverData.executor.execute(lobby);  //calling execute method of ExecutorService
 
                 try {
@@ -73,9 +75,9 @@ public class RequestHandlerThread implements Runnable {
             SealedObject encryptedUserName = (SealedObject) tuple[2];
 
             //String userName = (String) tuple[2];
-            String userName = null;
+            String decryptedUsername = null;
             try {
-                userName = (String) encryptedUserName.getObject(serverData.cipher);
+                decryptedUsername = (String) encryptedUserName.getObject(serverData.cipher);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -85,6 +87,8 @@ public class RequestHandlerThread implements Runnable {
             } catch (BadPaddingException e) {
                 e.printStackTrace();
             }
+
+            String userName = decryptedUsername.substring(0,decryptedUsername.indexOf('!'));
 
             if(validName(userName)) {
                 String uniqueName = uniqueUserName(userName);

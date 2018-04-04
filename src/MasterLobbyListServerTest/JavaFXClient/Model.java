@@ -7,6 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.util.ArrayList;
@@ -81,11 +82,15 @@ public class Model {
     private PublicKey serverPublicKey;
     private Cipher serverCipher;
 
+    public Key key;
+
     public Model(){
         serverResponseMonitor = new ServerResponseMonitor();
     }
 
     public Thread updateAgent;
+
+    public int indexInLobby = -1;
 
 
     public void addIpToRemoteSpaces(String ip) throws IOException {

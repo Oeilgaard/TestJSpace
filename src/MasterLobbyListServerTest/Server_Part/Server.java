@@ -60,7 +60,7 @@ public class Server {
 
             // [0] request code,[1] request type, [2] username to request/name of lobby, [3] null/username for lobby owner
             int REQUEST_CODE = 1;
-            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(String.class));
+            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
             Runnable reqHandler = new RequestHandlerThread(serverData, tuple);
             serverData.executor.execute(reqHandler);//calling execute method of ExecutorService
