@@ -32,13 +32,15 @@ public class Model {
     public final static int GAME_START_UPDATE = 16;
     public final static int ACTION_DENIED = 17;
     public final static int GAME_ENDING = 18;
+    public final static int GAME_DISCONNECT = 19;
+
 
     public final static int SERVER_UPDATE = 20;
     //public final static int DISCARD = 21;
 
     protected ArrayList<Player> players;
     protected int turn;
-    protected int affectionGoal = 1;
+    protected int affectionGoal;
     protected int playerPointer; // index of the current player's turn
     protected int round;
     protected Deck deck;
@@ -199,6 +201,15 @@ public class Model {
     public String removeIDFromPlayername(String username){
         String newName = username.substring(0, username.indexOf("#"));
         return newName;
+    }
+
+    public int playersIndex(Player p){
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i).equals(p)){
+                return i;
+            }
+        }
+        return -1;
     }
 
     // CARD ACTIONS

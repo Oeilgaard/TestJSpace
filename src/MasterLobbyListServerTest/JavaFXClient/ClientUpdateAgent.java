@@ -54,23 +54,26 @@ public class ClientUpdateAgent implements Runnable{
                         ((VBox) root.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
                     });
-                } else if (tuple[1].equals(Model.CONNECT) || tuple[1].equals(Model.DISCONNECT)) {
+                } else if (tuple[1].equals(Model.CONNECT) || tuple[1].equals(Model.LOBBY_DISCONNECT)) {
 
                     //Tuple 1 - 3 sealed object
 
                     String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUniqueName() + "?" + -1;
 
                     SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getCipher());
+                    SealedObject filler = new SealedObject("filler",model.getCipher());
 
-                    model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage);
+                    model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
 
                     Platform.runLater(() -> {
                         Object[] tuple2;
                         try {
 
                             // [0] response code [1] list of playernames [2] username
-                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getUniqueName()));
-
+                            System.out.println("72");
+                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP),
+                                    new FormalField(ArrayList.class), new ActualField(model.getUniqueName()));
+                            System.out.println("75");
 
                             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
                             ObservableList updItems = updatePlayerListView.getItems();
@@ -87,6 +90,7 @@ public class ClientUpdateAgent implements Runnable{
                 } else if (tuple[1].equals(Model.CLOSE)) {
 
                     System.out.println("DETECTED A SHUTDOWN");
+                    model.setInLobby(false);
 
                     //TODO burde de her change scene ting ikke ske i Controller for at 'seperate concern'?
 
@@ -123,6 +127,9 @@ public class ClientUpdateAgent implements Runnable{
 
                     running = false;
                 } else if (tuple[1].equals(Model.BEGIN)) {
+
+                    model.setInGame(true);
+                    model.setInLobby(false);
 
                     Platform.runLater(new Runnable() {
                         public void run() {

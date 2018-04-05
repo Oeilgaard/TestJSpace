@@ -1,6 +1,5 @@
 package MasterLobbyListServerTest.JavaFXClient;
 
-import LobbyTesting.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,7 +74,7 @@ public class Controller {
     private static Model model;
     public static Thread gameAgent;
 
-    public static Boolean connectedToLobby = false;
+    //public static Boolean connectedToLobby = false;
 
     private static int pickedCard = 2;
     private static boolean selectCardIsGuard = false;
@@ -84,7 +83,7 @@ public class Controller {
 
     private static boolean[] playerEnableClick = {false,false,false,false,false};
 
-    private static String lobbyTitelname;
+    private static String lobbyTitleName;
 
     public Controller() {}
 
@@ -305,13 +304,13 @@ public class Controller {
             }
             case LOBBY_SCENE: {
 
-                ((Label) root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyTitelname);
+                ((Label) root.lookup("#lobbyTitle")).setText("Lobby name : " + lobbyTitleName);
                 updatePlayerLobbyList(root);
 
                 Label label = (Label)root.lookup("#usernameLabel");
                 label.setText(removedIdFromUsername());
 
-                connectedToLobby = true;
+                model.setInLobby(true);
                 if (model.leaderForCurrentLobby) {
                     root.lookup("#beginButton").disableProperty().setValue(false);
                 }
@@ -394,17 +393,19 @@ public class Controller {
 
     public static void sendDisconnectTuple() throws InterruptedException, IOException, IllegalBlockSizeException {
 
+        if(model.getInGame()){
+            String messageToBeEncrypted = "" + Model.GAME_DISCONNECT + "!" + model.getUniqueName() + "?0=*";
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getCipher());
+            model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+        } else if(model.getInLobby()){
+            //Tuple 1 - 3 sealed object
+            String messageToBeEncrypted = "" + Model.LOBBY_DISCONNECT + "!" + model.getUniqueName() + "?" + -1;
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getCipher());
+            SealedObject filler = new SealedObject("filler",model.getCipher());
 
-        //Tuple 1 - 3 sealed object
-
-        String messageToBeEncrypted = "" + Model.DISCONNECT + "!" + model.getUniqueName() + "?" + -1;
-
-        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getCipher());
-
-        SealedObject filler = new SealedObject("filler",model.getCipher());
-
-        model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
-        connectedToLobby = false;
+            model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
+            model.setInLobby(false);
+        }
     }
 
     @FXML
@@ -441,7 +442,7 @@ public class Controller {
                         new ActualField(lobbyList.getSelectionModel().getSelectedItem()),
                         new ActualField(lobbyIds.get(index)));
 
-                lobbyTitelname = (String) tuple[1];
+                lobbyTitleName = (String) tuple[1];
 
                 if (tuple != null) {
 
@@ -608,7 +609,7 @@ public class Controller {
     }
 
     @FXML
-    private void GuessSelect(ActionEvent event) throws InterruptedException, IOException, IllegalBlockSizeException {
+    private void guessSelect(ActionEvent event) throws InterruptedException, IOException, IllegalBlockSizeException {
         Button btn =(Button) event.getSource();
         model.cardsOnHand.remove(pickedCard);
         changeScene(GAME_SCENE);

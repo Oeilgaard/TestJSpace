@@ -25,12 +25,14 @@ public class Game {
     private Player currentPlayer;
     private Object[] tuple;
     private boolean legalPlay;
+    private int latestWinnerIndex; // used to determine who goes first - initialized to zero
 
     private ServerData serverData;
 
     public Game(ArrayList<String> players, SequentialSpace lobbySpace, ServerData serverData) {
         this.model = new Model(players, lobbySpace);
         this.lobbySpace = lobbySpace;
+        this.latestWinnerIndex = 0;
         posTargets = new Thread(new PossibleTargetsThread(lobbySpace,model,serverData));
         posTargets.start();
         this.serverData = serverData;
@@ -38,8 +40,6 @@ public class Game {
 
     public void newRound(){
         String msg = "";
-
-        //msg += "Shuffling cards...";
 
         for(Player p : model.players) {
             p.getHand().getCards().clear();
@@ -49,7 +49,7 @@ public class Game {
         }
 
         model.turn = 1;
-        model.playerPointer = 0;
+        model.playerPointer = latestWinnerIndex;
         model.nextRound();
 
         model.revealedCards.clear();
@@ -89,7 +89,7 @@ public class Game {
 
     public void startGame() throws InterruptedException {
 
-        //model.determineAffectionGoal();
+        model.determineAffectionGoal();
 
         // Game loop
         while (model.currentMaxAffection() < model.affectionGoal) {
@@ -199,39 +199,50 @@ public class Game {
             decryptedTuple[4] = field4;
             decryptedTuple[5] = field5;
 
-
-            // If we receive a tuple matching the pattern, however, the sender is not the current player, we do nothing
-            if(!(field2).equals(currentPlayer.getName())){
-                return;
-            }
-
-            // If the card index is legal, we proceed, else we send ACTION_DENIED tuple
-            if(legalCardIndex(Integer.parseInt((String)field3))){
-
-                // temp. variable for the Character corresponding to the card index sent
-                Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter();
-
-                if(c.isTargeted()){
-                    //TODO: no possible target case could automitically launch 'noAction' (currently double checking in playCard)
-                    if(!possibleTargets(c) || (validTarget(Integer.parseInt((String) field4),
-                            currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter()))){
-                        playCard(currentPlayer, decryptedTuple);
-                    } else {
-                        // Unvalid target case
-                        lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Target is unvalid.",
-                                currentPlayer.getHand().getCards().get(0).getCharacter().toString(),
-                                currentPlayer.getHand().getCards().get(1).getCharacter().toString());
-                    }
-                } else {
-                    playCard(currentPlayer, decryptedTuple);
+            if(Integer.parseInt(field1)==model.DISCARD) {
+                // If we receive a tuple matching the pattern, however, the sender is not the current player, we do nothing
+                if(!(field2).equals(currentPlayer.getName())){
+                    return;
                 }
 
-            } else {
-                System.out.println("Fejl: Action denied - illegal card index");
-                // [0] update, [1] type, [2] recipient, [3] msg, [4] card one (String), [5] card two (String)
-                lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Card index is unvalid.",
-                        currentPlayer.getHand().getCards().get(0).getCharacter().toString(),
-                        currentPlayer.getHand().getCards().get(1).getCharacter().toString());
+                // If the card index is legal, we proceed, else we send ACTION_DENIED tuple
+                if(legalCardIndex(Integer.parseInt((String)field3))){
+
+                    // temp. variable for the Character corresponding to the card index sent
+                    Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter();
+
+                    if(c.isTargeted()){
+                        //TODO: no possible target case could automitically launch 'noAction' (currently double checking in playCard)
+                        if(!possibleTargets(c) || (validTarget(Integer.parseInt((String) field4),
+                                currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter()))){
+                            playCard(currentPlayer, decryptedTuple);
+                        } else {
+                            // Unvalid target case
+                            lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Target is unvalid.",
+                                    currentPlayer.getHand().getCards().get(0).getCharacter().toString(),
+                                    currentPlayer.getHand().getCards().get(1).getCharacter().toString());
+                        }
+                    } else {
+                        playCard(currentPlayer, decryptedTuple);
+                    }
+
+                } else {
+                    System.out.println("Fejl: Action denied - illegal card index");
+                    // [0] update, [1] type, [2] recipient, [3] msg, [4] card one (String), [5] card two (String)
+                    lobbySpace.put(Model.CLIENT_UPDATE, Model.ACTION_DENIED, currentPlayer.getName(), "Card index is unvalid.",
+                            currentPlayer.getHand().getCards().get(0).getCharacter().toString(),
+                            currentPlayer.getHand().getCards().get(1).getCharacter().toString());
+                }
+            } else if(Integer.parseInt(field1)==Model.GAME_DISCONNECT){
+                System.out.println("Oh-oh... " + field2 + " disconnected");
+
+                // Notify everyone, except the disconnected user
+                for(Player p : model.players){
+                    if(!p.getName().equals(field2)){
+                        //TODO: Encrypt?
+                        lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_DISCONNECT, p.getName(), currentPlayer.getName(), "", "");
+                    }
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -244,7 +255,6 @@ public class Game {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     private boolean validTarget(int targetPlayerIndex, Character character){
@@ -399,6 +409,7 @@ public class Game {
                     + ". Just " + (model.affectionGoal-model.lastMan().getAffection()) + " points away from winning!";
 
             model.setRoundWon(true);
+            latestWinnerIndex = model.playersIndex(model.lastMan());
 
             for(Player p : model.players){
                 if(p.getName().equals(model.lastMan().getName())){

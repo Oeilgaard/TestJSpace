@@ -16,7 +16,6 @@ import org.jspace.FormalField;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -192,6 +191,7 @@ public class ClientGameUpdate implements Runnable{
                 } else if (tuple[1].equals(Model.GAME_ENDING)){
 
                     System.out.println("The game is over! " + tuple[4] + " has won the game");
+                    model.setInGame(false);
 
                     JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + tuple[4] + " has won the game"  );
 
@@ -267,8 +267,51 @@ public class ClientGameUpdate implements Runnable{
                         }
 
                     });
-                }
+                } else if(tuple[1].equals(Model.GAME_DISCONNECT)){
+                    System.out.println("The game is over as a player disconnected");
+                    model.setInGame(false);
 
+                    JOptionPane.showMessageDialog(new JFrame(),"The game is over as a player disconnected");
+
+                    Platform.runLater(() -> {
+
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("LobbyListScene.fxml"));
+
+                            model.currentRoot = root;
+                            Scene scene = new Scene(root);
+                            Main.appWindow.setScene(scene);
+
+                            Label label = (Label)model.currentRoot.lookup("#usernameLabel");
+                            label.setText(model.getUniqueName().substring(0,model.getUniqueName().indexOf("#")));
+
+                            ListView updateListView = ((ListView) root.lookup("#lobbyList"));
+                            updateListView.getItems().clear();
+                            Controller.lobbyIds.clear();
+
+                            //[0] lobby code [1] Lobby name [2] Lobby ID
+                            List<Object[]> tuple2 = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+                            for (Object[] obj : tuple2) {
+                                updateListView.getItems().add(obj[1]);
+                                Controller.lobbyIds.add((UUID) obj[2]);
+                            }
+
+                            model.actionHistory.clear();
+
+                            model.leaderForCurrentLobby = false;
+
+                            model.resetLobbyInfo();
+
+                            model = null;
+
+                        } catch (IOException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    });
+                    break;
+
+                }
             } catch (InterruptedException e) {
                 //e.printStackTrace();
                 System.out.println("Den er blevet catched!");

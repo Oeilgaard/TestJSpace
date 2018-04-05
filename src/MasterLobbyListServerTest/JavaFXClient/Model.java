@@ -27,7 +27,7 @@ public class Model {
 
     protected final static int LOBBY_REQ = 30;
     protected final static int CONNECT = 31;
-    protected final static int DISCONNECT = 32;
+    protected final static int LOBBY_DISCONNECT = 32;
     protected final static int BEGIN = 33;
     protected final static int CLOSE = 34;
 
@@ -37,6 +37,7 @@ public class Model {
 
     protected final static int LOBBY_UPDATE = 50;
     protected final static int CHAT_MESSAGE = 51;
+
 
     // Query tuples
     protected final static int GAMEPLAY_INFO = 60;
@@ -62,6 +63,7 @@ public class Model {
     public final static int GAME_START_UPDATE = 16;
     public final static int ACTION_DENIED = 17;
     public final static int GAME_ENDING = 18;
+    public final static int GAME_DISCONNECT = 19;
 
     public final static int SERVER_UPDATE = 20;
 
@@ -84,6 +86,9 @@ public class Model {
 
     public Key key;
 
+    public boolean inGame = false;
+    public boolean inLobby = false;
+
     public Model(){
         serverResponseMonitor = new ServerResponseMonitor();
     }
@@ -91,7 +96,6 @@ public class Model {
     public Thread updateAgent;
 
     public int indexInLobby = -1;
-
 
     public void addIpToRemoteSpaces(String ip) throws IOException {
         requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
@@ -111,7 +115,6 @@ public class Model {
     public Cipher getCipher(){
         return serverCipher;
     }
-
 
     public RemoteSpace getLobbyListSpace(){
         return lobbyListSpace;
@@ -154,4 +157,16 @@ public class Model {
     public void resetLobbyInfo(){
         lobbySpace = null;
     }
+
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
+    }
+
+    public boolean getInGame() {
+        return inGame;
+    }
+
+    public boolean getInLobby() { return inLobby; }
+
+    public void setInLobby(boolean inLobby) { this.inLobby = inLobby; }
 }
