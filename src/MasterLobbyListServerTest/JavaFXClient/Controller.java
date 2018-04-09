@@ -104,9 +104,8 @@ public class Controller {
 
             model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
         }
-        // if card one is targeted
-        // go to pick player scene
-        // else next player's turn
+
+
     }
 
     public void pickCardTwo() throws IOException, InterruptedException, IllegalBlockSizeException {
@@ -336,9 +335,12 @@ public class Controller {
 
     @FXML
     public void createLobby() throws InterruptedException, IOException, IllegalBlockSizeException {
+        System.out.println("338");
 
         String lobbyNameString = lobbyName.getText();
         SealedObject encryptedLobbyNameString = new SealedObject(lobbyNameString + "!" + model.getUniqueName(), model.getCipher());
+
+        System.out.println("343");
 
         if (HelperFunctions.validName(lobbyNameString)) {
             createLobbyButton.setDisable(true);
@@ -346,10 +348,12 @@ public class Controller {
 
             model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString);
 
+            System.out.println("351");
             // Wait for server to be created
             // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
             Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(Integer.class),
                     new ActualField(model.getUniqueName()), new FormalField(UUID.class));
+            System.out.println("356");
 
             if ((int) tuple[1] == Model.OK) {
                 try {
@@ -359,6 +363,7 @@ public class Controller {
                     e.printStackTrace();
                 }
             } else if ((int) tuple[1] == Model.BAD_REQUEST) {
+                System.out.println("Was denied");
                 instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
                 createLobbyButton.setDisable(false);
             }

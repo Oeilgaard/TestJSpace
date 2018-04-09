@@ -171,6 +171,8 @@ public class Game {
             lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_ENDING, p.getName(),winner,"","");
         }
 
+        serverData.decrementCurrentNoThreads();
+
         // Players have 30 s to receive the GAME_ENDING-tuple before the space closes
         Thread.sleep(30000);
 
@@ -243,6 +245,7 @@ public class Game {
                         lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_DISCONNECT, p.getName(), currentPlayer.getName(), "", "");
                     }
                 }
+                serverData.decrementCurrentNoThreads();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

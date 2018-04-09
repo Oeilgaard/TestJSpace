@@ -34,13 +34,14 @@ public class Lobby implements Runnable {
     private final static int MAX_PLAYER_PR_LOBBY = 5;
 
     // TODO: hvorfor ikke bare en reference til serverData?
+    // the servers TS
     private SequentialSpace lobbyOverviewSpace;
     private SpaceRepository serverRepos;
+    // this lobby's TS
     private SequentialSpace lobbySpace;
 
     private UUID lobbyID;
     private Boolean beginFlag;
-
     private String lobbyLeader;
     private int noPlayers;
     private ArrayList<String> players;
@@ -68,16 +69,48 @@ public class Lobby implements Runnable {
 
         System.out.println("Lobby is now running\n");
 
+        // A seperate thread for listening to chat messages
         Thread chatAgent = new Thread(new LobbyChatAgent(lobbySpace,players,threadIdsForClients,serverData.cipher));
         chatAgent.start();
 
+        // Stays in lobby loop until game starts or terminated
+        lobbyLoop();
+
+        /* CLOSING THE LOBBY AND STARTING THE GAME */
+
+        // Remove Lobby from Lobby List overview space
+        try {
+            // [0] lobby code [1] lobbyname [2] lobby-id
+            lobbyOverviewSpace.get(new ActualField("Lobby"),new FormalField(String.class),new ActualField(lobbyID));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Stopping the chat thread
+        //TODO: is it actaully stopping with interrupt?
+        chatAgent.interrupt();
+
+        // Start the game
+        if(beginFlag){
+            Game game = new Game(players, lobbySpace, serverData);
+            try {
+                game.startGame();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        serverRepos.remove(lobbyID.toString());
+        System.out.println("Lobby is closed");
+    }
+
+    public void lobbyLoop(){
         while (true) {
             try {
                 // [0] LOBBY-tuple code, [1] (int)LOBBY action code, [2] (String)User name (for some tuples) [3] (int)thread nr for the specific user
                 Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
                 String decryptedString = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
-
                 String field1 = decryptedString.substring(0,decryptedString.indexOf('!'));
                 String field2 = decryptedString.substring(decryptedString.indexOf('!')+1,decryptedString.indexOf('?'));
                 String field3 = decryptedString.substring(decryptedString.indexOf('?')+1,decryptedString.length());
@@ -85,6 +118,7 @@ public class Lobby implements Runnable {
                 int req = Integer.parseInt(field1);
                 String name = field2;
 
+                // A new client tries to connect to the lobby
                 if (req == CONNECT) {
                     if (noPlayers < MAX_PLAYER_PR_LOBBY) {
                         players.add(name); // add player to players
@@ -103,7 +137,7 @@ public class Lobby implements Runnable {
                     } else { // lobby full
                         lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, name, false);
                     }
-                } else if (req == DISCONNECT) {
+                } else if (req == DISCONNECT) { // A client in the lobby disconnects
                     if (name.equals(lobbyLeader)) {
                         System.out.println("The lobby leader left! Lobby is closing");
                         beginFlag = false;
@@ -116,12 +150,12 @@ public class Lobby implements Runnable {
                     cipherFromPlayers.remove(indexForPlayer);
                     noPlayers--;
                     updatePlayers(name, DISCONNECT);
-                } else if (req == CLOSE) {
+                } else if (req == CLOSE) { // the lobby is closing
                     System.out.println("Lobby is closing");
                     beginFlag = false;
                     updatePlayers(name, CLOSE);
                     break;
-                } else if (req == BEGIN && name.equals(lobbyLeader)) {
+                } else if (req == BEGIN && name.equals(lobbyLeader)) { // the lobby is going in game
                     if (noPlayers >= 2) {
                         System.out.println("Ready to begin!");
                         beginFlag = true;
@@ -130,7 +164,7 @@ public class Lobby implements Runnable {
                     } else {
                         System.out.println("Not enough players to begin");
                     }
-                } else if (req == GET_PLAYERLIST) {
+                } else if (req == GET_PLAYERLIST) { // a client requests the list of player's in the lobby
 
                     ArrayList<String> usernames = new ArrayList<>();
                     for (String user : players) {
@@ -163,30 +197,6 @@ public class Lobby implements Runnable {
             }
         }
 
-        // Remove Lobby from Lobby List overview space
-        try {
-            // [0] lobby code [1] lobbyname [2] lobby-id
-            lobbyOverviewSpace.get(new ActualField("Lobby"),new FormalField(String.class),new ActualField(lobbyID));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        chatAgent.interrupt();
-
-        // Start the game
-        if(beginFlag){
-            //GameplayDummy gp = new GameplayDummy(players);
-            //gp.runGamePlay();
-            Game game = new Game(players, lobbySpace, serverData);
-            try {
-                game.startGame();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        serverRepos.remove(lobbyID.toString());
-        System.out.println("Lobby is closed");
     }
 
     private void updatePlayers(String actingPlayer, int action) throws InterruptedException {
