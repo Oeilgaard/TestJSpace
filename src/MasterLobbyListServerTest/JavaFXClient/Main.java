@@ -37,9 +37,7 @@ public class Main extends Application {
 
     @Override
     public void stop() throws InterruptedException, IOException, IllegalBlockSizeException {
-        if(Controller.connectedToLobby) {
-            Controller.sendDisconnectTuple();
-        }
+        Controller.sendDisconnectTuple();
     }
 
 }

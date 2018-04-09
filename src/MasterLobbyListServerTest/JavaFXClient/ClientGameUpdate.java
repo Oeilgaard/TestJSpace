@@ -19,7 +19,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,7 +40,7 @@ public class ClientGameUpdate implements Runnable{
                 Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
 
                 String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(model.personalCipher);
-                
+
                 String field1text = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
                 int field1 = Integer.parseInt(field1text);
                 String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.indexOf('?'));
@@ -202,6 +201,7 @@ public class ClientGameUpdate implements Runnable{
                 } else if (field1 == Model.GAME_ENDING){
 
                     System.out.println("The game is over! " + field3 + " has won the game");
+                    model.setInGame(false);
 
                     JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + field3 + " has won the game"  );
 
@@ -277,8 +277,51 @@ public class ClientGameUpdate implements Runnable{
                         }
 
                     });
-                }
+                } else if(field1.equals(Model.GAME_DISCONNECT)){
+                    System.out.println("The game is over as a player disconnected");
+                    model.setInGame(false);
 
+                    JOptionPane.showMessageDialog(new JFrame(),"The game is over as a player disconnected");
+
+                    Platform.runLater(() -> {
+
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("LobbyListScene.fxml"));
+
+                            model.currentRoot = root;
+                            Scene scene = new Scene(root);
+                            Main.appWindow.setScene(scene);
+
+                            Label label = (Label)model.currentRoot.lookup("#usernameLabel");
+                            label.setText(model.getUniqueName().substring(0,model.getUniqueName().indexOf("#")));
+
+                            ListView updateListView = ((ListView) root.lookup("#lobbyList"));
+                            updateListView.getItems().clear();
+                            Controller.lobbyIds.clear();
+
+                            //[0] lobby code [1] Lobby name [2] Lobby ID
+                            List<Object[]> tuple2 = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+                            for (Object[] obj : tuple2) {
+                                updateListView.getItems().add(obj[1]);
+                                Controller.lobbyIds.add((UUID) obj[2]);
+                            }
+
+                            model.actionHistory.clear();
+
+                            model.leaderForCurrentLobby = false;
+
+                            model.resetLobbyInfo();
+
+                            model = null;
+
+                        } catch (IOException | InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    });
+                    break;
+
+                }
             } catch (InterruptedException e) {
                 //e.printStackTrace();
                 System.out.println("Den er blevet catched!");

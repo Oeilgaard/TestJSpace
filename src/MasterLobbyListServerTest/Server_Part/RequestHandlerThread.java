@@ -106,6 +106,7 @@ public class RequestHandlerThread implements Runnable {
 
     private String uniqueUserName(String name){
         String id = "#" + UUID.randomUUID().toString();
+        System.out.println(name+id);
         return name+id;
     }
 

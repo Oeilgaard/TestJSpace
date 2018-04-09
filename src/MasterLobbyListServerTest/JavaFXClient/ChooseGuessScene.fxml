@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
    <children>
-      <Button fx:id="6" layoutX="363.0" layoutY="98.0" mnemonicParsing="false" onAction="#GuessSelect" text="Countess" />
-      <Button fx:id="3" layoutX="360.0" layoutY="198.0" mnemonicParsing="false" onAction="#GuessSelect" text="Handmaid" />
-      <Button fx:id="7" layoutX="220.0" layoutY="98.0" mnemonicParsing="false" onAction="#GuessSelect" text="Princess" />
-      <Button fx:id="4" layoutX="220.0" layoutY="198.0" mnemonicParsing="false" onAction="#GuessSelect" text="Prince" />
-      <Button fx:id="5" layoutX="509.0" layoutY="98.0" mnemonicParsing="false" onAction="#GuessSelect" text="King" />
-      <Button fx:id="2" layoutX="506.0" layoutY="198.0" mnemonicParsing="false" onAction="#GuessSelect" text="Baron" />
-      <Button fx:id="1" layoutX="373.0" layoutY="298.0" mnemonicParsing="false" onAction="#GuessSelect" text="Priest" />
+      <Button fx:id="6" layoutX="363.0" layoutY="98.0" mnemonicParsing="false" onAction="#guessSelect" text="Countess" />
+      <Button fx:id="3" layoutX="360.0" layoutY="198.0" mnemonicParsing="false" onAction="#guessSelect" text="Handmaid" />
+      <Button fx:id="7" layoutX="220.0" layoutY="98.0" mnemonicParsing="false" onAction="#guessSelect" text="Princess" />
+      <Button fx:id="4" layoutX="220.0" layoutY="198.0" mnemonicParsing="false" onAction="#guessSelect" text="Prince" />
+      <Button fx:id="5" layoutX="509.0" layoutY="98.0" mnemonicParsing="false" onAction="#guessSelect" text="King" />
+      <Button fx:id="2" layoutX="506.0" layoutY="198.0" mnemonicParsing="false" onAction="#guessSelect" text="Baron" />
+      <Button fx:id="1" layoutX="373.0" layoutY="298.0" mnemonicParsing="false" onAction="#guessSelect" text="Priest" />
    </children>
 </AnchorPane>

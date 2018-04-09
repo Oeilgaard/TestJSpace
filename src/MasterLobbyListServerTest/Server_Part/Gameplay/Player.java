@@ -70,6 +70,7 @@ public class Player {
         hand.getCards().remove(index);
     }
 
+
     public void discardHand() {
         //System.out.println(name + " discards hand: ");
         discardPile.addToDiscardPile(hand.getCards().get(0));

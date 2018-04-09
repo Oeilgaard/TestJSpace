@@ -27,12 +27,14 @@ public class Game {
     private Player currentPlayer;
     private Object[] tuple;
     private boolean legalPlay;
+    private int latestWinnerIndex; // used to determine who goes first - initialized to zero
 
     private ServerData serverData;
 
     public Game(ArrayList<LobbyUser> users, SequentialSpace lobbySpace, ServerData serverData) {
         this.model = new Model(users, lobbySpace);
         this.lobbySpace = lobbySpace;
+        this.latestWinnerIndex = 0;
         posTargets = new Thread(new PossibleTargetsThread(lobbySpace,model,serverData));
         posTargets.start();
         this.serverData = serverData;
@@ -40,8 +42,6 @@ public class Game {
 
     public void newRound(){
         String msg = "";
-
-        //msg += "Shuffling cards...";
 
         for(Player p : model.players) {
             p.getHand().getCards().clear();
@@ -51,7 +51,7 @@ public class Game {
         }
 
         model.turn = 1;
-        model.playerPointer = 0;
+        model.playerPointer = latestWinnerIndex;
         model.nextRound();
 
         model.revealedCards.clear();
@@ -215,17 +215,17 @@ public class Game {
             decryptedTuple[4] = field4;
             decryptedTuple[5] = field5;
 
+            if(Integer.parseInt(field1)==model.DISCARD) {
+                // If we receive a tuple matching the pattern, however, the sender is not the current player, we do nothing
+                if(!(field2).equals(currentPlayer.getName())){
+                    return;
+                }
 
-            // If we receive a tuple matching the pattern, however, the sender is not the current player, we do nothing
-            if(!(field2).equals(currentPlayer.getName())){
-                return;
-            }
+                // If the card index is legal, we proceed, else we send ACTION_DENIED tuple
+                if(legalCardIndex(Integer.parseInt((String)field3))){
 
-            // If the card index is legal, we proceed, else we send ACTION_DENIED tuple
-            if(legalCardIndex(Integer.parseInt((String)field3))){
-
-                // temp. variable for the Character corresponding to the card index sent
-                Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter();
+                    // temp. variable for the Character corresponding to the card index sent
+                    Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter();
 
                 if(c.isTargeted()){
                     //TODO: no possible target case could automitically launch 'noAction' (currently double checking in playCard)
@@ -252,6 +252,16 @@ public class Game {
                         currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
 
                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+            } else if(Integer.parseInt(field1)==Model.GAME_DISCONNECT){
+                System.out.println("Oh-oh... " + field2 + " disconnected");
+
+                // Notify everyone, except the disconnected user
+                for(Player p : model.players){
+                    if(!p.getName().equals(field2)){
+                        //TODO: Encrypt?
+                        lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_DISCONNECT, p.getName(), currentPlayer.getName(), "", "");
+                    }
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -264,7 +274,6 @@ public class Game {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     private boolean validTarget(int targetPlayerIndex, Character character){
@@ -428,6 +437,7 @@ public class Game {
                     + ". Just " + (model.affectionGoal-model.lastMan().getAffection()) + " points away from winning!";
 
             model.setRoundWon(true);
+            latestWinnerIndex = model.playersIndex(model.lastMan());
 
             for(Player p : model.players){
                 if(p.getName().equals(model.lastMan().getName())){
