@@ -10,7 +10,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import java.io.IOException;
-import java.lang.invoke.SerializedLambda;
 import java.util.ArrayList;
 
 public class Game {
@@ -192,7 +191,7 @@ public class Game {
 
     }
 
-    private void waitForDiscard() throws InterruptedException {
+    private void waitForDiscard() throws InterruptedException, IllegalBlockSizeException {
         try {
             // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
             //TODO: Lyt efter disconnect også
@@ -215,63 +214,61 @@ public class Game {
             decryptedTuple[4] = field4;
             decryptedTuple[5] = field5;
 
-            if(Integer.parseInt(field1)==model.DISCARD) {
+            if(Integer.parseInt(field1)== Model.DISCARD) {
                 // If we receive a tuple matching the pattern, however, the sender is not the current player, we do nothing
                 if(!(field2).equals(currentPlayer.getName())){
                     return;
                 }
 
                 // If the card index is legal, we proceed, else we send ACTION_DENIED tuple
-                if(legalCardIndex(Integer.parseInt((String)field3))){
+                if(legalCardIndex(Integer.parseInt(field3))){
 
                     // temp. variable for the Character corresponding to the card index sent
-                    Character c = currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter();
+                    Character c = currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getCharacter();
 
-                if(c.isTargeted()){
-                    //TODO: no possible target case could automitically launch 'noAction' (currently double checking in playCard)
-                    if(!possibleTargets(c) || (validTarget(Integer.parseInt((String) field4),
-                            currentPlayer.getHand().getCards().get(Integer.parseInt((String) field3)).getCharacter()))){
-                        playCard(currentPlayer, decryptedTuple);
+                    if(c.isTargeted()) {
+                        //TODO: no possible target case could automatically launch 'noAction' (currently double checking in playCard)
+                        if (!possibleTargets(c) || (validTarget(Integer.parseInt(field4),
+                                currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getCharacter()))) {
+                            playCard(currentPlayer, decryptedTuple);
+                        } else {
+                            // Invalid target case
+                            SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Target is invalid.?" +
+                                    currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
+                                    currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+
+                            lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                        }
                     } else {
-                        // Unvalid target case
-                        SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Target is unvalid.?" +
-                                currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                                currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
-
-                        lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                        playCard(currentPlayer, decryptedTuple);
                     }
+
                 } else {
-                    playCard(currentPlayer, decryptedTuple);
+                    System.out.println("Fejl: Action denied - illegal card index");
+                    // [0] update, [1] type, [2] recipient, [3] msg, [4] card one (String), [5] card two (String)
+                    SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Card index is unvalid.?" +
+                            currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
+                            currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+
+                    lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
                 }
 
-            } else {
-                System.out.println("Fejl: Action denied - illegal card index");
-                // [0] update, [1] type, [2] recipient, [3] msg, [4] card one (String), [5] card two (String)
-                SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Card index is unvalid.?" +
-                        currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                        currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
-
-                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
-            } else if(Integer.parseInt(field1)==Model.GAME_DISCONNECT){
+            } else if(Integer.parseInt(field1)==Model.GAME_DISCONNECT) {
                 System.out.println("Oh-oh... " + field2 + " disconnected");
 
                 // Notify everyone, except the disconnected user
-                for(Player p : model.players){
-                    if(!p.getName().equals(field2)){
+                for (Player p : model.players) {
+                    if (!p.getName().equals(field2)) {
                         //TODO: Encrypt?
-                        lobbySpace.put(Model.CLIENT_UPDATE, Model.GAME_DISCONNECT, p.getName(), currentPlayer.getName(), "", "");
+                        SealedObject encryptedMessage = new SealedObject(Model.GAME_DISCONNECT + "!?=", p.getPlayerCipher());
+                        lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                     }
                 }
+
+                //TODO Skal lobbyen ikke lukkes ned ?
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+
+        } catch (InterruptedException | BadPaddingException | IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -303,7 +300,7 @@ public class Game {
             }
         } else if(model.countessRule(currentPlayer) &&
                 (currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.PRINCE ||
-                currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.KING)){
+                        currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.KING)){
 
             try {
                 SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Card index is unvalid.?" +
@@ -504,7 +501,7 @@ public class Game {
                             + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";
                     String msgWinner = "The deck is empty! " + " You won the round with the highest discard pile! " +
                             "Your affection is now " + model.compareHandWinners().get(0).getAffection()
-                            + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";;
+                            + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";
                     model.setRoundWon(true);
 
                     for(Player p : model.players){

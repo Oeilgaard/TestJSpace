@@ -184,7 +184,6 @@ public class Controller {
                     e.printStackTrace();
                 } catch (BadPaddingException e) {
                     //e.printStackTrace();
-                    System.out.println("Linje 188 Hej");
                 }
 
             }
@@ -677,7 +676,7 @@ public class Controller {
     }
 
     @FXML
-    private void GuessSelect(ActionEvent event) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
+    private void guessSelect(ActionEvent event) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         Button btn =(Button) event.getSource();
         model.cardsOnHand.remove(pickedCard);
         changeScene(GAME_SCENE);

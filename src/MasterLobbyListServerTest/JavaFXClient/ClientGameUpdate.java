@@ -47,8 +47,6 @@ public class ClientGameUpdate implements Runnable{
                 String field3 = decryptedMessage.substring(decryptedMessage.indexOf('?')+1,decryptedMessage.indexOf('='));
                 String field4 = decryptedMessage.substring(decryptedMessage.indexOf('=')+1,decryptedMessage.length());
 
-                System.out.println("Should have printed outcome : " + field3);
-
                 if (field1 == Model.NEW_TURN) {
 
                     //If not empty, you have drawn a card, i.e. it's your turn
@@ -200,10 +198,9 @@ public class ClientGameUpdate implements Runnable{
 
                 } else if (field1 == Model.GAME_ENDING){
 
-                    System.out.println("The game is over! " + field3 + " has won the game");
                     model.setInGame(false);
 
-                    JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + field3 + " has won the game"  );
+                    JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + field2 + " has won the game"  );
 
                     Platform.runLater(() -> {
 
@@ -277,8 +274,7 @@ public class ClientGameUpdate implements Runnable{
                         }
 
                     });
-                } else if(field1.equals(Model.GAME_DISCONNECT)){
-                    System.out.println("The game is over as a player disconnected");
+                } else if(field1 == Model.GAME_DISCONNECT){
                     model.setInGame(false);
 
                     JOptionPane.showMessageDialog(new JFrame(),"The game is over as a player disconnected");

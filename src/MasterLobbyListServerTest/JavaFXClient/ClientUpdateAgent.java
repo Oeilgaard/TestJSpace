@@ -55,9 +55,7 @@ public class ClientUpdateAgent implements Runnable{
                         ((VBox) root.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
                     });
-                } else if ((int)tuple[1] == Model.CONNECT ||(int) tuple[1]==Model.DISCONNECT) {
-                } else if (tuple[1].equals(Model.CONNECT) || tuple[1].equals(Model.LOBBY_DISCONNECT)) {
-
+                } else if ((int)tuple[1] == Model.CONNECT ||(int) tuple[1]==Model.LOBBY_DISCONNECT) {
                     //Tuple 1 - 3 sealed object
 
                     String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUniqueName() + "?" + -1;
