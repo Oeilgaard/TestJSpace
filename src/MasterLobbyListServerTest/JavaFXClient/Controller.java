@@ -421,7 +421,6 @@ public class Controller {
                     e.printStackTrace();
                 }
             } else if ((int) field1 == Model.BAD_REQUEST) {
-            } else if ((int) tuple[1] == Model.BAD_REQUEST) {
                 System.out.println("Was denied");
                 instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
                 createLobbyButton.setDisable(false);

@@ -10,6 +10,8 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import static MasterLobbyListServerTest.JavaFXClient.HelperFunctions.validName;
+
 public class RequestHandlerThread implements Runnable {
 
     private Object[] tuple;
@@ -23,11 +25,7 @@ public class RequestHandlerThread implements Runnable {
     @Override
     public void run() {
 
-        if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
-            System.out.println("23");
-
         try {
-
             SealedObject encryptedKey = (SealedObject) tuple[3];
             Key key = (Key) encryptedKey.getObject(serverData.cipher);
 
@@ -45,39 +43,29 @@ public class RequestHandlerThread implements Runnable {
                 System.out.println("Creating a lobby with the name : " + serverName + "\n");
 
                 String user = deCryptedMessage.substring(deCryptedMessage.indexOf('!') + 1, deCryptedMessage.length());
-                if (validName(serverName)) {
-            String user = deCryptedMessage.substring(deCryptedMessage.indexOf('!')+1,deCryptedMessage.length());
-            System.out.println(user);
 
-            System.out.println("43: serverData.getCurrentNoThreads(): " + serverData.getCurrentNoThreads());
-
-            if(!(serverData.getCurrentNoThreads() < ServerData.MAXIMUM_LOBBIES)){
-                UUID idForLobby = UUID.randomUUID();
-                try{
-                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.BAD_REQUEST, user, idForLobby);
-                    System.out.println("Putted the BAD_REQ");
-                } catch (InterruptedException e){
-                    System.out.println("Error");
+                if(!(serverData.getCurrentNoThreads() < ServerData.MAXIMUM_LOBBIES)){
+                    UUID idForLobby = UUID.randomUUID();
+                    try{
+                        serverData.responseSpace.put(Server.RESPONSE_CODE, Server.BAD_REQUEST, user, idForLobby);
+                        System.out.println("Putted the BAD_REQ");
+                    } catch (InterruptedException e){
+                        System.out.println("Error");
+                    }
+                    return;
                 }
-                return;
-            }
 
-            if(validName(serverName)) {
+                if(validName(serverName)) {
 
                     //Add Thread to lobbyThreads
 
                     UUID idForLobby = UUID.randomUUID();
-                System.out.println("Creating a lobby with the name : " + serverName + "\n");
-                UUID idForLobby = UUID.randomUUID();
 
-                    Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user, serverData);
-                    serverData.executor.execute(lobby);  //calling execute method of ExecutorService
-                //Add Thread to lobbyThreads
-                //Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user, serverData);
-                //serverData.executor.execute(new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user, serverData));  //calling execute method of ExecutorService
-                //serverData.incrementCurrentNoThreads(); //TODO: decrement accordingly
-                serverData.createNewLobbyThread(idForLobby, user, serverData);
+                    System.out.println("Creating a lobby with the name : " + serverName + "\n");
 
+
+                    //Add Thread to lobbyThreads
+                    serverData.createNewLobbyThread(idForLobby, user, serverData);
 
                     SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + user + "?" + idForLobby, cipher);
 
@@ -91,24 +79,8 @@ public class RequestHandlerThread implements Runnable {
                     SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, cipher);
 
                     serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
-
                 }
-
             } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
-                } catch (InterruptedException e) {
-                    System.out.println("Error ");
-                }
-
-                System.out.println("LobbyRequest has now been handled");
-            } else {
-                UUID idForLobby = UUID.randomUUID();
-                try{
-                    serverData.responseSpace.put(Server.RESPONSE_CODE,Server.BAD_REQUEST, user, idForLobby);
-                } catch (InterruptedException e){
-                    System.out.println("Error");
-                }
-            }
-        } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
 
                 SealedObject encryptedUserName = (SealedObject) tuple[2];
 
@@ -141,7 +113,6 @@ public class RequestHandlerThread implements Runnable {
             e.printStackTrace();
         }
         System.out.println("Req. Thread is done ");
-        return;
     }
 
     private boolean validName(String name){

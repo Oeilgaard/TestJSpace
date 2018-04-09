@@ -93,10 +93,15 @@ public class Lobby implements Runnable {
 
         // Start the game
         if(beginFlag){
-            Game game = new Game(players, lobbySpace, serverData);
+            Game game = new Game(users, lobbySpace, serverData);
+
             try {
                 game.startGame();
             } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
                 e.printStackTrace();
             }
         }
@@ -196,35 +201,6 @@ public class Lobby implements Runnable {
                 e.printStackTrace();
             }
         }
-
-        // Remove Lobby from Lobby List overview space
-        try {
-            // [0] lobby code [1] lobbyname [2] lobby-id
-            lobbyOverviewSpace.get(new ActualField("Lobby"),new FormalField(String.class),new ActualField(lobbyID));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        chatAgent.interrupt();
-
-        // Start the game
-        if(beginFlag){
-            //GameplayDummy gp = new GameplayDummy(players);
-            //gp.runGamePlay();
-            Game game = new Game(users, lobbySpace, serverData);
-            try {
-                game.startGame();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-            }
-        }
-
-        serverRepos.remove(lobbyID.toString());
-        System.out.println("Lobby is closed");
     }
 
     private LobbyUser getUserfromName(String name) {
