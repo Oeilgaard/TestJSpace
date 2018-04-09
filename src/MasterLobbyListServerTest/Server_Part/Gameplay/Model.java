@@ -1,7 +1,12 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import MasterLobbyListServerTest.Server_Part.LobbyUser;
+import MasterLobbyListServerTest.Server_Part.ServerData;
 import org.jspace.SequentialSpace;
 
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SealedObject;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Model {
@@ -38,7 +43,7 @@ public class Model {
 
     protected ArrayList<Player> players;
     protected int turn;
-    protected int affectionGoal = 1;
+    protected int affectionGoal = 7;
     protected int playerPointer; // index of the current player's turn
     protected int round;
     protected Deck deck;
@@ -47,8 +52,7 @@ public class Model {
     protected Card secretCard;
     private SequentialSpace lobbySpace;
 
-    public Model(ArrayList<String> players, SequentialSpace lobbySpace){
-
+    public Model(ArrayList<LobbyUser> users, SequentialSpace lobbySpace){
         this.turn = 0;
         this.round = 0;
         this.deck = new Deck();
@@ -57,8 +61,8 @@ public class Model {
         this.lobbySpace = lobbySpace;
 
         this.players = new ArrayList<Player>();
-        for(String p : players) {
-            this.players.add(new Player(p));
+        for(LobbyUser user : users) {
+            this.players.add(new Player(user.name,user.userNr,user.personalCipher));
         }
         //Model.players.add(new Player("Alice"));
         //Model.players.add(new Player("Bob"));
@@ -80,6 +84,15 @@ public class Model {
             default:
                 break;
         }
+    }
+
+    public Player getUserfromName(String name) {
+        for (Player user : players){
+            if(user.getName().equals(name)){
+                return user;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -225,7 +238,7 @@ public class Model {
 //         players.get(sender).getDiscardPile().addToDiscardPile(players.get(sender).getHand().getCards().get(index));
 //         players.get(sender).getHand().getCards().remove(index);
         } else {
-            String msgSender = "You guessed incorrect!";
+            String msgSender = "Incorrect! You used Guard on " + targetName + " with the guess " + guess.toString();
             String msgTarget = senderName + " uses GUARD on you and incorrectly guesses that you have a " + guess.toString();
             String msgOthers = senderName + " uses GUARD on + " + targetName
                     + " and incorrectly guesses " + guess.toString();
@@ -316,14 +329,24 @@ public class Model {
                     if(p.getName().equals(players.get(sendersIndex).getName())){
                         System.out.println("linie 291 " + senderName + " " + p.getName());
                         try {
-                            lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), cardName, msgSender, players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
+                            SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgSender + "=" + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString(), p.getPlayerCipher());
+                            lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                         } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (IllegalBlockSizeException e) {
                             e.printStackTrace();
                         }
                     } else {
                         try {
-                            lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), cardName, msgOthers, "");
+                            SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgOthers + "=" + "", p.getPlayerCipher());
+                            lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                         } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (IllegalBlockSizeException e) {
                             e.printStackTrace();
                         }
                     }
@@ -443,14 +466,24 @@ public class Model {
             // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name, [4]: Game-log message, [5]; -
             if(rcpt.getName().equals(p.getName())){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, rcpt.getName(), p.getName(), msgSender, "");
+                    SealedObject encryptedMessage = new SealedObject(KNOCK_OUT + "!?" + msgSender + "=",rcpt.getPlayerCipher());
+                    lobbySpace.put(CLIENT_UPDATE, encryptedMessage ,rcpt.getPlayerIndex());
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, KNOCK_OUT, rcpt.getName(), p.getName(), msgOthers, "");
+                    SealedObject encryptedMessage = new SealedObject(KNOCK_OUT + "!?" + msgOthers + "=",rcpt.getPlayerCipher());
+                    lobbySpace.put(CLIENT_UPDATE, encryptedMessage ,rcpt.getPlayerIndex());
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
             }
@@ -465,20 +498,35 @@ public class Model {
         for(Player p : players){
             if(p.getName().equals(players.get(senderIndex).getName())){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, kingCardToSender);
+                    SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgSender + "=" + kingCardToSender,p.getPlayerCipher());
+                    lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
             } else if(p.getName().equals(players.get(receiverIndex).getName())){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgTarget, kingCardToTarget);
+                    SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgTarget + "=" + kingCardToTarget,p.getPlayerCipher());
+                    lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgOthers, "");
+                    SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgOthers + "=",p.getPlayerCipher());
+                    lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
             }
@@ -489,14 +537,24 @@ public class Model {
         for(Player p : players){
             if(!p.getName().equals(players.get(senderIndex).getName())){
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgOthers, "");
+                    SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgOthers + "=",p.getPlayerCipher());
+                    lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    lobbySpace.put(CLIENT_UPDATE, OUTCOME, p.getName(), card, msgSender, "");
+                    SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgSender + "=",p.getPlayerCipher());
+                    lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
 

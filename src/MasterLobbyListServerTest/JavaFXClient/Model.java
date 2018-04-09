@@ -65,6 +65,8 @@ public class Model {
 
     public final static int SERVER_UPDATE = 20;
 
+    public Cipher personalCipher;
+
     private int responseFromLobby = 0;
 
     private String uniqueName;
@@ -105,7 +107,6 @@ public class Model {
 
         serverCipher = Cipher.getInstance("RSA");
         serverCipher.init(Cipher.ENCRYPT_MODE, pk);
-
     }
 
     public Cipher getCipher(){

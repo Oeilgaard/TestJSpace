@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import java.io.IOException;
@@ -40,21 +41,21 @@ public class ClientUpdateAgent implements Runnable{
             try {
 
                 //[0] update code [1] type of update [2] name of user [3] chat text combined with username (situational)
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new ActualField(model.getUniqueName()), new FormalField(String.class),new ActualField(threadId));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class),new ActualField(threadId), new ActualField(model.indexInLobby));
 
 
 
-                if (tuple[1].equals(Model.CHAT_MESSAGE)) {
+                if ((int)tuple[1] == Model.CHAT_MESSAGE) {
                     Platform.runLater(() -> {
 
-                        Label chatText = new Label((String) tuple[3]);
+                        Label chatText = new Label((String) tuple[2]);
                         chatText.setWrapText(true);
                         //chatText.prefWidth(254);
 
                         ((VBox) root.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
                     });
-                } else if (tuple[1].equals(Model.CONNECT) || tuple[1].equals(Model.DISCONNECT)) {
+                } else if ((int)tuple[1] == Model.CONNECT ||(int) tuple[1]==Model.DISCONNECT) {
 
                     //Tuple 1 - 3 sealed object
 
@@ -62,15 +63,16 @@ public class ClientUpdateAgent implements Runnable{
 
                     SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getCipher());
 
-                    model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage);
+                    SealedObject filler = new SealedObject("filler",model.getCipher());
+
+                    model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
 
                     Platform.runLater(() -> {
                         Object[] tuple2;
                         try {
 
                             // [0] response code [1] list of playernames [2] username
-                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getUniqueName()));
-
+                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.indexInLobby));
 
                             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
                             ObservableList updItems = updatePlayerListView.getItems();
@@ -84,7 +86,7 @@ public class ClientUpdateAgent implements Runnable{
                             e.printStackTrace();
                         }
                     });
-                } else if (tuple[1].equals(Model.CLOSE)) {
+                } else if ((int)tuple[1]==Model.CLOSE) {
 
                     System.out.println("DETECTED A SHUTDOWN");
 
@@ -122,7 +124,7 @@ public class ClientUpdateAgent implements Runnable{
                     });
 
                     running = false;
-                } else if (tuple[1].equals(Model.BEGIN)) {
+                } else if ((int)tuple[1] == Model.BEGIN) {
 
                     Platform.runLater(new Runnable() {
                         public void run() {
@@ -150,15 +152,17 @@ public class ClientUpdateAgent implements Runnable{
                                 SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2, model.getCipher());
 
                                 model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
+                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
 
                                 ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
                                 ObservableList updItems = updatePlayerListView.getItems();
                                 updItems.clear();
 
+                                String[] listOfnames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
+
                                 for (int i = 0; i < 5; i++) {
-                                    if (!((String[]) tuple[2])[i].equals(""))
-                                        updItems.add(i + ". " + ((String[]) tuple[2])[i]);
+                                    if (!listOfnames[i].equals(""))
+                                        updItems.add(i + ". " + listOfnames[i]);
                                 }
 
                                 Controller.gameAgent = new Thread(new ClientGameUpdate(model));
@@ -169,6 +173,10 @@ public class ClientUpdateAgent implements Runnable{
                             } catch (IOException | InterruptedException e) {
                                 e.printStackTrace();
                             } catch (IllegalBlockSizeException e) {
+                                e.printStackTrace();
+                            } catch (BadPaddingException e) {
+                                e.printStackTrace();
+                            } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }
                         }

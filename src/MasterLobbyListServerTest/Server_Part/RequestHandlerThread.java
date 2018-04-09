@@ -1,9 +1,13 @@
 package MasterLobbyListServerTest.Server_Part;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.SealedObject;
+import MasterLobbyListServerTest.JavaFXClient.Model;
+
+import javax.crypto.*;
 import java.io.IOException;
+import java.net.ResponseCache;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 public class RequestHandlerThread implements Runnable {
@@ -18,94 +22,81 @@ public class RequestHandlerThread implements Runnable {
 
     @Override
     public void run() {
-        if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
 
-            SealedObject encryptedLobbyName = (SealedObject) tuple[2];
-            //String serverName = (String) tuple[2];
-            String deCryptedMessage = null;
-            try {
-                deCryptedMessage = (String) encryptedLobbyName.getObject(serverData.cipher);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-            } catch (BadPaddingException e) {
-                e.printStackTrace();
-            }
+        try {
 
-            String serverName = deCryptedMessage.substring(0,deCryptedMessage.indexOf('!'));
+            SealedObject encryptedKey = (SealedObject) tuple[3];
+            Key key = (Key) encryptedKey.getObject(serverData.cipher);
 
-            System.out.println("Creating a lobby with the name : " + serverName + "\n");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
 
-            String user = deCryptedMessage.substring(deCryptedMessage.indexOf('!')+1,deCryptedMessage.length());
-            if(validName(serverName)) {
+            if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
 
+                SealedObject encryptedLobbyName = (SealedObject) tuple[2];
+                //String serverName = (String) tuple[2];
+                String deCryptedMessage = (String) encryptedLobbyName.getObject(serverData.cipher);
 
-                //Add Thread to lobbyThreads
+                String serverName = deCryptedMessage.substring(0, deCryptedMessage.indexOf('!'));
 
-                UUID idForLobby = UUID.randomUUID();
+                System.out.println("Creating a lobby with the name : " + serverName + "\n");
 
-                Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user, serverData);
-                serverData.executor.execute(lobby);  //calling execute method of ExecutorService
+                String user = deCryptedMessage.substring(deCryptedMessage.indexOf('!') + 1, deCryptedMessage.length());
+                if (validName(serverName)) {
 
-                try {
-                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.OK, user, idForLobby);
+                    //Add Thread to lobbyThreads
+
+                    UUID idForLobby = UUID.randomUUID();
+
+                    Runnable lobby = new Lobby(idForLobby, serverData.lobbyOverviewSpace, serverData.serverRepos, user, serverData);
+                    serverData.executor.execute(lobby);  //calling execute method of ExecutorService
+
+                    SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + user + "?" + idForLobby, cipher);
+
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
                     //Add Server information to entrySpace
                     serverData.lobbyOverviewSpace.put("Lobby", serverName, idForLobby);
 
-                } catch (InterruptedException e) {
-                    System.out.println("Error ");
+                    System.out.println("LobbyRequest has now been handled");
+                } else {
+                    UUID idForLobby = UUID.randomUUID();
+                    SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, cipher);
+
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
+
                 }
 
-                System.out.println("LobbyRequest has now been handled");
-            } else {
-                UUID idForLobby = UUID.randomUUID();
-                try{
-                    serverData.responseSpace.put(Server.RESPONSE_CODE,Server.BAD_REQUEST, user, idForLobby);
-                } catch (InterruptedException e){
-                    System.out.println("Error");
-                }
+            } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
 
-            }
+                SealedObject encryptedUserName = (SealedObject) tuple[2];
 
-        } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
+                //String userName = (String) tuple[2];
+                String decryptedUsername = (String) encryptedUserName.getObject(serverData.cipher);
 
-            SealedObject encryptedUserName = (SealedObject) tuple[2];
+                String userName = decryptedUsername.substring(0, decryptedUsername.indexOf('!'));
 
-            //String userName = (String) tuple[2];
-            String decryptedUsername = null;
-            try {
-                decryptedUsername = (String) encryptedUserName.getObject(serverData.cipher);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-            } catch (BadPaddingException e) {
-                e.printStackTrace();
-            }
+                if (validName(userName)) {
+                    String uniqueName = uniqueUserName(userName);
+                    SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + userName + "?" + uniqueName, cipher);
 
-            String userName = decryptedUsername.substring(0,decryptedUsername.indexOf('!'));
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, encryptedMessage);
 
-            if(validName(userName)) {
-                String uniqueName = uniqueUserName(userName);
-                try {
-                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, Server.OK, userName, uniqueName);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                } else {
+
+                    SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + userName + "?",cipher);
+                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, encryptedMessage);
                 }
             } else {
-                try {
-                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, Server.BAD_REQUEST, userName, "");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                System.out.println("Too many lobbies at once \n Deny request");
             }
-        } else {
-            System.out.println("Too many lobbies at once \n Deny request");
+        } catch ( InterruptedException | IOException | IllegalBlockSizeException | ClassNotFoundException | BadPaddingException e){
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
         }
     }
 

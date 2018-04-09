@@ -17,10 +17,7 @@ import javafx.scene.paint.Color;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SealedObject;
+import javax.crypto.*;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -89,7 +86,7 @@ public class Controller {
     public Controller() {}
 
 
-    public void pickCardOne() throws IOException, InterruptedException, IllegalBlockSizeException {
+    public void pickCardOne() throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(0))) {
             pickedCard = 0;
             changeScene(PICK_PLAYER_SCENE);
@@ -110,7 +107,7 @@ public class Controller {
         // else next player's turn
     }
 
-    public void pickCardTwo() throws IOException, InterruptedException, IllegalBlockSizeException {
+    public void pickCardTwo() throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         if (HelperFunctions.isTargeted(model.cardsOnHand.get(1))) {
             pickedCard = 1;
             changeScene(PICK_PLAYER_SCENE);
@@ -128,13 +125,16 @@ public class Controller {
     }
 
     @FXML
-    public void joinServer() throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException {
+    public void joinServer() throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
 
         String urlForRemoteSpace = IP.getText();
         model = new Model();
         KeyGenerator kg = KeyGenerator.getInstance("AES");
         Key key = kg.generateKey();
         model.key = key;
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE,key);
+        model.personalCipher = cipher;
         model.addIpToRemoteSpaces(urlForRemoteSpace);
         lobbyIds = new ArrayList<>();
 
@@ -156,24 +156,57 @@ public class Controller {
             createUserNameButton.setDisable(true);
             instructionsUserName.setText("");
 
-            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, encryptedUserNameString);
+            SealedObject encryptedKey = new SealedObject(model.key,model.getCipher());
 
-            // Blocks until user receives unique username (due to 'get')
-            // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID
-            Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
-                    new FormalField(Integer.class), new ActualField(userNameString), new FormalField(String.class));
+            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKey);
 
-            if ((int) tuple[2] == Model.OK) {
-                model.setUniqueName((String) tuple[4]); // Setting the user's name
+            Object[] tuple;
+            int field1;
+            String field3;
+            while (true){
+                // Blocks until user receives unique username (due to 'get')
+                // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID
+                try {
+                    tuple = model.getResponseSpace().query(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP), new FormalField(SealedObject.class));
+
+                    if (tuple != null) {
+
+                        String decryptedMessage = (String) ((SealedObject) tuple[2]).getObject(model.personalCipher);
+
+                        String field1text = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
+                        field1 = Integer.parseInt(field1text);
+                        field3 = decryptedMessage.substring(decryptedMessage.indexOf('?')+1,decryptedMessage.length());
+
+                        model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP), new FormalField(SealedObject.class));
+
+                        break;
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    //e.printStackTrace();
+                    System.out.println("Linje 188 Hej");
+                }
+
+            }
+
+            //TODO lav en query der tjekke om det er det rigtige username
+
+            if ((int) field1 == Model.OK) {
+                model.setUniqueName((String) field3); // Setting the user's name
 
                 // Goto Lobby List
                 try {
                     changeScene(LOBBY_LIST_SCENE);
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
                 // should ideally never happen, however can happen if the sanity check is bypassed client-side
-            } else if ((int) tuple[2] == Model.BAD_REQUEST) {
+            } else if ((int) field1 == Model.BAD_REQUEST) {
                 instructionsUserName.setText("Server denied username. Please try again.");
                 createUserNameButton.setDisable(false);
             }
@@ -183,7 +216,7 @@ public class Controller {
         }
     }
 
-    private void changeScene(String sceneName) throws IOException, InterruptedException, IllegalBlockSizeException {
+    private void changeScene(String sceneName) throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
 
         Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
         model.currentRoot = root;
@@ -257,13 +290,15 @@ public class Controller {
                 SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getCipher());
 
                 model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
+                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+
+                String[] listOfNames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
                 ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
                 updatePlayerListView.getItems().clear();
                 for (int i = 0; i < 5; i++) {
-                    if (!((String[]) tuple[2])[i].equals("")) {
-                        updatePlayerListView.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                    if (!listOfNames[i].equals("")) {
+                        updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
                     }
                 }
 
@@ -273,7 +308,6 @@ public class Controller {
                 Label label = (Label) model.currentRoot.lookup("#usernameLabel");
                 label.setText(removedIdFromUsername());
 
-
                 ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
                 targetablePlayers.getItems().clear();
 
@@ -281,13 +315,15 @@ public class Controller {
 
                 model.getLobbySpace().put("TargetablePlayersRequest", encryptedMessage);
 
-                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new ActualField(model.getUniqueName()), new FormalField(String[].class));
+                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
 
                 boolean noTargets = true;
 
+                String[] listOfNames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
+
                 for (int i = 0; i < 5; i++) {
-                    if (!((String[]) tuple[2])[i].equals("")) {
-                        targetablePlayers.getItems().add(i + ". " + ((String[]) tuple[2])[i]);
+                    if (!listOfNames[i].equals("")) {
+                        targetablePlayers.getItems().add(i + ". " + listOfNames[i]);
                         playerEnableClick[i] = true;
                         noTargets = false;
                     } else {
@@ -345,21 +381,49 @@ public class Controller {
             createLobbyButton.setDisable(true);
             instructionsLobbyName.setText("");
 
-            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString);
+            SealedObject encryptedKey = new SealedObject(model.key,model.getCipher());
+
+            model.getRequestSpace().put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKey);
 
             // Wait for server to be created
-            // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
-            Object[] tuple = model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(Integer.class),
-                    new ActualField(model.getUniqueName()), new FormalField(UUID.class));
 
-            if ((int) tuple[1] == Model.OK) {
+            int field1;
+            while (true) {
+                try {
+                    // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
+                    Object[] tuple = model.getResponseSpace().query(new ActualField(Model.RESPONSE_CODE), new FormalField(SealedObject.class));
+                    if (tuple != null) {
+
+                        String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(model.personalCipher);
+
+                        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+                        field1 = Integer.parseInt(field1text);
+
+                        model.getResponseSpace().get(new ActualField(Model.RESPONSE_CODE), new FormalField(SealedObject.class));
+
+                        break;
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    //e.printStackTrace();
+                }
+            }
+
+            //TODO indsæt SealedObject
+
+            if ((int) field1 == Model.OK) {
                 try {
                     changeScene(LOBBY_LIST_SCENE);
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
-            } else if ((int) tuple[1] == Model.BAD_REQUEST) {
+            } else if ((int) field1 == Model.BAD_REQUEST) {
                 instructionsLobbyName.setText("Server denied to create lobby. Please try again.");
                 createLobbyButton.setDisable(false);
             }
@@ -388,6 +452,10 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -428,7 +496,7 @@ public class Controller {
 
 
     //TODO: implement Join-lobby button for highlighted choice
-    public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void clickLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
 
@@ -486,7 +554,7 @@ public class Controller {
     }
 
     @FXML
-    public void enterIPField(javafx.scene.input.KeyEvent keyEvent) throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException {
+    public void enterIPField(javafx.scene.input.KeyEvent keyEvent) throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             joinServer();
         }
@@ -519,7 +587,7 @@ public class Controller {
         model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
 
         // [0] response code [1] list of playernames [2] username
-        Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getUniqueName()));
+        Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.indexInLobby));
 
         if (root == null) {
             listOfPlayers.getItems().clear();
@@ -552,7 +620,7 @@ public class Controller {
     }
 
     @FXML
-    public void pressLeaveLobby() throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void pressLeaveLobby() throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         model.leaderForCurrentLobby = false;
 
         model.updateAgent.interrupt();
@@ -580,7 +648,7 @@ public class Controller {
         cardListPane.setMouseTransparent(true);
     }
 
-    public void clickTarget(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void clickTarget(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
                 indexOfTarget = targetablePlayers.getSelectionModel().getSelectedIndex();
@@ -608,7 +676,7 @@ public class Controller {
     }
 
     @FXML
-    private void GuessSelect(ActionEvent event) throws InterruptedException, IOException, IllegalBlockSizeException {
+    private void GuessSelect(ActionEvent event) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         Button btn =(Button) event.getSource();
         model.cardsOnHand.remove(pickedCard);
         changeScene(GAME_SCENE);
@@ -631,14 +699,14 @@ public class Controller {
     }
 
     @FXML
-    private void returnToPickingCard() throws IOException, InterruptedException, IllegalBlockSizeException {
+    private void returnToPickingCard() throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         pickedCard = 2;
         selectCardIsGuard = false;
         changeScene(PLAY_CARD_SCENE);
     }
 
     @FXML
-    private void playCardWithNoTargets() throws InterruptedException, IOException, IllegalBlockSizeException {
+    private void playCardWithNoTargets() throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         model.cardsOnHand.remove(pickedCard);
         changeScene(GAME_SCENE);
 

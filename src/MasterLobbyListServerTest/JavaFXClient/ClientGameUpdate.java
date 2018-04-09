@@ -14,6 +14,9 @@ import javafx.scene.paint.Color;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SealedObject;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,14 +38,22 @@ public class ClientGameUpdate implements Runnable{
 
             try {
 
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(Integer.class),
-                        new ActualField(model.getUniqueName()), new FormalField(String.class),
-                        new FormalField(String.class), new FormalField(String.class));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
 
-                if (tuple[1].equals(Model.NEW_TURN)) {
+                String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(model.personalCipher);
+                
+                String field1text = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
+                int field1 = Integer.parseInt(field1text);
+                String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.indexOf('?'));
+                String field3 = decryptedMessage.substring(decryptedMessage.indexOf('?')+1,decryptedMessage.indexOf('='));
+                String field4 = decryptedMessage.substring(decryptedMessage.indexOf('=')+1,decryptedMessage.length());
+
+                System.out.println("Should have printed outcome : " + field3);
+
+                if (field1 == Model.NEW_TURN) {
 
                     //If not empty, you have drawn a card, i.e. it's your turn
-                    if (!tuple[3].equals("")) {
+                    if (!field2.equals("")) {
 
                         Platform.runLater(new Runnable() {
                             public void run() {
@@ -53,10 +64,10 @@ public class ClientGameUpdate implements Runnable{
                                     Scene scene = new Scene(root);
                                     Main.appWindow.setScene(scene);
 
-                                    model.cardsOnHand.add((String) tuple[3]);
+                                    model.cardsOnHand.add((String) field2);
                                     Controller.loadHand(model.cardsOnHand, root);
 
-                                    model.actionHistory.add((String) tuple[4]);
+                                    model.actionHistory.add((String) field3);
 
                                     VBox vb = ((VBox) root.lookup("#vb1playcard"));
                                     ScrollPane sp = ((ScrollPane) root.lookup("#scrollplaycard"));
@@ -86,7 +97,7 @@ public class ClientGameUpdate implements Runnable{
                         });
                     } else {
 
-                        Label chatText = new Label((String) tuple[4]);
+                        Label chatText = new Label((String) field3);
                         chatText.setTextFill(Color.web("#0F487F"));
                         chatText.setWrapText(true);
 
@@ -96,36 +107,35 @@ public class ClientGameUpdate implements Runnable{
                             ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                             ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 
-                            model.actionHistory.add((String) tuple[4]);
+                            model.actionHistory.add((String) field3);
                         });
 
                     }
-                } else if (tuple[1].equals(Model.GAME_START_UPDATE)) {
+                } else if (field1 == Model.GAME_START_UPDATE) {
 
-                    model.cardsOnHand.add((String) tuple[3]);
+                    model.cardsOnHand.add((String) field2);
 
                     ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                     card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
 
 
-                    Label chatText = new Label((String) tuple[4]);
+                    Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
 
-                    System.out.println("Should have printed outcome : " + tuple[4]);
 
                     Platform.runLater(() -> {
 
                                 ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                                 ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 
-                                model.actionHistory.add((String) tuple[4]);
+                                model.actionHistory.add((String) field3);
                             }
                     );
 
-                } else if (tuple[1].equals(Model.OUTCOME)) {
+                } else if (field1 == Model.OUTCOME ) {
 
-                    Label chatText = new Label((String) tuple[4]);
+                    Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
 
                     Platform.runLater(() -> {
@@ -133,33 +143,33 @@ public class ClientGameUpdate implements Runnable{
                                 ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                                 ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 
-                                model.actionHistory.add((String) tuple[4]);
+                                model.actionHistory.add((String) field3);
                             }
                     );
 
 
-                    switch ((String) tuple[3]) {
+                    switch ((String) field2) {
                         case "KING":
-                            if (!tuple[5].equals("")) {
+                            if (!field4.equals("")) {
                                 model.cardsOnHand.remove(0);
-                                model.cardsOnHand.add((String) tuple[5]);
+                                model.cardsOnHand.add((String) field4);
                                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                                 card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
                             }
                             break;
                         case "PRINCE":
-                            if (!tuple[5].equals("")) {
+                            if (!field4.equals("")) {
                                 model.cardsOnHand.remove(0);
-                                model.cardsOnHand.add((String) tuple[5]);
+                                model.cardsOnHand.add((String) field4);
                                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                                 card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
                             }
                             break;
                     }
 
-                } else if (tuple[1].equals(Model.KNOCK_OUT)) {
+                } else if (field1 == Model.KNOCK_OUT) {
 
-                    Label chatText = new Label((String) tuple[4]);
+                    Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
 
@@ -168,15 +178,15 @@ public class ClientGameUpdate implements Runnable{
                         ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 
-                        model.actionHistory.add((String) tuple[4]);
+                        model.actionHistory.add((String) field3);
 
                     });
 
-                } else if (tuple[1].equals(Model.WIN)) {
+                } else if (field1 == Model.WIN) {
 
                     model.actionHistory.clear();
                     model.cardsOnHand.clear();
-                    Label chatText = new Label((String) tuple[3]);
+                    Label chatText = new Label((String) field2);
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
 
@@ -185,15 +195,15 @@ public class ClientGameUpdate implements Runnable{
                         ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 
-                        model.actionHistory.add((String) tuple[3]);
+                        model.actionHistory.add((String) field2);
 
                     });
 
-                } else if (tuple[1].equals(Model.GAME_ENDING)){
+                } else if (field1 == Model.GAME_ENDING){
 
-                    System.out.println("The game is over! " + tuple[4] + " has won the game");
+                    System.out.println("The game is over! " + field3 + " has won the game");
 
-                    JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + tuple[4] + " has won the game"  );
+                    JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + field3 + " has won the game"  );
 
                     Platform.runLater(() -> {
 
@@ -232,7 +242,7 @@ public class ClientGameUpdate implements Runnable{
 
                     });
                     break;
-                } else if (tuple[1].equals(Model.ACTION_DENIED)){
+                } else if (field1 == Model.ACTION_DENIED){
                     Platform.runLater(() -> {
                         try {
                             Parent root = FXMLLoader.load(getClass().getResource("PlayCardScene.fxml"));
@@ -242,11 +252,11 @@ public class ClientGameUpdate implements Runnable{
 
                             model.cardsOnHand.clear();
 
-                            model.cardsOnHand.add((String) tuple[4]);
-                            model.cardsOnHand.add((String) tuple[5]);
+                            model.cardsOnHand.add((String) field3);
+                            model.cardsOnHand.add((String) field4);
                             Controller.loadHand(model.cardsOnHand, root);
 
-                            model.actionHistory.add((String) tuple[3]);
+                            model.actionHistory.add((String) field2);
 
                             VBox vb = ((VBox) root.lookup("#vb1playcard"));
                             ScrollPane sp = ((ScrollPane) root.lookup("#scrollplaycard"));
@@ -273,6 +283,14 @@ public class ClientGameUpdate implements Runnable{
                 //e.printStackTrace();
                 System.out.println("Den er blevet catched!");
                 break;
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
 
