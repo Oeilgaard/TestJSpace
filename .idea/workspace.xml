@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -95,8 +92,8 @@
       <file leaf-file-name="RequestHandlerThread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1976">
-              <caret line="114" column="51" lean-forward="false" selection-start-line="114" selection-start-column="51" selection-end-line="114" selection-end-column="51" />
+            <state relative-caret-position="409">
+              <caret line="49" column="48" lean-forward="false" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
               <folding>
                 <element signature="e#4914#4915#0" expanded="true" />
                 <element signature="e#4966#4967#0" expanded="true" />
@@ -785,14 +782,7 @@
       <workItem from="1522824480620" duration="1667000" />
       <workItem from="1522911050904" duration="16460000" />
       <workItem from="1522957978381" duration="13000" />
-      <workItem from="1523258485679" duration="17774000" />
-    </task>
-    <task id="LOCAL-00032" summary="Cards loads and are clickable">
-      <created>1520520846846</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1520520846846</updated>
+      <workItem from="1523258485679" duration="17838000" />
     </task>
     <task id="LOCAL-00033" summary="Cards loads and are clickable">
       <created>1521016096158</created>
@@ -1130,7 +1120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523278167013</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="- Fixed some merge fuck-ups">
+      <created>1523280235552</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1523280235552</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1166,7 +1163,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248021000" />
+    <option name="totallyTimeSpent" value="248085000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1274,7 +1271,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tuple responses for different card plays (not all implemented however)" />
     <MESSAGE value="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card" />
     <MESSAGE value="Fixed King cards in model" />
     <MESSAGE value="Wrote Custom Msg's for different card events" />
@@ -1299,7 +1295,8 @@
     <MESSAGE value="- Players can now disconnect during games (rest will get to lobby list scene)&#10;- inLobby flag moved from Controller to Model&#10;- The winning player now starts the next round (int latestWinnerIndex added to Game.class)" />
     <MESSAGE value="- started on jUnit 4" />
     <MESSAGE value="- A bit of refactoring&#10;- Introduced a new ExecutorService for RequestThreads" />
-    <option name="LAST_COMMIT_MESSAGE" value="- A bit of refactoring&#10;- Introduced a new ExecutorService for RequestThreads" />
+    <MESSAGE value="- Fixed some merge fuck-ups" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed some merge fuck-ups" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1686,8 +1683,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1976">
-          <caret line="114" column="51" lean-forward="false" selection-start-line="114" selection-start-column="51" selection-end-line="114" selection-end-column="51" />
+        <state relative-caret-position="409">
+          <caret line="49" column="48" lean-forward="false" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
           <folding>
             <element signature="e#4914#4915#0" expanded="true" />
             <element signature="e#4966#4967#0" expanded="true" />
