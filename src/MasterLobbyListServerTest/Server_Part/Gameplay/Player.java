@@ -1,5 +1,7 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import javax.crypto.Cipher;
+
 public class Player {
 
     private Hand hand;
@@ -8,14 +10,18 @@ public class Player {
     private DiscardPile discardPile;
     private boolean handmaidProtection;
     private boolean inRound;
+    private int playerIndex;
+    private Cipher playerCipher;
 
-    public Player(String name) {
+    public Player(String name, int playerIndex, Cipher playerCipher) {
         this.affection = 0;
         this.name = name;
         this.hand = new Hand();
         this.discardPile = new DiscardPile();
         this.handmaidProtection = false;
         this.inRound = true;
+        this.playerIndex = playerIndex;
+        this.playerCipher = playerCipher;
     }
 
     public String getName() {
@@ -85,6 +91,14 @@ public class Player {
             sum += c.getValue();
         }
         return sum;
+    }
+
+    public int getPlayerIndex(){
+        return playerIndex;
+    }
+
+    public Cipher getPlayerCipher(){
+        return playerCipher;
     }
 
 

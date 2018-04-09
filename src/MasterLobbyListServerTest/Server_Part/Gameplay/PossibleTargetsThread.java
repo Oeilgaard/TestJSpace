@@ -31,11 +31,14 @@ public class PossibleTargetsThread implements Runnable{
 
                 Object[] tuple = lobbySpace.get(new ActualField("TargetablePlayersRequest"), new FormalField(SealedObject.class));
 
-                String[] targets = {"","","","",""};
+                String[] targetsAndReceiver = {"","","","","",""};
                 
                 String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
                 
                 String field1 = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
+
+                targetsAndReceiver[5] = field1;
+
                 String field2String = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.length());
                 int field2 = Integer.parseInt(field2String);
 
@@ -46,7 +49,7 @@ public class PossibleTargetsThread implements Runnable{
                         if (p.isInRound() && !p.isHandMaidProtected() && !p.isMe((String) field1)) {
                             String s = p.getName();
                             s = s.substring(0, s.indexOf("#"));
-                            targets[index] = s;
+                            targetsAndReceiver[index] = s;
                         }
                         index++;
                     }
@@ -55,7 +58,7 @@ public class PossibleTargetsThread implements Runnable{
                         if (p.isInRound() && !p.isHandMaidProtected()) {
                             String s = p.getName();
                             s = s.substring(0, s.indexOf("#"));
-                            targets[index] = s;
+                            targetsAndReceiver[index] = s;
                         }
                         index++;
                     }
@@ -64,17 +67,18 @@ public class PossibleTargetsThread implements Runnable{
                         if (p.isInRound()){
                             String s = p.getName();
                             s = s.substring(0, s.indexOf("#"));
-                            targets[index] = s + " : Alive";
+                            targetsAndReceiver[index] = s + " : Alive";
                         } else {
                             String s = p.getName();
                             s = s.substring(0, s.indexOf("#"));
-                            targets[index] = s + " : K.O.";
+                            targetsAndReceiver[index] = s + " : K.O.";
                         }
                         index++;
                     }
                 }
+                SealedObject encryptedMessage = new SealedObject(targetsAndReceiver,model.getUserfromName(field1).getPlayerCipher());
 
-                lobbySpace.put("TargetablePlayersResponse", field1, targets);
+                lobbySpace.put("TargetablePlayersResponse", encryptedMessage, model.getUserfromName(field1).getPlayerIndex());
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

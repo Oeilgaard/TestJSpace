@@ -14,14 +14,12 @@ import java.util.ArrayList;
 public class LobbyChatAgent implements Runnable{
 
     private SequentialSpace lobbySpace;
-    private ArrayList<String> players;
-    private ArrayList<Integer> threadIds;
+    private ArrayList<LobbyUser> users;
     private Cipher cipher;
 
-    LobbyChatAgent(SequentialSpace lobbySpace, ArrayList<String> players, ArrayList<Integer> threadIds, Cipher cipher){
+    LobbyChatAgent(SequentialSpace lobbySpace, ArrayList<LobbyUser> users, Cipher cipher){
         this.lobbySpace = lobbySpace;
-        this.players = players;
-        this.threadIds = threadIds;
+        this.users = users;
         this.cipher = cipher;
     }
 
@@ -39,15 +37,14 @@ public class LobbyChatAgent implements Runnable{
                 String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.length());
 
                 System.out.println("Receive chat update from : " + field1);
-                for (String user : players) {
-
+                for (LobbyUser user : users) {
                     if (!user.equals(field1)) {
                         String s = field1;
                         s = s.substring(0, s.indexOf("#"));
                         String finalText = s + " : " + field2;
                         // [0] lobby code, [1] chat code, [2] name of the receiving player, [3] text message combined with sending username
-                        System.out.println("Sending chat message to " + s + " with thread id " + threadIds.get(players.indexOf(user)));
-                        lobbySpace.put(Lobby.LOBBY_UPDATE, Lobby.CHAT_MESSAGE, user, finalText, threadIds.get(players.indexOf(user)));
+                        System.out.println("Sending chat message to " + s + " with thread id " + user.threadNr);
+                        lobbySpace.put(Lobby.LOBBY_UPDATE, Lobby.CHAT_MESSAGE, finalText, user.threadNr, user.userNr);
                     }
                 }
             } catch (InterruptedException e) {
