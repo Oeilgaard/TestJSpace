@@ -47,7 +47,8 @@ public class RequestHandlerThread implements Runnable {
                 if(!(serverData.getCurrentNoThreads() < ServerData.MAXIMUM_LOBBIES)){
                     UUID idForLobby = UUID.randomUUID();
                     try{
-                        serverData.responseSpace.put(Server.RESPONSE_CODE, Server.BAD_REQUEST, user, idForLobby);
+                        SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, cipher);
+                        serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
                         System.out.println("Putted the BAD_REQ");
                     } catch (InterruptedException e){
                         System.out.println("Error");
@@ -103,6 +104,8 @@ public class RequestHandlerThread implements Runnable {
             } else {
                 System.out.println("Too many lobbies at once \n Deny request");
             }
+
+
         } catch ( InterruptedException | IOException | IllegalBlockSizeException | ClassNotFoundException | BadPaddingException e){
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
