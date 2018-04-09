@@ -1,16 +1,11 @@
 package MasterLobbyListServerTest.Server_Part;
 
-import MasterLobbyListServerTest.JavaFXClient.Model;
-
 import javax.crypto.*;
 import java.io.IOException;
-import java.net.ResponseCache;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
-
-import static MasterLobbyListServerTest.JavaFXClient.HelperFunctions.validName;
 
 public class RequestHandlerThread implements Runnable {
 
@@ -106,13 +101,7 @@ public class RequestHandlerThread implements Runnable {
             }
 
 
-        } catch ( InterruptedException | IOException | IllegalBlockSizeException | ClassNotFoundException | BadPaddingException e){
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
+        } catch ( InterruptedException | IOException | IllegalBlockSizeException | ClassNotFoundException | BadPaddingException | NoSuchPaddingException | InvalidKeyException | NoSuchAlgorithmException e){
             e.printStackTrace();
         }
         System.out.println("Req. Thread is done ");

@@ -189,6 +189,7 @@ public class ClientGameUpdate implements Runnable{
 
                     Platform.runLater(() -> {
                         //Update GUI to tell who has been knocked out
+                        ((VBox) model.currentRoot.lookup("#vb1")).getChildren().clear();
                         ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 
