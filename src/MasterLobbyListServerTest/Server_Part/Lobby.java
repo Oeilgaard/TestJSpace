@@ -77,6 +77,7 @@ public class Lobby implements Runnable {
         // Stays in lobby loop until game starts or terminated
         lobbyLoop();
 
+
         /* CLOSING THE LOBBY AND STARTING THE GAME */
 
         // Remove Lobby from Lobby List overview space

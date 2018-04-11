@@ -102,7 +102,6 @@ public class Controller {
             model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
         }
 
-
     }
 
     public void pickCardTwo() throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
@@ -161,6 +160,7 @@ public class Controller {
             Object[] tuple;
             int field1;
             String field3;
+
             while (true){
                 // Blocks until user receives unique username (due to 'get')
                 // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID

@@ -15,9 +15,6 @@ import java.util.UUID;
 
 public class Model {
 
-    private static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
-    private static String serverIp;
-
     protected final static int REQUEST_CODE = 1;
     protected final static int CREATE_LOBBY_REQ = 11;
     protected final static int CREATE_USERNAME_REQ = 12;
@@ -55,8 +52,6 @@ public class Model {
     public final static int CLIENT_UPDATE = 10;
     public final static int NEW_TURN = 11;
     public final static int DISCARD = 12;
-    //public final static int TARGETTED = 121;
-    //public final static int UNTARGETTED = 122;
     public final static int OUTCOME = 13;
     public final static int KNOCK_OUT = 14;
     public final static int WIN = 15;
@@ -67,29 +62,25 @@ public class Model {
 
     public final static int SERVER_UPDATE = 20;
 
-    public Cipher personalCipher;
-
+    private static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
+    private static String serverIp;
     private int responseFromLobby = 0;
-
     private String uniqueName;
-
     private ServerResponseMonitor serverResponseMonitor;
-
-    public boolean leaderForCurrentLobby = false;
-
-    public ArrayList<String> cardsOnHand = new ArrayList<>();
-
-    public ArrayList<String> actionHistory = new ArrayList<>();
 
     public Parent currentRoot;
 
+    public ArrayList<String> cardsOnHand = new ArrayList<>();
+    public ArrayList<String> actionHistory = new ArrayList<>();
+
     private PublicKey serverPublicKey;
     private Cipher serverCipher;
-
     public Key key;
+    public Cipher personalCipher;
 
     public boolean inGame = false;
     public boolean inLobby = false;
+    public boolean leaderForCurrentLobby = false;
 
     public Model(){
         serverResponseMonitor = new ServerResponseMonitor();

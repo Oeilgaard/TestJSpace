@@ -63,19 +63,19 @@ public class RequestHandlerThread implements Runnable {
 
                     System.out.println("Creating a lobby with the name : " + serverName + "\n");
 
-
                     //Add Thread to lobbyThreads
                     serverData.createNewLobbyThread(idForLobby, user, serverData);
 
                     SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + user + "?" + idForLobby, cipher);
 
                     serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
-                    //Add Server information to entrySpace
+
+                    //Add Server information to lobbyOverviewSpace
                     serverData.lobbyOverviewSpace.put("Lobby", serverName, idForLobby);
 
                     System.out.println("LobbyRequest has now been handled");
                 } else {
-                    UUID idForLobby = UUID.randomUUID();
+                    UUID idForLobby = UUID.randomUUID(); //TODO can it be null?
                     SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, cipher);
 
                     serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
