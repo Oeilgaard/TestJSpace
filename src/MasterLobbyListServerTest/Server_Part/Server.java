@@ -3,13 +3,11 @@ package MasterLobbyListServerTest.Server_Part;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SealedObject;
+import javax.crypto.*;
 import java.io.IOException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Server {
 
@@ -49,7 +47,7 @@ public class Server {
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
 
-    public static void main(String[] argv) throws InterruptedException, IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    public static void main(String[] argv) throws InterruptedException, IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, ClassNotFoundException {
 
         ServerData serverData = new ServerData();
         System.out.println("ServerData is initialised");
@@ -62,10 +60,18 @@ public class Server {
             int REQUEST_CODE = 1;
             Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
-            Runnable reqHandler = new RequestHandlerThread(serverData, tuple);
-            System.out.println("66");
+            SealedObject encryptedKey = (SealedObject) tuple[3];
+            Key key = (Key) encryptedKey.getObject(serverData.cipher);
+
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+
+            SealedObject encryptedUserName = (SealedObject) tuple[2];
+
+            String decryptedInfo = (String) encryptedUserName.getObject(serverData.cipher);
+
+            Runnable reqHandler = new RequestHandlerThread(serverData, tuple,cipher, decryptedInfo);
             serverData.requestExecutor.execute(reqHandler);//calling execute method of ExecutorService
-            System.out.println("68");
         }
     }
 }
