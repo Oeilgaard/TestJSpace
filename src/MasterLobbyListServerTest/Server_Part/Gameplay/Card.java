@@ -1,7 +1,7 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
 public class Card {
-
+    //TODO Replace with just Character.java?
     private final Character character;
 
     Card(Character character) {
@@ -16,7 +16,5 @@ public class Card {
         return character.getValue();
     }
 
-    public String toString(){
-        return character.toString(); //TODO: is it acutally e.g. "BARON"?
-    }
+    public String toString(){ return character.toString(); }
 }

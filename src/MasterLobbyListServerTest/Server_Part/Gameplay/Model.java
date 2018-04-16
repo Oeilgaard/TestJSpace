@@ -61,13 +61,10 @@ public class Model {
         this.roundWon = false;
         this.revealedCards = new ArrayList<Card>();
         this.lobbySpace = lobbySpace;
-
         this.players = new ArrayList<Player>();
         for(LobbyUser user : users) {
             this.players.add(new Player(user.name,user.userNr,user.personalCipher));
         }
-        //Model.players.add(new Player("Alice"));
-        //Model.players.add(new Player("Bob"));
     }
 
     // RULES & UTILITY
@@ -101,10 +98,10 @@ public class Model {
         return players;
     }
 
-    public void nextTurn() {
-        turn++;
-    }
+    //TODO: Should they be synchronized?
+    public void nextTurn() { turn++; }
 
+    //TODO: Should they be synchronized?
     public void nextRound() {
         round++;
     }
@@ -119,7 +116,7 @@ public class Model {
 
     public int indexOfCurrentPlayersTurn(){
         return playerPointer % players.size();
-    }
+    } // circular0 array principle
 
     public boolean isLastManStanding() {
         int counter = 0;

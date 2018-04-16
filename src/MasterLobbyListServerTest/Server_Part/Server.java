@@ -39,9 +39,11 @@ public class Server {
     protected static int CREATE_LOBBY_REQ = 11;
     protected static int CREATE_USERNAME_REQ = 12;
     protected static int JOIN_LOBBY_REQ = 13;
+    protected static int PING_REQ = 14;
 
     protected static int RESPONSE_CODE = 2;
     protected final static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
+    protected final static int PONG_RESP = 24;
 
     // 'HTTP style'
     protected final static int OK = 200;
@@ -56,7 +58,7 @@ public class Server {
 
             //TODO: Re-evaluate req. and response codes - are they unnessacary as we have seperate spaces?
 
-            // [0] request code,[1] request type, [2] username to request/name of lobby, [3] null/username for lobby owner
+            // [0] request code,[1] request type, [2] if USER_NAME_REQ -> username to request/null, if CREATE_LOBBY_REQ -> name of lobby/username for lobby owner [3] the client's key
             int REQUEST_CODE = 1;
             Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
