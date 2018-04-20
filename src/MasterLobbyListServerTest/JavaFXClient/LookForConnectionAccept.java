@@ -38,10 +38,10 @@ public class LookForConnectionAccept implements Runnable {
                             model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
                             if (tuple[1].equals(Model.CONNECT_ACCEPTED)) {
-                                TimerForLobbyJoining.lobbyConnectionSuccess(2);
+                                TimerForLobbyJoining.lobbyConnectionSuccess(Model.OK);
                                 model.indexInLobby = Integer.parseInt(field3);
                             } else {
-                                TimerForLobbyJoining.lobbyConnectionSuccess(1);
+                                TimerForLobbyJoining.lobbyConnectionSuccess(Model.BAD_REQUEST);
                             }
                             if (Boolean.parseBoolean(field2)) {
                                 model.leaderForCurrentLobby = true;

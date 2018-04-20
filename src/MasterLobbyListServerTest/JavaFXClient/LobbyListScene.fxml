@@ -12,7 +12,7 @@
    <children>
       <Button fx:id="btn2" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" onAction="#queryServers" text="Refresh server list" />
       <Label layoutX="108.0" layoutY="84.0" text="Server list" />
-      <ListView fx:id="lobbyList" layoutX="108.0" layoutY="109.0" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#clickLobby"/>
+      <ListView fx:id="lobbyList" layoutX="108.0" layoutY="109.0" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#joinLobby"/>
       <Button layoutX="414.0" layoutY="109.0" mnemonicParsing="false" onAction="#goToCreateLobbyScene" text="Create new Lobby" />
       <Label fx:id="usernameLabel" layoutX="523.0" layoutY="14.0" text="Username" />
 

@@ -1,5 +1,7 @@
 package MasterLobbyListServerTest.Server_Part;
 
+import MasterLobbyListServerTest.JavaFXClient.HelperFunctions;
+
 import javax.crypto.*;
 import java.io.IOException;
 import java.util.UUID;
@@ -22,7 +24,6 @@ public class RequestHandlerThread implements Runnable {
     public void run() {
 
         //Cipher serverCipher = serverData.cipher;
-
         try {
             if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
 
@@ -37,14 +38,16 @@ public class RequestHandlerThread implements Runnable {
                     try{
                         SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, clientCipher);
                         serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
-                        System.out.println("Putted the BAD_REQ");
+                        System.out.println("40: Putted the BAD_REQ");
                     } catch (InterruptedException e){
                         System.out.println("Error");
                     }
                     return;
                 }
 
-                if(validName(serverName)) {
+                System.out.println("valid server name: " + HelperFunctions.validName(serverName));
+
+                if(HelperFunctions.validName(serverName)) {
 
                     //Add Thread to lobbyThreads
 
@@ -60,7 +63,7 @@ public class RequestHandlerThread implements Runnable {
                     serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
 
                     //Add Server information to lobbyOverviewSpace
-                    serverData.lobbyOverviewSpace.put("Lobby", serverName, idForLobby);
+                    serverData.lobbyOverviewSpace.put("Lobby", serverName, idForLobby); //TODO ændrer Lobby til tal-kode
 
                     System.out.println("LobbyRequest has now been handled");
                 } else {
@@ -75,8 +78,8 @@ public class RequestHandlerThread implements Runnable {
 
                 String userName = decryptedInfo.substring(0, decryptedInfo.indexOf('!'));
 
-                if (validName(userName)) {
-                    String uniqueName = uniqueUserName(userName);
+                if (HelperFunctions.validName(userName)) {
+                    String uniqueName = assignUserID(userName);
                     SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + userName + "?" + uniqueName, clientCipher);
 
                     serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, encryptedMessage);
@@ -99,15 +102,9 @@ public class RequestHandlerThread implements Runnable {
         System.out.println("Req. Thread is done ");
     }
 
-    private boolean validName(String name){
-        return name.matches("[a-zA-Z0-9_]+");
-    }
-
-    private String uniqueUserName(String name){
+    private String assignUserID(String name){
         String id = "#" + UUID.randomUUID().toString();
         System.out.println(name+id);
         return name+id;
     }
-
-
 }

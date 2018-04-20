@@ -2,7 +2,7 @@ package MasterLobbyListServerTest.JavaFXClient;
 
 public class TimerForLobbyJoining implements Runnable{
 
-    private static int connectionSucces = 0;
+    private static int connectionSucces = Model.NO_RESPONSE;
 
     private Model model;
 
@@ -20,25 +20,25 @@ public class TimerForLobbyJoining implements Runnable{
             int secondsBeforeFailure = 5;
             for (int i = 0; i < secondsBeforeFailure; i++) {
                 Thread.sleep(1000);
-                if (connectionSucces == 2) {
-
+                if (connectionSucces == Model.OK) {
+                    System.out.println("Connection succes");
                     //Success!
-                    model.changeResponseFromLobby(2);
+                    model.changeResponseFromLobby(Model.OK);
                     model.getServerResponseMonitor().okay();
+                    model.setInLobby(true);
                     break;
-                } else if (connectionSucces == 1) {
-
+                } else if (connectionSucces == Model.BAD_REQUEST) {
                     //Server is full
-                    model.changeResponseFromLobby(1);
+                    model.changeResponseFromLobby(Model.BAD_REQUEST);
                     model.getServerResponseMonitor().okay();
                     break;
                 }
             }
 
-            if(connectionSucces == 0){
+            if(connectionSucces == Model.NO_RESPONSE){
 
                 attemptAtConnecting.interrupt();
-                //reager på at serveren ikke er tilgængelig
+                // The server does not respond
                 model.getServerResponseMonitor().okay();
 
             }

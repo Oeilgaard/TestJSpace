@@ -40,7 +40,7 @@ public class Lobby implements Runnable {
     // this lobby's TS
     private SequentialSpace lobbySpace;
 
-    private UUID lobbyID;
+    private UUID lobbyID; //TODO: ændre til navn + # + UUID så det matcher user-id
     private Boolean beginFlag;
     private String lobbyLeader;
     private int noPlayers;
@@ -233,5 +233,9 @@ public class Lobby implements Runnable {
                 }
             }
         }
+    }
+
+    public UUID getLobbyID(){
+        return lobbyID;
     }
 }
