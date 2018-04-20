@@ -67,7 +67,7 @@ public class FilledLobbyTest {
         System.out.println("0) Requesting the creation of the lobbies");
         for (int i = 0; i < nrOfLobbies; i++) {
             requestSpace.put(1, 11, encryptedLobbyNames[i], encryptedKey);
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }
 
         System.out.println("1) Cleaning the responses");
@@ -157,11 +157,11 @@ public class FilledLobbyTest {
         playingLoop:
         while (true) {
             //Recognise who has the turn tuple
+            System.out.println("Playing the game...");
             for (int i = 0; i < nrOfLobbies; i++) {
                 if (!lobbyStoppedRunning[i]) {
                     clientLoop:
                     for (int k = 0; k < 4; k++) {
-                        System.out.println("Client : " + (i*4 + k));
                         Object[] tupleForClient;
                         //TODO sæt et flag og klar trækket efter alles tupler er tjekket
                         while (true) {
@@ -170,11 +170,8 @@ public class FilledLobbyTest {
                             String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
                             int field1 = Integer.parseInt(field1text);
                             String field2 = decryptedNewRound.substring(decryptedNewRound.indexOf('!') + 1, decryptedNewRound.indexOf('?'));
-                            System.out.println(" Client : " + (i*4+k) + " found at field1 : " + field1);
                             if (field1 == 11) {
-                                System.out.println("Its a new turn");
                                 if (!field2.equals("")) {
-                                    System.out.println("Found the turn!");
                                     lobbySpaces[i].getAll(new ActualField(10), new FormalField(SealedObject.class), new FormalField(Integer.class));
                                     //This players turn
                                     takeAction(lobbySpaces[i], "testClient" + (i * 4 + k), k, lobbyCiphers[i], clientCipher);
@@ -220,11 +217,7 @@ public class FilledLobbyTest {
                 String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
 
                 if (field1text.equals("13")) {
-                    System.out.println(clientName + " had success playing");
-                    //Thread.sleep(1000);
                     break outerloop;
-                } else if (field1text.equals("11")) {
-                    System.out.println("FOUND A NEW TURN TUPLE ?!?");
                 } else if (field1text.equals("17")) {
                     break innerloop;
                 }

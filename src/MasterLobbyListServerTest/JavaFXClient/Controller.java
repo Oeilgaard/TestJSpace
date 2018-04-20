@@ -283,6 +283,7 @@ public class Controller {
     }
 
     private void changeScene(String sceneName) throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
+        model.currentSceneIsGameScene = false;
 
         Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
         model.currentRoot = root;
@@ -327,6 +328,8 @@ public class Controller {
                 break;
             }
             case GAME_SCENE: {
+
+                model.currentSceneIsGameScene = true;
 
                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                 card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));

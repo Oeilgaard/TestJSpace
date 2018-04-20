@@ -127,6 +127,7 @@ public class ClientUpdateAgent implements Runnable{
 
                     model.setInGame(true);
                     model.setInLobby(false);
+                    model.currentSceneIsGameScene = true;
 
                     Platform.runLater(new Runnable() {
                         public void run() {

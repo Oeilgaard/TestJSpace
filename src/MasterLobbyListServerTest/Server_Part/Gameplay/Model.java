@@ -13,7 +13,7 @@ public class Model {
 
     public final static int AFFECTION_GOAL_TWO_PLAYERS = 7;
     public final static int AFFECTION_GOAL_THREE_PLAYERS = 5;
-    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 200;
+    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 4;
 
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
 
@@ -323,7 +323,7 @@ public class Model {
         }
 
         //TODO if it was a princess the client still gets a new card
-        if ((!deck.getCards().isEmpty())) {
+        if ((!deck.getCards().isEmpty()) && players.get(targetPlayersIndex).isInRound()) {
             deck.drawCard(players.get(targetPlayersIndex).getHand());
 
             if(sendersIndex == targetPlayersIndex){
@@ -367,6 +367,47 @@ public class Model {
                 String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
 
                 informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
+            }
+        } else if (!players.get(targetPlayersIndex).isInRound()){
+            if(sendersIndex == targetPlayersIndex){
+
+                String msgSender = "You play " + cardName + " on yourself and discard "
+                        + discardedCard.getCharacter().toString();
+                String msgOthers = senderName + " plays " + cardName + " on self and discards "
+                        + discardedCard.getCharacter().toString();
+
+                for(Player p : players){
+                    if(p.getName().equals(players.get(sendersIndex).getName())){
+                        try {
+                            SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgSender + "=", p.getPlayerCipher());
+                            lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (IllegalBlockSizeException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        try {
+                            SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgOthers + "=" + "", p.getPlayerCipher());
+                            lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (IllegalBlockSizeException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            } else {
+                String msgSender = "You play PRINCE on " + targetName + " who discard the hand.";
+                String msgTarget = senderName + " plays PRINCE on you. You discard" +
+                        " your hand.";
+                String msgOthers = senderName + " played PRINCE on " + targetName;
+
+                informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
             }
         } else {
             //TODO self-target scenario

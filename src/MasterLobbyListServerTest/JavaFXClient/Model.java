@@ -96,6 +96,8 @@ public class Model {
 
     public int indexInLobby = -1;
 
+    public static boolean currentSceneIsGameScene = false;
+
     public void addIpToRemoteSpaces(String ip) throws IOException {
 
         requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");

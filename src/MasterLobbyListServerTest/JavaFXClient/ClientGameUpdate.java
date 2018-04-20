@@ -36,7 +36,6 @@ public class ClientGameUpdate implements Runnable{
         while (true) {
 
             try {
-
                 Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
 
                 String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(model.personalCipher);
@@ -51,6 +50,7 @@ public class ClientGameUpdate implements Runnable{
 
                     //If not empty, you have drawn a card, i.e. it's your turn
                     if (!field2.equals("")) {
+                        model.currentSceneIsGameScene = false;
 
                         Platform.runLater(new Runnable() {
                             public void run() {
@@ -115,11 +115,9 @@ public class ClientGameUpdate implements Runnable{
                     ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                     card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
 
-
                     Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
-
 
                     Platform.runLater(() -> {
 
@@ -169,6 +167,12 @@ public class ClientGameUpdate implements Runnable{
                     Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
+                    SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
+
+                    model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+
+                    String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 
                     Platform.runLater(() -> {
                         //Update GUI to tell who has been knocked out
@@ -177,6 +181,15 @@ public class ClientGameUpdate implements Runnable{
 
                         model.actionHistory.add((String) field3);
 
+                        if (model.currentSceneIsGameScene) {
+                            ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
+                            updatePlayerListView.getItems().clear();
+                            for (int i = 0; i < 4; i++) {
+                                if (!listOfNames[i].equals("")) {
+                                    updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
+                                }
+                            }
+                        }
                     });
 
                 } else if (field1 == Model.WIN) {
@@ -187,6 +200,12 @@ public class ClientGameUpdate implements Runnable{
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
 
+                    SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
+                    model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+
+                    String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
+
                     Platform.runLater(() -> {
                         //Update GUI to tell who has been knocked out
                         ((VBox) model.currentRoot.lookup("#vb1")).getChildren().clear();
@@ -195,9 +214,20 @@ public class ClientGameUpdate implements Runnable{
 
                         model.actionHistory.add((String) field2);
 
+                        if (model.currentSceneIsGameScene) {
+                            ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
+                            updatePlayerListView.getItems().clear();
+                            for (int i = 0; i < 4; i++) {
+                                if (!listOfNames[i].equals("")) {
+                                    updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
+                                }
+                            }
+                        }
                     });
 
                 } else if (field1 == Model.GAME_ENDING){
+
+                    model.currentSceneIsGameScene = false;
 
                     model.setInGame(false);
 
@@ -237,10 +267,11 @@ public class ClientGameUpdate implements Runnable{
                         } catch (IOException | InterruptedException e) {
                             e.printStackTrace();
                         }
-
                     });
                     break;
                 } else if (field1 == Model.ACTION_DENIED){
+                    model.currentSceneIsGameScene = false;
+
                     Platform.runLater(() -> {
                         try {
                             Parent root = FXMLLoader.load(getClass().getResource("PlayCardScene.fxml"));
@@ -279,6 +310,8 @@ public class ClientGameUpdate implements Runnable{
                     model.setInGame(false);
 
                     JOptionPane.showMessageDialog(new JFrame(),"The game is over as a player disconnected");
+
+                    model.currentSceneIsGameScene = false;
 
                     Platform.runLater(() -> {
 
