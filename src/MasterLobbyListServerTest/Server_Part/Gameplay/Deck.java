@@ -4,27 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck {
-    public static final int COPIES_OF_PRINCESS= 1;
-    public static final int COPIES_OF_COUNTESS = 1;
-    public static final int COPIES_OF_KING = 1;
-    public static final int COPIES_OF_PRINCE = 2;
-    public static final int COPIES_OF_HANDMAID = 2;
-    public static final int COPIES_OF_BARON = 2;
-    public static final int COPIES_OF_PRIEST = 2;
-    public static final int COPIES_OF_GUARD = 5;
-
-    //private static final int[] copies = {COPIES_OF_GUARD, COPIES_OF_PRIEST, COPIES_OF_BARON,
-    //        COPIES_OF_BARON, COPIES_OF_HANDMAID, COPIES_OF_PRINCE, COPIES_OF_KING, COPIES_OF_COUNTESS, COPIES_OF_PRINCESS};
 
     private ArrayList<Card> cards = new ArrayList<>();
 
-    public Deck() {
-    }
+    public Deck() {}
 
     public ArrayList<Card> getCards(){
         return cards;
     }
 
+    // "Draw Card"-methods take a
     public void drawCard(Hand hand) {
         if(cards.size() > 0) {
             Card drawnCard = cards.get(0);
@@ -39,7 +28,6 @@ public class Deck {
             deck.add(drawnCard);
             cards.remove(0);
         } else { System.out.println("Cannot draw, deck is empty"); }
-
     }
 
     public Card drawCard() {
@@ -71,6 +59,7 @@ public class Deck {
     }
 
     /*
+    // SPECIAL DECK TO TEST COUNTESS-RULE
     public void fillDeck(){
         for(Character ch : Character.values()) {
             if(ch == Character.COUNTESS){

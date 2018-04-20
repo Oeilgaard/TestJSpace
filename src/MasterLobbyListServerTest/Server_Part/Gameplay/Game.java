@@ -26,7 +26,7 @@ public class Game {
     private Character chosenCharacter;
     private Player currentPlayer;
     private Object[] tuple;
-    private boolean legalPlay;
+    private boolean legalPlay; // flag to determine of the player sends a 'legal discard'-play
     private int latestWinnerIndex; // used to determine who goes first - initialized to zero
     public Cipher cipher;
 
@@ -90,6 +90,7 @@ public class Game {
         System.out.print(newLine);
     }
 
+
     public void startGame() throws InterruptedException, IOException, IllegalBlockSizeException {
 
         model.determineAffectionGoal();
@@ -107,24 +108,25 @@ public class Game {
                 legalPlay = false;
 
                 if(currentPlayer.isInRound()) {
-
-                    if(currentPlayer.isHandMaidProtected()) {
-                        currentPlayer.deactivateHandmaid();
-                    }
-
                     // States current player's turn
                     System.out.println("Round no. " + model.round + newLine + "Turn no. "
                             + (model.turn) + newLine + currentPlayer.getName() + "'s turn" + newLine);
 
-                    // 1. DRAW
+                    // 1. DEACTIVATE POTENTIAL HANDMAID EFFECT
+                    if(currentPlayer.isHandMaidProtected()) {
+                        currentPlayer.deactivateHandmaid();
+                    }
+
+                    // 2. DRAW
                     model.deck.drawCard(currentPlayer.getHand());
-                    Card two = currentPlayer.getHand().getCards().get(1);
+                    Card two = currentPlayer.getHand().getCards().get(1); // temp. variable for drawn card
                     System.out.println(currentPlayer.getName() + " drew a " + two.getCharacter() + newLine);
 
                     System.out.println(currentPlayer.getName() + "'s current hand: ");
                     currentPlayer.getHand().printHand();
                     System.out.print(newLine);
 
+                    // Inform all players about the new turn, and also send the drawn card to current player's turn
                     for(Player p : model.players){
                         String msg = "Round " + model.round + ", " + "Turn " + model.turn + " - ";
                         if(p.getName().equals(currentPlayer.getName())) {
@@ -132,7 +134,6 @@ public class Game {
                                 msg += "Your turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4] message, [5] -
                                 SealedObject encryptedMessage = new SealedObject(Model.NEW_TURN + "!" + two.toString() + "?" + msg + "=", p.getPlayerCipher());
-
                                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -146,7 +147,6 @@ public class Game {
                                 msg += model.removeIDFromPlayername(currentPlayer.getName()) + "'s turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] - , [4] msg, [5] -
                                 SealedObject encryptedMessage = new SealedObject(Model.NEW_TURN + "!?" + msg + "=", p.getPlayerCipher());
-
                                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -158,21 +158,19 @@ public class Game {
                         }
                     }
 
-                    // 2. DISCARD
-
-                    // TODO: DO SANITY CHECK OF PLAY
-
+                    // 3. DISCARD
+                    // We wait for a legal discard to happen
                     while(!legalPlay){
                         waitForDiscard();
                     }
-                    legalPlay = false;
+                    legalPlay = false; // flip the flag for the next turn
 
-                    // 3. ROUND END CHECKS
+                    // 4. ROUND END CHECKS
                     terminalTest();
 
                     model.nextTurn(); //turn only increments if a turn is executed
                 }
-                model.playerPointer++; // player pointer increments for every index in the players array
+                model.playerPointer++; // player pointer increments for every index in the players array, also knocked out players
             }
             System.out.println("Game is over");
         }

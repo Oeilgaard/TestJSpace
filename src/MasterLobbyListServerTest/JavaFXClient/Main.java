@@ -28,7 +28,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
+        System.out.println("Start");
         appWindow = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("JoinServerScene.fxml"));
         appWindow.setScene(new Scene(root));

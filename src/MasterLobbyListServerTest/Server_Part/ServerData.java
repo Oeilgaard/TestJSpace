@@ -73,7 +73,10 @@ public class ServerData{
     }
 
     public synchronized void createNewLobbyThread(UUID uuid, String username, ServerData serverData) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException {
-        executor.execute(new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData));  //calling execute method of ExecutorService
+        //calling execute method of ExecutorService
+        executor.execute(new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData));
+
+        // printing the current amount of active threads
         if (executor instanceof ThreadPoolExecutor) {
             System.out.println(
                     "Pool size is now " +

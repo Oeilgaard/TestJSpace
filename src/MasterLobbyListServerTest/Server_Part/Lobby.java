@@ -97,7 +97,7 @@ public class Lobby implements Runnable {
         // Stays in lobby loop until game starts or terminated
         lobbyLoop();
 
-        /* CLOSING THE LOBBY AND STARTING THE GAME */
+        /* CLOSING THE LOBBY (AND STARTING THE GAME IF APPLICABLE) */
 
         // Remove Lobby from Lobby List overview space
         try {
@@ -133,22 +133,25 @@ public class Lobby implements Runnable {
     public void lobbyLoop(){
         while (true) {
             try {
+                // Wait for a new LOBBY_REQ tuple
                 // [0] LOBBY-tuple code, [1] (int)LOBBY action code, [2] (String)User name (for some tuples) [3] (int)thread nr for the specific user
                 Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
+                // Decrypting the LOBBY_REQ tuple
                 String decryptedString = (String) ((SealedObject)tuple[1]).getObject(lobbyCipher);
                 String field1 = decryptedString.substring(0,decryptedString.indexOf('!'));
                 String field2 = decryptedString.substring(decryptedString.indexOf('!')+1,decryptedString.indexOf('?'));
                 String field3 = decryptedString.substring(decryptedString.indexOf('?')+1,decryptedString.length());
-
                 int req = Integer.parseInt(field1);
                 String name = field2;
 
-                // A new client tries to connect to the lobby
+                // If request type is CONNECT, A new client tries to connect to the lobby
                 if (req == CONNECT) {
+                    // TODO: hvad sker der her?
                     Key key = (Key) ((SealedObject)tuple[2]).getObject(lobbyCipher);
                     Cipher cipher = Cipher.getInstance("AES");
                     cipher.init(Cipher.ENCRYPT_MODE,key);
+
                     if (noPlayers < MAX_PLAYER_PR_LOBBY) {
                         users.add(new LobbyUser(name,Integer.parseInt(field3),cipher,availableNrs.get(0)));
                         availableNrs.remove(0);
@@ -177,9 +180,9 @@ public class Lobby implements Runnable {
                     int indexForPlayer = getUserfromName(name).userNr;
                     users.remove(getUserfromName(name)); // remove player from players
                     availableNrs.add(indexForPlayer);
-                    noPlayers--;
+                    noPlayers--; //TODO: should it be synchronized? (Probably not, as only one thread)
                     updatePlayers(name, DISCONNECT);
-                } else if (req == CLOSE) { // the lobby is closing
+                } else if (req == CLOSE) { // If request type is CLOSE,
                     System.out.println("Lobby is closing");
                     beginFlag = false;
                     updatePlayers(name, CLOSE);
@@ -192,9 +195,11 @@ public class Lobby implements Runnable {
                         break;
                     } else {
                         System.out.println("Not enough players to begin");
+                        //TODO: perhaps send a tuple back
                     }
-                } else if (req == GET_PLAYERLIST) { // a client requests the list of player's in the lobby
+                } else if (req == GET_PLAYERLIST) { // If request is GET_PLAYERLIST, a client requests the list of player's in the lobby
 
+                    // TODO: hvorfor ikke returnere private ArrayList<LobbyUser> users?
                     ArrayList<String> usernames = new ArrayList<>();
                     for (LobbyUser user : users) {
                         String s = user.name;
