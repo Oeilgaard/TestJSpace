@@ -131,7 +131,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void joinLobby() throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void joinLobby() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Assert.assertFalse(model.getInLobby());
 
         // Clearing potential existing lobbies
@@ -153,7 +153,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void disconnectFromOwnLobby() throws InterruptedException, IOException, IllegalBlockSizeException{
+    public void disconnectFromOwnLobby() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Assert.assertFalse(model.getInLobby());
 
         // Clearing potential existing lobbies

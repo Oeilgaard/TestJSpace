@@ -331,7 +331,7 @@ public class Model {
         return false;
     }
 
-    public void joinLobbyLogic(String lobbyName, UUID lobbyID, int threadGlobalId) throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void joinLobbyLogic(String lobbyName, UUID lobbyID, int threadGlobalId) throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         // Query the desired lobby-tuple (non-blocking)
 
         System.out.println("307");
@@ -355,9 +355,9 @@ public class Model {
 
             String messageToBeEncrypted = "" + Model.CONNECT + "!" + getUniqueName() + "?" + threadGlobalId;
 
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, serverCipher);
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
-            SealedObject encryptedKey = new SealedObject(key, serverCipher);
+            SealedObject encryptedKey = new SealedObject(key, lobbyCipher);
 
             lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, encryptedKey);
 

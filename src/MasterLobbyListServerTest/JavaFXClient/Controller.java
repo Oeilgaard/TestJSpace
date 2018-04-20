@@ -442,15 +442,7 @@ public class Controller {
     public void textToChat() throws InterruptedException, IOException, IllegalBlockSizeException {
 
         String text = chatTxtField.getText();
-
-        String textToSend = removedIdFromUsername() + " : " + text;
-        Label chatText = new Label(model.getUserName() + " : " + text);
-        chatText.setWrapText(true);
-
-        vb1.getChildren().add(chatText);
-        chatTxtField.clear();
-        scroll.setVvalue(1.0);
-
+        String textToSend = HelperFunctions.removeUUIDFromUserName(model.getUniqueName()) + " : " + text;
         model.getLobbySpace().put("Chat", textToSend);
     }
 
@@ -466,7 +458,6 @@ public class Controller {
                 changeScene(LOADING_LOBBY_SCENE);
 
                 model.joinLobbyLogic((String) lobbyList.getSelectionModel().getSelectedItem(), lobbyIds.get(index), model.getCurrentThreadNumber());
-
 
                 switch (model.getResponseFromLobby()) {
                     case Model.NO_RESPONSE:
