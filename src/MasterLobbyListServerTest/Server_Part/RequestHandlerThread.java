@@ -2,6 +2,8 @@ package MasterLobbyListServerTest.Server_Part;
 
 import javax.crypto.*;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 public class RequestHandlerThread implements Runnable {
