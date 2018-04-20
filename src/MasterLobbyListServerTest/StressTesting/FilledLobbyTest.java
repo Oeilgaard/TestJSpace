@@ -26,9 +26,9 @@ public class FilledLobbyTest {
 
         System.out.println("Testing the server with : " + nrOfClients + " clients and " + nrOfLobbies + " lobbies");
 
-        RemoteSpace requestSpace = new RemoteSpace("tcp://localhost:25565/requestSpace?keep");
-        RemoteSpace lobbyListSpace = new RemoteSpace("tcp://localhost:25565/lobbyOverviewSpace?keep");
-        RemoteSpace responseSpace = new RemoteSpace("tcp://localhost:25565/responseSpace?keep");
+        RemoteSpace requestSpace = new RemoteSpace("tcp://10.68.103.15:25565/requestSpace?keep");
+        RemoteSpace lobbyListSpace = new RemoteSpace("tcp://10.68.103.15:25565/lobbyOverviewSpace?keep");
+        RemoteSpace responseSpace = new RemoteSpace("tcp://10.68.103.15:25565/responseSpace?keep");
 
         KeyGenerator kg = KeyGenerator.getInstance("AES");
         Key clientKey = kg.generateKey();
@@ -87,7 +87,7 @@ public class FilledLobbyTest {
 
         int y = 0;
         for (Object[] obj : tuplelist) {
-            lobbySpaces[y] = new RemoteSpace("tcp://localhost:25565/" + obj[2] + "?keep");
+            lobbySpaces[y] = new RemoteSpace("tcp://10.68.103.15:25565/" + obj[2] + "?keep");
             Object[] tupleLobbyKey = lobbySpaces[y].query(new FormalField(PublicKey.class));
             lobbyCiphers[y] = Cipher.getInstance("RSA");
             lobbyCiphers[y].init(Cipher.ENCRYPT_MODE, (PublicKey) tupleLobbyKey[0]);
