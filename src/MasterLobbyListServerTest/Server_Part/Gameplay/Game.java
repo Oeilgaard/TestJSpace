@@ -7,6 +7,7 @@ import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import java.io.IOException;
@@ -27,16 +28,18 @@ public class Game {
     private Object[] tuple;
     private boolean legalPlay;
     private int latestWinnerIndex; // used to determine who goes first - initialized to zero
+    public Cipher cipher;
 
     private ServerData serverData;
 
-    public Game(ArrayList<LobbyUser> users, SequentialSpace lobbySpace, ServerData serverData) {
+    public Game(ArrayList<LobbyUser> users, SequentialSpace lobbySpace, ServerData serverData, Cipher cipher) {
         this.model = new Model(users, lobbySpace);
         this.lobbySpace = lobbySpace;
         this.latestWinnerIndex = 0;
-        posTargets = new Thread(new PossibleTargetsThread(lobbySpace,model,serverData));
+        posTargets = new Thread(new PossibleTargetsThread(lobbySpace,model,cipher));
         posTargets.start();
         this.serverData = serverData;
+        this.cipher = cipher;
     }
 
     public void newRound(){
@@ -69,7 +72,6 @@ public class Game {
         // Secret card
         msg += newLine + "and a SECRET CARD is set aside..." + newLine;
         model.secretCard = model.deck.drawCard();
-
 
         //msg += "Each player draws a card..." + newLine;
         System.out.println(msg);
@@ -175,6 +177,7 @@ public class Game {
             System.out.println("Game is over");
         }
 
+        System.out.println("Interrupting posTargets");
         posTargets.interrupt();
 
         String winner = model.getWinner();
@@ -200,7 +203,7 @@ public class Game {
             //TODO: Er Model.DISCARD nødvendigt at lytte på ?
             Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class));
 
-            String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
+            String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(cipher);
 
             String field1 = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
             String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.indexOf('?'));
@@ -528,21 +531,21 @@ public class Game {
                             }
                         }
                     }
-                }
-            } else {
-                model.setRoundWon(true); // corresponds to draw...
-                String msg = "Cards and discard piles were tied! No one wins the round.";
-                for(Player p : model.players){
-                    try {
-                        // [0] update [1] type [2] tuple recipient [3] Game log msg [4] - [5] -
-                        SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msg + "?=", p.getPlayerCipher());
+                } else {
+                    model.setRoundWon(true); // corresponds to draw...
+                    String msg = "Cards and discard piles were tied! No one wins the round.";
+                    for(Player p : model.players){
+                        try {
+                            // [0] update [1] type [2] tuple recipient [3] Game log msg [4] - [5] -
+                            SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msg + "?=", p.getPlayerCipher());
 
-                        lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                            lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
+                }
             }
         }
     }

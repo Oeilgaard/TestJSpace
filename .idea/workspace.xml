@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +30,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="158" column="42" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
+            <state relative-caret-position="113">
+              <caret line="433" column="21" selection-start-line="433" selection-start-column="16" selection-end-line="433" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -33,81 +42,43 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1403">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="122">
+              <caret line="153" column="24" lean-forward="true" selection-start-line="153" selection-start-column="24" selection-end-line="153" selection-end-column="24" />
               <folding>
-                <element signature="e#2895#2896#0" expanded="true" />
-                <element signature="e#2962#2963#0" expanded="true" />
+                <element signature="e#4830#4831#0" expanded="true" />
+                <element signature="e#4874#4875#0" expanded="true" />
+                <element signature="e#4939#4940#0" expanded="true" />
+                <element signature="e#4997#4998#0" expanded="true" />
+                <element signature="e#5038#5039#0" expanded="true" />
+                <element signature="e#5078#5079#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilledLobbyTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java">
+      <file leaf-file-name="PossibleTargetsThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="55" column="9" lean-forward="true" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1241">
+              <caret line="84" column="18" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RemoteSpace.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/jspace/RemoteSpace.java">
+      <file leaf-file-name="TimerForLobbyJoining.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+            <state relative-caret-position="289">
+              <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+      <file leaf-file-name="LookForConnectionAccept.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
-              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SequentialSpace.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/jspace/SequentialSpace.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="56" column="84" selection-start-line="56" selection-start-column="84" selection-end-line="56" selection-end-column="84" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestHandlerThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="95" column="80" lean-forward="true" selection-start-line="95" selection-start-column="80" selection-end-line="95" selection-end-column="80" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="425">
+              <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -115,16 +86,52 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="21" selection-start-line="21" selection-end-line="22" />
+            <state relative-caret-position="272">
+              <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateLobbyScene.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LockedSpaceTest/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-34">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LockedSpaceTest/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-85">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilledLobbyTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-40">
+              <caret line="133" column="43" lean-forward="true" selection-start-line="133" selection-start-column="43" selection-end-line="133" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LobbychatTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-901">
+              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -140,36 +147,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>field</find>
-      <find>cip</find>
-      <find>tuple[3]</find>
-      <find>tuple[2]</find>
-      <find>lobby_res</find>
-      <find>lobby_resp</find>
-      <find>badPadding</find>
-      <find>badpadding</find>
-      <find>ba</find>
-      <find>badpa</find>
-      <find>bad</find>
-      <find>outcome</find>
-      <find>pickc</find>
-      <find>badpad</find>
-      <find>get(</find>
-      <find>should</find>
-      <find>Model.</find>
-      <find>model</find>
-      <find>serverdata</find>
-      <find>new M</find>
-      <find>system</find>
-      <find>Win</find>
-      <find>ENDING</find>
-      <find>chat</find>
-      <find>System</find>
-      <find>Syste</find>
       <find>put</find>
       <find>name</find>
       <find>put(</find>
+      <find>get</find>
+      <find>cipher</find>
+      <find>Cipher</find>
+      <find>getCipher</find>
       <find>serverData.cipher</find>
+      <find>serverData</find>
+      <find>could</find>
+      <find>COU</find>
+      <find>COULD</find>
+      <find>System</find>
+      <find>createLo</find>
+      <find>BEGIN</find>
+      <find>p</find>
+      <find>possibleTargetsTh</find>
+      <find>posTargets</find>
+      <find>PossibleTargetsThread</find>
+      <find>5</find>
+      <find>guess</find>
+      <find>CLIENT_U</find>
+      <find>clientKey</find>
+      <find>prince</find>
+      <find>linie</find>
+      <find>click</find>
+      <find>chat</find>
+      <find>query</find>
+      <find>testClient</find>
+      <find>lobbyname</find>
     </findStrings>
     <replaceStrings>
       <replace>field1</replace>
@@ -179,6 +186,8 @@
       <replace>field4</replace>
       <replace>tuple[2]</replace>
       <replace>serverCipher</replace>
+      <replace>cipher</replace>
+      <replace>lobbyCipher</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\Users\Ole\IdeaProjects\TestJSpace</dir>
@@ -196,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/LockedSpaceTest/Client.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Client.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/LobbyCleanerThread.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server.java" />
@@ -232,21 +240,22 @@
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/testing.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyUser.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
         <option value="$PROJECT_DIR$/src/org/jspace/SequentialSpace.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java" />
       </list>
     </option>
   </component>
@@ -293,7 +302,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -314,30 +322,14 @@
             </path>
             <path>
               <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaFXClient" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
-              <item name="Server_Part" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
-              <item name="StressTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -351,18 +343,18 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources" />
-      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient" />
-      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay" />
+      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src\MasterLobbyListServerTest" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="LobbyTesting" />
       <recent name="common.src.main" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay" />
-      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src\MasterLobbyListServerTest" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/resources" />
+      <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient" />
+      <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -377,23 +369,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FilledLobbyTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
-    <configuration name="Client (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Client_Part.Client" />
+    <configuration name="FilledLobbyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.StressTesting.FilledLobbyTest" />
       <module name="TestJSpace" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.Client_Part.*" />
+          <option name="PATTERN" value="MasterLobbyListServerTest.StressTesting.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
     </configuration>
-    <configuration name="FilledLobbyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.StressTesting.FilledLobbyTest" />
+    <configuration name="LobbychatTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.StressTesting.LobbychatTest" />
       <module name="TestJSpace" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -438,17 +430,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    </configuration>
-    <configuration name="testing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.testing" />
-      <module name="TestJSpace" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.Server_Part.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -502,19 +483,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list>
-      <item itemvalue="Application.Client (2)" />
+      <item itemvalue="Application.Server" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Server (1)" />
-      <item itemvalue="Application.testing" />
       <item itemvalue="Application.FilledLobbyTest" />
+      <item itemvalue="Application.LobbychatTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FilledLobbyTest" />
-        <item itemvalue="Application.Server (1)" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.testing" />
-        <item itemvalue="Application.Client (2)" />
+        <item itemvalue="Application.LobbychatTest" />
+        <item itemvalue="Application.FilledLobbyTest" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Server (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -544,13 +525,6 @@
       <workItem from="1522134203974" duration="20467000" />
       <workItem from="1522220862133" duration="26384000" />
       <workItem from="1522654072835" duration="10995000" />
-    </task>
-    <task id="LOCAL-00033" summary="Cards loads and are clickable">
-      <created>1521016096158</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1521016096159</updated>
     </task>
     <task id="LOCAL-00034" summary="Work on pick player scene">
       <created>1521016309260</created>
@@ -888,7 +862,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523281291627</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="- Race condition at RequestHandler fixed&#10;- Beginning of stresstesting">
+      <created>1523456458195</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1523456458195</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -905,7 +886,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32979852" />
@@ -914,7 +894,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51976573" side_tool="true" weight="0.35367763" />
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49791667" weight="0.32979852" />
-      <window_info active="true" anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.5204978" side_tool="true" visible="true" weight="0.29107982" />
+      <window_info active="true" anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.50512445" side_tool="true" visible="true" weight="0.34898278" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13616398" />
@@ -922,7 +902,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49583334" weight="0.39927405" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49487555" weight="0.39906102" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
@@ -969,7 +949,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactoring Play/Discard step in the game" />
     <MESSAGE value="Tuple responses for different card plays (not all implemented however)" />
     <MESSAGE value="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card" />
     <MESSAGE value="Fixed King cards in model" />
@@ -994,28 +973,15 @@
     <MESSAGE value="- Encryption from Client to server 90% complete" />
     <MESSAGE value="- Complete encryption of all tuples" />
     <MESSAGE value="- Fix with actionhistory" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Fix with actionhistory" />
+    <MESSAGE value="- Race condition at RequestHandler fixed&#10;- Beginning of stresstesting" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Race condition at RequestHandler fixed&#10;- Beginning of stresstesting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="24" />
+      <option name="time" value="27" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7038">
@@ -1110,45 +1076,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/testing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1160,31 +1091,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java" />
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="343" column="43" selection-start-line="343" selection-start-column="39" selection-end-line="343" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="15" column="64" lean-forward="true" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
-          <folding>
-            <element signature="e#214#215#0" expanded="true" />
-            <element signature="e#248#249#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1192,48 +1098,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java">
+    <entry file="file://$PROJECT_DIR$/src/org/jspace/RemoteSpace.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="54" column="30" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="30" />
+        <state relative-caret-position="578">
+          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/testing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="88" column="25" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2873">
-          <caret line="191" column="88" selection-start-line="191" selection-start-column="88" selection-end-line="191" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="180" column="35" selection-start-line="180" selection-start-column="31" selection-end-line="180" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="85" column="23" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="82" column="31" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="394">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
@@ -1246,94 +1121,199 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="46" column="39" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1403">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="e#2895#2896#0" expanded="true" />
-            <element signature="e#2962#2963#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="21" selection-start-line="21" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="158" column="42" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/jspace/RemoteSpace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+        <state relative-caret-position="221">
+          <caret line="37" column="81" selection-start-line="37" selection-start-column="81" selection-end-line="37" selection-end-column="81" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="95" column="80" lean-forward="true" selection-start-line="95" selection-start-column="80" selection-end-line="95" selection-end-column="80" />
+        <state relative-caret-position="-32">
+          <caret line="40" column="73" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="32" column="68" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jspace/SequentialSpace.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="56" column="84" selection-start-line="56" selection-start-column="84" selection-end-line="56" selection-end-column="84" />
+        <state relative-caret-position="884">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="253" column="70" lean-forward="true" selection-start-line="253" selection-start-column="70" selection-end-line="253" selection-end-column="70" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="-288">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="26" column="44" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="199" column="40" selection-start-line="199" selection-start-column="40" selection-end-line="199" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1513">
+          <caret line="52" column="47" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="153" column="24" lean-forward="true" selection-start-line="153" selection-start-column="24" selection-end-line="153" selection-end-column="24" />
+          <folding>
+            <element signature="e#4830#4831#0" expanded="true" />
+            <element signature="e#4874#4875#0" expanded="true" />
+            <element signature="e#4939#4940#0" expanded="true" />
+            <element signature="e#4997#4998#0" expanded="true" />
+            <element signature="e#5038#5039#0" expanded="true" />
+            <element signature="e#5078#5079#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="433" column="21" selection-start-line="433" selection-start-column="16" selection-end-line="433" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="84" column="18" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-901">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LockedSpaceTest/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LockedSpaceTest/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="55" column="9" lean-forward="true" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+        <state relative-caret-position="-40">
+          <caret line="133" column="43" lean-forward="true" selection-start-line="133" selection-start-column="43" selection-end-line="133" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

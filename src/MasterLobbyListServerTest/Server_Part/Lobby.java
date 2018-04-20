@@ -8,9 +8,7 @@ import org.jspace.SpaceRepository;
 
 import javax.crypto.*;
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -31,7 +29,7 @@ public class Lobby implements Runnable {
 
     private final static int GET_PLAYERLIST = 61;
 
-    private final static int MAX_PLAYER_PR_LOBBY = 5;
+    private final static int MAX_PLAYER_PR_LOBBY = 4;
 
     // TODO: hvorfor ikke bare en reference til serverData?
     // the servers TS
@@ -47,8 +45,13 @@ public class Lobby implements Runnable {
     private ArrayList<LobbyUser> users;
     private ArrayList<Integer> availableNrs;
     private ServerData serverData;
+    private PrivateKey pKey;
+    private Cipher lobbyCipher;
+    private KeyPair myPair;
 
-    public Lobby(UUID lobbyID, SequentialSpace lobbyOverviewSpace, SpaceRepository serverRepos, String lobbyLeader, ServerData serverData){
+    private static int connectedInt = 0;
+
+    public Lobby(UUID lobbyID, SequentialSpace lobbyOverviewSpace, SpaceRepository serverRepos, String lobbyLeader, ServerData serverData) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InterruptedException {
         this.lobbyID = lobbyID;
         this.lobbyOverviewSpace = lobbyOverviewSpace;
         this.serverRepos = serverRepos;
@@ -57,9 +60,20 @@ public class Lobby implements Runnable {
         this.serverData = serverData;
         this.users = new ArrayList<>();
         this.availableNrs = new ArrayList<>();
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 4; i++){
             availableNrs.add(i);
         }
+
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+        myPair = kpg.generateKeyPair();
+        pKey = myPair.getPrivate();
+
+        // Putting the Public Key for communication to the server in the "request space"
+
+        // Create an instance of the Cipher for RSA encryption/decryption
+        lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.DECRYPT_MODE, myPair.getPrivate());
+
     }
 
     @Override
@@ -68,10 +82,16 @@ public class Lobby implements Runnable {
         lobbySpace = new SequentialSpace();
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
+        try {
+            lobbySpace.put(myPair.getPublic());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Lobby is now running\n");
 
         // A seperate thread for listening to chat messages
-        Thread chatAgent = new Thread(new LobbyChatAgent(lobbySpace,users,serverData.cipher));
+        Thread chatAgent = new Thread(new LobbyChatAgent(lobbySpace,users));
         chatAgent.start();
 
         // Stays in lobby loop until game starts or terminated
@@ -88,12 +108,12 @@ public class Lobby implements Runnable {
         }
 
         // Stopping the chat thread
-        //TODO: is it actaully stopping with interrupt?
+        //TODO: is it actually stopping with interrupt?
         chatAgent.interrupt();
 
         // Start the game
         if(beginFlag){
-            Game game = new Game(users, lobbySpace, serverData);
+            Game game = new Game(users, lobbySpace, serverData, lobbyCipher);
 
             try {
                 game.startGame();
@@ -116,7 +136,7 @@ public class Lobby implements Runnable {
                 // [0] LOBBY-tuple code, [1] (int)LOBBY action code, [2] (String)User name (for some tuples) [3] (int)thread nr for the specific user
                 Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
-                String decryptedString = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
+                String decryptedString = (String) ((SealedObject)tuple[1]).getObject(lobbyCipher);
                 String field1 = decryptedString.substring(0,decryptedString.indexOf('!'));
                 String field2 = decryptedString.substring(decryptedString.indexOf('!')+1,decryptedString.indexOf('?'));
                 String field3 = decryptedString.substring(decryptedString.indexOf('?')+1,decryptedString.length());
@@ -126,7 +146,7 @@ public class Lobby implements Runnable {
 
                 // A new client tries to connect to the lobby
                 if (req == CONNECT) {
-                    Key key = (Key) ((SealedObject)tuple[2]).getObject(serverData.cipher);
+                    Key key = (Key) ((SealedObject)tuple[2]).getObject(lobbyCipher);
                     Cipher cipher = Cipher.getInstance("AES");
                     cipher.init(Cipher.ENCRYPT_MODE,key);
                     if (noPlayers < MAX_PLAYER_PR_LOBBY) {
@@ -144,6 +164,9 @@ public class Lobby implements Runnable {
                         SealedObject encryptedMessage = new SealedObject(name + "!false?" + -1, cipher);
                         lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, encryptedMessage);
                     }
+                    System.out.println("Connect response handled " + connectedInt);
+                    connectedInt++;
+
                 } else if (req == DISCONNECT) { // A client in the lobby disconnects
                     if (name.equals(lobbyLeader)) {
                         System.out.println("The lobby leader left! Lobby is closing");
@@ -181,7 +204,7 @@ public class Lobby implements Runnable {
                     lobbySpace.put(LOBBY_RESP, usernames, getUserfromName(name).userNr);
                 } else {
                     System.out.println("Unknown request");
-                    System.out.println(field1.toString());
+                    System.out.println(field1);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

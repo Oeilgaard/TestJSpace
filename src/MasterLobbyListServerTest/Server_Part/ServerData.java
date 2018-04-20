@@ -6,10 +6,7 @@ import org.jspace.SpaceRepository;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.*;
-import java.security.InvalidKeyException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,7 +15,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class ServerData{
 
     //TODO: fryser hvis vi laver mere end 8 lobbies.
-    public final static int MAXIMUM_LOBBIES = 2;
+    public final static int MAXIMUM_LOBBIES = 1000;
     public final static int MAXIMUM_REQUESTS = 1000;
 
     SequentialSpace lobbyOverviewSpace = new SequentialSpace();
@@ -30,6 +27,7 @@ public class ServerData{
     private int currentNoThreads; // the current amount of either lobby or game threads (each lobby/game actually have two threads)
     ExecutorService executor = Executors.newFixedThreadPool(MAXIMUM_LOBBIES); // creating a pool lobby threads
     ExecutorService requestExecutor = Executors.newFixedThreadPool(MAXIMUM_REQUESTS); // creating a pool lobby threads
+    public PrivateKey privateKey;
 
     // ServerData constructor
     ServerData() throws InvalidKeyException, NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException {
@@ -48,6 +46,7 @@ public class ServerData{
 
         kpg = KeyPairGenerator.getInstance("RSA");
         KeyPair myPair = kpg.generateKeyPair();
+        privateKey = myPair.getPrivate();
 
         // Putting the Public Key for communication to the server in the "request space"
         requestSpace.put(myPair.getPublic());
@@ -73,7 +72,7 @@ public class ServerData{
         return currentNoThreads;
     }
 
-    public synchronized void createNewLobbyThread(UUID uuid, String username, ServerData serverData){
+    public synchronized void createNewLobbyThread(UUID uuid, String username, ServerData serverData) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException {
         executor.execute(new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData));  //calling execute method of ExecutorService
         if (executor instanceof ThreadPoolExecutor) {
             System.out.println(

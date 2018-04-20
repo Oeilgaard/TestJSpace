@@ -26,14 +26,11 @@ public class RequestHandlerThread implements Runnable {
         
         Cipher serverCipher = serverData.cipher;
 
-
         try {
 
             if ((int) tuple[1] == Server.CREATE_LOBBY_REQ) {
 
                 String serverName = decryptedInfo.substring(0, decryptedInfo.indexOf('!'));
-
-                System.out.println("Creating a lobby with the name : " + serverName + "\n");
 
                 String user = decryptedInfo.substring(decryptedInfo.indexOf('!') + 1, decryptedInfo.length());
 
@@ -42,7 +39,7 @@ public class RequestHandlerThread implements Runnable {
                     try{
                         SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, Clientcipher);
                         serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
-                        System.out.println("Putted the BAD_REQ");
+                        System.out.println("Putted the BAD_REQ tuple");
                     } catch (InterruptedException e){
                         System.out.println("Error");
                     }
@@ -66,7 +63,6 @@ public class RequestHandlerThread implements Runnable {
                     //Add Server information to entrySpace
                     serverData.lobbyOverviewSpace.put("Lobby", serverName, idForLobby);
 
-                    System.out.println("LobbyRequest has now been handled");
                 } else {
                     UUID idForLobby = UUID.randomUUID();
                     SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, Clientcipher);
@@ -94,6 +90,12 @@ public class RequestHandlerThread implements Runnable {
 
 
         } catch ( InterruptedException | IOException | IllegalBlockSizeException e){
+            e.printStackTrace();
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
         System.out.println("Req. Thread is done ");

@@ -11,16 +11,14 @@ import javax.crypto.SealedObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LobbyChatAgent implements Runnable{
+public class LobbyChatAgent implements Runnable {
 
     private SequentialSpace lobbySpace;
     private ArrayList<LobbyUser> users;
-    private Cipher cipher;
 
-    LobbyChatAgent(SequentialSpace lobbySpace, ArrayList<LobbyUser> users, Cipher cipher){
+    LobbyChatAgent(SequentialSpace lobbySpace, ArrayList<LobbyUser> users) {
         this.lobbySpace = lobbySpace;
         this.users = users;
-        this.cipher = cipher;
     }
 
     @Override
@@ -29,38 +27,22 @@ public class LobbyChatAgent implements Runnable{
         while (true) {
             try {
                 // [0] update code, [1] name of the one writing the message, [2] the message
-                Object[] tuple = lobbySpace.get(new ActualField("Chat"), new FormalField(SealedObject.class));
+                Object[] tuple = lobbySpace.get(new ActualField("Chat"), new FormalField(String.class));
 
-                String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(cipher);
-
-                String field1 = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
-                String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.length());
+                String field1 = (String) tuple[1];
 
                 System.out.println("Receive chat update from : " + field1);
                 for (LobbyUser user : users) {
-                    if (!user.equals(field1)) {
-                        String s = field1;
-                        s = s.substring(0, s.indexOf("#"));
-                        String finalText = s + " : " + field2;
-                        // [0] lobby code, [1] chat code, [2] name of the receiving player, [3] text message combined with sending username
-                        System.out.println("Sending chat message to " + s + " with thread id " + user.threadNr);
-                        lobbySpace.put(Lobby.LOBBY_UPDATE, Lobby.CHAT_MESSAGE, finalText, user.threadNr, user.userNr);
-                    }
+                    // [0] lobby code, [1] chat code, [2] name of the receiving player, [3] text message combined with sending username
+                    System.out.println("Sending chat message to " + user.name + " with thread id " + user.threadNr);
+                    lobbySpace.put(Lobby.LOBBY_UPDATE, Lobby.CHAT_MESSAGE, field1, user.threadNr, user.userNr);
                 }
+
             } catch (InterruptedException e) {
                 //e.printStackTrace();
                 System.out.println("Chat Agent interrupted");
                 break;
-            } catch (BadPaddingException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
-
     }
 }

@@ -13,7 +13,7 @@ public class Model {
 
     public final static int AFFECTION_GOAL_TWO_PLAYERS = 7;
     public final static int AFFECTION_GOAL_THREE_PLAYERS = 5;
-    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 5;
+    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 200;
 
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
 
@@ -325,6 +325,7 @@ public class Model {
             players.get(targetPlayersIndex).discardHand();
         }
 
+        //TODO if it was a princess the client still gets a new card
         if ((!deck.getCards().isEmpty())) {
             deck.drawCard(players.get(targetPlayersIndex).getHand());
 
