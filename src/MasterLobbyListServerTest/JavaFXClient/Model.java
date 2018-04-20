@@ -80,6 +80,9 @@ public class Model {
 
     private PublicKey serverPublicKey;
     private Cipher serverCipher;
+
+    private Cipher lobbyCipher;
+
     public Key key;
     public Cipher personalCipher;
 
@@ -96,6 +99,8 @@ public class Model {
     public Thread updateAgent;
 
     public int indexInLobby = -1;
+
+    public static boolean currentSceneIsGameScene = false;
 
     public void setCurrentThreadNumber(int currentThreadNumber) {
         Model.currentThreadNumber = currentThreadNumber;
@@ -121,6 +126,9 @@ public class Model {
         return serverCipher;
     }
 
+    public Cipher getLobbyCipher() { return lobbyCipher; }
+
+
     public int getCurrentThreadNumber(){
         return currentThreadNumber;
     }
@@ -145,8 +153,11 @@ public class Model {
         return lobbySpace;
     }
 
-    public void joinLobby(UUID lobbyid) throws IOException {
+    public void joinLobby(UUID lobbyid) throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         lobbySpace = new RemoteSpace("tcp://" + serverIp + ":25565/" + lobbyid.toString() + "?keep");
+        Object[] tuple = lobbySpace.query(new FormalField(PublicKey.class));
+        lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE, (PublicKey) tuple[0]);
     }
 
     public RemoteSpace getResponseSpace() {

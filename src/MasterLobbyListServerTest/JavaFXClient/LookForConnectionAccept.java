@@ -53,6 +53,7 @@ public class LookForConnectionAccept implements Runnable {
                         }
                     } catch (BadPaddingException e){
                         System.out.println("COULDNT BE DECRYPTED");
+                        Thread.sleep(1000);
                     }
                 }
             }

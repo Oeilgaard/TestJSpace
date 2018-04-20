@@ -60,8 +60,8 @@ public class ClientUpdateAgent implements Runnable{
 
                     String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUniqueName() + "?" + -1;
 
-                    SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
-                    SealedObject filler = new SealedObject("filler",model.getServerCipher());
+                    SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
+                    SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
                     model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
 
@@ -127,6 +127,7 @@ public class ClientUpdateAgent implements Runnable{
 
                     model.setInGame(true);
                     model.setInLobby(false);
+                    model.currentSceneIsGameScene = true;
 
                     Platform.runLater(new Runnable() {
                         public void run() {
@@ -151,7 +152,7 @@ public class ClientUpdateAgent implements Runnable{
                                     sp.setVvalue(1.0);
                                 }
 
-                                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2, model.getServerCipher());
+                                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2, model.getLobbyCipher());
 
                                 model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
                                 Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
@@ -162,7 +163,7 @@ public class ClientUpdateAgent implements Runnable{
 
                                 String[] listOfnames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
-                                for (int i = 0; i < 5; i++) {
+                                for (int i = 0; i < 4; i++) {
                                     if (!listOfnames[i].equals(""))
                                         updItems.add(i + ". " + listOfnames[i]);
                                 }

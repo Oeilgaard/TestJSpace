@@ -6,6 +6,7 @@ import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import java.awt.*;
@@ -16,12 +17,12 @@ public class PossibleTargetsThread implements Runnable{
 
     SequentialSpace lobbySpace;
     Model model;
-    ServerData serverData;
+    Cipher cipher;
 
-    public PossibleTargetsThread(SequentialSpace lobbySpace, Model model, ServerData serverData){
+    public PossibleTargetsThread(SequentialSpace lobbySpace, Model model, Cipher cipher){
         this.lobbySpace = lobbySpace;
         this.model = model;
-        this.serverData = serverData;
+        this.cipher = cipher;
     }
 
     @Override
@@ -33,7 +34,7 @@ public class PossibleTargetsThread implements Runnable{
 
                 String[] targetsAndReceiver = {"","","","","",""};
                 
-                String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(serverData.cipher);
+                String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(cipher);
                 
                 String field1 = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
 
@@ -81,7 +82,7 @@ public class PossibleTargetsThread implements Runnable{
                 lobbySpace.put("TargetablePlayersResponse", encryptedMessage, model.getUserfromName(field1).getPlayerIndex());
 
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 break;
             } catch (BadPaddingException e) {
                 e.printStackTrace();

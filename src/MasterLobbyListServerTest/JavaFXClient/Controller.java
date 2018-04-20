@@ -140,6 +140,7 @@ public class Controller {
     }
 
     private void changeScene(String sceneName) throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
+        model.currentSceneIsGameScene = false;
 
         Parent root = FXMLLoader.load(getClass().getResource(sceneName + ".fxml"));
         model.currentRoot = root;
@@ -185,6 +186,8 @@ public class Controller {
             }
             case GAME_SCENE: {
 
+                model.currentSceneIsGameScene = true;
+
                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
                 card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
 
@@ -210,7 +213,7 @@ public class Controller {
                     sp.setVvalue(1.0);
                 }
 
-                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getServerCipher());
+                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
 
                 model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
                 Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
@@ -219,7 +222,7 @@ public class Controller {
 
                 ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
                 updatePlayerListView.getItems().clear();
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 4; i++) {
                     if (!listOfNames[i].equals("")) {
                         updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
                     }
@@ -234,7 +237,7 @@ public class Controller {
                 ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
                 targetablePlayers.getItems().clear();
 
-                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)), model.getServerCipher());
+                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)), model.getLobbyCipher());
 
                 model.getLobbySpace().put("TargetablePlayersRequest", encryptedMessage);
 
@@ -244,7 +247,7 @@ public class Controller {
 
                 String[] listOfNames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 4; i++) {
                     if (!listOfNames[i].equals("")) {
                         targetablePlayers.getItems().add(i + ". " + listOfNames[i]);
                         playerEnableClick[i] = true;
@@ -440,6 +443,7 @@ public class Controller {
 
         String text = chatTxtField.getText();
 
+        String textToSend = removedIdFromUsername() + " : " + text;
         Label chatText = new Label(model.getUserName() + " : " + text);
         chatText.setWrapText(true);
 
@@ -447,16 +451,12 @@ public class Controller {
         chatTxtField.clear();
         scroll.setVvalue(1.0);
 
-        //Encrypting message
-
-        SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" +  text,model.getServerCipher());
-
-        model.getLobbySpace().put("Chat", encryptedMessage);
+        model.getLobbySpace().put("Chat", textToSend);
     }
 
 
     //TODO: implement Join-lobby button for highlighted choice
-    public void joinLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
+    public void joinLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
 
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
             if (mouseEvent.getClickCount() == 2) {
@@ -493,9 +493,9 @@ public class Controller {
 
         String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUniqueName() + "?" + -1;
 
-        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
 
-        SealedObject filler = new SealedObject("filler",model.getServerCipher());
+        SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
         model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
 
@@ -524,9 +524,9 @@ public class Controller {
 
             String messageToBeEncrypted = "" + Model.BEGIN + "!" + model.getUniqueName() + "?" + -1;
 
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
 
-            SealedObject filler = new SealedObject("filler",model.getServerCipher());
+            SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
             model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
         }
@@ -567,7 +567,7 @@ public class Controller {
                     changeScene(GAME_SCENE);
 
                     String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=" + Integer.toString(indexOfTarget) + "*";
-                    SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
+                    SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
 
                     model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
 
@@ -587,7 +587,7 @@ public class Controller {
         changeScene(GAME_SCENE);
 
         String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=" + Integer.toString(indexOfTarget) + "*" + btn.getId();
-        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
 
         model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
 
@@ -609,7 +609,7 @@ public class Controller {
         changeScene(GAME_SCENE);
 
         String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=*";
-        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
 
         model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
 

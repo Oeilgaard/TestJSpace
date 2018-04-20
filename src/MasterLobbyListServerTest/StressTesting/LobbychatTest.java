@@ -11,12 +11,10 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
-public class FilledLobbyTest {
-
-    public static int nrOfClients = 200;
+public class LobbychatTest {
+    public static int nrOfClients = 196;
 
     public static int nrOfLobbies;
 
@@ -43,7 +41,7 @@ public class FilledLobbyTest {
         SealedObject encryptedKey = new SealedObject(clientKey, serverCipher);
 
         for (int i = 0; i < nrOfClients; i++) {
-            String name = "testClient" + i + "!";
+            String name = "testClientGroup2" + i + "!";
             encryptedUserNameStrings[i] = new SealedObject(name, serverCipher);
         }
 
@@ -60,14 +58,14 @@ public class FilledLobbyTest {
         SealedObject[] encryptedLobbyNames = new SealedObject[nrOfLobbies];
 
         for (int i = 0; i < nrOfLobbies; i++) {
-            String name = "lobbyname" + i + "!testClient" + i * 4 + "#123";
+            String name = "lobbynameGroup2" + i + "!testClientGroup2" + i * 4 + "#123";
             encryptedLobbyNames[i] = new SealedObject(name, serverCipher);
         }
 
         System.out.println("0) Requesting the creation of the lobbies");
         for (int i = 0; i < nrOfLobbies; i++) {
             requestSpace.put(1, 11, encryptedLobbyNames[i], encryptedKey);
-            Thread.sleep(500);
+            Thread.sleep(1000);
         }
 
         System.out.println("1) Cleaning the responses");
@@ -105,7 +103,7 @@ public class FilledLobbyTest {
                 if ((i * 4) + k == connectEncryption.length) {
                     break outerpart;
                 }
-                connectEncryption[((i * 4) + k)] = new SealedObject("31!testClient" + ((i * 4) + k) + "#123?" + 0, lobbyCiphers[i]);
+                connectEncryption[((i * 4) + k)] = new SealedObject("31!testClientGroup2" + ((i * 4) + k) + "#123?" + 0, lobbyCiphers[i]);
             }
         }
 
@@ -132,96 +130,5 @@ public class FilledLobbyTest {
 
         int nrOfRunningLobbies = nrOfLobbies;
         System.out.println("6) The nr of running lobbies is now :" + nrOfRunningLobbies);
-        System.out.println("7) Sending begin requests");
-
-        SealedObject[] encryptedBeginMsg = new SealedObject[nrOfLobbies];
-
-        SealedObject[] fillers = new SealedObject[nrOfLobbies];
-
-        for (int i = 0; i < nrOfLobbies; i++){
-            fillers[i] = new SealedObject("filler",lobbyCiphers[i]);
-            encryptedBeginMsg[i] = new SealedObject("33!testClient" + i*4 + "#123?-1", lobbyCiphers[i]);
-        }
-
-        for (int i = 0; i < nrOfLobbies;i++){
-            lobbySpaces[i].put(30, encryptedBeginMsg[i], fillers[i]);
-        }
-
-        boolean[] lobbyStoppedRunning = new boolean[nrOfLobbies];
-
-        Cipher clientCipher = Cipher.getInstance("AES");
-        clientCipher.init(Cipher.DECRYPT_MODE,clientKey);
-
-        System.out.println("8) Running gameplay for clients");
-
-        playingLoop:
-        while (true) {
-            //Recognise who has the turn tuple
-            System.out.println("Playing the game...");
-            for (int i = 0; i < nrOfLobbies; i++) {
-                if (!lobbyStoppedRunning[i]) {
-                    clientLoop:
-                    for (int k = 0; k < 4; k++) {
-                        Object[] tupleForClient;
-                        //TODO sæt et flag og klar trækket efter alles tupler er tjekket
-                        while (true) {
-                            tupleForClient = lobbySpaces[i].get(new ActualField(10), new FormalField(SealedObject.class), new ActualField(k));
-                            String decryptedNewRound = (String) ((SealedObject) tupleForClient[1]).getObject(clientCipher);
-                            String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
-                            int field1 = Integer.parseInt(field1text);
-                            String field2 = decryptedNewRound.substring(decryptedNewRound.indexOf('!') + 1, decryptedNewRound.indexOf('?'));
-                            if (field1 == 11) {
-                                if (!field2.equals("")) {
-                                    lobbySpaces[i].getAll(new ActualField(10), new FormalField(SealedObject.class), new FormalField(Integer.class));
-                                    //This players turn
-                                    takeAction(lobbySpaces[i], "testClient" + (i * 4 + k), k, lobbyCiphers[i], clientCipher);
-                                    break clientLoop;
-                                }
-                                break;
-                            } else if (field1 == 18) {
-                                //Game is ending
-                                lobbyStoppedRunning[i] = true;
-                                nrOfRunningLobbies--;
-                                System.out.println("Lobby closed. Nr. of lobbies is now : " + nrOfRunningLobbies);
-                                if(nrOfRunningLobbies == 0){
-                                    break playingLoop;
-                                }
-                                break clientLoop;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println("DONE");
-    }
-
-    public static void takeAction(RemoteSpace lobbyspace, String clientName, int clientNr, Cipher lobbyCipher, Cipher clientCipher) throws IOException, IllegalBlockSizeException, InterruptedException, BadPaddingException, ClassNotFoundException {
-        Random rn = new Random();
-        outerloop:
-        while(true){
-            int playedCard = rn.nextInt(2);
-            int target = rn.nextInt(4);
-            int guessNr = rn.nextInt(7) + 1;
-
-            String messageToBeEncrypted = "12!" + clientName + "#123" + "?" + playedCard + "=" + target + "*" + guessNr;
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
-
-            lobbyspace.put(20, encryptedMessage); // Send the action to the server
-
-            innerloop:
-            while(true) {
-                Object[] tuple = lobbyspace.get(new ActualField(10), new FormalField(SealedObject.class), new ActualField(clientNr));
-
-                String decryptedNewRound = (String) ((SealedObject) tuple[1]).getObject(clientCipher);
-                String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
-
-                if (field1text.equals("13")) {
-                    break outerloop;
-                } else if (field1text.equals("17")) {
-                    break innerloop;
-                }
-            }
-        }
     }
 }
