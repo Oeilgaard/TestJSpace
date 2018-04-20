@@ -376,13 +376,13 @@ public class Model {
         // Checks whether the player is leaving during a game or in a lobby
         if(inGame){
             String messageToBeEncrypted = "" + Model.GAME_DISCONNECT + "!" + uniqueName + "?0=*";
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, serverCipher);
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
             lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
         } else if(inLobby){
             //Tuple 1 - 3 sealed object
             String messageToBeEncrypted = "" + Model.LOBBY_DISCONNECT + "!" + uniqueName + "?" + -1;
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, serverCipher);
-            SealedObject filler = new SealedObject("filler", serverCipher);
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+            SealedObject filler = new SealedObject("filler", lobbyCipher);
 
             lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, filler);
             inLobby = false;

@@ -353,7 +353,7 @@ public class Controller {
 
             //Encrypting message
             String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?0=*";
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, model.getLobbyCipher());
 
             model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
         }
@@ -370,7 +370,7 @@ public class Controller {
             changeScene(GAME_SCENE);
 
             String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?1=*";
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getServerCipher());
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
 
             model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
 
@@ -444,8 +444,8 @@ public class Controller {
         String text = chatTxtField.getText();
         String textToSend = HelperFunctions.removeUUIDFromUserName(model.getUniqueName()) + " : " + text;
         model.getLobbySpace().put("Chat", textToSend);
+        chatTxtField.clear();
     }
-
 
     //TODO: implement Join-lobby button for highlighted choice
     public void joinLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
