@@ -66,6 +66,7 @@ public class Model {
 
     public final static int SERVER_UPDATE = 20;
 
+    //TODO rename lobbyListSpace -> lobbyOverSpace
     private static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
     private static String serverIp;
     private int responseFromLobby = NO_RESPONSE;
@@ -127,7 +128,6 @@ public class Model {
     }
 
     public Cipher getLobbyCipher() { return lobbyCipher; }
-
 
     public int getCurrentThreadNumber(){
         return currentThreadNumber;
@@ -331,7 +331,7 @@ public class Model {
         return false;
     }
 
-    public void joinLobbyLogic(String lobbyName, UUID lobbyID, int threadGlobalId) throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    public void joinLobbyLogic(String lobbyName, UUID lobbyID, int currentThreadNumber) throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         // Query the desired lobby-tuple (non-blocking)
 
         System.out.println("307");
@@ -353,7 +353,7 @@ public class Model {
 
             //Tuple 1 - 3 sealed object
 
-            String messageToBeEncrypted = "" + Model.CONNECT + "!" + getUniqueName() + "?" + threadGlobalId;
+            String messageToBeEncrypted = "" + Model.CONNECT + "!" + getUniqueName() + "?" + currentThreadNumber;
 
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -387,6 +387,36 @@ public class Model {
             lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, filler);
             inLobby = false;
         }
+    }
+
+    public void pressBeginLogic() throws IOException, IllegalBlockSizeException, InterruptedException {
+        if (leaderForCurrentLobby) {
+            System.out.println("Yes");
+            //Tuple 1 - 3 sealed object
+            String messageToBeEncrypted = "" + Model.BEGIN + "!" + uniqueName + "?" + -1; //TODO hvad er -1?
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+            SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+            lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, filler);
+        }
+
+    }
+
+    public ArrayList<String> updatePlayerLobbyListLogic() throws IOException, IllegalBlockSizeException, InterruptedException {
+        //Encrypting the tuple
+
+        String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + uniqueName + "?" + -1;
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, filler);
+
+        // [0] response code [1] list of playernames [2] username
+        Object[] tuple = lobbySpace.get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new FormalField(Integer.class)); //ændret fra new ActualField(model.indexInLobby), har vist også ændret det et andet sted
+
+        return (ArrayList<String>) tuple[1];
     }
 }
 

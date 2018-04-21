@@ -137,6 +137,7 @@ public class Lobby implements Runnable {
                 // Wait for a new LOBBY_REQ tuple
                 // [0] LOBBY-tuple code, [1] (int)LOBBY action code, [2] (String)User name (for some tuples) [3] (int)thread nr for the specific user
                 Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
+                System.out.println("Received a lobby request");
 
                 // Decrypting the LOBBY_REQ tuple
                 String decryptedString = (String) ((SealedObject)tuple[1]).getObject(lobbyCipher);
@@ -196,20 +197,18 @@ public class Lobby implements Runnable {
                         break;
                     } else {
                         System.out.println("Not enough players to begin");
-                        //TODO: perhaps send a tuple back
-                        //lobbySpace.put(LOBBY_UPDATE, NOT_ENOUGH_PLAYERS, "You need 2-4 players to start to game.", field3, field2);
-                        updatePlayers(name, NOT_ENOUGH_PLAYERS); // there will always just be the one player
+                        updatePlayers(name, NOT_ENOUGH_PLAYERS); // there will just be the one player
                     }
                 } else if (req == GET_PLAYERLIST) { // If request is GET_PLAYERLIST, a client requests the list of player's in the lobby
 
                     // TODO: hvorfor ikke returnere private ArrayList<LobbyUser> users?
-                    ArrayList<String> usernames = new ArrayList<>();
+                    ArrayList<String> userNames = new ArrayList<>();
                     for (LobbyUser user : users) {
                         String s = user.name;
                         s = s.substring(0, s.indexOf("#"));
-                        usernames.add(s);
+                        userNames.add(s);
                     }
-                    lobbySpace.put(LOBBY_RESP, usernames, getUserfromName(name).userNr);
+                    lobbySpace.put(LOBBY_RESP, userNames, getUserfromName(name).userNr);
                 } else {
                     System.out.println("Unknown request");
                     System.out.println(field1);

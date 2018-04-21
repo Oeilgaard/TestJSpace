@@ -480,48 +480,24 @@ public class Controller {
 
     private void updatePlayerLobbyList(Parent root) throws InterruptedException, IOException, IllegalBlockSizeException {
 
-        //Encrypting the tuple
-
-        String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUniqueName() + "?" + -1;
-
-        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
-
-        SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
-
-        model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
-
-        // [0] response code [1] list of playernames [2] username
-        Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.indexInLobby));
+        ArrayList<String> currentPlayers = model.updatePlayerLobbyListLogic();
 
         if (root == null) {
             listOfPlayers.getItems().clear();
-            for (String user : (ArrayList<String>) tuple[1]) {
+            for (String user : currentPlayers) {
                 listOfPlayers.getItems().add(new Label(user));
             }
         } else {
             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
             updatePlayerListView.getItems().clear();
-            for (String user : (ArrayList<String>) tuple[1]) {
+            for (String user : currentPlayers) {
                 updatePlayerListView.getItems().add(new Label(user));
             }
         }
     }
 
     @FXML
-    public void pressBegin() throws InterruptedException, IOException, IllegalBlockSizeException {
-        if (model.leaderForCurrentLobby) {
-
-            //Tuple 1 - 3 sealed object
-
-            String messageToBeEncrypted = "" + Model.BEGIN + "!" + model.getUniqueName() + "?" + -1;
-
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
-
-            SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
-
-            model.getLobbySpace().put(Model.LOBBY_REQ, encryptedMessage, filler);
-        }
-    }
+    public void pressBegin() throws InterruptedException, IOException, IllegalBlockSizeException { model.pressBeginLogic(); }
 
     @FXML
     public void pressLeaveLobby() throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
