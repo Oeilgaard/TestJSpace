@@ -26,6 +26,7 @@ public class Lobby implements Runnable {
 
     public final static int LOBBY_UPDATE = 50;
     public final static int CHAT_MESSAGE = 51;
+    private final static int NOT_ENOUGH_PLAYERS = 52;
 
     private final static int GET_PLAYERLIST = 61;
 
@@ -38,7 +39,7 @@ public class Lobby implements Runnable {
     // this lobby's TS
     private SequentialSpace lobbySpace;
 
-    private UUID lobbyID; //TODO: ændre til navn + # + UUID så det matcher user-id
+    private UUID lobbyID; //TODO: evt ændre til navn + # + UUID så det matcher user-id? (nok ikke)
     private Boolean beginFlag;
     private String lobbyLeader;
     private int noPlayers;
@@ -196,6 +197,8 @@ public class Lobby implements Runnable {
                     } else {
                         System.out.println("Not enough players to begin");
                         //TODO: perhaps send a tuple back
+                        //lobbySpace.put(LOBBY_UPDATE, NOT_ENOUGH_PLAYERS, "You need 2-4 players to start to game.", field3, field2);
+                        updatePlayers(name, NOT_ENOUGH_PLAYERS); // there will always just be the one player
                     }
                 } else if (req == GET_PLAYERLIST) { // If request is GET_PLAYERLIST, a client requests the list of player's in the lobby
 
@@ -241,19 +244,18 @@ public class Lobby implements Runnable {
     }
 
     private void updatePlayers(String actingPlayer, int action) throws InterruptedException {
-        if(action==BEGIN) {
+        if(action==BEGIN || action==NOT_ENOUGH_PLAYERS) {
             for(LobbyUser u : users){
-                String p = u.name;
+                //String p = u.name;
                 // burde 'responded' også stå her?
-                System.out.println("Informing : " + p + " that the game has started");
-
-                lobbySpace.put(LOBBY_UPDATE,action,"",u.threadNr, u.userNr);
+                //System.out.println("Informing : " + p + " that the game has started");
+                lobbySpace.put(LOBBY_UPDATE,action, "", u.threadNr, u.userNr);
             }
         } else {
             for(LobbyUser u : users) {
                 String p = u.name;
                 if(!p.equals(actingPlayer)) {
-                    lobbySpace.put(LOBBY_UPDATE,action,"",u.threadNr, u.userNr);
+                    lobbySpace.put(LOBBY_UPDATE, action, "", u.threadNr, u.userNr);
                 }
             }
         }
@@ -262,4 +264,6 @@ public class Lobby implements Runnable {
     public UUID getLobbyID(){
         return lobbyID;
     }
+
+    public String getLobbyLeader(){ return lobbyLeader; }
 }

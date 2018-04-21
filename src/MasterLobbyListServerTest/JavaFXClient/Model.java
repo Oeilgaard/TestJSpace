@@ -37,7 +37,7 @@ public class Model {
 
     protected final static int LOBBY_UPDATE = 50;
     protected final static int CHAT_MESSAGE = 51;
-
+    protected final static int NOT_ENOUGH_PLAYERS = 52;
 
     // Query tuples
     protected final static int GAMEPLAY_INFO = 60;

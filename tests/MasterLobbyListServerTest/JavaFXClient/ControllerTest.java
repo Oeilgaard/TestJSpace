@@ -94,7 +94,6 @@ public class ControllerTest {
         Object[] tuple = model.getLobbyListSpace().get(new ActualField("Lobby"), new ActualField(lobbyName), new FormalField(UUID.class));
         UUID lobbyID = (UUID) tuple[2];
         Assert.assertTrue(HelperFunctions.stringMatchesUUIDPattern(lobbyID.toString()));
-
     }
 
     @Test
@@ -174,5 +173,14 @@ public class ControllerTest {
         Assert.assertTrue(model.getInLobby());
         model.sendDisconnectTuple();
         Assert.assertFalse(model.getInLobby());
+    }
+
+    @Test
+    public void beginWithTooFewPlayers() throws InterruptedException, IOException, IllegalBlockSizeException {
+        String lobbyName = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
+        model.createLobbyLogic(lobbyName);
+        model.createUserLogic(HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength()));
+
+
     }
 }

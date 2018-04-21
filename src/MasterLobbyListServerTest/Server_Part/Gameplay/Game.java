@@ -178,8 +178,11 @@ public class Game {
         System.out.println("Interrupting posTargets");
         posTargets.interrupt();
 
+
         String winner = model.getWinner();
+        System.out.println("183 " + winner);
         winner = winner.substring(0,winner.indexOf("#"));
+        System.out.println("185 " + winner);
 
         for(Player p : model.players) {
             SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + winner + "?=", p.getPlayerCipher());

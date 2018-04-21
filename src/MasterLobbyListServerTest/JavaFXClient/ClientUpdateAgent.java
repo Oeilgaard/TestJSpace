@@ -40,10 +40,9 @@ public class ClientUpdateAgent implements Runnable{
         while (running) {
             try {
 
-                //[0] update code [1] type of update [2] name of user [3] chat text combined with username (situational)
+                // [0] update code [1] type of update [2] name of user [3] chat text combined with username (situational) [4] thread id [5] index in lobby
                 Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class),new ActualField(threadId), new ActualField(model.indexInLobby));
-
-
+                System.out.println("got the tuple!: " + tuple[1]);
 
                 if ((int)tuple[1] == Model.CHAT_MESSAGE) {
                     Platform.runLater(() -> {
@@ -185,8 +184,18 @@ public class ClientUpdateAgent implements Runnable{
                         }
                     });
                     running = false;
-                }
+                } else if((int)tuple[1] == Model.NOT_ENOUGH_PLAYERS){
+                    System.out.println("187 NOT_ENOUGH_PLAYERS");
+                    Platform.runLater(() -> {
 
+                        Label chatText = new Label("You need 2-4 players to start the game.");
+                        chatText.setWrapText(true);
+                        //chatText.prefWidth(254);
+
+                        ((VBox) root.lookup("#vb1")).getChildren().add(chatText);
+                        ((ScrollPane) root.lookup("#scroll")).setVvalue(1.0);
+                    });
+                }
             } catch (InterruptedException e) {
                 //e.printStackTrace();
                 System.out.println("Den er blevet catched!");
