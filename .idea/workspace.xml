@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
-      <change beforePath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" afterPath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,7 +23,7 @@
     <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest_createUserIllegalNameTest.coverage" NAME="ControllerTest.createUserIllegalNameTest Coverage Results" MODIFIED="1523884956695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.JavaFXClient.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest.coverage" NAME="ControllerTest Coverage Results" MODIFIED="1524491187185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest.coverage" NAME="ControllerTest Coverage Results" MODIFIED="1524491864919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.JavaFXClient.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/TestJSpace$MasterLobbyListServerTest_test_in_TestJSpace.coverage" NAME="MasterLobbyListServerTest.test in TestJSpace Coverage Results" MODIFIED="1523265228078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -42,11 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ControllerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ControllerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="242" column="50" lean-forward="false" selection-start-line="242" selection-start-column="50" selection-end-line="242" selection-end-column="50" />
+            <state relative-caret-position="230">
+              <caret line="251" column="34" lean-forward="true" selection-start-line="251" selection-start-column="34" selection-end-line="251" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#initialize#0;class#ControllerTest#0" expanded="false" />
@@ -147,11 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="170" column="16" lean-forward="false" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
+            <state relative-caret-position="364">
+              <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
               <folding>
                 <element signature="e#3454#3455#0" expanded="true" />
                 <element signature="e#3517#3518#0" expanded="true" />
@@ -162,6 +155,7 @@
                 <element signature="e#5745#5746#0" expanded="true" />
                 <element signature="e#5785#5786#0" expanded="true" />
                 <element signature="method#joinServerLogic#0;class#Model#0" expanded="false" />
+                <element signature="method#createUserLogic#0;class#Model#0" expanded="false" />
                 <element signature="method#joinLobbyLogic#0;class#Model#0" expanded="false" />
                 <element signature="method#pressBeginLogic#0;class#Model#0" expanded="false" />
                 <element signature="method#updatePlayerLobbyListLogic#0;class#Model#0" expanded="false" />
@@ -380,6 +374,19 @@
             <path>
               <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
               <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaFXClient" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -559,7 +566,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ControllerTest.disconnectFromOwnLobbyTest">
+  <component name="RunManager" selected="JUnit.ControllerTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -794,9 +801,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ControllerTest.disconnectFromOwnLobbyTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ControllerTest.createUserLegalNameTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ControllerTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ControllerTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ControllerTest.disconnectFromOwnLobbyTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ControllerTest.createUserLegalNameTest" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.ControllerTest.createLobbyIllegalNameTooShortTest" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.ControllerTest.createLobbyIllegalNameTooLongTest" />
       </list>
@@ -848,14 +855,7 @@
       <workItem from="1524212372469" duration="18382000" />
       <workItem from="1524303462350" duration="17516000" />
       <workItem from="1524389403497" duration="525000" />
-      <workItem from="1524471462541" duration="17583000" />
-    </task>
-    <task id="LOCAL-00045" summary="Started on TODOS in Game class">
-      <created>1521200302546</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1521200302546</updated>
+      <workItem from="1524471462541" duration="17871000" />
     </task>
     <task id="LOCAL-00046" summary="Started on TODOS in Game class">
       <created>1521200394734</created>
@@ -1193,18 +1193,25 @@
       <option name="project" value="LOCAL" />
       <updated>1524483357335</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="- Changed to model.getIndexInLobby()&#10;- Further work on testing">
+      <created>1524491809751</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1524491809751</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TestHistory">
     <history-entry file="ControllerTest - 2018.04.23 at 15h 46m 34s.xml">
       <configuration name="ControllerTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ControllerTest - 2018.04.23 at 15h 58m 03s.xml">
+      <configuration name="ControllerTest" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="ControllerTest_createUserLegalNameTest - 2018.04.23 at 15h 51m 33s.xml">
       <configuration name="ControllerTest.createUserLegalNameTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ControllerTest_disconnectFromOwnLobbyTest - 2018.04.23 at 15h 42m 04s.xml">
-      <configuration name="ControllerTest.disconnectFromOwnLobbyTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ControllerTest_disconnectFromOwnLobbyTest - 2018.04.23 at 15h 46m 06s.xml">
       <configuration name="ControllerTest.disconnectFromOwnLobbyTest" configurationId="JUnit" />
@@ -1229,7 +1236,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="361272000" />
+    <option name="totallyTimeSpent" value="361560000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1250,7 +1257,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35480943" sideWeight="0.5484375" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35480943" sideWeight="0.5484375" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.102604166" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1339,7 +1346,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Worked further on KNOCK_OUT&#10;- Changed knockOut-method's input to int&#10;- Refactored variable names of card actions (e.g. sender -&gt; sendersIndex)&#10;- Added all card .jpg's" />
     <MESSAGE value="- (hope) I implemented the possibility to play a targetted card w. no effect if no possible targets available." />
     <MESSAGE value="Fixed a parsing error (with playerTargetIndexInt)" />
     <MESSAGE value="Prince self-target works" />
@@ -1364,7 +1370,8 @@
     <MESSAGE value="- Not enough players to start the game tuple-response" />
     <MESSAGE value="- Added a HashMap of &lt;UUID, Lobby&gt;&#10;- Minor stuff" />
     <MESSAGE value="- Futher work on testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Futher work on testing" />
+    <MESSAGE value="- Changed to model.getIndexInLobby()&#10;- Further work on testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Changed to model.getIndexInLobby()&#10;- Further work on testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1771,33 +1778,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="170" column="16" lean-forward="false" selection-start-line="170" selection-start-column="16" selection-end-line="170" selection-end-column="16" />
-          <folding>
-            <element signature="e#3454#3455#0" expanded="true" />
-            <element signature="e#3517#3518#0" expanded="true" />
-            <element signature="method#addIpToRemoteSpaces#0;class#Model#0" expanded="false" />
-            <element signature="method#setPublicKey#0;class#Model#0" expanded="false" />
-            <element signature="e#5429#5430#0" expanded="true" />
-            <element signature="e#5473#5474#0" expanded="true" />
-            <element signature="e#5745#5746#0" expanded="true" />
-            <element signature="e#5785#5786#0" expanded="true" />
-            <element signature="method#joinServerLogic#0;class#Model#0" expanded="false" />
-            <element signature="method#joinLobbyLogic#0;class#Model#0" expanded="false" />
-            <element signature="method#pressBeginLogic#0;class#Model#0" expanded="false" />
-            <element signature="method#updatePlayerLobbyListLogic#0;class#Model#0" expanded="false" />
-            <element signature="e#15699#15700#0" expanded="true" />
-            <element signature="e#15740#15741#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="242" column="50" lean-forward="false" selection-start-line="242" selection-start-column="50" selection-end-line="242" selection-end-column="50" />
+        <state relative-caret-position="230">
+          <caret line="251" column="34" lean-forward="true" selection-start-line="251" selection-start-column="34" selection-end-line="251" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#initialize#0;class#ControllerTest#0" expanded="false" />
@@ -1815,6 +1799,30 @@
             <element signature="method#queryPlayerNamesTest#0;class#ControllerTest#0" expanded="false" />
             <element signature="method#startGameTest#0;class#ControllerTest#0" expanded="false" />
             <element signature="method#joinDeniedDueToFullLobby#0;class#ControllerTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding>
+            <element signature="e#3454#3455#0" expanded="true" />
+            <element signature="e#3517#3518#0" expanded="true" />
+            <element signature="method#addIpToRemoteSpaces#0;class#Model#0" expanded="false" />
+            <element signature="method#setPublicKey#0;class#Model#0" expanded="false" />
+            <element signature="e#5429#5430#0" expanded="true" />
+            <element signature="e#5473#5474#0" expanded="true" />
+            <element signature="e#5745#5746#0" expanded="true" />
+            <element signature="e#5785#5786#0" expanded="true" />
+            <element signature="method#joinServerLogic#0;class#Model#0" expanded="false" />
+            <element signature="method#createUserLogic#0;class#Model#0" expanded="false" />
+            <element signature="method#joinLobbyLogic#0;class#Model#0" expanded="false" />
+            <element signature="method#pressBeginLogic#0;class#Model#0" expanded="false" />
+            <element signature="method#updatePlayerLobbyListLogic#0;class#Model#0" expanded="false" />
+            <element signature="e#15699#15700#0" expanded="true" />
+            <element signature="e#15740#15741#0" expanded="true" />
           </folding>
         </state>
       </provider>
