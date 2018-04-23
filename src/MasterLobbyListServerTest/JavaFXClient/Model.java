@@ -291,8 +291,6 @@ public class Model {
             //createLobbyButton.setDisable(true);
             //instructionsLobbyName.setText("");
 
-            System.out.println("Yes the lobby name is valid!");
-
             SealedObject encryptedKey = new SealedObject(key, serverCipher);
 
             requestSpace.put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKey);
@@ -309,7 +307,6 @@ public class Model {
 
                         String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
                         field1 = Integer.parseInt(field1text);
-                        System.out.println("field1: " + field1);
 
                         responseSpace.get(new ActualField(Model.RESPONSE_CODE), new FormalField(SealedObject.class));
 

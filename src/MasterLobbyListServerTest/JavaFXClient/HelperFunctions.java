@@ -18,7 +18,6 @@ public class HelperFunctions {
 
     public static boolean isGuard(String card) { return card.equals("GUARD") ;}
 
-    //TODO why not just boolean?
     public static int isPrince(String card) {
         if(card.equals("PRINCE")){
             return 1;

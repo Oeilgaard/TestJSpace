@@ -447,7 +447,34 @@ public class Controller {
         chatTxtField.clear();
     }
 
-    //TODO: implement Join-lobby button for highlighted choice
+    public void joinLobbyButton() throws InterruptedException, ClassNotFoundException, BadPaddingException, IllegalBlockSizeException, IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+
+        if (lobbyList.getSelectionModel().getSelectedItems().isEmpty()){
+            return;
+        }
+        int index = lobbyList.getSelectionModel().getSelectedIndex();
+
+        changeScene(LOADING_LOBBY_SCENE);
+
+        model.joinLobbyLogic((String) lobbyList.getSelectionModel().getSelectedItem(), lobbyIds.get(index), model.getCurrentThreadNumber());
+
+        switch (model.getResponseFromLobby()) {
+            case Model.NO_RESPONSE:
+                changeScene(LOBBY_LIST_SCENE);
+                model.changeResponseFromLobby(Model.NO_RESPONSE);
+                break;
+            case Model.BAD_REQUEST:
+                changeScene(LOBBY_LIST_SCENE);
+                model.changeResponseFromLobby(Model.NO_RESPONSE);
+                break;
+            case Model.OK:
+                changeScene(LOBBY_SCENE);
+                model.changeResponseFromLobby(Model.NO_RESPONSE);
+
+                break;
+        }
+    }
+
     public void joinLobby(javafx.scene.input.MouseEvent mouseEvent) throws InterruptedException, IOException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
 
         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
