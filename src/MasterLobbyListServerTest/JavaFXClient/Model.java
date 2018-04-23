@@ -332,7 +332,7 @@ public class Model {
         return false;
     }
 
-    public void joinLobbyLogic(String lobbyName, UUID lobbyID, int currentThreadNumber) throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    public int joinLobbyLogic(String lobbyName, UUID lobbyID, int currentThreadNumber) throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         // Query the desired lobby-tuple (non-blocking)
 
         //[0] lobby code [1] lobby name [2] lobby id
@@ -360,8 +360,10 @@ public class Model {
             tryToJoinLobby.start();
 
             serverResponseMonitor.sync();
+
             System.out.println("RESULT: " + getResponseFromLobby());
         }
+        return getResponseFromLobby();
     }
 
     public void sendDisconnectTuple() throws InterruptedException, IOException, IllegalBlockSizeException {

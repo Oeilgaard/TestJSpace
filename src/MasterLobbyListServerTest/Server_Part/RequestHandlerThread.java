@@ -33,7 +33,7 @@ public class RequestHandlerThread implements Runnable {
 
                 String user = decryptedInfo.substring(decryptedInfo.indexOf('!') + 1, decryptedInfo.length());
 
-                if(!(serverData.getCurrentNoThreads() < ServerData.MAXIMUM_LOBBIES)){
+                if(!(serverData.currentNumberOfActiveThreads() < ServerData.MAXIMUM_LOBBIES)){
                     try{
                         SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?", clientCipher);
                         serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);

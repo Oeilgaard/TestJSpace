@@ -21,26 +21,47 @@ public class ControllerTest {
 
     private Model modelPlayerOne;
     private Model modelPlayerTwo;
+    private Model modelPlayerThree;
+    private Model modelPlayerFour;
+    private Model modelPlayerFive;
 
     @Before
     public void initialize() throws NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException, InvalidKeyException, IOException {
+        // Create model objects simulating each of the five players in the testing environment
         modelPlayerOne = new Model();
         modelPlayerTwo = new Model();
+        modelPlayerThree = new Model();
+        modelPlayerFour = new Model();
+        modelPlayerFive = new Model();
+
+        // Get the current local IP (n.b! server is assumed to be running on this address. Set it up manually)
+        // Let the five clients join the server.
         String IP = HelperFunctions.currentLocalIP();
         modelPlayerOne.joinServerLogic(IP);
         modelPlayerTwo.joinServerLogic(IP);
+        modelPlayerThree.joinServerLogic(IP);
+        modelPlayerFour.joinServerLogic(IP);
+        modelPlayerFive.joinServerLogic(IP);
     }
 
     @Test
     public void joinServerLogicTest() throws NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException, InvalidKeyException, IOException, IllegalBlockSizeException {
+        // Get IP, create model and join server
         String IP = HelperFunctions.currentLocalIP();
-        modelPlayerOne.joinServerLogic(IP);
-        SealedObject so1 = new SealedObject("null", modelPlayerOne.getServerCipher());
-        SealedObject so2 = new SealedObject(modelPlayerOne.key, modelPlayerOne.getServerCipher());
-        modelPlayerOne.getRequestSpace().put(modelPlayerOne.REQUEST_CODE, modelPlayerOne.PING_REQ, so1, so2);
-        Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(modelPlayerOne.RESPONSE_CODE), new ActualField(modelPlayerOne.PONG_RESP));
-        int expected = modelPlayerOne.PONG_RESP;
+        Model m = new Model();
+        m.joinServerLogic(IP);
+
+        // Create tuple and send PING_REQ
+        SealedObject so1 = new SealedObject("dummy", m.getServerCipher());
+        SealedObject so2 = new SealedObject(m.key, m.getServerCipher());
+        m.getRequestSpace().put(m.REQUEST_CODE, m.PING_REQ, so1, so2);
+
+        // Wait for PONG_RESP
+        Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(m.RESPONSE_CODE), new ActualField(m.PONG_RESP));
+        int expected = m.PONG_RESP;
         int actual = (int) tuple[1];
+
+        // Assertion
         Assert.assertEquals(expected, actual);
     }
 
@@ -71,41 +92,54 @@ public class ControllerTest {
     }
 
     @Test
-    public void createUserIllegalNameTest() throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void createUserIllegalNameDueToIllegalCharactersTest() throws InterruptedException, IOException, IllegalBlockSizeException {
+        // A string with two illegal characters
         String illegalString= "-@";
+
+        // Nickname consisting of 5 legal characters + 2 illegal characters
         String user = HelperFunctions.randomLegalName(5) + illegalString;
+
+        // Assert that creation of user was unsuccessful
         boolean outcome = modelPlayerOne.createUserLogic(user);
         Assert.assertFalse(outcome);
     }
 
     @Test
     public void createUserIllegalNameTooShortTest() throws InterruptedException, IOException, IllegalBlockSizeException {
-        boolean outcome  = modelPlayerOne.createUserLogic("a");
+        boolean outcome  = modelPlayerOne.createUserLogic(HelperFunctions.randomLegalName(1));
         Assert.assertFalse(outcome);
     }
+
     @Test
     public void createUserIllegalNameTooLongTest() throws InterruptedException, IOException, IllegalBlockSizeException {
-        String userName = HelperFunctions.randomLegalName(16);
+        String userName = HelperFunctions.randomLegalName(16); // max legal length is 15
         boolean outcome  = modelPlayerOne.createUserLogic(userName);
         Assert.assertFalse(outcome);
     }
 
     @Test
     public void createLegalLobbyTest() throws InterruptedException, IOException, IllegalBlockSizeException {
+        // Create a random legal name
         String lobbyName = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
+        // outcome is true if the creation is successful
         boolean outcome = modelPlayerOne.createLobbyLogic(lobbyName);
         Assert.assertTrue(outcome);
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().get(new ActualField("Lobby"), new ActualField(lobbyName), new FormalField(UUID.class));
+
+        // Query the lobby information from Lobby List Space and assert that the lobby has an UUID
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new ActualField(lobbyName), new FormalField(UUID.class));
         UUID lobbyID = (UUID) tuple[2];
         Assert.assertTrue(HelperFunctions.stringMatchesUUIDPattern(lobbyID.toString()));
     }
 
     @Test
-    public void queryLobbiesTest() throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void queryLobbiesTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        // Assign an user-id for the acting client, Alice
+        modelPlayerOne.createUserLogic("Alice");
+
         // Clearing potential existing lobbies
         modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
-        // Create three lobbies
+        // Alice creates three arbitrary lobbies
         String lobbyOne = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
         String lobbyTwo = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
         String lobbyThree = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
@@ -123,13 +157,22 @@ public class ControllerTest {
         List<Object[]> tuples = modelPlayerOne.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         // Assert that 3 lobby-tuples are found
-        Assert.assertEquals(3, tuples.size());
+        int expected = 3;
+        int actual = tuples.size();
+        Assert.assertEquals(expected, actual);
 
-        // Assert that for each of the lobby-tuples, the first field with the name is contained in the set of lobby names and
-        // Assert that the second field with the lobby ID matches a UUID-pattern
+        // Assert that for each of the lobby-tuples:
+        // the first field with the name is contained in the set of lobby names
+        // the second field with the lobby ID matches a UUID-pattern
+        // the player can join and leave the lobbies
         for(Object[] obj : tuples){
             Assert.assertTrue(lobbyNames.contains((String) obj[1]));
             Assert.assertTrue(HelperFunctions.stringMatchesUUIDPattern(obj[2].toString()));
+
+            modelPlayerOne.joinLobbyLogic((String) obj[1], (UUID) obj[2], modelPlayerOne.getCurrentThreadNumber());
+            Assert.assertTrue(modelPlayerOne.getInLobby());
+            modelPlayerOne.sendDisconnectTuple();
+            Assert.assertFalse(modelPlayerOne.getInLobby());
         }
     }
 
@@ -249,6 +292,41 @@ public class ControllerTest {
         Assert.assertFalse(modelPlayerOne.inLobby);
 
         // TODO fejler fordi flagene bliver sat i ClientUpdateAgent linie 126-128 som er blandet sammen med GUI..
+    }
+
+    //TODO burde vi kun liste lobbies der er joinable når der queries?
+    @Test
+    public void joinDeniedDueToFullLobby() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        String userNameOne = "Alice";
+        String userNameTwo = "Bob";
+        String userNameThree = "Charles";
+        String userNameFour = "Dave";
+        String userNameFive = "Eric";
+        modelPlayerOne.createUserLogic(userNameOne);
+        modelPlayerTwo.createUserLogic(userNameTwo);
+        modelPlayerThree.createUserLogic(userNameThree);
+        modelPlayerFour.createUserLogic(userNameFour);
+        modelPlayerFive.createUserLogic(userNameFive);
+
+        modelPlayerOne.createLobbyLogic("fun_lobby");
+
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"),
+                new FormalField(String.class), new FormalField(UUID.class));
+        int actualOne = modelPlayerOne.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
+        int actualTwo = modelPlayerTwo.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
+        int actualThree = modelPlayerThree.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerThree.getCurrentThreadNumber());
+        int actualFour = modelPlayerFour.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerFour.getCurrentThreadNumber());
+        int actualFive = modelPlayerFive.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerFive.getCurrentThreadNumber());
+        int expectedOneToFour = Model.OK;
+        int expectedFive = Model.BAD_REQUEST;
+
+        Assert.assertEquals(expectedOneToFour, actualOne);
+        Assert.assertEquals(expectedOneToFour, actualTwo);
+        Assert.assertEquals(expectedOneToFour, actualThree);
+        Assert.assertEquals(expectedOneToFour, actualFour);
+        Assert.assertEquals(expectedFive, actualFive);
     }
 
 

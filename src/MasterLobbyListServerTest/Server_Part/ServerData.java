@@ -25,7 +25,7 @@ public class ServerData{
     SpaceRepository serverRepos = new SpaceRepository();
     KeyPairGenerator kpg;
     public Cipher cipher;
-    private int currentNoThreads; // the current amount of either lobby or game threads (each lobby/game actually have two threads)
+//    private int currentNoThreads; // the current amount of either lobby or game threads (each lobby/game actually have two threads)
     ExecutorService executor = Executors.newFixedThreadPool(MAXIMUM_LOBBIES); // creating a pool lobby threads
     ExecutorService requestExecutor = Executors.newFixedThreadPool(MAXIMUM_REQUESTS); // creating a pool lobby threads
     public PrivateKey privateKey;
@@ -43,7 +43,7 @@ public class ServerData{
         serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);
         serverRepos.add("requestSpace" , requestSpace);
         serverRepos.add("responseSpace", responseSpace);
-        currentNoThreads = 0;
+//        currentNoThreads = 0;
 
         // Setting up Public Key Crypto
 
@@ -60,20 +60,21 @@ public class ServerData{
 
     }
 
-    // Methods for incrementing, decrementing and getting the current no. of threads in a safe, synchronized manner
-    public synchronized void incrementCurrentNoThreads(){
-        this.currentNoThreads++;
-        System.out.println("Current no of threads: " + currentNoThreads);
-    }
+//    // Methods for incrementing, decrementing and getting the current no. of threads in a safe, synchronized manner
+//    public synchronized void incrementCurrentNoThreads(){
+//        this.currentNoThreads++;
+//        System.out.println("Current no of threads: " + currentNoThreads);
+//    }
+//
+//    public synchronized void decrementCurrentNoThreads(){
+//        this.currentNoThreads--;
+//        System.out.println("Current no of threads: " + currentNoThreads);
+//    }
 
-    public synchronized void decrementCurrentNoThreads(){
-        this.currentNoThreads--;
-        System.out.println("Current no of threads: " + currentNoThreads);
-    }
 
-    public synchronized int getCurrentNoThreads(){
-        return currentNoThreads;
-    }
+//    public synchronized int getCurrentNoThreads(){
+//        return currentNoThreads;
+//    }
 
     public synchronized void createNewLobbyThread(UUID uuid, String username, ServerData serverData) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException {
         //calling execute method of ExecutorService
@@ -88,11 +89,15 @@ public class ServerData{
                             ((ThreadPoolExecutor) executor).getActiveCount()
             );
         }
-        incrementCurrentNoThreads(); //TODO: decrement accordingly
+        //incrementCurrentNoThreads(); //TODO: decrement accordingly
     }
 
-    public synchronized int currentActiveThreads(){
+    public synchronized int currentNumberOfActiveThreads(){
         return ((ThreadPoolExecutor) executor).getActiveCount();
+    }
+
+    public synchronized void removeLobbyFromMap(UUID uuid){
+        lobbyMap.remove(uuid);
     }
 }
 

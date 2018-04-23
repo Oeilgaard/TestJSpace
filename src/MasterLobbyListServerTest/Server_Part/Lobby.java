@@ -127,7 +127,8 @@ public class Lobby implements Runnable {
             }
         }
 
-        serverData.decrementCurrentNoThreads();
+        serverData.removeLobbyFromMap(lobbyID);
+        //serverData.decrementCurrentNoThreads();
         serverRepos.remove(lobbyID.toString());
         System.out.println("Lobby is closed");
     }
@@ -270,4 +271,5 @@ public class Lobby implements Runnable {
     public boolean gameBegun(){
         return beginFlag;
     }
+
 }
