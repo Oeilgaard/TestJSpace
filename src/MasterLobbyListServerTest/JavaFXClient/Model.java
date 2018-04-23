@@ -245,7 +245,7 @@ public class Model {
             String field3;
 
             while (true) {
-                // Blocks until user receives unique username (due to 'get')
+                // Blocks until user receives unique username (due to 'query')
                 // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID
                 try {
                     tuple = responseSpace.query(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
@@ -259,6 +259,7 @@ public class Model {
                         field1 = Integer.parseInt(field1text);
                         field3 = decryptedMessage.substring(decryptedMessage.indexOf('?') + 1, decryptedMessage.length());
 
+                        //TODO: kan man ikke komme til at fjerne en ANDEN tuple en den man lige har samlet op?
                         responseSpace.get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
                                 new FormalField(SealedObject.class));
 

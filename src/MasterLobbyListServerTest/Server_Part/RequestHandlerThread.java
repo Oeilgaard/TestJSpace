@@ -34,9 +34,8 @@ public class RequestHandlerThread implements Runnable {
                 String user = decryptedInfo.substring(decryptedInfo.indexOf('!') + 1, decryptedInfo.length());
 
                 if(!(serverData.getCurrentNoThreads() < ServerData.MAXIMUM_LOBBIES)){
-                    UUID idForLobby = UUID.randomUUID();
                     try{
-                        SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, clientCipher);
+                        SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?", clientCipher);
                         serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
                         System.out.println("Putted the BAD_REQ tuple");
                     } catch (InterruptedException e){

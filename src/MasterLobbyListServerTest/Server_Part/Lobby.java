@@ -265,4 +265,8 @@ public class Lobby implements Runnable {
     }
 
     public String getLobbyLeader(){ return lobbyLeader; }
+
+    public boolean gameBegun(){
+        return beginFlag;
+    }
 }
