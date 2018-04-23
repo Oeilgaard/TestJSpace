@@ -99,7 +99,7 @@ public class Model {
 
     public Thread updateAgent;
 
-    public int indexInLobby = -1;
+    private int indexInLobby = -1;
 
     public static boolean currentSceneIsGameScene = false;
 
@@ -363,7 +363,9 @@ public class Model {
 
             System.out.println("RESULT: " + getResponseFromLobby());
         }
-        return getResponseFromLobby();
+        int result = getResponseFromLobby();
+        responseFromLobby = Model.NO_RESPONSE; // reset for future calls
+        return result;
     }
 
     public void sendDisconnectTuple() throws InterruptedException, IOException, IllegalBlockSizeException {
@@ -412,6 +414,14 @@ public class Model {
         Object[] tuple = lobbySpace.get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new FormalField(Integer.class)); //ændret fra new ActualField(model.indexInLobby), har vist også ændret det et andet sted
 
         return (ArrayList<String>) tuple[1];
+    }
+
+    public int getIndexInLobby() {
+        return indexInLobby;
+    }
+
+    public void setIndexInLobby(int index) {
+        this.indexInLobby = index;
     }
 }
 

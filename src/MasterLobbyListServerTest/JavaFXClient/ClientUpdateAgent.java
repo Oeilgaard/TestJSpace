@@ -41,7 +41,7 @@ public class ClientUpdateAgent implements Runnable{
             try {
 
                 // [0] update code [1] type of update [2] name of user [3] chat text combined with username (situational) [4] thread id [5] index in lobby
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class),new ActualField(threadId), new ActualField(model.indexInLobby));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class),new ActualField(threadId), new ActualField(model.getIndexInLobby()));
                 System.out.println("got the tuple!: " + tuple[1]);
 
                 if ((int)tuple[1] == Model.CHAT_MESSAGE) {
@@ -69,7 +69,7 @@ public class ClientUpdateAgent implements Runnable{
                         try {
 
                             // [0] response code [1] list of playernames [2] username
-                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.indexInLobby));
+                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getIndexInLobby()));
 
                             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
                             ObservableList updItems = updatePlayerListView.getItems();
@@ -154,7 +154,7 @@ public class ClientUpdateAgent implements Runnable{
                                 SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2, model.getLobbyCipher());
 
                                 model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                                 ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
                                 ObservableList updItems = updatePlayerListView.getItems();

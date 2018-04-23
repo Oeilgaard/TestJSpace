@@ -216,7 +216,7 @@ public class Controller {
                 SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
 
                 model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 String[] listOfNames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
@@ -241,7 +241,7 @@ public class Controller {
 
                 model.getLobbySpace().put("TargetablePlayersRequest", encryptedMessage);
 
-                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 boolean noTargets = true;
 
@@ -457,9 +457,9 @@ public class Controller {
 
                 changeScene(LOADING_LOBBY_SCENE);
 
-                model.joinLobbyLogic((String) lobbyList.getSelectionModel().getSelectedItem(), lobbyIds.get(index), model.getCurrentThreadNumber());
+                int result = model.joinLobbyLogic((String) lobbyList.getSelectionModel().getSelectedItem(), lobbyIds.get(index), model.getCurrentThreadNumber());
 
-                switch (model.getResponseFromLobby()) {
+                switch (result) {
                     case Model.NO_RESPONSE:
                         changeScene(LOBBY_LIST_SCENE);
                         model.changeResponseFromLobby(Model.NO_RESPONSE);
@@ -511,7 +511,7 @@ public class Controller {
 
         model.resetLobbyInfo();
 
-        model.indexInLobby = -1;
+        model.setIndexInLobby(-1);
 
         changeScene(LOBBY_LIST_SCENE);
     }

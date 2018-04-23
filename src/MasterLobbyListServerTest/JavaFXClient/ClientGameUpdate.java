@@ -36,7 +36,7 @@ public class ClientGameUpdate implements Runnable{
         while (true) {
 
             try {
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
@@ -170,7 +170,7 @@ public class ClientGameUpdate implements Runnable{
                     SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
 
                     model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 
@@ -202,7 +202,7 @@ public class ClientGameUpdate implements Runnable{
 
                     SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
                     model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.indexInLobby));
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 

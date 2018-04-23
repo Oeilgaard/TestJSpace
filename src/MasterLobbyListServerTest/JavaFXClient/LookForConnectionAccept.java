@@ -39,7 +39,7 @@ public class LookForConnectionAccept implements Runnable {
 
                             if (tuple[1].equals(Model.CONNECT_ACCEPTED)) {
                                 TimerForLobbyJoining.lobbyConnectionSuccess(Model.OK);
-                                model.indexInLobby = Integer.parseInt(field3);
+                                model.setIndexInLobby(Integer.parseInt(field3));
                             } else {
                                 TimerForLobbyJoining.lobbyConnectionSuccess(Model.BAD_REQUEST);
                             }
