@@ -127,6 +127,7 @@ public class Lobby implements Runnable {
             }
         }
 
+        serverData.decrementCurrentNoThreads();
         serverRepos.remove(lobbyID.toString());
         System.out.println("Lobby is closed");
     }
