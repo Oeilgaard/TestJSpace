@@ -30,6 +30,8 @@ public class Game {
     private int latestWinnerIndex; // used to determine who goes first - initialized to zero
     public Cipher cipher;
 
+    private boolean disconnection = false;
+
     private ServerData serverData;
 
     public Game(ArrayList<LobbyUser> users, SequentialSpace lobbySpace, ServerData serverData, Cipher cipher) {
@@ -178,16 +180,16 @@ public class Game {
         System.out.println("Interrupting posTargets");
         posTargets.interrupt();
 
-        String winner = model.getWinner();
-        winner = winner.substring(0,winner.indexOf("#"));
+        if (!disconnection) {
+            String winner = model.getWinner();
+            winner = winner.substring(0, winner.indexOf("#"));
 
-        for(Player p : model.players) {
-            SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + winner + "?=", p.getPlayerCipher());
+            for (Player p : model.players) {
+                SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + winner + "?=", p.getPlayerCipher());
 
-            lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+            }
         }
-
-        serverData.decrementCurrentNoThreads();
 
         // Players have 30 s to receive the GAME_ENDING-tuple before the space closes
         Thread.sleep(30000);
@@ -262,14 +264,18 @@ public class Game {
                 // Notify everyone, except the disconnected user
                 for (Player p : model.players) {
                     if (!p.getName().equals(field2)) {
-                        //TODO: Encrypt?
                         SealedObject encryptedMessage = new SealedObject(Model.GAME_DISCONNECT + "!?=", p.getPlayerCipher());
                         lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                     }
                 }
 
-                //TODO Skal lobbyen ikke lukkes ned ?
-                serverData.decrementCurrentNoThreads();
+                legalPlay = true;
+                disconnection = true;
+                model.setRoundWon(true);
+                for (int i = 0; i < model.affectionGoal + 1; i++) {
+                    model.players.get(0).incrementAffection();
+                }
+                //serverData.decrementCurrentNoThreads();
             }
 
         } catch (InterruptedException | BadPaddingException | IOException | ClassNotFoundException e) {

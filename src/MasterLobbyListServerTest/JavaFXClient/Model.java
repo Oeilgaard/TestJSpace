@@ -334,18 +334,12 @@ public class Model {
     public void joinLobbyLogic(String lobbyName, UUID lobbyID, int threadGlobalId) throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         // Query the desired lobby-tuple (non-blocking)
 
-        System.out.println("307");
-
         //[0] lobby code [1] lobby name [2] lobby id
         Object[] tuple = lobbyListSpace.queryp(new ActualField("Lobby"),
                 new ActualField(lobbyName),
                 new ActualField(lobbyID));
 
-        System.out.println("314");
-
         if (tuple != null) {
-
-            System.out.println("319");
 
             currentLobbyName = (String) tuple[1];
 
@@ -364,9 +358,7 @@ public class Model {
             Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(this));
             tryToJoinLobby.start();
 
-            System.out.println("337");
             serverResponseMonitor.sync();
-            System.out.println("340");
             System.out.println("RESULT: " + getResponseFromLobby());
         }
     }

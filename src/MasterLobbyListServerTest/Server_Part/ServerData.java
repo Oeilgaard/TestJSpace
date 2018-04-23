@@ -7,6 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.*;
 import java.security.*;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,6 +29,7 @@ public class ServerData{
     ExecutorService executor = Executors.newFixedThreadPool(MAXIMUM_LOBBIES); // creating a pool lobby threads
     ExecutorService requestExecutor = Executors.newFixedThreadPool(MAXIMUM_REQUESTS); // creating a pool lobby threads
     public PrivateKey privateKey;
+    private ArrayList<Lobby> lobbies = new ArrayList<>();
 
     // ServerData constructor
     ServerData() throws InvalidKeyException, NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException {
@@ -73,8 +75,11 @@ public class ServerData{
     }
 
     public synchronized void createNewLobbyThread(UUID uuid, String username, ServerData serverData) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException {
+
+        lobbies.add(new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData));
+
         //calling execute method of ExecutorService
-        executor.execute(new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData));
+        executor.execute(lobbies.get(lobbies.size() - 1));
 
         // printing the current amount of active threads
         if (executor instanceof ThreadPoolExecutor) {
@@ -84,6 +89,7 @@ public class ServerData{
             );
         }
         incrementCurrentNoThreads(); //TODO: decrement accordingly
+
     }
 }
 
