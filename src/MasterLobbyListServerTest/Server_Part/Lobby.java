@@ -175,7 +175,6 @@ public class Lobby implements Runnable {
                     connectedInt++;
 
                 } else if (req == DISCONNECT) { // A client in the lobby disconnects
-                    System.out.println("178-DISCONNECT CASE " + lobbyLeader);
                     if (name.equals(lobbyLeader)) {
                         System.out.println("The lobby leader left! Lobby is closing");
                         beginFlag = false;

@@ -132,6 +132,7 @@ public class ControllerTest {
         boolean outcome = modelPlayerOne.createLobbyLogic(lobbyName);
         Assert.assertTrue(outcome);
 
+
         // Query the lobby information from Lobby List Space and assert that the lobby has an UUID
         Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new ActualField(lobbyName), new FormalField(UUID.class));
         UUID lobbyID = (UUID) tuple[2];
@@ -231,9 +232,10 @@ public class ControllerTest {
         Assert.assertTrue(modelPlayerOne.getInLobby());
     }
 
-    @Ignore
+    @Test
     public void disconnectFromOwnLobbyTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Assert.assertFalse(modelPlayerOne.getInLobby());
+        Assert.assertFalse(modelPlayerTwo.getInLobby());
 
         // Clearing potential existing lobbies
         modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
@@ -245,9 +247,9 @@ public class ControllerTest {
 
         Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
-        System.out.println("Is it null? " + tuple.equals(null));
-        System.out.println("Same name? " + tuple[1].equals(lobbyOne));
-        System.out.println("name: " + tuple[1] + " uuid: " + tuple[2]);
+//        System.out.println("Is it null? " + tuple.equals(null));
+//        System.out.println("Same name? " + tuple[1].equals(lobbyOne));
+//        System.out.println("name: " + tuple[1] + " uuid: " + tuple[2]);
 
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
         modelPlayerTwo.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
@@ -260,16 +262,54 @@ public class ControllerTest {
         Object[] tuple2 = modelPlayerTwo.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class),
                new FormalField(String.class),new ActualField(modelPlayerTwo.getCurrentThreadNumber()), new ActualField(modelPlayerTwo.getIndexInLobby()));
 
-
-        Assert.assertFalse(modelPlayerTwo.getInLobby());
-
         Assert.assertEquals(Model.CLOSE, tuple2[1]);
+        modelPlayerTwo.setInLobby(false);
+        modelPlayerTwo.resetLobbyInfo();
+        Assert.assertFalse(modelPlayerTwo.getInLobby());
 
         //TODO: a bit sketchy? maybe there is a better solution.
         Thread.sleep(200);
 
+        Assert.assertFalse(modelPlayerTwo.getInLobby());
+
         int expected = Model.NO_RESPONSE;
         int actual = modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void disconnectFromOthersLobbyTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+
+        // Clearing potential existing lobbies
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.createUserLogic("Alice");
+        modelPlayerTwo.createUserLogic("Bob");
+
+        Assert.assertFalse(modelPlayerOne.getInLobby());
+        Assert.assertFalse(modelPlayerTwo.getInLobby());
+
+        String lobbyOne = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
+        modelPlayerOne.createLobbyLogic(lobbyOne);
+
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
+        modelPlayerTwo.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
+
+        Assert.assertTrue(modelPlayerOne.getInLobby());
+        Assert.assertTrue(modelPlayerTwo.getInLobby());
+        modelPlayerTwo.sendDisconnectTuple();
+        Assert.assertFalse(modelPlayerTwo.getInLobby());
+
+        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.LOBBY_DISCONNECT),
+                new FormalField(String.class),new ActualField(modelPlayerOne.getCurrentThreadNumber()), new ActualField(modelPlayerOne.getIndexInLobby()));
+
+        Assert.assertEquals(Model.LOBBY_DISCONNECT, tuple2[1]);
+
+        Assert.assertFalse(modelPlayerTwo.getInLobby());
+
+        int expected = Model.OK;
+        int actual = modelPlayerTwo.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
         Assert.assertEquals(expected,actual);
     }
 
@@ -383,5 +423,49 @@ public class ControllerTest {
         Assert.assertEquals(expectedFive, actualFive);
     }
 
+    @Test
+    public void chatTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        // Clearing potential existing lobbies
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        String nicknameOne = "Alice";
+        String nicknameTwo = "Bob";
+        String nicknameThree = "Charles";
+        modelPlayerOne.createUserLogic(nicknameOne); // Lobby leader
+        modelPlayerTwo.createUserLogic(nicknameTwo);
+        modelPlayerThree.createUserLogic(nicknameThree);
+
+        modelPlayerOne.createLobbyLogic("fun_lobby");
+
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class),
+                new FormalField(UUID.class));
+        modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
+        Object[] tuple2 = modelPlayerTwo.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class),
+                new FormalField(UUID.class));
+        modelPlayerTwo.joinLobbyLogic((String) tuple2[1], (UUID) tuple2[2], modelPlayerTwo.getCurrentThreadNumber());
+        Object[] tuple3 = modelPlayerThree.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class),
+                new FormalField(UUID.class));
+        modelPlayerThree.joinLobbyLogic((String) tuple3[1], (UUID) tuple3[2], modelPlayerThree.getCurrentThreadNumber());
+
+        String msg = "Hi Bob and Charles";
+        modelPlayerOne.textToChatLogic(msg);
+
+        Object[] tuple4 = modelPlayerTwo.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.CHAT_MESSAGE),
+                new FormalField(String.class),new ActualField(modelPlayerTwo.getCurrentThreadNumber()),
+                new ActualField(modelPlayerTwo.getIndexInLobby()));
+
+        String expected = nicknameOne + " : " + msg;
+
+        String actual = (String) tuple4[2];
+
+        System.out.println("Actual: " + actual);
+        Assert.assertEquals(expected,actual);
+
+        Object[] tuple5 = modelPlayerThree.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.CHAT_MESSAGE),
+                new FormalField(String.class),new ActualField(modelPlayerThree.getCurrentThreadNumber()),
+                new ActualField(modelPlayerThree.getIndexInLobby()));
+
+        String actual2 = (String) tuple5[2];
+        Assert.assertEquals(expected,actual2);
+    }
 
 }

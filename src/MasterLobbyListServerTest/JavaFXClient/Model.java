@@ -420,6 +420,11 @@ public class Model {
     public void setIndexInLobby(int index) {
         this.indexInLobby = index;
     }
+
+    public void textToChatLogic(String text) throws InterruptedException {
+        String textToSend = HelperFunctions.removeUUIDFromUserName(uniqueName) + " : " + text;
+        lobbySpace.put("Chat", textToSend);
+    }
 }
 
 

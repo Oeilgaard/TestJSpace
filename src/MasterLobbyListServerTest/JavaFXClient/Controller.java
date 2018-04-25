@@ -442,8 +442,7 @@ public class Controller {
     public void textToChat() throws InterruptedException, IOException, IllegalBlockSizeException {
 
         String text = chatTxtField.getText();
-        String textToSend = HelperFunctions.removeUUIDFromUserName(model.getUniqueName()) + " : " + text;
-        model.getLobbySpace().put("Chat", textToSend);
+        model.textToChatLogic(text);
         chatTxtField.clear();
     }
 

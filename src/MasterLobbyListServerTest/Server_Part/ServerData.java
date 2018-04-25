@@ -60,27 +60,11 @@ public class ServerData{
 
     }
 
-//    // Methods for incrementing, decrementing and getting the current no. of threads in a safe, synchronized manner
-//    public synchronized void incrementCurrentNoThreads(){
-//        this.currentNoThreads++;
-//        System.out.println("Current no of threads: " + currentNoThreads);
-//    }
-//
-//    public synchronized void decrementCurrentNoThreads(){
-//        this.currentNoThreads--;
-//        System.out.println("Current no of threads: " + currentNoThreads);
-//    }
-
-
-//    public synchronized int getCurrentNoThreads(){
-//        return currentNoThreads;
-//    }
-
     public synchronized void createNewLobbyThread(UUID uuid, String username, ServerData serverData) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException {
         //calling execute method of ExecutorService
         Lobby l = new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData);
         executor.execute(l);
-        lobbyMap.put(uuid, l);
+        lobbyMap.put(uuid, l); // TODO remove when lobby is over
 
         // printing the current amount of active threads
         if (executor instanceof ThreadPoolExecutor) {
@@ -89,7 +73,6 @@ public class ServerData{
                             ((ThreadPoolExecutor) executor).getActiveCount()
             );
         }
-        //incrementCurrentNoThreads(); //TODO: decrement accordingly
     }
 
     public synchronized int currentNumberOfActiveThreads(){
