@@ -455,9 +455,9 @@ public class Controller {
 
         changeScene(LOADING_LOBBY_SCENE);
 
-        model.joinLobbyLogic((String) lobbyList.getSelectionModel().getSelectedItem(), lobbyIds.get(index), model.getCurrentThreadNumber());
+        int result = model.joinLobbyLogic((String) lobbyList.getSelectionModel().getSelectedItem(), lobbyIds.get(index), model.getCurrentThreadNumber());
 
-        switch (model.getResponseFromLobby()) {
+        switch (result) {
             case Model.NO_RESPONSE:
                 changeScene(LOBBY_LIST_SCENE);
                 model.changeResponseFromLobby(Model.NO_RESPONSE);
