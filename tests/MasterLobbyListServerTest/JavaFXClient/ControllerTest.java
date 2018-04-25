@@ -6,16 +6,15 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Assert;
+
+import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SealedObject;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /* IMPORTANT NOTE:
 * These test are essentially testing is from the perspective of a client and treating the server as a black box.
@@ -468,4 +467,60 @@ public class ControllerTest {
         Assert.assertEquals(expected,actual2);
     }
 
+    @Ignore
+    public void takeActionsIngame() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, ClassNotFoundException {
+        modelPlayerOne.createUserLogic(HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength()));
+        modelPlayerTwo.createUserLogic(HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength()));
+
+        modelPlayerOne.createLobbyLogic("LobbyTest");
+
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"),
+                new FormalField(String.class), new FormalField(UUID.class));
+
+        modelPlayerOne.joinLobbyLogic("LobbyTest", (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
+        modelPlayerTwo.joinLobbyLogic("LobbyTest", (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
+
+        modelPlayerOne.getLobbySpace().getAll(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+
+        modelPlayerOne.pressBeginLogic();
+        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.BEGIN), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+
+        //Tag skiftevis træk for hver spiller.
+        int nrOfMovesToTest = 5;
+        Model modelForCurrentPlayer;
+        for (int i = 0; i < nrOfMovesToTest;i++){
+            if (i % 2 == 0){
+                modelForCurrentPlayer = modelPlayerOne;
+            } else {
+                modelForCurrentPlayer = modelPlayerTwo;
+            }
+            Random rn = new Random();
+            outerloop:
+            while(true){
+                int playedCard = rn.nextInt(2);
+                int target = rn.nextInt(4);
+                int guessNr = rn.nextInt(7) + 1;
+
+                String messageToBeEncrypted = "12!" + modelForCurrentPlayer.getUniqueName() + "?" + playedCard + "=" + target + "*" + guessNr;
+                SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,modelForCurrentPlayer.getLobbyCipher());
+
+                modelForCurrentPlayer.getLobbySpace().put(20, encryptedMessage); // Send the action to the server
+
+                innerloop:
+                while(true) {
+                    Object[] tuple3 = modelForCurrentPlayer.getLobbySpace().get(new ActualField(10), new FormalField(SealedObject.class), new ActualField(modelForCurrentPlayer.getIndexInLobby()));
+
+                    String decryptedNewRound = (String) ((SealedObject) tuple3[1]).getObject(modelForCurrentPlayer.personalCipher);
+                    String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
+
+                    if (field1text.equals("13")) {
+                        break outerloop;
+                    } else if (field1text.equals("17")) {
+                        break innerloop;
+                    }
+                }
+            }
+        }
+
+    }
 }

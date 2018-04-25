@@ -60,6 +60,29 @@ public class ServerData{
 
     }
 
+    ServerData(String serverAddress) throws InvalidKeyException, NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException {
+
+        serverRepos.addGate("tcp://" + serverAddress + ":25565/?keep");
+        serverRepos.add("lobbyOverviewSpace", lobbyOverviewSpace);
+        serverRepos.add("requestSpace" , requestSpace);
+        serverRepos.add("responseSpace", responseSpace);
+//        currentNoThreads = 0;
+
+        // Setting up Public Key Crypto
+
+        kpg = KeyPairGenerator.getInstance("RSA");
+        KeyPair myPair = kpg.generateKeyPair();
+        privateKey = myPair.getPrivate();
+
+        // Putting the Public Key for communication to the server in the "request space"
+        requestSpace.put(myPair.getPublic());
+
+        // Create an instance of the Cipher for RSA encryption/decryption
+        cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, myPair.getPrivate());
+
+    }
+
     public synchronized void createNewLobbyThread(UUID uuid, String username, ServerData serverData) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException {
         //calling execute method of ExecutorService
         Lobby l = new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData);

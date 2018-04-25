@@ -83,11 +83,13 @@ public class Lobby implements Runnable {
         lobbySpace = new SequentialSpace();
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
+
         try {
             lobbySpace.put(myPair.getPublic());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         System.out.println("Lobby is now running\n");
 
