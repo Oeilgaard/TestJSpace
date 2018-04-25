@@ -223,10 +223,6 @@ public class ControllerTest {
 
         Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
-        System.out.println("Is it null? " + tuple.equals(null));
-        System.out.println("Same name? " + tuple[1].equals(lobbyOne));
-        System.out.println("name: " + tuple[1] + " uuid: " + tuple[2]);
-
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
 
         Assert.assertTrue(modelPlayerOne.getInLobby());
@@ -314,14 +310,19 @@ public class ControllerTest {
     }
 
     @Test
-    public void beginWithTooFewPlayersTest() throws InterruptedException, IOException, IllegalBlockSizeException {
+    public void beginWithTooFewPlayersTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
         //String lobbyName = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
-        modelPlayerOne.createLobbyLogic(HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength()));
         modelPlayerOne.createUserLogic(HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength()));
-        modelPlayerOne.pressBeginLogic();
-        Object[] tuple = modelPlayerOne.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+        modelPlayerOne.createLobbyLogic(HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength()));
 
-        //Assert.assertEquals((int) tuple[1], Model.NOT_ENOUGH_PLAYERS);
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
+
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+        modelPlayerOne.pressBeginLogic();
+        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+        Assert.assertEquals((int) tuple2[1], Model.NOT_ENOUGH_PLAYERS);
     }
 
     @Test
