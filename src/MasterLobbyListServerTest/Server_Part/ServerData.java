@@ -16,8 +16,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class ServerData{
 
     //TODO: fryser hvis vi laver mere end 8 lobbies.
-    public final static int MAXIMUM_LOBBIES = 1000;
-    public final static int MAXIMUM_REQUESTS = 1000;
+    public final static int MAXIMUM_LOBBIES = 100;
+    public final static int MAXIMUM_REQUESTS = 100;
 
     SequentialSpace lobbyOverviewSpace = new SequentialSpace();
     SequentialSpace requestSpace = new SequentialSpace();
@@ -104,6 +104,10 @@ public class ServerData{
 
     public synchronized void removeLobbyFromMap(UUID uuid){
         lobbyMap.remove(uuid);
+    }
+
+    public synchronized void closeDownServer(){
+        serverRepos.shutDown();
     }
 }
 
