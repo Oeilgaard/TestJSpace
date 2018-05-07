@@ -1,7 +1,6 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
 import MasterLobbyListServerTest.Server_Part.LobbyUser;
-import MasterLobbyListServerTest.Server_Part.ServerData;
 import org.jspace.SequentialSpace;
 
 import javax.crypto.IllegalBlockSizeException;
@@ -197,17 +196,17 @@ public class Model {
 
     public boolean countessRule(Player p){
 
-        String cardOne = p.getHand().getCards().get(0).getCharacter().toString();
-        String cardTwo = p.getHand().getCards().get(1).getCharacter().toString();
+        String cardOne = p.getHand().getCards().get(0).getRole().toString();
+        String cardTwo = p.getHand().getCards().get(1).getRole().toString();
 
         System.out.print("Countess rule is ");
-        System.out.println(((cardOne.equals(Character.COUNTESS.toString()) || cardTwo.equals(Character.COUNTESS.toString())) &&
-                ( (cardOne.equals(Character.PRINCE.toString()) || cardOne.equals(Character.KING.toString())) ||
-                        (cardTwo.equals(Character.PRINCE.toString()) || cardTwo.equals(Character.KING.toString())))));
+        System.out.println(((cardOne.equals(Role.COUNTESS.toString()) || cardTwo.equals(Role.COUNTESS.toString())) &&
+                ( (cardOne.equals(Role.PRINCE.toString()) || cardOne.equals(Role.KING.toString())) ||
+                        (cardTwo.equals(Role.PRINCE.toString()) || cardTwo.equals(Role.KING.toString())))));
 
-        return ((cardOne.equals(Character.COUNTESS.toString()) || cardTwo.equals(Character.COUNTESS.toString())) &&
-                ( (cardOne.equals(Character.PRINCE.toString()) || cardOne.equals(Character.KING.toString())) ||
-                (cardTwo.equals(Character.PRINCE.toString()) || cardTwo.equals(Character.KING.toString()))));
+        return ((cardOne.equals(Role.COUNTESS.toString()) || cardTwo.equals(Role.COUNTESS.toString())) &&
+                ( (cardOne.equals(Role.PRINCE.toString()) || cardOne.equals(Role.KING.toString())) ||
+                (cardTwo.equals(Role.PRINCE.toString()) || cardTwo.equals(Role.KING.toString()))));
     }
 
     public String removeIDFromPlayername(String username){
@@ -228,14 +227,14 @@ public class Model {
 
     // Targeted cases
 
-    public void guardAction(int sendersIndex, int cardIndex, int targetPlayersIndex, Character guess){
+    public void guardAction(int sendersIndex, int cardIndex, int targetPlayersIndex, Role guess){
 
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
         String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
 
         players.get(sendersIndex).discardCard(cardIndex);
 
-        if(players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter() == guess) {
+        if(players.get(targetPlayersIndex).getHand().getCards().get(0).getRole() == guess) {
             knockOut(targetPlayersIndex);
 
             String msgSender = "You guessed correct!";
@@ -243,7 +242,7 @@ public class Model {
             String msgOthers = senderName + " uses GUARD on correctly guessed that " +
                     targetName + " has a " + guess.toString();
 
-            informPlayersAboutTargetedPlay(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+            informPlayersAboutTargetedPlay(Role.GUARD.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
 
 //         players.get(sender).getDiscardPile().addToDiscardPile(players.get(sender).getHand().getCards().get(index));
 //         players.get(sender).getHand().getCards().remove(index);
@@ -252,7 +251,7 @@ public class Model {
             String msgTarget = senderName + " uses GUARD on you and incorrectly guesses that you have a " + guess.toString();
             String msgOthers = senderName + " uses GUARD on + " + targetName
                     + " and incorrectly guesses " + guess.toString();
-            informPlayersAboutTargetedPlay(Character.GUARD.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+            informPlayersAboutTargetedPlay(Role.GUARD.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
         }
     }
 
@@ -267,7 +266,7 @@ public class Model {
                 targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0);
         String msgTarget = senderName + " uses PRIEST on you.";
         String msgOthers = senderName + " plays PRIEST on " + targetName;
-        informPlayersAboutTargetedPlay(Character.PRIEST.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+        informPlayersAboutTargetedPlay(Role.PRIEST.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
     }
 
     public void baronAction(int sendersIndex, int cardIndex, int targetPlayersIndex) {
@@ -277,13 +276,13 @@ public class Model {
 
         players.get(sendersIndex).discardCard(cardIndex);
 
-        System.out.println(senderName + " has a " + players.get(sendersIndex).getHand().getCards().get(0).getCharacter() +
-        " of value " + players.get(sendersIndex).getHand().getCards().get(0).getCharacter().getValue());
-        System.out.println(targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter() +
-                " of value " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().getValue() + Game.newLine);
+        System.out.println(senderName + " has a " + players.get(sendersIndex).getHand().getCards().get(0).getRole() +
+        " of value " + players.get(sendersIndex).getHand().getCards().get(0).getRole().getValue());
+        System.out.println(targetName + " has a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole() +
+                " of value " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().getValue() + Game.newLine);
 
-        Character senderPlayerCharacter = players.get(sendersIndex).getHand().getCards().get(0).getCharacter();
-        Character targetPlayerCharacter = players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter();
+        Role senderPlayerCharacter = players.get(sendersIndex).getHand().getCards().get(0).getRole();
+        Role targetPlayerCharacter = players.get(targetPlayersIndex).getHand().getCards().get(0).getRole();
 
         if(senderPlayerCharacter.getValue() > targetPlayerCharacter.getValue()){
             knockOut(targetPlayersIndex);
@@ -291,7 +290,7 @@ public class Model {
             String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You win the duel!";
             String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ".";
             String msgOthers = senderName + " wins the duel.";
-            informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+            informPlayersAboutTargetedPlay(Role.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
 
         } else if(senderPlayerCharacter.getValue() < targetPlayerCharacter.getValue()){
             knockOut(sendersIndex);
@@ -299,26 +298,26 @@ public class Model {
             String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You lose the duel!";
             String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". You win the duel!";
             String msgOthers = targetName + " wins the duel.";
-            informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+            informPlayersAboutTargetedPlay(Role.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
         } else {
             System.out.println("Tie! No one is knocked out...");
 
             String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". It's a draw!";
             String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". It's a draw!";
             String msgOthers = "It's a draw! No one is knocked out!";
-            informPlayersAboutTargetedPlay(Character.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");}
+            informPlayersAboutTargetedPlay(Role.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");}
     }
 
     public void princeAction(int sendersIndex, int cardIndex, int targetPlayersIndex) {
 
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
         String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
-        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
 
         players.get(sendersIndex).discardCard(cardIndex);
         Card discardedCard = players.get(sendersIndex).getHand().getCards().get(0);
 
-        if(players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter() == Character.PRINCESS){
+        if(players.get(targetPlayersIndex).getHand().getCards().get(0).getRole() == Role.PRINCESS){
             knockOut(targetPlayersIndex);
         } else {
             players.get(targetPlayersIndex).discardHand();
@@ -331,16 +330,16 @@ public class Model {
             if(sendersIndex == targetPlayersIndex){
 
                 String msgSender = "You play " + cardName + " on yourself and discard "
-                        + discardedCard.getCharacter().toString() + " and draw "
+                        + discardedCard.getRole().toString() + " and draw "
                         + players.get(targetPlayersIndex).getHand().getCards().get(0);
                 String msgOthers = senderName + " plays " + cardName + " on self and discards "
-                        + discardedCard.getCharacter().toString() + " and draws a new card";
+                        + discardedCard.getRole().toString() + " and draws a new card";
 
                 for(Player p : players){
                     if(p.getName().equals(players.get(sendersIndex).getName())){
                         System.out.println("linie 291 " + senderName + " " + p.getName());
                         try {
-                            SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgSender + "=" + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString(), p.getPlayerCipher());
+                            SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgSender + "=" + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString(), p.getPlayerCipher());
                             lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -365,18 +364,18 @@ public class Model {
             } else {
                 String msgSender = "You play PRINCE on " + targetName + " who discard the hand and draws a new card.";
                 String msgTarget = senderName + " plays PRINCE on you. You discard" +
-                        " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
+                        " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
                 String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
 
-                informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
+                informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString());
             }
         } else if (!players.get(targetPlayersIndex).isInRound()){
             if(sendersIndex == targetPlayersIndex){
 
                 String msgSender = "You play " + cardName + " on yourself and discard "
-                        + discardedCard.getCharacter().toString();
+                        + discardedCard.getRole().toString();
                 String msgOthers = senderName + " plays " + cardName + " on self and discards "
-                        + discardedCard.getCharacter().toString();
+                        + discardedCard.getRole().toString();
 
                 for(Player p : players){
                     if(p.getName().equals(players.get(sendersIndex).getName())){
@@ -409,7 +408,7 @@ public class Model {
                         " your hand.";
                 String msgOthers = senderName + " played PRINCE on " + targetName;
 
-                informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
+                informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
             }
         } else {
             //TODO self-target scenario
@@ -417,9 +416,9 @@ public class Model {
 
             String msgSender = "You play PRINCE on " + targetName + " who draws the secret card.";
             String msgTarget = senderName + " plays PRINCE on you. You discard" +
-                    " your hand and draw the secret card " + players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString();
+                    " your hand and draw the secret card " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
             String msgOthers = senderName + " played PRINCE on " + targetName + " who draw the secret card.";
-            informPlayersAboutTargetedPlay(Character.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getCharacter().toString());
+            informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString());
         }
     }
 
@@ -438,11 +437,11 @@ public class Model {
         players.get(sendersIndex).getHand().getCards().add(targetCard);
         players.get(targetPlayersIndex).getHand().getCards().add(senderCard);
 
-        String msgSender = "You played KING on " + targetName + " and got a " + targetCard.getCharacter().toString();
-        String msgTarget = senderName + " played KING on you. You now have a " + senderCard.getCharacter().toString();
+        String msgSender = "You played KING on " + targetName + " and got a " + targetCard.getRole().toString();
+        String msgTarget = senderName + " played KING on you. You now have a " + senderCard.getRole().toString();
         String msgOthers = targetName + " played KING on " + senderName;
 
-        informPlayersAboutTargetedPlay(Character.KING.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, targetCard.getCharacter().toString(), senderCard.getCharacter().toString());
+        informPlayersAboutTargetedPlay(Role.KING.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, targetCard.getRole().toString(), senderCard.getRole().toString());
 
     }
 
@@ -450,7 +449,7 @@ public class Model {
 
     public void noAction(int sendersIndex, int cardIndex){
 
-        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
 
         String msgSender = "You played " + cardName + " with no effect (no available targets)";
@@ -464,7 +463,7 @@ public class Model {
 
     public void handmaidAction(int sendersIndex, int cardIndex){
 
-        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
 
         players.get(sendersIndex).discardCard(cardIndex);
@@ -478,7 +477,7 @@ public class Model {
 
     public void countessAction(int sendersIndex, int cardIndex){
 
-        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
 
         players.get(sendersIndex).discardCard(cardIndex);
@@ -490,7 +489,7 @@ public class Model {
 
     public void princessAction(int sendersIndex, int cardIndex) {
 
-        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getCharacter().toString();
+        String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
         String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
 
         players.get(sendersIndex).discardCard(cardIndex);

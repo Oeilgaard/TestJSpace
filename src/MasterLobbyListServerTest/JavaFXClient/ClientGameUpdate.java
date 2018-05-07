@@ -85,7 +85,7 @@ public class ClientGameUpdate implements Runnable{
                                     }
 
                                     Label label = (Label)root.lookup("#usernameLabel");
-                                    label.setText(model.getUniqueName().substring(0, model.getUniqueName().indexOf("#")));
+                                    label.setText(model.getUserID().substring(0, model.getUserID().indexOf("#")));
 
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -187,7 +187,7 @@ public class ClientGameUpdate implements Runnable{
                     Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
-                    SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
+                    SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
                     model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
                     Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
@@ -220,7 +220,7 @@ public class ClientGameUpdate implements Runnable{
                     chatText.setWrapText(true);
                     //chatText.prefWidth(184);
 
-                    SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
+                    SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
                     model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
                     Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
@@ -263,7 +263,7 @@ public class ClientGameUpdate implements Runnable{
                             Main.appWindow.setScene(scene);
 
                             Label label = (Label)model.currentRoot.lookup("#usernameLabel");
-                            label.setText(model.getUniqueName().substring(0,model.getUniqueName().indexOf("#")));
+                            label.setText(model.getUserID().substring(0,model.getUserID().indexOf("#")));
 
                             ListView updateListView = ((ListView) root.lookup("#lobbyList"));
                             updateListView.getItems().clear();
@@ -278,7 +278,7 @@ public class ClientGameUpdate implements Runnable{
 
                             model.actionHistory.clear();
 
-                            model.leaderForCurrentLobby = false;
+                            model.setIsLeader(false);
 
                             model.resetLobbyInfo();
 
@@ -319,7 +319,7 @@ public class ClientGameUpdate implements Runnable{
                             }
 
                             Label label = (Label)root.lookup("#usernameLabel");
-                            label.setText(model.getUniqueName().substring(0, model.getUniqueName().indexOf("#")));
+                            label.setText(model.getUserID().substring(0, model.getUserID().indexOf("#")));
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -343,7 +343,7 @@ public class ClientGameUpdate implements Runnable{
                             Main.appWindow.setScene(scene);
 
                             Label label = (Label)model.currentRoot.lookup("#usernameLabel");
-                            label.setText(model.getUniqueName().substring(0,model.getUniqueName().indexOf("#")));
+                            label.setText(model.getUserID().substring(0,model.getUserID().indexOf("#")));
 
                             ListView updateListView = ((ListView) root.lookup("#lobbyList"));
                             updateListView.getItems().clear();
@@ -358,7 +358,7 @@ public class ClientGameUpdate implements Runnable{
 
                             model.actionHistory.clear();
 
-                            model.leaderForCurrentLobby = false;
+                            model.setIsLeader(false);
 
                             model.resetLobbyInfo();
 

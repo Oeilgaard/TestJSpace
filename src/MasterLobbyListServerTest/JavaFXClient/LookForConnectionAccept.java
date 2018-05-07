@@ -7,7 +7,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import java.io.IOException;
-import java.nio.channels.SelectableChannel;
 
 public class LookForConnectionAccept implements Runnable {
 
@@ -33,7 +32,7 @@ public class LookForConnectionAccept implements Runnable {
                         String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
                         String field3 = decryptedMessage.substring(decryptedMessage.indexOf('?') + 1, decryptedMessage.length());
 
-                        if (field1.equals(model.getUniqueName())) {
+                        if (field1.equals(model.getUserID())) {
 
                             model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
@@ -44,7 +43,7 @@ public class LookForConnectionAccept implements Runnable {
                                 TimerForLobbyJoining.lobbyConnectionSuccess(Model.BAD_REQUEST);
                             }
                             if (Boolean.parseBoolean(field2)) {
-                                model.leaderForCurrentLobby = true;
+                                model.setIsLeader(true);
                             }
 
                             model = null;

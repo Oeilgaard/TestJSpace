@@ -1,20 +1,20 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
 public class Card {
-    //TODO Replace with just Character.java?
-    private final Character character;
+    //TODO Replace with just Role.java?
+    private final Role role;
 
-    public Card(Character character) {
-        this.character = character;
+    Card(Role role) {
+        this.role = role;
     }
 
-    public Character getCharacter() {
-        return character;
+    public Role getRole() {
+        return role;
     }
 
     public int getValue() {
-        return character.getValue();
+        return role.getValue();
     }
 
-    public String toString(){ return character.toString(); }
+    public String toString(){ return role.toString(); }
 }

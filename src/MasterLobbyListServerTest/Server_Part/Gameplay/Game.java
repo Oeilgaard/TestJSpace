@@ -23,8 +23,8 @@ public class Game {
 
     private Thread posTargets;
 
-    private Character guardGuessCharacter;
-    private Character chosenCharacter;
+    private Role guardGuessRole;
+    private Role chosenRole;
     private Player currentPlayer;
     private Object[] tuple;
     private boolean legalPlay; // flag to determine of the player sends a 'legal discard'-play
@@ -69,7 +69,7 @@ public class Game {
         msg += "The revealed cards are:";
         for(int i = 0; i < model.REVEALED_CARDS_TWO_PLAYER; i++) {
             model.deck.drawCard(model.revealedCards);
-            msg += " " + model.revealedCards.get(i).getCharacter().toString() + " ";
+            msg += " " + model.revealedCards.get(i).getRole().toString() + " ";
         }
 
         // Secret card
@@ -81,9 +81,9 @@ public class Game {
         // Each players draw a card
         for(Player p : model.players) {
             model.deck.drawCard(p.getHand());
-            //System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getCharacter());
+            //System.out.println(p.getName() + " start with a " + p.getHand().getCards().get(0).getRole());
             try {
-                SealedObject encryptedMessage = new SealedObject(Model.GAME_START_UPDATE + "!" + p.getHand().getCards().get(0).getCharacter().toString() + "?" + msg + "=", p.getPlayerCipher());
+                SealedObject encryptedMessage = new SealedObject(Model.GAME_START_UPDATE + "!" + p.getHand().getCards().get(0).getRole().toString() + "?" + msg + "=", p.getPlayerCipher());
 
                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
             } catch (InterruptedException | IOException | IllegalBlockSizeException e) {
@@ -92,7 +92,6 @@ public class Game {
         }
         System.out.print(newLine);
     }
-
 
     public void startGame() throws InterruptedException, IOException, IllegalBlockSizeException {
 
@@ -123,7 +122,7 @@ public class Game {
                     // 2. DRAW
                     model.deck.drawCard(currentPlayer.getHand());
                     Card two = currentPlayer.getHand().getCards().get(1); // temp. variable for drawn card
-                    System.out.println(currentPlayer.getName() + " drew a " + two.getCharacter() + newLine);
+                    System.out.println(currentPlayer.getName() + " drew a " + two.getRole() + newLine);
 
                     System.out.println(currentPlayer.getName() + "'s current hand: ");
                     currentPlayer.getHand().printHand();
@@ -230,19 +229,19 @@ public class Game {
                 // If the card index is legal, we proceed, else we send ACTION_DENIED tuple
                 if(legalCardIndex(Integer.parseInt(field3))){
 
-                    // temp. variable for the Character corresponding to the card index sent
-                    Character c = currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getCharacter();
+                    // temp. variable for the Role corresponding to the card index sent
+                    Role r = currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getRole();
 
-                    if(c.isTargeted()) {
+                    if(r.isTargeted()) {
                         //TODO: no possible target case could automatically launch 'noAction' (currently double checking in playCard)
-                        if (!possibleTargets(c) || (validTarget(Integer.parseInt(field4),
-                                currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getCharacter()))) {
+                        if (!possibleTargets(r) || (validTarget(Integer.parseInt(field4),
+                                currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getRole()))) {
                             playCard(currentPlayer, decryptedTuple);
                         } else {
                             // Invalid target case
                             SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Target is invalid.?" +
-                                    currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                                    currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+                                    currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
+                                    currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
                             lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
                         }
@@ -254,8 +253,8 @@ public class Game {
                     System.out.println("Fejl: Action denied - illegal card index");
                     // [0] update, [1] type, [2] recipient, [3] msg, [4] card one (String), [5] card two (String)
                     SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Card index is unvalid.?" +
-                            currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                            currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+                            currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
+                            currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
                     lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
                 }
@@ -285,12 +284,12 @@ public class Game {
         }
     }
 
-    private boolean validTarget(int targetPlayerIndex, Character character){
+    private boolean validTarget(int targetPlayerIndex, Role role){
         if(targetPlayerIndex > model.players.size()-1 || targetPlayerIndex < 0){
             return false;
         } else {
             Player target = model.players.get(targetPlayerIndex);
-            if(character == Character.PRINCE){
+            if(role == Role.PRINCE){
                 return !target.isHandMaidProtected() && target.isInRound();
             } else {
                 return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getName());
@@ -303,21 +302,21 @@ public class Game {
             // send error tuple eller vælg random...
             try {
                 SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Card index is unvalid.?" +
-                        currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                        currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+                        currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
+                        currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else if(model.countessRule(currentPlayer) &&
-                (currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.PRINCE ||
-                        currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.KING)){
+                (currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getRole() == Role.PRINCE ||
+                        currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getRole() == Role.KING)){
 
             try {
                 SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Countess rule is in play?" +
-                        currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                        currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+                        currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
+                        currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
 
@@ -326,37 +325,37 @@ public class Game {
             }
 
             /*
-            if(currentPlayer.getHand().getCards().get(0).getCharacter() == Character.COUNTESS){
-                System.out.println("We force " + currentPlayer.getHand().getCards().get(0).getCharacter() + " discard");
-                playUntargettedCard(currentPlayer.getHand().getCards().get(0).getCharacter(),currentPlayer,0);
+            if(currentPlayer.getHand().getCards().get(0).getRole() == Role.COUNTESS){
+                System.out.println("We force " + currentPlayer.getHand().getCards().get(0).getRole() + " discard");
+                playUntargettedCard(currentPlayer.getHand().getCards().get(0).getRole(),currentPlayer,0);
             } else {
-                System.out.println("We force " + currentPlayer.getHand().getCards().get(1).getCharacter() + " discard");
-                playUntargettedCard(currentPlayer.getHand().getCards().get(1).getCharacter(),currentPlayer,1);
+                System.out.println("We force " + currentPlayer.getHand().getCards().get(1).getRole() + " discard");
+                playUntargettedCard(currentPlayer.getHand().getCards().get(1).getRole(),currentPlayer,1);
             }
             */
 
         } else {
-            chosenCharacter = currentPlayer.getHand().getCards().get(Integer.parseInt((String)tuple[3])).getCharacter();
+            chosenRole = currentPlayer.getHand().getCards().get(Integer.parseInt((String)tuple[3])).getRole();
             int cardIndex = Integer.parseInt((String)tuple[3]);
 
-            if(!currentPlayer.getHand().getCards().get(Integer.parseInt((String)tuple[3])).getCharacter().isTargeted()){
-                playUntargettedCard(chosenCharacter, currentPlayer, cardIndex);
+            if(!currentPlayer.getHand().getCards().get(Integer.parseInt((String)tuple[3])).getRole().isTargeted()){
+                playUntargettedCard(chosenRole, currentPlayer, cardIndex);
             } else {
                 // ikke-Guard
                 if(tuple[5].equals("")){
-                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, ((String) tuple[4]), 0);
+                    playTargettedCard(chosenRole, currentPlayer, cardIndex, ((String) tuple[4]), 0);
                 } else { //Guard
-                    playTargettedCard(chosenCharacter, currentPlayer, cardIndex, ((String) tuple[4]), Integer.parseInt((String) tuple[5]));
+                    playTargettedCard(chosenRole, currentPlayer, cardIndex, ((String) tuple[4]), Integer.parseInt((String) tuple[5]));
                 }
             }
         }
     }
 
-    private void playUntargettedCard(Character chosenCharacter, Player currentPlayer, int cardIndex){
-        if(chosenCharacter == Character.HANDMAID){
+    private void playUntargettedCard(Role chosenRole, Player currentPlayer, int cardIndex){
+        if(chosenRole == Role.HANDMAID){
             System.out.println(currentPlayer.getName() + " is handmaid protected until next turn...");
             model.handmaidAction(model.indexOfCurrentPlayersTurn(), cardIndex);
-        } else if(chosenCharacter == Character.COUNTESS) {
+        } else if(chosenRole == Role.COUNTESS) {
             model.countessAction(model.indexOfCurrentPlayersTurn(), cardIndex);
         } else {
             // Princess
@@ -365,11 +364,11 @@ public class Game {
         legalPlay = true;
     }
 
-    private void playTargettedCard(Character chosenCharacter, Player currentPlayer, int cardIndex, String playerTargetIndex, int guardGuess) throws IOException, IllegalBlockSizeException {
+    private void playTargettedCard(Role chosenRole, Player currentPlayer, int cardIndex, String playerTargetIndex, int guardGuess) throws IOException, IllegalBlockSizeException {
 
         System.out.println("Targetted card was played");
 
-        if(!possibleTargets(chosenCharacter)){
+        if(!possibleTargets(chosenRole)){
             // play targetted card with no action
             System.out.println("FØRSTE GUARD FEJL");
             model.noAction(model.indexOfCurrentPlayersTurn(), cardIndex);
@@ -378,27 +377,27 @@ public class Game {
 
             int playerTargetIndexInt = Integer.parseInt(playerTargetIndex);
 
-            if(validTarget(playerTargetIndexInt, currentPlayer.getHand().getCards().get(cardIndex).getCharacter())) {
-                if(chosenCharacter == Character.GUARD && (guardGuess >= 1 && guardGuess <= 7)) {
+            if(validTarget(playerTargetIndexInt, currentPlayer.getHand().getCards().get(cardIndex).getRole())) {
+                if(chosenRole == Role.GUARD && (guardGuess >= 1 && guardGuess <= 7)) {
                     System.out.println("It was a guard");
-                    guardGuessCharacter = Character.values()[guardGuess];
-                    //System.out.println("You guessed " + Character.values()[guardGuess]);
-                    model.guardAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt, guardGuessCharacter);
+                    guardGuessRole = Role.values()[guardGuess];
+                    //System.out.println("You guessed " + Role.values()[guardGuess]);
+                    model.guardAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt, guardGuessRole);
                     legalPlay = true;
-                } else if(chosenCharacter == Character.PRIEST) {
+                } else if(chosenRole == Role.PRIEST) {
                     model.priestAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                     legalPlay = true;
-                } else if(chosenCharacter == Character.BARON) {
+                } else if(chosenRole == Role.BARON) {
                     //System.out.println("Player index " + model.indexOfCurrentPlayersTurn() + " card index " + (cardPick-1) + " player index" + (playerPick-1));
                     model.baronAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                     legalPlay = true;
-                } else if(chosenCharacter == Character.PRINCE) {
+                } else if(chosenRole == Role.PRINCE) {
                     model.princeAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                     legalPlay = true;
-                } else if(chosenCharacter == Character.KING) { // i.e. chosenCharacter == Character.KING
+                } else if(chosenRole == Role.KING) { // i.e. chosenRole == Role.KING
                     //currentPlayer.getHand().printHand();
-                    System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndexInt).getHand().getCards().get(0).getCharacter());
-                    System.out.println(model.players.get(playerTargetIndexInt).getName() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getCharacter());
+                    System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndexInt).getHand().getCards().get(0).getRole());
+                    System.out.println(model.players.get(playerTargetIndexInt).getName() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getRole());
                     model.kingAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                     legalPlay = true;
                 } else {
@@ -406,8 +405,8 @@ public class Game {
                     System.out.println("Invalid Guard guess");
                     try {
                         SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Invalid guard guess.?" +
-                                currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                                currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+                                currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
+                                currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
                         lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
 
@@ -421,8 +420,8 @@ public class Game {
                 System.out.println("Seems like an unvalid target");
                 try {
                     SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Card index is unvalid.?" +
-                            currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
-                            currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
+                            currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
+                            currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
                     lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
 
@@ -434,7 +433,7 @@ public class Game {
     }
 
     private void terminalTest() throws IOException, IllegalBlockSizeException {
-        // 3.1 LMS
+        // 4.1 LMS
         if(model.isLastManStanding()) {
 
             model.lastMan().incrementAffection();
@@ -468,7 +467,7 @@ public class Game {
                     }
                 }
             }
-            // 3.2 EMPTY DECK
+            // 4.2 EMPTY DECK
         } else if(model.deck.getCards().isEmpty()) {
             if(model.nearestToPrincess().size() == 1){
                 model.nearestToPrincess().get(0).incrementAffection();
@@ -556,8 +555,8 @@ public class Game {
         }
     }
 
-    private boolean possibleTargets(Character c){
-        if(c == Character.PRINCE){
+    private boolean possibleTargets(Role r){
+        if(r == Role.PRINCE){
             return true;
         } else {
             for(Player p : model.players){

@@ -30,6 +30,7 @@ public class ControllerTest {
     private Model modelPlayerThree;
     private Model modelPlayerFour;
     private Model modelPlayerFive;
+    //private ArrayList<long> timeMeasurements = new ArrayList<long>();
 
     @Before
     public void initialize() throws NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException, InvalidKeyException, IOException {
@@ -52,6 +53,8 @@ public class ControllerTest {
 
     @Test
     public void joinServerLogicTest() throws NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException, InvalidKeyException, IOException, IllegalBlockSizeException {
+
+
         // Get IP, create model and join server
         String IP = HelperFunctions.currentLocalIP();
         Model m = new Model();
@@ -64,35 +67,43 @@ public class ControllerTest {
 
         // Wait for PONG_RESP
         Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(m.RESPONSE_CODE), new ActualField(m.PONG_RESP));
+//        long endTime = System.currentTimeMillis();
+//        System.out.println("Time: " + (endTime-startTime));
         int expected = m.PONG_RESP;
         int actual = (int) tuple[1];
 
         // Assertion
         Assert.assertEquals(expected, actual);
+
+
     }
 
     @Test
     public void createUserLegalNameTest() throws InterruptedException, IOException, IllegalBlockSizeException {
         String user = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
+        long startTime = System.currentTimeMillis();
         boolean success = modelPlayerOne.createUserLogic(user);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Approximate milliseconds for respond: " + (endTime-startTime));
+        //timeMeasurements.add((endTime-startTime));
 
         // Assert that it was a success to create the user name
         Assert.assertTrue(success);
 
         // Assert that the character seperating the name and the UUID is a #
-        Assert.assertEquals(modelPlayerOne.getUniqueName().substring(user.length(), user.length()+1),"#");
+        Assert.assertEquals(modelPlayerOne.getUserID().substring(user.length(), user.length()+1),"#");
 
         // Assert that the last 36 characters of the user-id matches an UUID pattern
-        String stringUUID = modelPlayerOne.getUniqueName().substring(modelPlayerOne.getUniqueName().length() - 36);
+        String stringUUID = modelPlayerOne.getUserID().substring(modelPlayerOne.getUserID().length() - 36);
         Assert.assertTrue(HelperFunctions.stringMatchesUUIDPattern(stringUUID));
 
         // Assert that length of the user-id is correct
-        int actual = modelPlayerOne.getUniqueName().length();
+        int actual = modelPlayerOne.getUserID().length();
         int expected = user.length() + 37; // the unique id is user name + # (1 char.) + UUID (36 char.)
         Assert.assertEquals(expected, actual);
 
         // Assert that the user name corresponds to the inputted name upon creation
-        String actual2 = HelperFunctions.removeUUIDFromUserName(modelPlayerOne.getUniqueName()); //controller.removedIdFromUsername();
+        String actual2 = HelperFunctions.removeUUIDFromUserName(modelPlayerOne.getUserID()); //controller.removedIdFromUsername();
         String expected2 = user;
         Assert.assertEquals(expected2, actual2);
     }
@@ -239,9 +250,9 @@ public class ControllerTest {
 
         String lobbyOne = HelperFunctions.randomLegalName(HelperFunctions.randomLegalNameLength());
         modelPlayerOne.createLobbyLogic(lobbyOne);
-
+        System.out.println("248");
         Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
-
+        System.out.println("250");
 //        System.out.println("Is it null? " + tuple.equals(null));
 //        System.out.println("Same name? " + tuple[1].equals(lobbyOne));
 //        System.out.println("name: " + tuple[1] + " uuid: " + tuple[2]);
@@ -502,7 +513,7 @@ public class ControllerTest {
                 int target = rn.nextInt(4);
                 int guessNr = rn.nextInt(7) + 1;
 
-                String messageToBeEncrypted = "12!" + modelForCurrentPlayer.getUniqueName() + "?" + playedCard + "=" + target + "*" + guessNr;
+                String messageToBeEncrypted = "12!" + modelForCurrentPlayer.getUserID() + "?" + playedCard + "=" + target + "*" + guessNr;
                 SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,modelForCurrentPlayer.getLobbyCipher());
 
                 modelForCurrentPlayer.getLobbySpace().put(20, encryptedMessage); // Send the action to the server
