@@ -1,5 +1,6 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
+import MasterLobbyListServerTest.Server_Part.Lobby;
 import MasterLobbyListServerTest.Server_Part.LobbyUser;
 import MasterLobbyListServerTest.Server_Part.ServerData;
 import org.jspace.ActualField;
@@ -178,6 +179,7 @@ public class Game {
         }
 
         System.out.println("Interrupting posTargets");
+        Thread.sleep(3000);
         posTargets.interrupt();
 
         if (!disconnection) {
@@ -192,7 +194,7 @@ public class Game {
         }
 
         // Players have 30 s to receive the GAME_ENDING-tuple before the space closes
-        Thread.sleep(30000);
+        Thread.sleep(27000);
 
     }
 
@@ -201,7 +203,7 @@ public class Game {
             // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
             //TODO: Lyt efter disconnect også
             //TODO: Er Model.DISCARD nødvendigt at lytte på ?
-            Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class));
+            Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
             String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(cipher);
 
@@ -209,7 +211,7 @@ public class Game {
             String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.indexOf('?'));
             String field3 = decryptedMessage.substring(decryptedMessage.indexOf('?')+1,decryptedMessage.indexOf('='));
             String field4 = decryptedMessage.substring(decryptedMessage.indexOf('=')+1,decryptedMessage.indexOf('*'));
-            String field5 = decryptedMessage.substring(decryptedMessage.indexOf('*')+1,decryptedMessage.length());
+            String field5 = decryptedMessage.substring(decryptedMessage.indexOf('*')+1,decryptedMessage.indexOf('¤'));
 
             String[] decryptedTuple = new String[6];
             decryptedTuple[0] = "filler";
@@ -258,7 +260,7 @@ public class Game {
                     lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
                 }
 
-            } else if(Integer.parseInt(field1)==Model.GAME_DISCONNECT) {
+            } else if(Integer.parseInt(field1)== Lobby.DISCONNECT) {
                 System.out.println("Oh-oh... " + field2 + " disconnected");
 
                 // Notify everyone, except the disconnected user

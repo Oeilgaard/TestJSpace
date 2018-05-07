@@ -352,10 +352,11 @@ public class Controller {
             changeScene(GAME_SCENE);
 
             //Encrypting message
-            String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?0=*";
+            String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?0=*¤";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, model.getLobbyCipher());
+            SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-            model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+            model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage,filler); // Send the action to the server
         }
 
     }
@@ -369,10 +370,11 @@ public class Controller {
             model.cardsOnHand.remove(1);
             changeScene(GAME_SCENE);
 
-            String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?1=*";
+            String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?1=*¤";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
+            SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-            model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+            model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
 
         }
     }
@@ -559,10 +561,11 @@ public class Controller {
                     model.cardsOnHand.remove(pickedCard);
                     changeScene(GAME_SCENE);
 
-                    String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=" + Integer.toString(indexOfTarget) + "*";
+                    String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=" + Integer.toString(indexOfTarget) + "*¤";
                     SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
+                    SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-                    model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+                    model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
 
                     pickedCard = 2;
                     indexOfTarget = -1;
@@ -579,10 +582,11 @@ public class Controller {
         model.cardsOnHand.remove(pickedCard);
         changeScene(GAME_SCENE);
 
-        String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=" + Integer.toString(indexOfTarget) + "*" + btn.getId();
+        String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=" + Integer.toString(indexOfTarget) + "*" + btn.getId() + "¤";
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
+        SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-        model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+        model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
 
         pickedCard = 2;
         indexOfTarget = -1;
@@ -601,10 +605,11 @@ public class Controller {
         model.cardsOnHand.remove(pickedCard);
         changeScene(GAME_SCENE);
 
-        String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=*";
+        String messageToBeEncrypted = "" + Model.DISCARD + "!" + model.getUniqueName() + "?" + Integer.toString(pickedCard) + "=*¤";
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
+        SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-        model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+        model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
 
         pickedCard = 2;
         indexOfTarget = -1;

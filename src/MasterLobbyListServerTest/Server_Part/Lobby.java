@@ -1,6 +1,7 @@
 package MasterLobbyListServerTest.Server_Part;
 
 import MasterLobbyListServerTest.Server_Part.Gameplay.Game;
+import MasterLobbyListServerTest.Server_Part.Gameplay.Model;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.SequentialSpace;
@@ -136,14 +137,14 @@ public class Lobby implements Runnable {
             try {
                 // Wait for a new LOBBY_REQ tuple
                 // [0] LOBBY-tuple code, [1] (int)LOBBY action code, [2] (String)User name (for some tuples) [3] (int)thread nr for the specific user
-                Object[] tuple = lobbySpace.get(new ActualField(LOBBY_REQ), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
+                Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
                 System.out.println("Received a lobby request");
 
                 // Decrypting the LOBBY_REQ tuple
                 String decryptedString = (String) ((SealedObject) tuple[1]).getObject(lobbyCipher);
                 String field1 = decryptedString.substring(0, decryptedString.indexOf('!'));
                 String field2 = decryptedString.substring(decryptedString.indexOf('!') + 1, decryptedString.indexOf('?'));
-                String field3 = decryptedString.substring(decryptedString.indexOf('?') + 1, decryptedString.length());
+                String field3 = decryptedString.substring(decryptedString.indexOf('?') + 1, decryptedString.indexOf('='));
                 int req = Integer.parseInt(field1);
                 String name = field2;
 
@@ -192,6 +193,7 @@ public class Lobby implements Runnable {
                 } else if (req == BEGIN && name.equals(lobbyLeader)) { // the lobby is going in game
                     if (noPlayers >= 2) {
                         System.out.println("Ready to begin!");
+                        Thread.sleep(2000);
                         beginFlag = true;
                         updatePlayers(name, BEGIN);
                         break;
