@@ -65,11 +65,10 @@ public class Player {
     }
 
     public void discardCard(int index) {
-        System.out.println(name + " discards " + hand.getCards().get(index).getCharacter() + Game.newLine);
+        System.out.println(name + " discards " + hand.getCards().get(index).getRole() + Game.newLine);
         discardPile.addToDiscardPile(hand.getCards().get(index));
         hand.getCards().remove(index);
     }
-
 
     public void discardHand() {
         //System.out.println(name + " discards hand: ");
@@ -106,7 +105,7 @@ public class Player {
 //        System.out.println(name + " discards hand: " + Game.newLine);
 //
 //        for(Card c : hand.getCards()){
-//            System.out.println(c.getCharacter() + Game.newLine);
+//            System.out.println(c.getRole() + Game.newLine);
 //            discardPile.getCards().add(c);
 //            hand.getCards().remove(0);
 //

@@ -40,19 +40,19 @@ public class Model {
     protected final static int NOT_ENOUGH_PLAYERS = 52;
 
     // Query tuples
-    protected final static int GAMEPLAY_INFO = 60;
+    //protected final static int GAMEPLAY_INFO = 60;
     protected final static int GET_PLAYERLIST = 61;
-    protected final static int PLAYERS_IN_ROUND = 62;
+    //protected final static int PLAYERS_IN_ROUND = 62;
 
-    protected final static int GAMEPLAY_ACTION = 70;
-    protected final static int PLAY_CARD = 71;
+    //protected final static int GAMEPLAY_ACTION = 70;
+    //protected final static int PLAY_CARD = 71;
 
-    // 'http style'
+    // 'HTTP style'
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
     protected final static int NO_RESPONSE = 444;
 
-    // gameplay tuples
+    // Gameplay tuples
     public final static int CLIENT_UPDATE = 10;
     public final static int NEW_TURN = 11;
     public final static int DISCARD = 12;
@@ -70,7 +70,7 @@ public class Model {
     private static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
     private static String serverIp;
     private int responseFromLobby = NO_RESPONSE;
-    private String uniqueName;
+    private String userID;
     private ServerResponseMonitor serverResponseMonitor;
     private static int currentThreadNumber = 0;
 
@@ -81,15 +81,14 @@ public class Model {
 
     private PublicKey serverPublicKey;
     private Cipher serverCipher;
-
     private Cipher lobbyCipher;
 
     public Key key;
     public Cipher personalCipher;
 
-    public boolean inGame = false;
-    public boolean inLobby = false;
-    public boolean leaderForCurrentLobby = false;
+    private boolean inGame = false;
+    private boolean inLobby = false;
+    private boolean isLeader = false;
 
     private static String currentLobbyName;
 
@@ -105,6 +104,10 @@ public class Model {
 
     public void setCurrentThreadNumber(int currentThreadNumber) {
         Model.currentThreadNumber = currentThreadNumber;
+    }
+
+    public void incrementCurrentThreadNumber(){
+        currentThreadNumber++;
     }
 
     public void addIpToRemoteSpaces(String ip) throws IOException {
@@ -123,6 +126,10 @@ public class Model {
         serverCipher.init(Cipher.ENCRYPT_MODE, pk);
     }
 
+    public boolean isLeader(){
+        return isLeader;
+    }
+
     public Cipher getServerCipher() {
         return serverCipher;
     }
@@ -131,14 +138,6 @@ public class Model {
 
     public int getCurrentThreadNumber(){
         return currentThreadNumber;
-    }
-
-    public void incrementCurrentThreadNumber(){
-        currentThreadNumber++;
-    }
-
-    public void decrementCurrentThreadNumber(){
-        currentThreadNumber--;
     }
 
     public RemoteSpace getLobbyListSpace() {
@@ -164,12 +163,12 @@ public class Model {
         return responseSpace;
     }
 
-    public String getUniqueName() {
-        return uniqueName;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUniqueName(String uniqueName) {
-        this.uniqueName = uniqueName;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public ServerResponseMonitor getServerResponseMonitor() {
@@ -192,10 +191,6 @@ public class Model {
         this.inGame = inGame;
     }
 
-    public boolean getInGame() {
-        return inGame;
-    }
-
     public boolean getInLobby() {
         return inLobby;
     }
@@ -204,7 +199,7 @@ public class Model {
         this.inLobby = inLobby;
     }
 
-    public String getUserName(){ return uniqueName.substring(0, uniqueName.indexOf("#")); }
+    public String getUserName(){ return userID.substring(0, userID.indexOf("#")); }
 
     public String getCurrentLobbyName(){
         return currentLobbyName;
@@ -273,7 +268,7 @@ public class Model {
             }
 
             if ((int) field1 == Model.OK) {
-                setUniqueName((String) field3); // Setting the user's name
+                setUserID((String) field3); // Setting the user's name
                 return true;
             } else if ((int) field1 == Model.BAD_REQUEST) {
                 return false;
@@ -284,9 +279,9 @@ public class Model {
 
     public boolean createLobbyLogic(String lobbyNameString) throws IOException, IllegalBlockSizeException, InterruptedException {
 
-        System.out.println("The user's id: " + uniqueName);
+        System.out.println("The user's id: " + userID);
 
-        SealedObject encryptedLobbyNameString = new SealedObject(lobbyNameString + "!" + uniqueName, serverCipher);
+        SealedObject encryptedLobbyNameString = new SealedObject(lobbyNameString + "!" + userID, serverCipher);
 
         if (HelperFunctions.validName(lobbyNameString)) {
             //createLobbyButton.setDisable(true);
@@ -345,11 +340,13 @@ public class Model {
 
             //Tuple 1 - 3 sealed object
 
-            String messageToBeEncrypted = "" + Model.CONNECT + "!" + getUniqueName() + "?" + currentThreadNumber;
+            String messageToBeEncrypted = "" + Model.CONNECT + "!" + getUserID() + "?" + currentThreadNumber;
 
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
             SealedObject encryptedKey = new SealedObject(key, lobbyCipher);
+
+            lobbySpace.get(new ActualField("Lock"));
 
             lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, encryptedKey);
 
@@ -369,28 +366,39 @@ public class Model {
 
         // Checks whether the player is leaving during a game or in a lobby
         if(inGame){
-            String messageToBeEncrypted = "" + Model.GAME_DISCONNECT + "!" + uniqueName + "?0=*";
+            String messageToBeEncrypted = "" + Model.GAME_DISCONNECT + "!" + userID + "?0=*";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
             lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
         } else if(inLobby){
-            //Tuple 1 - 3 sealed object
-            String messageToBeEncrypted = "" + Model.LOBBY_DISCONNECT + "!" + uniqueName + "?" + -1;
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
-            SealedObject filler = new SealedObject("filler", lobbyCipher);
 
-            lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, filler);
-            inLobby = false;
+            Object[] tuple = lobbySpace.getp(new ActualField("Lock"));
+
+            System.out.println("is it null: " + (tuple==null));
+
+            if(tuple!=null){
+                System.out.println("379");
+                //Tuple 1 - 3 sealed object
+                String messageToBeEncrypted = "" + Model.LOBBY_DISCONNECT + "!" + userID + "?" + -1;
+                SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+                SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+                lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, filler);
+                inLobby = false;
+            }
         }
     }
 
     public void pressBeginLogic() throws IOException, IllegalBlockSizeException, InterruptedException {
-        if (leaderForCurrentLobby) {
-            System.out.println("Yes");
+
+        if (isLeader) {
+            //System.out.println("Yes");
+
             //Tuple 1 - 3 sealed object
-            String messageToBeEncrypted = "" + Model.BEGIN + "!" + uniqueName + "?" + -1; //TODO hvad er -1?
+            String messageToBeEncrypted = "" + Model.BEGIN + "!" + userID + "?" + -1; //TODO hvad er -1?
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
             SealedObject filler = new SealedObject("filler", lobbyCipher);
 
+            lobbySpace.get(new ActualField("Lock"));
             lobbySpace.put(Model.LOBBY_REQ, encryptedMessage, filler);
         }
 
@@ -399,9 +407,9 @@ public class Model {
     public ArrayList<String> updatePlayerLobbyListLogic() throws IOException, IllegalBlockSizeException, InterruptedException {
         //Encrypting the tuple
 
-        String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + uniqueName + "?" + -1;
+        String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + userID + "?" + -1;
 
-        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, getLobbyCipher());
 
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -422,8 +430,12 @@ public class Model {
     }
 
     public void textToChatLogic(String text) throws InterruptedException {
-        String textToSend = HelperFunctions.removeUUIDFromUserName(uniqueName) + " : " + text;
+        String textToSend = HelperFunctions.removeUUIDFromUserName(userID) + " : " + text;
         lobbySpace.put("Chat", textToSend);
+    }
+
+    public void setIsLeader(boolean isLeader) {
+        this.isLeader = isLeader;
     }
 }
 

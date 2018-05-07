@@ -43,17 +43,17 @@ public class Deck {
     }
 
     public void fillDeck(){
-        for(Character ch : Character.values()) {
-            if(ch == Character.GUARD){
+        for(Role r : Role.values()) {
+            if(r == Role.GUARD){
                 for(int i = 0; i < Model.NO_OF_GUARD; i++) {
-                    cards.add(new Card(ch));
+                    cards.add(new Card(r));
                 }
-            } else if (ch == Character.PRIEST || ch == Character.BARON || ch == Character.PRINCE || ch == Character.HANDMAID) {
+            } else if (r == Role.PRIEST || r == Role.BARON || r == Role.PRINCE || r == Role.HANDMAID) {
                 for (int i = 0; i < Model.NO_OF_PRIEST; i++) { // Model.NO_OF_PRIEST
-                    cards.add(new Card(ch));
+                    cards.add(new Card(r));
                 }
             } else {
-                cards.add(new Card(ch));
+                cards.add(new Card(r));
             }
         }
     }
@@ -86,7 +86,7 @@ public class Deck {
     public void printDeck() {
         int i;
         for (i = 0; i < cards.size(); i++){
-            System.out.println("Card number " + (i+1) + " is a " + cards.get(i).getCharacter());
+            System.out.println("Card number " + (i+1) + " is a " + cards.get(i).getRole());
         }
         if (i == 0) { System.out.println("Deck is empty"); }
     }

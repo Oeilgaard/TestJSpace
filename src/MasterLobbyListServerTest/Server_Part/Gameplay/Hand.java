@@ -17,7 +17,7 @@ public class Hand {
     public void printHand() {
         int i;
         for (i = 0; i < cards.size(); i++){
-            System.out.println("Card number " + (i+1) + " is a " + cards.get(i).getCharacter());
+            System.out.println("Card number " + (i+1) + " is a " + cards.get(i).getRole());
         }
         if (i == 0) { System.out.println("Hand is empty"); }
     }

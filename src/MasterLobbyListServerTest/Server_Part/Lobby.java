@@ -81,6 +81,12 @@ public class Lobby implements Runnable {
     public void run() {
 
         lobbySpace = new SequentialSpace();
+
+        try {
+            lobbySpace.put("Lock");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
 
@@ -169,9 +175,12 @@ public class Lobby implements Runnable {
                         SealedObject encryptedMessage = new SealedObject(name + "!" + isThisPlayerLobbyLeader + "?" + getUserfromName(name).userNr, cipher);
                         lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED,encryptedMessage);
                         updatePlayers(name, CONNECT);
+
+                        lobbySpace.put("Lock");
                     } else { // lobby full
                         SealedObject encryptedMessage = new SealedObject(name + "!false?" + -1, cipher);
                         lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, encryptedMessage);
+                        lobbySpace.put("Lock");
                     }
                     System.out.println("Connect response handled " + connectedInt);
                     connectedInt++;
@@ -188,6 +197,7 @@ public class Lobby implements Runnable {
                     availableNrs.add(indexForPlayer);
                     noPlayers--; //TODO: should it be synchronized? (Probably not, as only one thread)
                     updatePlayers(name, DISCONNECT);
+                    lobbySpace.put("Lock");
                 } else if (req == CLOSE) { // If request type is CLOSE,
                     System.out.println("Lobby is closing");
                     beginFlag = false;
@@ -195,6 +205,7 @@ public class Lobby implements Runnable {
                     break;
                 } else if (req == BEGIN && name.equals(lobbyLeader)) { // the lobby is going in game
                     if (noPlayers >= 2) {
+                        Thread.sleep(4000);
                         System.out.println("Ready to begin!");
                         beginFlag = true;
                         updatePlayers(name, BEGIN);
@@ -202,7 +213,9 @@ public class Lobby implements Runnable {
                     } else {
                         System.out.println("Not enough players to begin");
                         updatePlayers(name, NOT_ENOUGH_PLAYERS); // there will just be the one player
+                        lobbySpace.put("Lock");
                     }
+
                 } else if (req == GET_PLAYERLIST) { // If request is GET_PLAYERLIST, a client requests the list of player's in the lobby
 
                     // TODO: hvorfor ikke returnere private ArrayList<LobbyUser> users?

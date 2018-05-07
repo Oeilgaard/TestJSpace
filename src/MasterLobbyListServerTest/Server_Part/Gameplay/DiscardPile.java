@@ -18,8 +18,4 @@ public class DiscardPile {
         cards.add(card);
     }
 
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
-    }
-
 }

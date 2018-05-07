@@ -57,7 +57,7 @@ public class ClientUpdateAgent implements Runnable{
                 } else if ((int)tuple[1] == Model.CONNECT ||(int) tuple[1]==Model.LOBBY_DISCONNECT) {
                     //Tuple 1 - 3 sealed object
 
-                    String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUniqueName() + "?" + -1;
+                    String messageToBeEncrypted = "" + Model.GET_PLAYERLIST + "!" + model.getUserID() + "?" + -1;
 
                     SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
                     SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
@@ -136,7 +136,7 @@ public class ClientUpdateAgent implements Runnable{
                                 Main.appWindow.setScene(scene);
 
                                 Label label = (Label)model.currentRoot.lookup("#usernameLabel");
-                                label.setText(model.getUniqueName().substring(0, model.getUniqueName().indexOf("#")));
+                                label.setText(model.getUserID().substring(0, model.getUserID().indexOf("#")));
 
 
                                 VBox vb = ((VBox) model.currentRoot.lookup("#vb1"));
@@ -151,7 +151,7 @@ public class ClientUpdateAgent implements Runnable{
                                     sp.setVvalue(1.0);
                                 }
 
-                                SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2, model.getLobbyCipher());
+                                SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2, model.getLobbyCipher());
 
                                 model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
                                 Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
