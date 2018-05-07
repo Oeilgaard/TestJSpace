@@ -28,9 +28,9 @@ public class Player {
         return name;
     }
 
-    public void setName(String name) {
+    /*public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     public Hand getHand() {
         return hand;

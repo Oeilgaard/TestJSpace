@@ -17,7 +17,7 @@ public class Game {
 
     public final static String newLine = System.getProperty("line.separator");
 
-    private Model model;
+    public Model model;
     private SequentialSpace lobbySpace;
 
     private Thread posTargets;
@@ -313,7 +313,7 @@ public class Game {
                         currentPlayer.getHand().getCards().get(Integer.parseInt((String) tuple[3])).getCharacter() == Character.KING)){
 
             try {
-                SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Card index is unvalid.?" +
+                SealedObject encryptedMessage = new SealedObject(Model.ACTION_DENIED + "!Countess rule is in play?" +
                         currentPlayer.getHand().getCards().get(0).getCharacter().toString() + "=" +
                         currentPlayer.getHand().getCards().get(1).getCharacter().toString(), currentPlayer.getPlayerCipher());
 

@@ -51,7 +51,7 @@ public class Model {
     protected Deck deck;
     protected boolean roundWon;
     protected ArrayList<Card> revealedCards;
-    protected Card secretCard;
+    public Card secretCard;
     private SequentialSpace lobbySpace;
 
     public Model(ArrayList<LobbyUser> users, SequentialSpace lobbySpace){
@@ -170,7 +170,7 @@ public class Model {
         int max = -1;
         for(Player p : nearestToPrincess()){
             if(p.discardPileSum() > max) {
-                max = p.getHand().getCards().get(0).getValue();
+                max = p.discardPileSum();
             }
         }
         return max;

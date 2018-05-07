@@ -108,6 +108,26 @@ public class ClientGameUpdate implements Runnable{
                         });
 
                     }
+
+                    SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
+
+                    model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+
+                    String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
+
+                    Platform.runLater(() -> {
+                                ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
+                                updatePlayerListView.getItems().clear();
+                                for (int i = 0; i < 4; i++) {
+                                    if (!listOfNames[i].equals("")) {
+                                        updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
+                                    }
+                                }
+                            }
+                    );
+
+
                 } else if (field1 == Model.GAME_START_UPDATE) {
 
                     model.cardsOnHand.add((String) field2);

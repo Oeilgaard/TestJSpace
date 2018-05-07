@@ -21,4 +21,20 @@ public class Hand {
         }
         if (i == 0) { System.out.println("Hand is empty"); }
     }
+
+    public void setCards(int cardNr, Character chr){
+        cards.remove(cardNr);
+        if(cardNr == 1){
+            cards.add(new Card(chr));
+        } else {
+            if (!cards.isEmpty()) {
+                Card card = cards.get(0);
+                cards.remove(0);
+                cards.add(new Card(chr));
+                cards.add(card);
+            } else {
+                cards.add(new Card(chr));
+            }
+        }
+    }
 }

@@ -1,7 +1,10 @@
 package MasterLobbyListServerTest.Server_Part;
 
-import MasterLobbyListServerTest.JavaFXClient.HelperFunctions;
-import MasterLobbyListServerTest.JavaFXClient.Model;
+
+import MasterLobbyListServerTest.Server_Part.Gameplay.Card;
+import MasterLobbyListServerTest.Server_Part.Gameplay.Character;
+import MasterLobbyListServerTest.Server_Part.Gameplay.Model;
+import MasterLobbyListServerTest.Server_Part.Gameplay.Player;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
@@ -13,7 +16,9 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 public class ServerTest {
@@ -242,7 +247,17 @@ public class ServerTest {
 
         lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         String messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient2#123?" + -1;
         SealedObject encryptedMessage2 = new SealedObject(messageToBeEncrypted2, lobbyCipher);
@@ -255,6 +270,13 @@ public class ServerTest {
         Object[] lobby = serverData.lobbyOverviewSpace.queryp(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         Assert.assertEquals("TestLobbyCon", lobby[1]);
+
+        messageToBeEncrypted = "" + Lobby.GET_PLAYERLIST + "!TestClient1#123?" + -1;
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+        filler = new SealedObject("filler",lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
     }
 
     @Test
@@ -385,23 +407,1382 @@ public class ServerTest {
     }
 
     @Test
-    public void beginGame(){}
+    public void beginGame() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Assert.assertTrue(serverData.lobbyMap.get(tuple[2]).gameBegun());
+    }
 
     @Test
-    public void countessRule(){}
+    public void countessRule() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        System.out.println("testen : " + serverData.lobbyMap.get(tuple[2]).game);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.COUNTESS);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 1 + "=" + 1 + "*";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.ACTION_DENIED);
+        Assert.assertEquals(field2, "Countess rule is in play");
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+    }
 
     @Test
-    public void invalidCardIndex(){}
+    public void invalidCardIndex() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        System.out.println("testen : " + serverData.lobbyMap.get(tuple[2]).game);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.HANDMAID);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 2 + "=" + 1 + "*";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.ACTION_DENIED);
+        Assert.assertEquals(field2, "Card index is unvalid.");
+    }
 
     @Test
-    public void invalidTargetIndex(){}
+    public void invalidTargetIndex() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        System.out.println("testen : " + serverData.lobbyMap.get(tuple[2]).game);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.HANDMAID);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 1 + "=" + 2 + "*";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.ACTION_DENIED);
+        Assert.assertEquals(field2, "Target is invalid.");
+    }
 
     @Test
-    public void invalidGuess(){}
+    public void invalidGuess() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        System.out.println("testen : " + serverData.lobbyMap.get(tuple[2]).game);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.GUARD);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.ACTION_DENIED);
+        Assert.assertEquals(field2, "Invalid guard guess.");
+    }
 
     @Test
-    public void winARound(){}
+    public void playHandmaid() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.HANDMAID);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+    }
 
     @Test
-    public void winTheGame(){}
+    public void playGuard() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.GUARD);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        players.get(1).getHand().setCards(0,Character.GUARD);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*1";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+    }
+
+    @Test
+    public void playPriest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.PRIEST);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+    }
+
+    @Test
+    public void playBaron() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.BARON);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        players.get(1).getHand().setCards(0,Character.KING);
+
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+    }
+
+    @Test
+    public void playPrince() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.PRINCE);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        players.get(1).getHand().setCards(0,Character.KING);
+
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+    }
+
+    @Test
+    public void playKing() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.KING);
+        players.get(0).getHand().setCards(1,Character.KING);
+
+        players.get(1).getHand().setCards(0,Character.KING);
+
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+        String field2 = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.indexOf('?'));
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+    }
+
+    @Test
+    public void winARound() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        players.get(0).getHand().setCards(0,Character.BARON);
+        players.get(0).getHand().setCards(1,Character.PRINCESS);
+
+        players.get(1).getHand().setCards(0,Character.GUARD);
+
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.KNOCK_OUT);
+
+        Object[] winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+
+        winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.WIN);
+    }
+
+    @Test
+    public void winTheGame() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        for(int i = 0;i < 7;i++){
+            players.get(0).getHand().setCards(0, Character.BARON);
+            players.get(0).getHand().setCards(1, Character.PRINCESS);
+
+            players.get(1).getHand().setCards(0, Character.GUARD);
+
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
+            encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+            lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+            lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+            Object[] countessrule = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+            String decryptedMessage = (String) ((SealedObject) countessrule[1]).getObject(clientCipher);
+
+            String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+            int field1 = Integer.parseInt(field1text);
+
+            Assert.assertEquals(field1, Model.KNOCK_OUT);
+
+            Object[] winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+            decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+            field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+            field1 = Integer.parseInt(field1text);
+
+            Assert.assertEquals(field1, Model.OUTCOME);
+
+            winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+            decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+            field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+            field1 = Integer.parseInt(field1text);
+
+            Assert.assertEquals(field1, Model.WIN);
+            Thread.sleep(200);
+
+        }
+        Object[] winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.GAME_ENDING);
+
+        Thread.sleep(30000);
+
+        Assert.assertTrue(serverData.lobbyMap.isEmpty());
+    }
+
+    @Test
+    public void noCardsLeftInDeck() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Character.PRINCESS);
+
+        for(int i = 0;i < 10;i++){
+            players.get(i%2).getHand().setCards(0, Character.HANDMAID);
+
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0";
+            encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+            lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+            lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+            Object[] winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+            String decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+            String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+            int field1 = Integer.parseInt(field1text);
+
+            Assert.assertEquals(field1, Model.OUTCOME);
+
+            Thread.sleep(200);
+        }
+        Object[] winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.WIN);
+    }
+
+    @Test
+    public void noCardsLeftTie() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Character.PRINCESS);
+
+        for(int i = 0;i < 9;i++){
+            players.get(i%2).getHand().setCards(0, Character.HANDMAID);
+
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0";
+            encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+            lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(i%2));
+
+            lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+            Thread.sleep(200);
+        }
+        players.get(1).getHand().setCards(0, Character.COUNTESS);
+
+        players.get(0).getHand().setCards(0,Character.HANDMAID);
+        players.get(1).getHand().setCards(1,Character.HANDMAID);
+
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + 1 + "#123?" + 0 + "=" + 1 + "*0";
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(1));
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+
+        Thread.sleep(200);
+
+        winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.WIN);
+    }
+
+    @Test
+    public void tieDiscardPileAndCard() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class), new ActualField(0), new ActualField(1));
+
+        Thread.sleep(3000);
+
+        ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
+
+        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Character.HANDMAID);
+
+        for(int i = 0;i < 10;i++){
+            players.get(i%2).getHand().setCards(0, Character.HANDMAID);
+
+            if(i == 9){
+                players.get(0).getHand().setCards(0, Character.HANDMAID);
+                players.get(1).getHand().setCards(1, Character.HANDMAID);
+                lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+            }
+
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0";
+            encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+            lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(i%2));
+
+            lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+            Thread.sleep(200);
+        }
+        Object[] winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        String decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.OUTCOME);
+
+        winTuple = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
+
+        decryptedMessage = (String) ((SealedObject) winTuple[1]).getObject(clientCipher);
+
+        field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.WIN);
+    }
+
+    @Test
+    public void disconnectIngame() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0";
+
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, encryptedKey);
+
+        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1;
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        SealedObject filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Lobby.LOBBY_REQ, encryptedMessage, filler);
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(0));
+
+        lobbySpace.get(new ActualField(Lobby.LOBBY_UPDATE), new ActualField(Lobby.BEGIN), new FormalField(String.class),new ActualField(0), new ActualField(1));
+
+        Assert.assertTrue(serverData.lobbyMap.get(tuple[2]).gameBegun());
+
+        Thread.sleep(3000);
+
+        lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(1));
+
+        messageToBeEncrypted = "" + MasterLobbyListServerTest.JavaFXClient.Model.GAME_DISCONNECT + "!TestClient#123?0=*";
+        encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+        lobbySpace.put(MasterLobbyListServerTest.JavaFXClient.Model.SERVER_UPDATE, encryptedMessage); // Send the action to the server
+
+        Object[] tuples = lobbySpace.get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(1));
+
+        String decryptedMessage = (String) ((SealedObject) tuples[1]).getObject(clientCipher);
+
+        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        int field1 = Integer.parseInt(field1text);
+
+        Assert.assertEquals(field1, Model.GAME_DISCONNECT);
+
+    }
 }

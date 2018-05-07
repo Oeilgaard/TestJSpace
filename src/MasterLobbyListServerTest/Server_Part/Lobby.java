@@ -49,6 +49,7 @@ public class Lobby implements Runnable {
     private PrivateKey pKey;
     private Cipher lobbyCipher;
     private KeyPair myPair;
+    public Game game;
 
     private static int connectedInt = 0;
 
@@ -83,7 +84,6 @@ public class Lobby implements Runnable {
         lobbySpace = new SequentialSpace();
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
-
         try {
             lobbySpace.put(myPair.getPublic());
         } catch (InterruptedException e) {
@@ -116,7 +116,7 @@ public class Lobby implements Runnable {
 
         // Start the game
         if(beginFlag){
-            Game game = new Game(users, lobbySpace, serverData, lobbyCipher);
+            game = new Game(users, lobbySpace, serverData, lobbyCipher);
 
             try {
                 game.startGame();
@@ -246,12 +246,12 @@ public class Lobby implements Runnable {
         }
     }
 
-    public UUID getLobbyID(){
+    /*public UUID getLobbyID(){
         return lobbyID;
     }
 
     public String getLobbyLeader(){ return lobbyLeader; }
-
+    */
     public boolean gameBegun(){
         return beginFlag;
     }

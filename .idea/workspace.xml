@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java" afterDir="false" />
@@ -22,19 +33,10 @@
     <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_connectionToLobby.ic" NAME="ServerTest.connectionToLobby Coverage Results" MODIFIED="1525091816103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest__1_.coverage" NAME="ControllerTest (1) Coverage Results" MODIFIED="1523265192359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>MasterLobbyListServerTest.test.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest.ic" NAME="ServerTest Coverage Results" MODIFIED="1525097151066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest.coverage" NAME="ControllerTest Coverage Results" MODIFIED="1524641419754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>MasterLobbyListServerTest.JavaFXClient.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/TestJSpace$MasterLobbyListServerTest_test_in_TestJSpace.coverage" NAME="MasterLobbyListServerTest.test in TestJSpace Coverage Results" MODIFIED="1523265228078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.test.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_disconnectionFromLobby.ic" NAME="ServerTest.disconnectionFromLobby Coverage Results" MODIFIED="1525095853451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_beginGame.ic" NAME="ServerTest.beginGame Coverage Results" MODIFIED="1525251575012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_lobbyLeaderDisconnectionFromLobby.ic" NAME="ServerTest.lobbyLeaderDisconnectionFromLobby Coverage Results" MODIFIED="1525097133966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -43,106 +45,69 @@
     <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_createLobbyTest.ic" NAME="ServerTest.createLobbyTest Coverage Results" MODIFIED="1525095073270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_createMoreLobbiesThanAllowed.ic" NAME="ServerTest.createMoreLobbiesThanAllowed Coverage Results" MODIFIED="1525087575035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest_createLegalLobby.coverage" NAME="ControllerTest.createLegalLobby Coverage Results" MODIFIED="1524051924563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.JavaFXClient.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/TestJSpace$Server.coverage" NAME="Server Coverage Results" MODIFIED="1524049210810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest_createUserIllegalNameTest.coverage" NAME="ControllerTest.createUserIllegalNameTest Coverage Results" MODIFIED="1523884956695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>MasterLobbyListServerTest.JavaFXClient.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_winARound.ic" NAME="ServerTest.winARound Coverage Results" MODIFIED="1525259435103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_countessRule.ic" NAME="ServerTest.countessRule Coverage Results" MODIFIED="1525259668679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest__1_.coverage" NAME="ControllerTest (1) Coverage Results" MODIFIED="1523265192359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest.ic" NAME="ServerTest Coverage Results" MODIFIED="1525266887857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ControllerTest.coverage" NAME="ControllerTest Coverage Results" MODIFIED="1524641419754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.JavaFXClient.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_playHandmaiden.ic" NAME="ServerTest.playHandmaiden Coverage Results" MODIFIED="1525257719181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_winTheGame.ic" NAME="ServerTest.winTheGame Coverage Results" MODIFIED="1525261393758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_disconnectionFromLobby.ic" NAME="ServerTest.disconnectionFromLobby Coverage Results" MODIFIED="1525257415251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_noCardsLeftTie.ic" NAME="ServerTest.noCardsLeftTie Coverage Results" MODIFIED="1525266301441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_disconnectIngame.ic" NAME="ServerTest.disconnectIngame Coverage Results" MODIFIED="1525266821726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_invalidTargetIndex.ic" NAME="ServerTest.invalidTargetIndex Coverage Results" MODIFIED="1525256634871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_tieDiscardPileAndCard.ic" NAME="ServerTest.tieDiscardPileAndCard Coverage Results" MODIFIED="1525264136542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_createMoreLobbiesThanAllowed.ic" NAME="ServerTest.createMoreLobbiesThanAllowed Coverage Results" MODIFIED="1525087575035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_invalidGuess.ic" NAME="ServerTest.invalidGuess Coverage Results" MODIFIED="1525256785779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$ServerTest_noCardsLeftInDeck.ic" NAME="ServerTest.noCardsLeftInDeck Coverage Results" MODIFIED="1525262191195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/TestJSpace$Server.coverage" NAME="Server Coverage Results" MODIFIED="1524049210810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>MasterLobbyListServerTest.Server_Part.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/TestJSpace$All_in_TestJSpace.coverage" NAME="All in TestJSpace Coverage Results" MODIFIED="1523281523064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="300" column="31" selection-start-line="300" selection-start-column="31" selection-end-line="300" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1466#1467#0" expanded="true" />
-                <element signature="e#1510#1511#0" expanded="true" />
-                <element signature="method#runRequestHandler#0;class#ServerTest#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientGameUpdate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="221" column="36" selection-start-line="221" selection-start-column="36" selection-end-line="221" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientUpdateAgent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="43" selection-start-line="43" selection-end-line="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LobbyChatAgent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="37" column="111" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="111" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lobby.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3542">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-              <folding>
-                <element signature="method#getUserfromName#0;class#Lobby#0" />
-                <element signature="e#11110#11111#0" expanded="true" />
-                <element signature="e#11140#11141#0" expanded="true" />
-                <element signature="e#11232#11233#0" expanded="true" />
-                <element signature="e#11264#11265#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="62" column="14" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="14" />
-              <folding>
-                <element signature="method#ServerData#0;class#ServerData#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="444" column="22" lean-forward="true" selection-start-line="444" selection-start-column="22" selection-end-line="444" selection-end-column="22" />
+            <state relative-caret-position="295">
+              <caret line="606" column="34" selection-start-line="606" selection-start-column="30" selection-end-line="606" selection-end-column="34" />
               <folding>
                 <element signature="e#3777#4007#0" />
                 <element signature="e#4013#4244#0" />
@@ -152,49 +117,103 @@
                 <element signature="e#15587#16462#0" />
                 <element signature="e#16468#16946#0" />
                 <element signature="e#19669#20374#0" />
-                <element signature="e#20946#21099#0" />
                 <element signature="e#22367#23153#0" />
                 <element signature="e#23159#23421#0" />
-                <element signature="e#23427#24106#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestHandlerThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
+      <file leaf-file-name="ClientGameUpdate.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="89" column="14" selection-start-line="89" selection-start-column="14" selection-end-line="93" selection-end-column="13" />
+            <state relative-caret-position="34">
+              <caret line="126" column="29" lean-forward="true" selection-start-line="126" selection-start-column="29" selection-end-line="126" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PossibleTargetsThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="529">
+              <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="39" column="28" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="228" column="4" selection-start-line="228" selection-start-column="4" selection-end-line="228" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lobby.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1598">
+              <caret line="212" column="58" lean-forward="true" selection-start-line="212" selection-start-column="58" selection-end-line="212" selection-end-column="58" />
+              <folding>
+                <element signature="method#getUserfromName#0;class#Lobby#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+              <folding>
+                <element signature="method#ServerData#0;class#ServerData#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="58" selection-start-line="58" selection-end-line="59" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+            <state relative-caret-position="68">
+              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HelperFunctions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
               <folding>
-                <element signature="e#3192#3193#0" expanded="true" />
-                <element signature="e#3259#3260#0" expanded="true" />
-                <element signature="e#3454#3455#0" expanded="true" />
-                <element signature="e#3517#3518#0" expanded="true" />
-                <element signature="e#3886#4142#0" />
-                <element signature="e#5429#5430#0" expanded="true" />
-                <element signature="e#5473#5474#0" expanded="true" />
-                <element signature="e#5745#5746#0" expanded="true" />
-                <element signature="e#5785#5786#0" expanded="true" />
-                <element signature="e#5821#5822#0" expanded="true" />
-                <element signature="e#5854#5855#0" expanded="true" />
-                <element signature="e#6033#6034#0" expanded="true" />
-                <element signature="e#6063#6064#0" expanded="true" />
-                <element signature="e#6283#6284#0" expanded="true" />
-                <element signature="e#6322#6323#0" expanded="true" />
-                <element signature="e#9710#11646#0" />
-                <element signature="e#14619#15453#0" />
-                <element signature="e#15569#15570#0" expanded="true" />
-                <element signature="e#15610#15611#0" expanded="true" />
+                <element signature="method#isPrince#0;class#HelperFunctions#0" />
+                <element signature="method#countessRule#0;class#HelperFunctions#0" />
+                <element signature="method#randomLegalName#0;class#HelperFunctions#0" />
+                <element signature="method#randomLegalNameLength#0;class#HelperFunctions#0" />
+                <element signature="method#currentLocalIP#0;class#HelperFunctions#0" />
+                <element signature="method#stringMatchesUUIDPattern#0;class#HelperFunctions#0" />
               </folding>
             </state>
           </provider>
@@ -214,15 +233,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>action</find>
-      <find>guess</find>
-      <find>guard</find>
-      <find>g</find>
-      <find>getLobbySpace().get</find>
-      <find>ip</find>
-      <find>model</find>
-      <find>lookup</find>
-      <find>runlater</find>
       <find>platform</find>
       <find>getCipher</find>
       <find>selectCardIsGuard</find>
@@ -244,6 +254,15 @@
       <find>affect</find>
       <find>createUserLogic</find>
       <find>chat</find>
+      <find>countess</find>
+      <find>guard</find>
+      <find>Create mo</find>
+      <find>The goal</find>
+      <find>secret</find>
+      <find>discard</find>
+      <find>pressL</find>
+      <find>pressLe</find>
+      <find>put(</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Ole\IdeaProjects\TestJSpace</dir>
@@ -261,7 +280,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Lobby.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Client_Part/Client.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java" />
@@ -279,39 +297,40 @@
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/animations/LampAnimations.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Main.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PickPlayerScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ChooseGuessScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/test/testTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/test/ControllerTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
         <option value="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" />
         <option value="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ServerTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
-        <option value="$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
+        <option value="$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" />
       </list>
     </option>
   </component>
@@ -488,9 +507,31 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ServerTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.JavaFXClient.Main" />
+      <module name="TestJSpace" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MasterLobbyListServerTest.JavaFXClient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.Server" />
+      <module name="TestJSpace" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MasterLobbyListServerTest.Server_Part.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -518,7 +559,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="ServerTest.connectionToLobby" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerTest.disconnectIngame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TestJSpace" />
       <extension name="coverage">
         <pattern>
@@ -530,7 +571,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="MasterLobbyListServerTest.Server_Part" />
       <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.ServerTest" />
-      <option name="METHOD_NAME" value="connectionToLobby" />
+      <option name="METHOD_NAME" value="disconnectIngame" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -541,7 +582,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="ServerTest.createLobbyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerTest.noCardsLeftTie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TestJSpace" />
       <extension name="coverage">
         <pattern>
@@ -553,53 +594,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="MasterLobbyListServerTest.Server_Part" />
       <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.ServerTest" />
-      <option name="METHOD_NAME" value="createLobbyTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="ServerTest.disconnectionFromLobby" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TestJSpace" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.Server_Part.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="MasterLobbyListServerTest.Server_Part" />
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.ServerTest" />
-      <option name="METHOD_NAME" value="disconnectionFromLobby" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="ServerTest.lobbyLeaderDisconnectionFromLobby" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TestJSpace" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.Server_Part.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="MasterLobbyListServerTest.Server_Part" />
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.ServerTest" />
-      <option name="METHOD_NAME" value="lobbyLeaderDisconnectionFromLobby" />
+      <option name="METHOD_NAME" value="noCardsLeftTie" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -663,18 +658,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.ServerTest" />
-      <item itemvalue="JUnit.ServerTest.createLobbyTest" />
-      <item itemvalue="JUnit.ServerTest.connectionToLobby" />
-      <item itemvalue="JUnit.ServerTest.disconnectionFromLobby" />
-      <item itemvalue="JUnit.ServerTest.lobbyLeaderDisconnectionFromLobby" />
+      <item itemvalue="JUnit.ServerTest.noCardsLeftTie" />
+      <item itemvalue="JUnit.ServerTest.disconnectIngame" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.ServerTest" />
-        <item itemvalue="JUnit.ServerTest.lobbyLeaderDisconnectionFromLobby" />
-        <item itemvalue="JUnit.ServerTest.disconnectionFromLobby" />
-        <item itemvalue="JUnit.ServerTest.createLobbyTest" />
-        <item itemvalue="JUnit.ServerTest.connectionToLobby" />
+        <item itemvalue="JUnit.ServerTest.disconnectIngame" />
+        <item itemvalue="JUnit.ServerTest.noCardsLeftTie" />
       </list>
     </recent_temporary>
   </component>
@@ -724,13 +719,6 @@
       <workItem from="1524471462541" duration="18123000" />
       <workItem from="1524572106354" duration="36000" />
       <workItem from="1524641070629" duration="6171000" />
-    </task>
-    <task id="LOCAL-00050" summary="Tuple responses for different card plays (not all implemented however)&#10;Send tuple fpr initial card">
-      <created>1521468179316</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1521468179316</updated>
     </task>
     <task id="LOCAL-00051" summary="Fixed King cards in model">
       <created>1521474709108</created>
@@ -1068,38 +1056,45 @@
       <option name="project" value="LOCAL" />
       <updated>1524660022676</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="- Further server testing">
+      <created>1525097500051</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1525097500055</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ServerTest - 2018.04.30 at 15h 26m 10s.xml">
-      <configuration name="ServerTest" configurationId="JUnit" />
+    <history-entry file="ServerTest_noCardsLeftTie - 2018.05.02 at 14h 52m 23s.xml">
+      <configuration name="ServerTest.noCardsLeftTie" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_createLobbyTest - 2018.04.30 at 15h 31m 20s.xml">
-      <configuration name="ServerTest.createLobbyTest" configurationId="JUnit" />
+    <history-entry file="ServerTest_noCardsLeftTie - 2018.05.02 at 14h 53m 05s.xml">
+      <configuration name="ServerTest.noCardsLeftTie" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest - 2018.04.30 at 15h 33m 09s.xml">
-      <configuration name="ServerTest" configurationId="JUnit" />
+    <history-entry file="ServerTest_noCardsLeftTie - 2018.05.02 at 14h 54m 06s.xml">
+      <configuration name="ServerTest.noCardsLeftTie" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_disconnectionFromLobby - 2018.04.30 at 15h 43m 01s.xml">
-      <configuration name="ServerTest.disconnectionFromLobby" configurationId="JUnit" />
+    <history-entry file="ServerTest_noCardsLeftTie - 2018.05.02 at 15h 04m 51s.xml">
+      <configuration name="ServerTest.noCardsLeftTie" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_disconnectionFromLobby - 2018.04.30 at 15h 43m 58s.xml">
-      <configuration name="ServerTest.disconnectionFromLobby" configurationId="JUnit" />
+    <history-entry file="ServerTest_noCardsLeftTie - 2018.05.02 at 15h 04m 57s.xml">
+      <configuration name="ServerTest.noCardsLeftTie" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_disconnectionFromLobby - 2018.04.30 at 15h 44m 22s.xml">
-      <configuration name="ServerTest.disconnectionFromLobby" configurationId="JUnit" />
+    <history-entry file="ServerTest_noCardsLeftTie - 2018.05.02 at 15h 05m 13s.xml">
+      <configuration name="ServerTest.noCardsLeftTie" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest - 2018.04.30 at 16h 03m 04s.xml">
-      <configuration name="ServerTest" configurationId="JUnit" />
+    <history-entry file="ServerTest_disconnectIngame - 2018.05.02 at 15h 11m 19s.xml">
+      <configuration name="ServerTest.disconnectIngame" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_lobbyLeaderDisconnectionFromLobby - 2018.04.30 at 16h 05m 12s.xml">
-      <configuration name="ServerTest.lobbyLeaderDisconnectionFromLobby" configurationId="JUnit" />
+    <history-entry file="ServerTest_disconnectIngame - 2018.05.02 at 15h 13m 02s.xml">
+      <configuration name="ServerTest.disconnectIngame" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_lobbyLeaderDisconnectionFromLobby - 2018.04.30 at 16h 05m 43s.xml">
-      <configuration name="ServerTest.lobbyLeaderDisconnectionFromLobby" configurationId="JUnit" />
+    <history-entry file="ServerTest_disconnectIngame - 2018.05.02 at 15h 13m 49s.xml">
+      <configuration name="ServerTest.disconnectIngame" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest - 2018.04.30 at 16h 07m 18s.xml">
+    <history-entry file="ServerTest - 2018.05.02 at 15h 17m 29s.xml">
       <configuration name="ServerTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1121,24 +1116,24 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32979852" />
-      <window_info anchor="bottom" id="Messages" order="6" sideWeight="0.4515625" weight="0.35480943" />
+      <window_info anchor="bottom" id="Messages" order="6" sideWeight="0.4509517" weight="0.35367763" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.5484375" side_tool="true" visible="true" weight="0.35367763" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49791667" weight="0.32979852" />
-      <window_info anchor="right" id="Coverage" order="7" side_tool="true" visible="true" weight="0.10248902" />
+      <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.5124451" side_tool="true" weight="0.39906102" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22547585" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22547585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49375" weight="0.39927405" />
       <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49375" weight="0.39927405" />
       <window_info anchor="bottom" id="Thumbnails" order="11" sideWeight="0.49791667" visible="true" weight="0.32940108" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="Image Layers" order="3" />
+      <window_info anchor="right" id="Coverage" order="7" side_tool="true" visible="true" weight="0.073938504" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1147,7 +1142,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info id="Capture Tool" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48802084" weight="0.32940108" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4875549" weight="0.3286385" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1183,7 +1178,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactoring senderPlayerCharacter..." />
     <MESSAGE value="Starting working on fixing Countess-rule server and client site" />
     <MESSAGE value="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)" />
     <MESSAGE value="ACTION_DENIED cases implemented;&#10;- illegal card index&#10;- Countess rule&#10;- Unvalid raget&#10;- Guard guess unvalid index" />
@@ -1208,20 +1202,21 @@
     <MESSAGE value="- Merged" />
     <MESSAGE value="- Further work on testing" />
     <MESSAGE value="- Testing of server begun + Added a way to start server with parsed IP" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Testing of server begun + Added a way to start server with parsed IP" />
+    <MESSAGE value="- Further server testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Further server testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java</url>
-          <line>424</line>
+          <line>425</line>
           <properties />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java</url>
-          <line>316</line>
+          <line>313</line>
           <properties />
           <option name="timeStamp" value="58" />
         </line-breakpoint>
@@ -1243,19 +1238,70 @@
           <properties />
           <option name="timeStamp" value="61" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java</url>
+          <line>105</line>
+          <properties />
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java</url>
-          <line>234</line>
+          <line>230</line>
           <properties class="MasterLobbyListServerTest.JavaFXClient.ControllerTest" method="disconnectFromOwnLobbyTest">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="68" />
+      <option name="time" value="73" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="89" column="14" selection-start-line="89" selection-start-column="14" selection-end-line="93" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+          <folding>
+            <element signature="e#3192#3193#0" expanded="true" />
+            <element signature="e#3259#3260#0" expanded="true" />
+            <element signature="e#3454#3455#0" expanded="true" />
+            <element signature="e#3517#3518#0" expanded="true" />
+            <element signature="e#3886#4142#0" />
+            <element signature="e#5429#5430#0" expanded="true" />
+            <element signature="e#5473#5474#0" expanded="true" />
+            <element signature="e#5745#5746#0" expanded="true" />
+            <element signature="e#5785#5786#0" expanded="true" />
+            <element signature="e#5821#5822#0" expanded="true" />
+            <element signature="e#5854#5855#0" expanded="true" />
+            <element signature="e#6033#6034#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6283#6284#0" expanded="true" />
+            <element signature="e#6322#6323#0" expanded="true" />
+            <element signature="e#9710#11646#0" />
+            <element signature="e#14619#15453#0" />
+            <element signature="e#15569#15570#0" expanded="true" />
+            <element signature="e#15610#15611#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="method#getUserfromName#0;class#Lobby#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3298">
@@ -1284,9 +1330,33 @@
           <caret line="131" column="60" selection-start-line="131" selection-start-column="60" selection-end-line="131" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1466#1467#0" expanded="true" />
-            <element signature="e#1510#1511#0" expanded="true" />
+            <element signature="method#initialize#0;class#ServerTest#0" />
+            <element signature="method#createLobbyTest#0;class#ServerTest#0" />
             <element signature="method#runRequestHandler#0;class#ServerTest#0" />
+            <element signature="method#createUserTest#0;class#ServerTest#0" />
+            <element signature="method#createMoreLobbiesThanAllowed#0;class#ServerTest#0" />
+            <element signature="method#connectionToLobby#0;class#ServerTest#0" />
+            <element signature="method#disconnectionFromLobby#0;class#ServerTest#0" />
+            <element signature="method#lobbyLeaderDisconnectionFromLobby#0;class#ServerTest#0" />
+            <element signature="method#chatInLobby#0;class#ServerTest#0" />
+            <element signature="method#beginWithoutEnoughPlayers#0;class#ServerTest#0" />
+            <element signature="method#beginGame#0;class#ServerTest#0" />
+            <element signature="method#countessRule#0;class#ServerTest#0" />
+            <element signature="method#invalidCardIndex#0;class#ServerTest#0" />
+            <element signature="method#invalidTargetIndex#0;class#ServerTest#0" />
+            <element signature="method#invalidGuess#0;class#ServerTest#0" />
+            <element signature="method#playHandmaid#0;class#ServerTest#0" />
+            <element signature="method#playGuard#0;class#ServerTest#0" />
+            <element signature="method#playPriest#0;class#ServerTest#0" />
+            <element signature="method#playBaron#0;class#ServerTest#0" />
+            <element signature="method#playPrince#0;class#ServerTest#0" />
+            <element signature="method#playKing#0;class#ServerTest#0" />
+            <element signature="method#winARound#0;class#ServerTest#0" />
+            <element signature="method#winTheGame#0;class#ServerTest#0" />
+            <element signature="method#noCardsLeftInDeck#0;class#ServerTest#0" />
+            <element signature="method#noCardsLeftTie#0;class#ServerTest#0" />
+            <element signature="method#tieDiscardPileAndCard#0;class#ServerTest#0" />
+            <element signature="method#disconnectIngame#0;class#ServerTest#0" />
           </folding>
         </state>
       </provider>
@@ -1297,10 +1367,6 @@
           <caret line="89" column="12" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="32" />
           <folding>
             <element signature="method#getUserfromName#0;class#Lobby#0" />
-            <element signature="e#11110#11111#0" expanded="true" />
-            <element signature="e#11140#11141#0" expanded="true" />
-            <element signature="e#11232#11233#0" expanded="true" />
-            <element signature="e#11264#11265#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1332,10 +1398,8 @@
             <element signature="e#15587#16462#0" />
             <element signature="e#16468#16946#0" />
             <element signature="e#19669#20374#0" />
-            <element signature="e#20946#21099#0" />
             <element signature="e#22367#23153#0" />
             <element signature="e#23159#23421#0" />
-            <element signature="e#23427#24106#0" />
           </folding>
         </state>
       </provider>
@@ -1406,140 +1470,6 @@
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/test/ControllerTest.java" />
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/test/testTest.java" />
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java" />
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1482">
-          <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="95" column="27" lean-forward="true" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="imports" />
-            <element signature="e#501#502#0" />
-            <element signature="method#isPrince#0;class#HelperFunctions#0" />
-            <element signature="method#countessRule#0;class#HelperFunctions#0" />
-            <element signature="method#randomLegalName#0;class#HelperFunctions#0" />
-            <element signature="method#randomLegalNameLength#0;class#HelperFunctions#0" />
-            <element signature="method#currentLocalIP#0;class#HelperFunctions#0" />
-            <element signature="method#stringMatchesUUIDPattern#0;class#HelperFunctions#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="63" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="194" column="27" selection-start-line="194" selection-start-column="15" selection-end-line="194" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#joinServerLogicTest#0;class#ControllerTest#0" />
-            <element signature="method#createUserLegalNameTest#0;class#ControllerTest#0" />
-            <element signature="method#createUserIllegalNameDueToIllegalCharactersTest#0;class#ControllerTest#0" />
-            <element signature="method#createUserIllegalNameTooShortTest#0;class#ControllerTest#0" />
-            <element signature="method#createUserIllegalNameTooLongTest#0;class#ControllerTest#0" />
-            <element signature="method#createLegalLobbyTest#0;class#ControllerTest#0" />
-            <element signature="method#createLobbyIllegalNameDueToIllegalCharactersTest#0;class#ControllerTest#0" />
-            <element signature="method#createLobbyIllegalNameTooShortTest#0;class#ControllerTest#0" />
-            <element signature="method#createLobbyIllegalNameTooLongTest#0;class#ControllerTest#0" />
-            <element signature="method#joinLobbyTest#0;class#ControllerTest#0" />
-            <element signature="method#chatTest#0;class#ControllerTest#0" />
-            <element signature="method#takeActionsIngame#0;class#ControllerTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="213" column="25" lean-forward="true" selection-start-line="213" selection-start-column="25" selection-end-line="213" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="59" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
-          <folding>
-            <element signature="e#230#231#0" expanded="true" />
-            <element signature="e#264#265#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1558,96 +1488,180 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/testing.java" />
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-465">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="89" column="14" selection-start-line="89" selection-start-column="14" selection-end-line="93" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="444" column="22" lean-forward="true" selection-start-line="444" selection-start-column="22" selection-end-line="444" selection-end-column="22" />
-          <folding>
-            <element signature="e#3777#4007#0" />
-            <element signature="e#4013#4244#0" />
-            <element signature="e#10968#11388#0" />
-            <element signature="e#11394#11844#0" />
-            <element signature="e#14579#15581#0" />
-            <element signature="e#15587#16462#0" />
-            <element signature="e#16468#16946#0" />
-            <element signature="e#19669#20374#0" />
-            <element signature="e#20946#21099#0" />
-            <element signature="e#22367#23153#0" />
-            <element signature="e#23159#23421#0" />
-            <element signature="e#23427#24106#0" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="37" column="111" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="111" />
+        <state relative-caret-position="472">
+          <caret line="37" column="111" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="111" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="221" column="36" selection-start-line="221" selection-start-column="36" selection-end-line="221" selection-end-column="36" />
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="43" selection-start-line="43" selection-end-line="44" />
+        <state relative-caret-position="472">
+          <caret line="96" column="45" selection-start-line="96" selection-start-column="45" selection-end-line="96" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+    <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="62" column="14" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="14" />
+        <state relative-caret-position="118">
+          <caret line="35" column="20" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="20" />
           <folding>
-            <element signature="method#ServerData#0;class#ServerData#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#joinServerLogicTest#0;class#ControllerTest#0" />
+            <element signature="method#createUserLegalNameTest#0;class#ControllerTest#0" />
+            <element signature="method#createUserIllegalNameDueToIllegalCharactersTest#0;class#ControllerTest#0" />
+            <element signature="method#createUserIllegalNameTooShortTest#0;class#ControllerTest#0" />
+            <element signature="method#createUserIllegalNameTooLongTest#0;class#ControllerTest#0" />
+            <element signature="method#createLegalLobbyTest#0;class#ControllerTest#0" />
+            <element signature="method#createLobbyIllegalNameDueToIllegalCharactersTest#0;class#ControllerTest#0" />
+            <element signature="method#createLobbyIllegalNameTooShortTest#0;class#ControllerTest#0" />
+            <element signature="method#createLobbyIllegalNameTooLongTest#0;class#ControllerTest#0" />
+            <element signature="method#joinLobbyTest#0;class#ControllerTest#0" />
+            <element signature="method#chatTest#0;class#ControllerTest#0" />
+            <element signature="method#takeActionsIngame#0;class#ControllerTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Character.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="68" column="28" lean-forward="true" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
+          <folding>
+            <element signature="e#875#876#0" expanded="true" />
+            <element signature="e#902#903#0" expanded="true" />
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#967#968#0" expanded="true" />
+            <element signature="e#1007#1008#0" expanded="true" />
+            <element signature="e#1039#1040#0" expanded="true" />
+            <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#1116#1117#0" expanded="true" />
+            <element signature="e#1163#1164#0" expanded="true" />
+            <element signature="e#1201#1202#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1265#1266#0" expanded="true" />
+            <element signature="e#1309#1310#0" expanded="true" />
+            <element signature="e#1350#1351#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1435#1436#0" expanded="true" />
+            <element signature="e#1927#1928#0" expanded="true" />
+            <element signature="e#1973#1974#0" expanded="true" />
+            <element signature="e#2012#2013#0" expanded="true" />
+            <element signature="e#2059#2060#0" expanded="true" />
+            <element signature="e#2263#2264#0" expanded="true" />
+            <element signature="e#2297#2298#0" expanded="true" />
+            <element signature="e#2335#2336#0" expanded="true" />
+            <element signature="e#2370#2371#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="300" column="31" selection-start-line="300" selection-start-column="31" selection-end-line="300" selection-end-column="31" />
+        <state relative-caret-position="1921">
+          <caret line="1719" column="219" selection-start-line="1719" selection-start-column="219" selection-end-line="1719" selection-end-column="219" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1466#1467#0" expanded="true" />
-            <element signature="e#1510#1511#0" expanded="true" />
+            <element signature="method#initialize#0;class#ServerTest#0" />
+            <element signature="method#createLobbyTest#0;class#ServerTest#0" />
             <element signature="method#runRequestHandler#0;class#ServerTest#0" />
+            <element signature="method#createUserTest#0;class#ServerTest#0" />
+            <element signature="method#createMoreLobbiesThanAllowed#0;class#ServerTest#0" />
+            <element signature="method#connectionToLobby#0;class#ServerTest#0" />
+            <element signature="method#disconnectionFromLobby#0;class#ServerTest#0" />
+            <element signature="method#lobbyLeaderDisconnectionFromLobby#0;class#ServerTest#0" />
+            <element signature="method#chatInLobby#0;class#ServerTest#0" />
+            <element signature="method#beginWithoutEnoughPlayers#0;class#ServerTest#0" />
+            <element signature="method#beginGame#0;class#ServerTest#0" />
+            <element signature="method#countessRule#0;class#ServerTest#0" />
+            <element signature="method#invalidCardIndex#0;class#ServerTest#0" />
+            <element signature="method#invalidTargetIndex#0;class#ServerTest#0" />
+            <element signature="method#invalidGuess#0;class#ServerTest#0" />
+            <element signature="method#playHandmaid#0;class#ServerTest#0" />
+            <element signature="method#playGuard#0;class#ServerTest#0" />
+            <element signature="method#playPriest#0;class#ServerTest#0" />
+            <element signature="method#playBaron#0;class#ServerTest#0" />
+            <element signature="method#playPrince#0;class#ServerTest#0" />
+            <element signature="method#playKing#0;class#ServerTest#0" />
+            <element signature="method#winARound#0;class#ServerTest#0" />
+            <element signature="method#winTheGame#0;class#ServerTest#0" />
+            <element signature="method#noCardsLeftInDeck#0;class#ServerTest#0" />
+            <element signature="method#noCardsLeftTie#0;class#ServerTest#0" />
+            <element signature="method#tieDiscardPileAndCard#0;class#ServerTest#0" />
+            <element signature="method#disconnectIngame#0;class#ServerTest#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+        <state relative-caret-position="969">
+          <caret line="70" column="28" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="64" column="46" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        <state relative-caret-position="346">
+          <caret line="425" column="23" lean-forward="true" selection-start-line="425" selection-start-column="19" selection-end-line="425" selection-end-column="23" />
           <folding>
             <element signature="e#3192#3193#0" expanded="true" />
             <element signature="e#3259#3260#0" expanded="true" />
@@ -1672,17 +1686,117 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="49" column="6" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
+          <folding>
+            <element signature="e#230#231#0" expanded="true" />
+            <element signature="e#264#265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+          <folding>
+            <element signature="method#isPrince#0;class#HelperFunctions#0" />
+            <element signature="method#countessRule#0;class#HelperFunctions#0" />
+            <element signature="method#randomLegalName#0;class#HelperFunctions#0" />
+            <element signature="method#randomLegalNameLength#0;class#HelperFunctions#0" />
+            <element signature="method#currentLocalIP#0;class#HelperFunctions#0" />
+            <element signature="method#stringMatchesUUIDPattern#0;class#HelperFunctions#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="606" column="34" selection-start-line="606" selection-start-column="30" selection-end-line="606" selection-end-column="34" />
+          <folding>
+            <element signature="e#3777#4007#0" />
+            <element signature="e#4013#4244#0" />
+            <element signature="e#10968#11388#0" />
+            <element signature="e#11394#11844#0" />
+            <element signature="e#14579#15581#0" />
+            <element signature="e#15587#16462#0" />
+            <element signature="e#16468#16946#0" />
+            <element signature="e#19669#20374#0" />
+            <element signature="e#22367#23153#0" />
+            <element signature="e#23159#23421#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding>
+            <element signature="method#ServerData#0;class#ServerData#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3542">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="1598">
+          <caret line="212" column="58" lean-forward="true" selection-start-line="212" selection-start-column="58" selection-end-line="212" selection-end-column="58" />
           <folding>
             <element signature="method#getUserfromName#0;class#Lobby#0" />
-            <element signature="e#11110#11111#0" expanded="true" />
-            <element signature="e#11140#11141#0" expanded="true" />
-            <element signature="e#11232#11233#0" expanded="true" />
-            <element signature="e#11264#11265#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="228" column="4" selection-start-line="228" selection-start-column="4" selection-end-line="228" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="58" selection-start-line="58" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="39" column="28" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="126" column="29" lean-forward="true" selection-start-line="126" selection-start-column="29" selection-end-line="126" selection-end-column="29" />
         </state>
       </provider>
     </entry>

@@ -4,7 +4,7 @@ public class Card {
     //TODO Replace with just Character.java?
     private final Character character;
 
-    Card(Character character) {
+    public Card(Character character) {
         this.character = character;
     }
 

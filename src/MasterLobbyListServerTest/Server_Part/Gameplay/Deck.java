@@ -83,12 +83,12 @@ public class Deck {
         Collections.shuffle(this.cards);
     }
 
-    public void printDeck() {
+    /*public void printDeck() {
         int i;
         for (i = 0; i < cards.size(); i++){
             System.out.println("Card number " + (i+1) + " is a " + cards.get(i).getCharacter());
         }
         if (i == 0) { System.out.println("Deck is empty"); }
-    }
+    }*/
 
 }
