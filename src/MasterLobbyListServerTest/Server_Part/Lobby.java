@@ -14,23 +14,23 @@ import java.util.UUID;
 
 public class Lobby implements Runnable {
 
-    private final static int LOBBY_REQ = 30;
-    private final static int CONNECT = 31;
-    private final static int DISCONNECT = 32;
-    private final static int BEGIN = 33;
-    private final static int CLOSE = 34;
+    public final static int LOBBY_REQ = 30;
+    public final static int CONNECT = 31;
+    public final static int DISCONNECT = 32;
+    public final static int BEGIN = 33;
+    public final static int CLOSE = 34;
 
-    private final static int LOBBY_RESP = 40;
-    private final static int CONNECT_DENIED = 41;
-    private final static int CONNECT_ACCEPTED = 42;
+    public final static int LOBBY_RESP = 40;
+    public final static int CONNECT_DENIED = 41;
+    public final static int CONNECT_ACCEPTED = 42;
 
     public final static int LOBBY_UPDATE = 50;
     public final static int CHAT_MESSAGE = 51;
-    private final static int NOT_ENOUGH_PLAYERS = 52;
+    public final static int NOT_ENOUGH_PLAYERS = 52;
 
-    private final static int GET_PLAYERLIST = 61;
+    public final static int GET_PLAYERLIST = 61;
 
-    private final static int MAX_PLAYER_PR_LOBBY = 4;
+    public final static int MAX_PLAYER_PR_LOBBY = 4;
 
     // TODO: hvorfor ikke bare en reference til serverData?
     // the servers TS
@@ -81,12 +81,6 @@ public class Lobby implements Runnable {
     public void run() {
 
         lobbySpace = new SequentialSpace();
-
-        try {
-            lobbySpace.put("Lock");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         serverRepos.add(lobbyID.toString(),lobbySpace);
 
 
@@ -126,11 +120,7 @@ public class Lobby implements Runnable {
 
             try {
                 game.startGame();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
+            } catch (InterruptedException | IllegalBlockSizeException | IOException e) {
                 e.printStackTrace();
             }
         }
@@ -141,7 +131,7 @@ public class Lobby implements Runnable {
         System.out.println("Lobby is closed");
     }
 
-    public void lobbyLoop(){
+    private void lobbyLoop(){
         while (true) {
             try {
                 // Wait for a new LOBBY_REQ tuple
@@ -150,22 +140,22 @@ public class Lobby implements Runnable {
                 System.out.println("Received a lobby request");
 
                 // Decrypting the LOBBY_REQ tuple
-                String decryptedString = (String) ((SealedObject)tuple[1]).getObject(lobbyCipher);
-                String field1 = decryptedString.substring(0,decryptedString.indexOf('!'));
-                String field2 = decryptedString.substring(decryptedString.indexOf('!')+1,decryptedString.indexOf('?'));
-                String field3 = decryptedString.substring(decryptedString.indexOf('?')+1,decryptedString.length());
+                String decryptedString = (String) ((SealedObject) tuple[1]).getObject(lobbyCipher);
+                String field1 = decryptedString.substring(0, decryptedString.indexOf('!'));
+                String field2 = decryptedString.substring(decryptedString.indexOf('!') + 1, decryptedString.indexOf('?'));
+                String field3 = decryptedString.substring(decryptedString.indexOf('?') + 1, decryptedString.length());
                 int req = Integer.parseInt(field1);
                 String name = field2;
 
                 // If request type is CONNECT, A new client tries to connect to the lobby
                 if (req == CONNECT) {
                     // TODO: hvad sker der her?
-                    Key key = (Key) ((SealedObject)tuple[2]).getObject(lobbyCipher);
+                    Key key = (Key) ((SealedObject) tuple[2]).getObject(lobbyCipher);
                     Cipher cipher = Cipher.getInstance("AES");
-                    cipher.init(Cipher.ENCRYPT_MODE,key);
+                    cipher.init(Cipher.ENCRYPT_MODE, key);
 
                     if (noPlayers < MAX_PLAYER_PR_LOBBY) {
-                        users.add(new LobbyUser(name,Integer.parseInt(field3),cipher,availableNrs.get(0)));
+                        users.add(new LobbyUser(name, Integer.parseInt(field3), cipher, availableNrs.get(0)));
                         availableNrs.remove(0);
                         noPlayers++;
                         Boolean isThisPlayerLobbyLeader = false;
@@ -173,14 +163,11 @@ public class Lobby implements Runnable {
                             isThisPlayerLobbyLeader = true;
                         }
                         SealedObject encryptedMessage = new SealedObject(name + "!" + isThisPlayerLobbyLeader + "?" + getUserfromName(name).userNr, cipher);
-                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED,encryptedMessage);
+                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, encryptedMessage);
                         updatePlayers(name, CONNECT);
-
-                        lobbySpace.put("Lock");
                     } else { // lobby full
                         SealedObject encryptedMessage = new SealedObject(name + "!false?" + -1, cipher);
                         lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, encryptedMessage);
-                        lobbySpace.put("Lock");
                     }
                     System.out.println("Connect response handled " + connectedInt);
                     connectedInt++;
@@ -197,15 +184,13 @@ public class Lobby implements Runnable {
                     availableNrs.add(indexForPlayer);
                     noPlayers--; //TODO: should it be synchronized? (Probably not, as only one thread)
                     updatePlayers(name, DISCONNECT);
-                    lobbySpace.put("Lock");
-                } else if (req == CLOSE) { // If request type is CLOSE,
+                /*} else if (req == CLOSE) { // If request type is CLOSE,
                     System.out.println("Lobby is closing");
                     beginFlag = false;
                     updatePlayers(name, CLOSE);
-                    break;
+                    break;*/
                 } else if (req == BEGIN && name.equals(lobbyLeader)) { // the lobby is going in game
                     if (noPlayers >= 2) {
-                        Thread.sleep(4000);
                         System.out.println("Ready to begin!");
                         beginFlag = true;
                         updatePlayers(name, BEGIN);
@@ -213,9 +198,7 @@ public class Lobby implements Runnable {
                     } else {
                         System.out.println("Not enough players to begin");
                         updatePlayers(name, NOT_ENOUGH_PLAYERS); // there will just be the one player
-                        lobbySpace.put("Lock");
                     }
-
                 } else if (req == GET_PLAYERLIST) { // If request is GET_PLAYERLIST, a client requests the list of player's in the lobby
 
                     // TODO: hvorfor ikke returnere private ArrayList<LobbyUser> users?
@@ -230,21 +213,7 @@ public class Lobby implements Runnable {
                     System.out.println("Unknown request");
                     System.out.println(field1);
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (BadPaddingException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (NoSuchPaddingException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (InvalidKeyException e) {
+            } catch (InterruptedException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | ClassNotFoundException | IOException | IllegalBlockSizeException | BadPaddingException e) {
                 e.printStackTrace();
             }
         }
