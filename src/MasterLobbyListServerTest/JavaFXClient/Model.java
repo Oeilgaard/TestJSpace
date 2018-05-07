@@ -367,7 +367,7 @@ public class Model {
 
         // Checks whether the player is leaving during a game or in a lobby
             //Tuple 1 - 3 sealed object
-            String messageToBeEncrypted = "" + Model.LOBBY_DISCONNECT + "!" + uniqueName + "?" + -1 + "=*¤";
+            String messageToBeEncrypted = "" + Model.LOBBY_DISCONNECT + "!" + userID + "?" + -1 + "=*¤";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
             SealedObject filler = new SealedObject("filler", lobbyCipher);
 
