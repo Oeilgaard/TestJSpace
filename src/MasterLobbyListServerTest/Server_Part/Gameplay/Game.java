@@ -66,10 +66,12 @@ public class Game {
         model.deck.shuffle();
         model.setRoundWon(false);
 
-        msg += "The revealed cards are:";
-        for(int i = 0; i < model.REVEALED_CARDS_TWO_PLAYER; i++) {
-            model.deck.drawCard(model.revealedCards);
-            msg += " " + model.revealedCards.get(i).getRole().toString() + " ";
+        if (model.players.size() == 2) {
+            msg += "The revealed cards are:";
+            for (int i = 0; i < model.REVEALED_CARDS_TWO_PLAYER; i++) {
+                model.deck.drawCard(model.revealedCards);
+                msg += " " + model.revealedCards.get(i).getRole().toString() + " ";
+            }
         }
 
         // Secret card
