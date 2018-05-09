@@ -11,25 +11,35 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
 public class FilledLobbyTest {
 
-    public static int nrOfClients = 4;
+    public static String ip = "10.68.109.17";
+
+    public static int nrOfClients = 40;
 
     public static int nrOfLobbies;
 
+    public static ArrayList<Long> timesForPlays = new ArrayList<Long>();
+
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
+
+        long startTime;
+        long endTime;
+        long[] usernametimes = new long[nrOfClients];
+        long[] connecttimes = new long[nrOfClients];
 
         nrOfLobbies = nrOfClients / 4 + (((nrOfClients % 4) != 0) ? 1 : 0);
 
         System.out.println("Testing the server with : " + nrOfClients + " clients and " + nrOfLobbies + " lobbies");
 
-        RemoteSpace requestSpace = new RemoteSpace("tcp://" + HelperFunctions.currentLocalIP() + ":25565/requestSpace?keep");
-        RemoteSpace lobbyListSpace = new RemoteSpace("tcp://" + HelperFunctions.currentLocalIP() + ":25565/lobbyOverviewSpace?keep");
-        RemoteSpace responseSpace = new RemoteSpace("tcp://" + HelperFunctions.currentLocalIP() + ":25565/responseSpace?keep");
+        RemoteSpace requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
+        RemoteSpace lobbyListSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
+        RemoteSpace responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
 
         KeyGenerator kg = KeyGenerator.getInstance("AES");
         Key clientKey = kg.generateKey();
@@ -50,12 +60,12 @@ public class FilledLobbyTest {
 
         for (int i = 0; i < nrOfClients; i++) {
 
+            startTime = System.currentTimeMillis();
             requestSpace.put(1, 12, encryptedUserNameStrings[i], encryptedKey);
 
-        }
-
-        for (int i = 0; i < nrOfClients; i++) {
             responseSpace.get(new ActualField(2), new ActualField(23), new FormalField(SealedObject.class));
+            endTime = System.currentTimeMillis();
+            usernametimes[i] = endTime - startTime;
         }
 
         SealedObject[] encryptedLobbyNames = new SealedObject[nrOfLobbies];
@@ -68,7 +78,7 @@ public class FilledLobbyTest {
         System.out.println("0) Requesting the creation of the lobbies");
         for (int i = 0; i < nrOfLobbies; i++) {
             requestSpace.put(1, 11, encryptedLobbyNames[i], encryptedKey);
-            Thread.sleep(500);
+            Thread.sleep(1000);
         }
 
         System.out.println("1) Cleaning the responses");
@@ -88,7 +98,9 @@ public class FilledLobbyTest {
 
         int y = 0;
         for (Object[] obj : tuplelist) {
-            lobbySpaces[y] = new RemoteSpace("tcp://" + HelperFunctions.currentLocalIP() + ":25565/" + obj[2] + "?keep");
+
+            lobbySpaces[y] = new RemoteSpace("tcp://" + ip + ":25565/" + obj[2] + "?keep");
+
             Object[] tupleLobbyKey = lobbySpaces[y].query(new FormalField(PublicKey.class));
             lobbyCiphers[y] = Cipher.getInstance("RSA");
             lobbyCiphers[y].init(Cipher.ENCRYPT_MODE, (PublicKey) tupleLobbyKey[0]);
@@ -97,7 +109,7 @@ public class FilledLobbyTest {
         }
 
         System.out.println("4) Sending connection tuples to the lobbies");
-        // 30, (31, name, 0), (key)
+        // 20, (31, name, 0), (key)
         SealedObject[] connectEncryption = new SealedObject[nrOfClients];
 
         outerpart:
@@ -106,7 +118,7 @@ public class FilledLobbyTest {
                 if ((i * 4) + k == connectEncryption.length) {
                     break outerpart;
                 }
-                connectEncryption[((i * 4) + k)] = new SealedObject("31!testClient" + ((i * 4) + k) + "#123?" + 0, lobbyCiphers[i]);
+                connectEncryption[((i * 4) + k)] = new SealedObject("31!testClient" + ((i * 4) + k) + "#123?" + 0 + "=*¤", lobbyCiphers[i]);
             }
         }
 
@@ -116,18 +128,11 @@ public class FilledLobbyTest {
                 if ((i * 4) + k == connectEncryption.length) {
                     break outerpart;
                 }
-                lobbySpaces[i].put(30, connectEncryption[((i * 4) + k)], encryptedKeyForLobbies[i]);
-            }
-        }
-
-        System.out.println("5) Cleaning up the responses from the connections");
-        outerpart:
-        for (int i = 0; i < tuplelist.size(); i++) {
-            for (int k = 0; k < 4; k++) {
-                if ((i * 4) + k == connectEncryption.length) {
-                    break outerpart;
-                }
+                startTime = System.currentTimeMillis();
+                lobbySpaces[i].put(20, connectEncryption[((i * 4) + k)], encryptedKeyForLobbies[i]);
                 lobbySpaces[i].get(new ActualField(40), new FormalField(Integer.class), new FormalField(SealedObject.class));
+                endTime = System.currentTimeMillis();
+                connecttimes[i*4+k] = endTime - startTime;
             }
         }
 
@@ -141,11 +146,11 @@ public class FilledLobbyTest {
 
         for (int i = 0; i < nrOfLobbies; i++){
             fillers[i] = new SealedObject("filler",lobbyCiphers[i]);
-            encryptedBeginMsg[i] = new SealedObject("33!testClient" + i*4 + "#123?-1", lobbyCiphers[i]);
+            encryptedBeginMsg[i] = new SealedObject("33!testClient" + i*4 + "#123?-1=*¤", lobbyCiphers[i]);
         }
 
         for (int i = 0; i < nrOfLobbies;i++){
-            lobbySpaces[i].put(30, encryptedBeginMsg[i], fillers[i]);
+            lobbySpaces[i].put(20, encryptedBeginMsg[i], fillers[i]);
         }
 
         boolean[] lobbyStoppedRunning = new boolean[nrOfLobbies];
@@ -194,7 +199,26 @@ public class FilledLobbyTest {
                 }
             }
         }
+        long usernametimesfinal = 0;
+        long connectiontimesfinal = 0;
+        for (int i = 0; i < nrOfClients;i++){
+            usernametimesfinal += usernametimes[i];
+            connectiontimesfinal += connecttimes[i];
+        }
+        usernametimesfinal = usernametimesfinal / nrOfClients;
+        connectiontimesfinal = connectiontimesfinal / nrOfClients;
+
+        long finalPlaytimes = 0;
+        for (int i = 0; i < timesForPlays.size();i++){
+            finalPlaytimes += timesForPlays.get(i);
+        }
+        finalPlaytimes = finalPlaytimes / timesForPlays.size();
+
+        System.out.println("The results from the timers");
+        System.out.println("Username times : " + usernametimesfinal + " and Connect times : " + connectiontimesfinal + " and play time : " + finalPlaytimes + " with a size of " + timesForPlays.size());
+        System.out.println("");
         System.out.println("DONE");
+        System.exit(1);
     }
 
     public static void takeAction(RemoteSpace lobbyspace, String clientName, int clientNr, Cipher lobbyCipher, Cipher clientCipher) throws IOException, IllegalBlockSizeException, InterruptedException, BadPaddingException, ClassNotFoundException {
@@ -205,10 +229,12 @@ public class FilledLobbyTest {
             int target = rn.nextInt(4);
             int guessNr = rn.nextInt(7) + 1;
 
-            String messageToBeEncrypted = "12!" + clientName + "#123" + "?" + playedCard + "=" + target + "*" + guessNr;
+            String messageToBeEncrypted = "12!" + clientName + "#123" + "?" + playedCard + "=" + target + "*" + guessNr + "¤";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
+            SealedObject filler = new SealedObject("filler",lobbyCipher);
 
-            lobbyspace.put(20, encryptedMessage); // Send the action to the server
+            long startTime = System.currentTimeMillis();
+            lobbyspace.put(20, encryptedMessage, filler); // Send the action to the server
 
             innerloop:
             while(true) {
@@ -218,8 +244,12 @@ public class FilledLobbyTest {
                 String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
 
                 if (field1text.equals("13")) {
+                    long endTime = System.currentTimeMillis();
+                    timesForPlays.add(endTime - startTime);
                     break outerloop;
                 } else if (field1text.equals("17")) {
+                    long endTime = System.currentTimeMillis();
+                    timesForPlays.add(endTime - startTime);
                     break innerloop;
                 }
             }

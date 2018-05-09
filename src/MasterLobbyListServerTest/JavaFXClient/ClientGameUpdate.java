@@ -109,7 +109,7 @@ public class ClientGameUpdate implements Runnable{
 
                     }
 
-                    SealedObject encryptedMessage = new SealedObject(model.getUniqueName() + "!" + 2,model.getLobbyCipher());
+                    SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
                     model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
                     Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));

@@ -2,9 +2,9 @@ package MasterLobbyListServerTest.Server_Part;
 
 
 import MasterLobbyListServerTest.Server_Part.Gameplay.Card;
-import MasterLobbyListServerTest.Server_Part.Gameplay.Character;
 import MasterLobbyListServerTest.Server_Part.Gameplay.Model;
 import MasterLobbyListServerTest.Server_Part.Gameplay.Player;
+import MasterLobbyListServerTest.Server_Part.Gameplay.Role;
 import org.jspace.ActualField;
 import org.jspace.FormalField;
 import org.jspace.RemoteSpace;
@@ -513,8 +513,8 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.COUNTESS);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.COUNTESS);
+        players.get(0).getHand().setCards(1,Role.KING);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 1 + "=" + 1 + "*";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
@@ -603,8 +603,8 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.HANDMAID);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.HANDMAID);
+        players.get(0).getHand().setCards(1,Role.KING);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 2 + "=" + 1 + "*";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
@@ -680,8 +680,8 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.HANDMAID);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.HANDMAID);
+        players.get(0).getHand().setCards(1,Role.KING);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 1 + "=" + 2 + "*";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
@@ -757,8 +757,8 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.GUARD);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.GUARD);
+        players.get(0).getHand().setCards(1,Role.KING);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
@@ -832,8 +832,8 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.HANDMAID);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.HANDMAID);
+        players.get(0).getHand().setCards(1,Role.KING);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
@@ -906,10 +906,10 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.GUARD);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.GUARD);
+        players.get(0).getHand().setCards(1,Role.KING);
 
-        players.get(1).getHand().setCards(0,Character.GUARD);
+        players.get(1).getHand().setCards(0,Role.GUARD);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*1";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
@@ -982,8 +982,8 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.PRIEST);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.PRIEST);
+        players.get(0).getHand().setCards(1,Role.KING);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
@@ -1056,10 +1056,10 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.BARON);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.BARON);
+        players.get(0).getHand().setCards(1,Role.KING);
 
-        players.get(1).getHand().setCards(0,Character.KING);
+        players.get(1).getHand().setCards(0,Role.KING);
 
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
@@ -1133,10 +1133,10 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.PRINCE);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.PRINCE);
+        players.get(0).getHand().setCards(1,Role.KING);
 
-        players.get(1).getHand().setCards(0,Character.KING);
+        players.get(1).getHand().setCards(0,Role.KING);
 
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
@@ -1210,10 +1210,10 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.KING);
-        players.get(0).getHand().setCards(1,Character.KING);
+        players.get(0).getHand().setCards(0,Role.KING);
+        players.get(0).getHand().setCards(1,Role.KING);
 
-        players.get(1).getHand().setCards(0,Character.KING);
+        players.get(1).getHand().setCards(0,Role.KING);
 
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
@@ -1287,10 +1287,10 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        players.get(0).getHand().setCards(0,Character.BARON);
-        players.get(0).getHand().setCards(1,Character.PRINCESS);
+        players.get(0).getHand().setCards(0,Role.BARON);
+        players.get(0).getHand().setCards(1,Role.PRINCESS);
 
-        players.get(1).getHand().setCards(0,Character.GUARD);
+        players.get(1).getHand().setCards(0,Role.GUARD);
 
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
@@ -1382,10 +1382,10 @@ public class ServerTest {
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
         for(int i = 0;i < 7;i++){
-            players.get(0).getHand().setCards(0, Character.BARON);
-            players.get(0).getHand().setCards(1, Character.PRINCESS);
+            players.get(0).getHand().setCards(0, Role.BARON);
+            players.get(0).getHand().setCards(1, Role.PRINCESS);
 
-            players.get(1).getHand().setCards(0, Character.GUARD);
+            players.get(1).getHand().setCards(0, Role.GUARD);
 
             messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1490,10 +1490,10 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Character.PRINCESS);
+        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Role.PRINCESS);
 
         for(int i = 0;i < 10;i++){
-            players.get(i%2).getHand().setCards(0, Character.HANDMAID);
+            players.get(i%2).getHand().setCards(0, Role.HANDMAID);
 
             messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1576,10 +1576,10 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Character.PRINCESS);
+        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Role.PRINCESS);
 
         for(int i = 0;i < 9;i++){
-            players.get(i%2).getHand().setCards(0, Character.HANDMAID);
+            players.get(i%2).getHand().setCards(0, Role.HANDMAID);
 
             messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1590,10 +1590,10 @@ public class ServerTest {
 
             Thread.sleep(200);
         }
-        players.get(1).getHand().setCards(0, Character.COUNTESS);
+        players.get(1).getHand().setCards(0, Role.COUNTESS);
 
-        players.get(0).getHand().setCards(0,Character.HANDMAID);
-        players.get(1).getHand().setCards(1,Character.HANDMAID);
+        players.get(0).getHand().setCards(0,Role.HANDMAID);
+        players.get(1).getHand().setCards(1,Role.HANDMAID);
 
         messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + 1 + "#123?" + 0 + "=" + 1 + "*0";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1677,14 +1677,14 @@ public class ServerTest {
 
         ArrayList<Player> players = serverData.lobbyMap.get(tuple[2]).game.model.getPlayers();
 
-        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Character.HANDMAID);
+        serverData.lobbyMap.get(tuple[2]).game.model.secretCard = new Card(Role.HANDMAID);
 
         for(int i = 0;i < 10;i++){
-            players.get(i%2).getHand().setCards(0, Character.HANDMAID);
+            players.get(i%2).getHand().setCards(0, Role.HANDMAID);
 
             if(i == 9){
-                players.get(0).getHand().setCards(0, Character.HANDMAID);
-                players.get(1).getHand().setCards(1, Character.HANDMAID);
+                players.get(0).getHand().setCards(0, Role.HANDMAID);
+                players.get(1).getHand().setCards(1, Role.HANDMAID);
                 lobbySpace.getAll(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(0));
             }
 

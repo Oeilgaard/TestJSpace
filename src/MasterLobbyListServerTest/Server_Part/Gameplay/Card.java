@@ -4,7 +4,7 @@ public class Card {
     //TODO Replace with just Role.java?
     private final Role role;
 
-    Card(Role role) {
+    public Card(Role role) {
         this.role = role;
     }
 

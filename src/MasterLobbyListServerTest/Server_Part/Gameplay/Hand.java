@@ -22,7 +22,7 @@ public class Hand {
         if (i == 0) { System.out.println("Hand is empty"); }
     }
 
-    public void setCards(int cardNr, Character chr){
+    public void setCards(int cardNr, Role chr){
         cards.remove(cardNr);
         if(cardNr == 1){
             cards.add(new Card(chr));

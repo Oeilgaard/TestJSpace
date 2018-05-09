@@ -347,8 +347,6 @@ public class Model {
 
             SealedObject encryptedKey = new SealedObject(key, lobbyCipher);
 
-            lobbySpace.get(new ActualField("Lock"));
-
             lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage, encryptedKey);
 
             Thread tryToJoinLobby = new Thread(new TimerForLobbyJoining(this));
