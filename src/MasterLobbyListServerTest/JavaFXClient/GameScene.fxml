@@ -37,7 +37,7 @@
          <children>
             <ImageView fitHeight="259.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@resources/list_of_cards.jpg" />
+                  <Image url="@/resources/list_of_cards.jpg" />
                </image>
             </ImageView>
             <Button layoutX="76.0" layoutY="220.0" mnemonicParsing="false" onAction="#hideCardList" text="Close" />
