@@ -272,7 +272,7 @@ public class ClientGameUpdate implements Runnable{
                             Controller.lobbyIds.clear();
 
                             //[0] lobby code [1] Lobby name [2] Lobby ID
-                            List<Object[]> tuple2 = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+                            List<Object[]> tuple2 = model.getLobbyListSpace().queryAll(new ActualField(Model.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
                             for (Object[] obj : tuple2) {
                                 updateListView.getItems().add(obj[1]);
                                 Controller.lobbyIds.add((UUID) obj[2]);
@@ -352,7 +352,7 @@ public class ClientGameUpdate implements Runnable{
                             Controller.lobbyIds.clear();
 
                             //[0] lobby code [1] Lobby name [2] Lobby ID
-                            List<Object[]> tuple2 = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+                            List<Object[]> tuple2 = model.getLobbyListSpace().queryAll(new ActualField(Model.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
                             for (Object[] obj : tuple2) {
                                 updateListView.getItems().add(obj[1]);
                                 Controller.lobbyIds.add((UUID) obj[2]);

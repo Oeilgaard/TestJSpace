@@ -157,7 +157,7 @@ public class Controller {
                 lobbyIds.clear();
 
                 //[0] lobby code [1] Lobby name [2] Lobby ID
-                List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+                List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField(Model.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
                 for (Object[] obj : tuple) {
                     updateListView.getItems().add(obj[1]);
                     lobbyIds.add((UUID) obj[2]);
@@ -386,15 +386,11 @@ public class Controller {
 
         String userNameString = userName.getText(); // get the inputted name in the GUI
 
-            //TODO lav en query der tjekke om det er det rigtige username
-
             if (model.createUserLogic(userNameString)){
                 // Goto Lobby List
                 try {
                     changeScene(LOBBY_LIST_SCENE);
-                } catch (BadPaddingException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
+                } catch (BadPaddingException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             } else  {
@@ -409,16 +405,10 @@ public class Controller {
 
         String lobbyNameString = lobbyName.getText();
 
-        //TODO indsæt SealedObject
-
         if (model.createLobbyLogic(lobbyNameString)) {
             try {
                 changeScene(LOBBY_LIST_SCENE);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (BadPaddingException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | BadPaddingException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else {
@@ -434,7 +424,7 @@ public class Controller {
         lobbyIds.clear();
 
         //[0] lobby code [1] Lobby name [2] Lobby ID
-        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        List<Object[]> tuple = model.getLobbyListSpace().queryAll(new ActualField(Model.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         for (Object[] obj : tuple) {
             lobbyList.getItems().add(obj[1]);
@@ -484,6 +474,10 @@ public class Controller {
             if (mouseEvent.getClickCount() == 2) {
 
                 int index = lobbyList.getSelectionModel().getSelectedIndex();
+
+                if (lobbyList.getSelectionModel().getSelectedItem() == null){
+                    return;
+                }
 
                 changeScene(LOADING_LOBBY_SCENE);
 

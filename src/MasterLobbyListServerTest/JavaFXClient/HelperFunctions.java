@@ -26,8 +26,7 @@ public class HelperFunctions {
         }
     }
 
-    //TODO make static?
-    public boolean countessRule(ArrayList<String> hand){
+    public static boolean countessRule(ArrayList<String> hand){
         System.out.print("Countess rule is ");
 
         return ((hand.contains("COUNTESS") && hand.contains("PRINCE")) ||

@@ -97,10 +97,8 @@ public class Model {
         return players;
     }
 
-    //TODO: Should they be synchronized?
     public void nextTurn() { turn++; }
 
-    //TODO: Should they be synchronized?
     public void nextRound() {
         round++;
     }
@@ -385,9 +383,8 @@ public class Model {
                     }
                 }
             } else {
-                String msgSender = "You play PRINCE on " + targetName + " who discard the hand.";
-                String msgTarget = senderName + " plays PRINCE on you. You discard" +
-                        " your hand.";
+                String msgSender = "You play PRINCE on " + targetName + " who discard their hand.";
+                String msgTarget = senderName + " plays PRINCE on you. You discard your hand.";
                 String msgOthers = senderName + " played PRINCE on " + targetName;
 
                 informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
@@ -397,8 +394,7 @@ public class Model {
             drawSecretCard(players.get(targetPlayersIndex).getHand());
 
             String msgSender = "You play PRINCE on " + targetName + " who draws the secret card.";
-            String msgTarget = senderName + " plays PRINCE on you. You discard" +
-                    " your hand and draw the secret card " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
+            String msgTarget = senderName + " plays PRINCE on you. You discard your hand and draw the secret card " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
             String msgOthers = senderName + " played PRINCE on " + targetName + " who draw the secret card.";
             informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString());
         }
@@ -488,7 +484,7 @@ public class Model {
 
     public void knockOut(int knockedOutIndex) {
         Player p = players.get(knockedOutIndex);
-        System.out.println("Player " + removeIDFromPlayername(p.getName()) + " is out of the round" + Game.newLine);
+        System.out.println("Player " + removeIDFromPlayername(p.getName()) + " is out of the round " + Game.newLine);
         p.discardHand();
         p.setInRound(false);
 

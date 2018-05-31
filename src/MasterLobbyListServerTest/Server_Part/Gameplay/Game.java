@@ -194,8 +194,6 @@ public class Game {
     private void waitForDiscard() throws InterruptedException, IllegalBlockSizeException {
         try {
             // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
-            //TODO: Lyt efter disconnect også
-            //TODO: Er Model.DISCARD nødvendigt at lytte på ?
             Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
             String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(cipher);
@@ -432,7 +430,7 @@ public class Game {
 
             model.lastMan().incrementAffection();
 
-            String msgOthers = model.removeIDFromPlayername(model.lastMan().getName()) + " won the round as last man standing!" +
+            String msgOthers = model.removeIDFromPlayername(model.lastMan().getName()) + " won the round as last man standing! " +
                     model.removeIDFromPlayername(model.lastMan().getName()) + "'s affection is now " + model.lastMan().getAffection()
                     + ". Just " + (model.affectionGoal-model.lastMan().getAffection()) + " points away from winning!";
             String msgWinner = "You won the round as last man standing! Your affection is now " + model.lastMan().getAffection()

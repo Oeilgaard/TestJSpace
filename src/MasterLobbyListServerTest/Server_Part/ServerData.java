@@ -15,7 +15,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class ServerData{
 
-    //TODO: fryser hvis vi laver mere end 8 lobbies.
     public final static int MAXIMUM_LOBBIES = 50;
     public final static int MAXIMUM_REQUESTS = 100;
 
@@ -89,7 +88,7 @@ public class ServerData{
         //calling execute method of ExecutorService
         Lobby l = new Lobby(uuid, lobbyOverviewSpace, serverRepos, username, serverData);
         executor.execute(l);
-        lobbyMap.put(uuid, l); // TODO remove when lobby is over
+        lobbyMap.put(uuid, l);
 
         // printing the current amount of active threads
         if (executor instanceof ThreadPoolExecutor) {

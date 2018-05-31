@@ -67,6 +67,7 @@ public class Player {
     public void discardCard(int index) {
         System.out.println(name + " discards " + hand.getCards().get(index).getRole() + Game.newLine);
         discardPile.addToDiscardPile(hand.getCards().get(index));
+        discardPile.addToDiscardPile(hand.getCards().get(index));
         hand.getCards().remove(index);
     }
 

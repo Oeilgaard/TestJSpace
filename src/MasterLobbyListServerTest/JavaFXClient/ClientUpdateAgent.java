@@ -88,8 +88,6 @@ public class ClientUpdateAgent implements Runnable{
                     System.out.println("DETECTED A SHUTDOWN");
                     model.setInLobby(false);
 
-                    //TODO burde de her change scene ting ikke ske i Controller for at 'seperate concern'?
-
                     model.resetLobbyInfo();
 
                     Platform.runLater(new Runnable() {
@@ -108,7 +106,7 @@ public class ClientUpdateAgent implements Runnable{
                                 List<Object[]> tuple;
 
                                 //[0] lobby code [1] Lobby name [2] Lobby ID
-                                tuple = model.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+                                tuple = model.getLobbyListSpace().queryAll(new ActualField(Model.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
                                 for (Object[] obj : tuple) {
                                     updItems.add(obj[1]);

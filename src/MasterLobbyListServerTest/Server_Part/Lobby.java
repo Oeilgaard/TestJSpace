@@ -33,14 +33,13 @@ public class Lobby implements Runnable {
 
     public final static int MAX_PLAYER_PR_LOBBY = 4;
 
-    // TODO: hvorfor ikke bare en reference til serverData?
     // the servers TS
     private SequentialSpace lobbyOverviewSpace;
     private SpaceRepository serverRepos;
     // this lobby's TS
     private SequentialSpace lobbySpace;
 
-    private UUID lobbyID; //TODO: evt ændre til navn + # + UUID så det matcher user-id? (nok ikke)
+    private UUID lobbyID;
     private Boolean beginFlag;
     private String lobbyLeader;
     private int noPlayers;
@@ -106,13 +105,12 @@ public class Lobby implements Runnable {
         // Remove Lobby from Lobby List overview space
         try {
             // [0] lobby code [1] lobbyname [2] lobby-id
-            lobbyOverviewSpace.get(new ActualField("Lobby"),new FormalField(String.class),new ActualField(lobbyID));
+            lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO),new FormalField(String.class),new ActualField(lobbyID));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         // Stopping the chat thread
-        //TODO: is it actually stopping with interrupt?
         chatAgent.interrupt();
 
         // Start the game
@@ -150,7 +148,6 @@ public class Lobby implements Runnable {
 
                 // If request type is CONNECT, A new client tries to connect to the lobby
                 if (req == CONNECT) {
-                    // TODO: hvad sker der her?
                     Key key = (Key) ((SealedObject) tuple[2]).getObject(lobbyCipher);
                     Cipher cipher = Cipher.getInstance("AES");
                     cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -183,7 +180,7 @@ public class Lobby implements Runnable {
                     int indexForPlayer = getUserfromName(name).userNr;
                     users.remove(getUserfromName(name)); // remove player from players
                     availableNrs.add(indexForPlayer);
-                    noPlayers--; //TODO: should it be synchronized? (Probably not, as only one thread)
+                    noPlayers--;
                     updatePlayers(name, DISCONNECT);
                 /*} else if (req == CLOSE) { // If request type is CLOSE,
                     System.out.println("Lobby is closing");
@@ -203,7 +200,6 @@ public class Lobby implements Runnable {
                     }
                 } else if (req == GET_PLAYERLIST) { // If request is GET_PLAYERLIST, a client requests the list of player's in the lobby
 
-                    // TODO: hvorfor ikke returnere private ArrayList<LobbyUser> users?
                     ArrayList<String> userNames = new ArrayList<>();
                     for (LobbyUser user : users) {
                         String s = user.name;

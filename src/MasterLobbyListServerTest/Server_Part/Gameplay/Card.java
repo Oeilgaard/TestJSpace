@@ -1,7 +1,7 @@
 package MasterLobbyListServerTest.Server_Part.Gameplay;
 
 public class Card {
-    //TODO Replace with just Role.java?
+
     private final Role role;
 
     public Card(Role role) {

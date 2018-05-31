@@ -47,6 +47,8 @@ public class Model {
     //protected final static int GAMEPLAY_ACTION = 70;
     //protected final static int PLAY_CARD = 71;
 
+    protected final static int LOBBY_INFO = 90;
+
     // 'HTTP style'
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
@@ -66,8 +68,7 @@ public class Model {
 
     public final static int SERVER_UPDATE = 20;
 
-    //TODO rename lobbyListSpace -> lobbyOverSpace
-    private static RemoteSpace requestSpace, lobbyListSpace, lobbySpace, responseSpace;
+    private static RemoteSpace requestSpace, lobbyOverviewSpace, lobbySpace, responseSpace;
     private static String serverIp;
     private int responseFromLobby = NO_RESPONSE;
     private String userID;
@@ -114,7 +115,7 @@ public class Model {
     public void addIpToRemoteSpaces(String ip) throws IOException {
 
         requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
-        lobbyListSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
+        lobbyOverviewSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
         serverIp = ip;
         responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
 
@@ -142,7 +143,7 @@ public class Model {
     }
 
     public RemoteSpace getLobbyListSpace() {
-        return lobbyListSpace;
+        return lobbyOverviewSpace;
     }
 
     public RemoteSpace getRequestSpace() {
@@ -236,7 +237,7 @@ public class Model {
 
             requestSpace.put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKey);
 
-            Object[] tuple;
+            Object[] tuple = null;
             int field1;
             String field3;
 
@@ -244,7 +245,7 @@ public class Model {
                 // Blocks until user receives unique username (due to 'query')
                 // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID
                 try {
-                    tuple = responseSpace.query(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
+                    tuple = responseSpace.get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
                             new FormalField(SealedObject.class));
 
                     if (tuple != null) {
@@ -255,9 +256,9 @@ public class Model {
                         field1 = Integer.parseInt(field1text);
                         field3 = decryptedMessage.substring(decryptedMessage.indexOf('?') + 1, decryptedMessage.length());
 
-                        //TODO: kan man ikke komme til at fjerne en ANDEN tuple en den man lige har samlet op?
-                        responseSpace.get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
-                                new FormalField(SealedObject.class));
+                        //KLARET: kan man ikke komme til at fjerne en ANDEN tuple en den man lige har samlet op?
+                        //responseSpace.get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
+                        //        new FormalField(SealedObject.class));
 
                         break;
                     }
@@ -265,6 +266,7 @@ public class Model {
                     e.printStackTrace();
                 } catch (BadPaddingException e) {
                     //e.printStackTrace();
+                    responseSpace.put(tuple[0],tuple[1],tuple[2]);
                 }
             }
 
@@ -329,7 +331,7 @@ public class Model {
         // Query the desired lobby-tuple (non-blocking)
 
         //[0] lobby code [1] lobby name [2] lobby id
-        Object[] tuple = lobbyListSpace.queryp(new ActualField("Lobby"),
+        Object[] tuple = lobbyOverviewSpace.queryp(new ActualField(Model.LOBBY_INFO),
                 new ActualField(lobbyName),
                 new ActualField(lobbyID));
 
@@ -379,7 +381,7 @@ public class Model {
             //System.out.println("Yes");
 
             //Tuple 1 - 3 sealed object
-            String messageToBeEncrypted = "" + Model.BEGIN + "!" + userID + "?" + -1 + "=*¤"; //TODO hvad er -1?
+            String messageToBeEncrypted = "" + Model.BEGIN + "!" + userID + "?=*¤";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
             SealedObject filler = new SealedObject("filler", lobbyCipher);
 

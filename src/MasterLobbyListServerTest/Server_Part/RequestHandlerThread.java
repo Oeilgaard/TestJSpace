@@ -62,12 +62,10 @@ public class RequestHandlerThread implements Runnable {
                     serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
 
                     //Add Server information to lobbyOverviewSpace
-                    serverData.lobbyOverviewSpace.put("Lobby", serverName, idForLobby); //TODO ændrer Lobby til tal-kode
+                    serverData.lobbyOverviewSpace.put(Server.LOBBY_INFO, serverName, idForLobby);
 
                 } else {
-                    //TODO er det rigtigt?
-                    UUID idForLobby = UUID.randomUUID(); //TODO can it be null?
-                    SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, clientCipher);
+                    SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?", clientCipher);
                     //SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, cipher);
 
                     serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
