@@ -2,27 +2,330 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="TestJSpace:jar" />
+      <artifact name="Love_Tuple_Client:jar" />
+      <artifact name="Love_Tuples_Server:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="- small fixes">
+    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="- Refactoring">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestJSpace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Love_Tuples.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DiningPhilosophers.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/DistributedDiningPhilosophers.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/DiningPhilosophers/src/main/java/org/jspace/examples/df/Philosopher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/GamePlay.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Lobby.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyAcceptManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/LobbyDisconnectManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LobbyTesting/TestOfLobby.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/LockedSpaceTest/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ConsumerAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/DistributedProducerConsumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerAgent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerConsumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/DefaultDateTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/ExclusionStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldAttributes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingPolicy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/FieldNamingStrategy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson$FutureTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/GsonBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/InstanceCreator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializationContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonDeserializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonElement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonIOException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonNull.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParseException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonPrimitive.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializationContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonStreamParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonSyntaxException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/LongSerializationPolicy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/TypeAdapterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Expose.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/JsonAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/SerializedName.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Since.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/annotations/Until.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Preconditions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$GenericArrayTypeImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$ParameterizedTypeImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types$WildcardTypeImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/$Gson$Types.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ConstructorConstructor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Excluder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/JsonReaderInternalAccess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LazilyParsedNumber.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$AvlIterator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$EntrySet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$KeySet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$LinkedTreeMapIterator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap$Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedHashTreeMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$EntrySet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$KeySet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap$Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/LinkedTreeMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/ObjectConstructor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/PreJava9DateFormatProvider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Primitives.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter$CurrentWrite.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams$AppendableWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/Streams.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/UnsafeAllocator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ArrayTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory$Adapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/CollectionTypeAdapterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/DateTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/JsonTreeWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory$Adapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/MapTypeAdapterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ObjectTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/SqlDateTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TimeTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$GsonContextImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter$SingleTypeFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TreeTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapterRuntimeTypeWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$16.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$17.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$18.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$19.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$20.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$21.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$22.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$23.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$24.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$25.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$26.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$27.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$28.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$29.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$30.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$31.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$32.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$33.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$34.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$35.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$36.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters$EnumTypeAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/TypeAdapters.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/internal/bind/util/ISO8601Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/reflect/TypeToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonScope.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/JsonWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/stream/MalformedJsonException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/util/VersionUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/ChatTestServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/SimpleCardGameTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/common/src/main/TestSimpleJavaServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/ActualField.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/FormalField.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/RemoteSpace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SequentialSpace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Space.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/SpaceRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Template.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/TemplateField.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/Tuple.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientGate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ClientHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientGate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnClientHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ConnServerGate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/GateFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientGate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepClientHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/KeepServerGate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/ServerGate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/TcpGateBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/gate/UdpGateBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/ClassDictionary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/JSonMarshaller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/MarshalFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/jSpaceMarshaller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateDeserializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TemplateSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleDeserializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/TupleSerializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/io/json/jSonUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ClientMessageType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/InteractionMode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/PutRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/ServerMessageType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/protocol/pSpaceMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous$DataWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/org/jspace/util/Rendezvous.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiningPhilosophers/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiningPhilosophers/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiningPhilosophers/src/main/java/org/jspace/examples/df/DiningPhilosophers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiningPhilosophers/src/main/java/org/jspace/examples/df/DistributedDiningPhilosophers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiningPhilosophers/src/main/java/org/jspace/examples/df/Philosopher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/GamePlay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/Lobby.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/LobbyAcceptManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/LobbyDisconnectManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LobbyTesting/TestOfLobby.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LockedSpaceTest/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LockedSpaceTest/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Client_Part/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ChooseGuessScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ConnectingToLobby.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/JoinServerScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PickPlayerScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/UserNameScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/VictoryScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProducerConsumer/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProducerConsumer/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProducerConsumer/src/main/java/org/jspace/examples/pc/ConsumerAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProducerConsumer/src/main/java/org/jspace/examples/pc/DistributedProducerConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProducerConsumer/src/main/java/org/jspace/examples/pc/ProducerConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/main/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/main/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/main/ChatTestClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/main/ChatTestServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/main/SimpleCardGameTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/main/TestSimpleJavaClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/src/main/TestSimpleJavaServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -128,52 +431,52 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="482" selection-start-line="482" selection-end-line="482" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DiscardPile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2686">
-              <caret line="253" column="54" selection-start-line="253" selection-start-column="49" selection-end-line="253" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="9095">
+              <caret line="558" selection-start-line="558" selection-end-line="558" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3790">
-              <caret line="486" column="99" selection-start-line="486" selection-start-column="99" selection-end-line="486" selection-end-column="99" />
+            <state relative-caret-position="1666">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3655">
+              <caret line="227" column="26" selection-start-line="227" selection-start-column="26" selection-end-line="227" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5202">
+              <caret line="322" column="16" selection-start-line="322" selection-start-column="16" selection-end-line="322" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilledLobbyTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/StressTesting/FilledLobbyTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2720">
+              <caret line="173" column="26" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
@@ -181,29 +484,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java">
+      <file leaf-file-name="ClientGameUpdate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientGameUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="19" selection-start-column="14" selection-end-column="19" />
+            <state relative-caret-position="78">
+              <caret line="224" column="13" selection-start-line="224" selection-start-column="13" selection-end-line="224" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="PossibleTargetsThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="19" selection-start-column="14" selection-end-column="19" />
+              <caret column="19" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Role.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Role.java">
+        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Role.java">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="19" selection-start-column="14" selection-end-column="19" />
+              <caret column="19" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -279,8 +591,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Client_Part/Client.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/PlayerInfo.java" />
         <option value="$PROJECT_DIR$/src/LobbyTesting/LobbyAcceptManager.java" />
         <option value="$PROJECT_DIR$/src/LobbyTesting/Client.java" />
         <option value="$PROJECT_DIR$/src/org/jspace/gate/KeepServerGate.java" />
@@ -316,7 +626,6 @@
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" />
@@ -328,8 +637,11 @@
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PlayCardScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java" />
+        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
+        <option value="$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Model.java" />
+        <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java" />
       </list>
     </option>
   </component>
@@ -376,56 +688,36 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
+              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
+              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
-              <item name="Server_Part" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="MasterLobbyListServerTest" type="462c0819:PsiDirectoryNode" />
-              <item name="Server_Part" type="462c0819:PsiDirectoryNode" />
-              <item name="Gameplay" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ToolWindowTODO.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/tests/MasterLobbyListServerTest" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
@@ -474,34 +766,34 @@
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
     <configuration name="FilledLobbyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.StressTesting.FilledLobbyTest" />
-      <module name="TestJSpace" />
+      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.StressTesting.FilledLobbyTest" />
+      <module name="Love_Tuples" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.StressTesting.*" />
+          <option name="PATTERN" value="mainSystemFiles.StressTesting.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.JavaFXClient.Main" />
-      <module name="TestJSpace" />
+      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.JavaFXClient.Main" />
+      <module name="Love_Tuples" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.JavaFXClient.*" />
+          <option name="PATTERN" value="mainSystemFiles.JavaFXClient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.Server" />
-      <module name="TestJSpace" />
+      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.Server_Part.Server" />
+      <module name="Love_Tuples" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.Server_Part.*" />
+          <option name="PATTERN" value="mainSystemFiles.Server_Part.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -510,17 +802,17 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
     <configuration name="ServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TestJSpace" />
+      <module name="Love_Tuples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.Server_Part.*" />
+          <option name="PATTERN" value="mainSystemFiles.Server_Part.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="MasterLobbyListServerTest.Server_Part" />
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.ServerTest" />
+      <option name="PACKAGE_NAME" value="mainSystemFiles.Server_Part" />
+      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.Server_Part.ServerTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -533,17 +825,17 @@
       <patterns />
     </configuration>
     <configuration name="ServerTest.noActionCard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TestJSpace" />
+      <module name="Love_Tuples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="MasterLobbyListServerTest.Server_Part.*" />
+          <option name="PATTERN" value="mainSystemFiles.Server_Part.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="MasterLobbyListServerTest.Server_Part" />
-      <option name="MAIN_CLASS_NAME" value="MasterLobbyListServerTest.Server_Part.ServerTest" />
+      <option name="PACKAGE_NAME" value="mainSystemFiles.Server_Part" />
+      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.Server_Part.ServerTest" />
       <option name="METHOD_NAME" value="noActionCard" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -669,27 +961,6 @@
       <workItem from="1524471462541" duration="18123000" />
       <workItem from="1524572106354" duration="36000" />
       <workItem from="1524641070629" duration="6171000" />
-    </task>
-    <task id="LOCAL-00058" summary="...">
-      <created>1521479885113</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1521479885113</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Various small refactorings">
-      <created>1521627421443</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1521627421444</updated>
-    </task>
-    <task id="LOCAL-00060" summary="New Turn msg's to all +&#10;various small refactorings">
-      <created>1521715622337</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1521715622338</updated>
     </task>
     <task id="LOCAL-00061" summary="Fixed turn numbering&#10;Fixed ID of 'Round x, Turn y, Alice's turn&quot;&#10;Perhaps older things I have forgotton about unfortunately">
       <created>1522070585227</created>
@@ -1013,7 +1284,28 @@
       <option name="project" value="LOCAL" />
       <updated>1527754696981</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="- small fixes">
+      <created>1527766958846</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1527766958846</updated>
+    </task>
+    <task id="LOCAL-00108" summary="- small fixes">
+      <created>1527767613814</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1527767613814</updated>
+    </task>
+    <task id="LOCAL-00109" summary="- Refactoring">
+      <created>1527769816567</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1527769816567</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1065,20 +1357,21 @@
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="5" weight="0.32979852" />
+      <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.49926794" weight="0.3286385" />
+      <window_info anchor="bottom" id="Messages" order="6" sideWeight="0.4465593" weight="0.35367763" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.50073206" side_tool="true" visible="true" weight="0.3286385" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49791667" weight="0.32979852" />
-      <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.51317716" side_tool="true" weight="0.35367763" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15519765" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15373352" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49375" weight="0.39927405" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Thumbnails" order="11" sideWeight="0.49791667" visible="true" weight="0.32940108" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
@@ -1091,8 +1384,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info id="Capture Tool" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48682284" weight="0.3286385" />
-      <window_info anchor="bottom" id="Messages" order="6" sideWeight="0.4465593" weight="0.35367763" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48609078" weight="0.3286385" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1128,7 +1420,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- started on jUnit 4" />
     <MESSAGE value="- A bit of refactoring&#10;- Introduced a new ExecutorService for RequestThreads" />
     <MESSAGE value="- Fixed some merge fuck-ups" />
     <MESSAGE value="- Slight rearrangengement and clean-up of code." />
@@ -1153,45 +1444,40 @@
     <MESSAGE value="- Fixed so 3 cards are only revealed with 2 players" />
     <MESSAGE value="- fixed some code structure" />
     <MESSAGE value="- small fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="- small fixes" />
+    <MESSAGE value="- Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
           <line>438</line>
           <properties />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
           <line>324</line>
           <properties />
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java</url>
-          <line>124</line>
-          <properties />
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
           <line>224</line>
           <properties />
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/Server_Part/ServerTest.java</url>
           <line>1239</line>
           <properties />
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
           <line>241</line>
-          <properties class="MasterLobbyListServerTest.JavaFXClient.ControllerTest" method="disconnectFromOwnLobbyTest">
+          <properties class="mainSystemFiles.JavaFXClient.ControllerTest" method="disconnectFromOwnLobbyTest">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="54" />
@@ -1201,56 +1487,56 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientGameUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2363">
           <caret line="139" column="54" lean-forward="true" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2924">
           <caret line="231" column="8" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="94" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/ServerData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
@@ -1272,7 +1558,7 @@
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/test/testTest.java" />
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java" />
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/testing.java" />
-    <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java">
+    <entry file="file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="35" column="20" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="20" />
@@ -1302,14 +1588,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/LobbychatTest.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/StressTesting/LobbychatTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java">
+    <entry file="file://$PROJECT_DIR$/tests/mainSystemFiles/Server_Part/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="720" selection-start-line="720" selection-end-line="720" />
@@ -1348,13 +1634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="39" column="92" selection-start-line="39" selection-start-column="88" selection-end-line="39" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/google/gson/internal/ConstructorConstructor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -1383,175 +1662,178 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ServerResponseMonitor.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ServerResponseMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="30" selection-start-column="29" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/TimerForLobbyJoining.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/TimerForLobbyJoining.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyUser.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyChatAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyChatAgent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-53">
           <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="226" column="55" selection-start-line="226" selection-start-column="50" selection-end-line="226" selection-end-column="55" />
-          <folding>
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientUpdateAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientUpdateAgent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/HelperFunctions.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/HelperFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LookForConnectionAccept.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="42" column="45" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="353" column="33" selection-start-line="353" selection-start-column="28" selection-end-line="353" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/RequestHandlerThread.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/RequestHandlerThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="64" column="97" selection-start-line="64" selection-start-column="97" selection-end-line="64" selection-end-column="97" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/ServerData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Lobby.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Lobby.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="107" column="68" selection-start-line="107" selection-start-column="68" selection-end-line="107" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Card.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/DiscardPile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Hand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="19" selection-start-column="14" selection-end-column="19" />
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/PossibleTargetsThread.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="19" selection-start-column="14" selection-end-column="19" />
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="19" selection-start-column="14" selection-end-column="19" />
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="482" selection-start-line="482" selection-end-line="482" />
+        <state relative-caret-position="9095">
+          <caret line="558" selection-start-line="558" selection-end-line="558" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2686">
-          <caret line="253" column="54" selection-start-line="253" selection-start-column="49" selection-end-line="253" selection-end-column="54" />
+        <state relative-caret-position="1666">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3790">
-          <caret line="486" column="99" selection-start-line="486" selection-start-column="99" selection-end-line="486" selection-end-column="99" />
+        <state relative-caret-position="3655">
+          <caret line="227" column="26" selection-start-line="227" selection-start-column="26" selection-end-line="227" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5202">
+          <caret line="322" column="16" selection-start-line="322" selection-start-column="16" selection-end-line="322" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/StressTesting/FilledLobbyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2720">
+          <caret line="173" column="26" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientGameUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="224" column="13" selection-start-line="224" selection-start-column="13" selection-end-line="224" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1561,7 +1843,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>TestJSpacejavaFX</last-edited>
+          <last-edited>Love_Tuple_Client:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1609,7 +1891,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>TestJSpace</last-edited>
+          <last-edited>Love_Tuples</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
