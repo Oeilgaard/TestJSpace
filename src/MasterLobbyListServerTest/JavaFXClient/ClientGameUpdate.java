@@ -133,7 +133,9 @@ public class ClientGameUpdate implements Runnable{
                     model.cardsOnHand.add((String) field2);
 
                     ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                    card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                    //System.out.println(model.cardsOnHand.get(0).toLowerCase());
+                    card1.setImage(new Image("resources/" + model.cardsOnHand.get(0).toLowerCase() + ".jpg"));
+
 
                     Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
@@ -169,7 +171,7 @@ public class ClientGameUpdate implements Runnable{
                                 model.cardsOnHand.remove(0);
                                 model.cardsOnHand.add((String) field4);
                                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                                card1.setImage(new Image("resources/" + model.cardsOnHand.get(0).toLowerCase() + ".jpg")); //MasterLobbyListServerTest/
                             }
                             break;
                         case "PRINCE":
@@ -177,7 +179,7 @@ public class ClientGameUpdate implements Runnable{
                                 model.cardsOnHand.remove(0);
                                 model.cardsOnHand.add((String) field4);
                                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                                card1.setImage(new Image("resources/" + model.cardsOnHand.get(0).toLowerCase() + ".jpg")); //MasterLobbyListServerTest/
                             }
                             break;
                     }

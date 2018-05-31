@@ -12,6 +12,6 @@
    <children>
       <TextField fx:id="IP" layoutX="206.0" layoutY="129.0" onKeyPressed="#enterIPField" text="" />
       <Button fx:id="joinServerButton" layoutX="370.0" layoutY="129.0" mnemonicParsing="false" onAction="#joinServer" text="Go" />
-      <Label layoutX="206.0" layoutY="105.0" text="Type in server ip" />
+      <Label layoutX="206.0" layoutY="105.0" text="Type in server IP" />
    </children>
 </AnchorPane>

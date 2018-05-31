@@ -26,6 +26,6 @@
             <VBox fx:id="vb1" maxHeight="999999.0" prefHeight="212.0" prefWidth="254.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="leaveButton" layoutX="287.0" layoutY="346.0" mnemonicParsing="false" onAction="#pressLeaveLobby" text="Leave lobby" />
+      <Button fx:id="leaveButton" layoutX="287.0" layoutY="346.0" mnemonicParsing="false" onAction="#pressLeaveLobby" text="Leave Lobby" />
    </children>
 </AnchorPane>

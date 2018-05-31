@@ -18,7 +18,7 @@ import java.util.UUID;
 
 public class FilledLobbyTest {
 
-    public static String ip = "10.68.109.17";
+    public static String ip = "10.68.171.47"; //212.237.129.195
 
     public static int nrOfClients = 40;
 
@@ -30,12 +30,15 @@ public class FilledLobbyTest {
 
         long startTime;
         long endTime;
+        long startTimeMaster;
+        long endTimeMaster;
         long[] usernametimes = new long[nrOfClients];
         long[] connecttimes = new long[nrOfClients];
 
         nrOfLobbies = nrOfClients / 4 + (((nrOfClients % 4) != 0) ? 1 : 0);
 
         System.out.println("Testing the server with : " + nrOfClients + " clients and " + nrOfLobbies + " lobbies");
+        startTimeMaster = System.currentTimeMillis();
 
         RemoteSpace requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
         RemoteSpace lobbyListSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
@@ -217,6 +220,8 @@ public class FilledLobbyTest {
         System.out.println("The results from the timers");
         System.out.println("Username times : " + usernametimesfinal + " and Connect times : " + connectiontimesfinal + " and play time : " + finalPlaytimes + " with a size of " + timesForPlays.size());
         System.out.println("");
+        endTimeMaster = System.currentTimeMillis();
+        System.out.println("Total time: " + (endTimeMaster-startTimeMaster) + " ms");
         System.out.println("DONE");
         System.exit(1);
     }
