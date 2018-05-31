@@ -10,7 +10,7 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
 public class Server {
-
+    //TODO remove comments?
     /*
         1: Create Space of lobbylist and requests.
         2: Start a manager to look for requests for new lobby.

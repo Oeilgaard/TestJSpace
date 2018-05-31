@@ -58,6 +58,8 @@ public class ServerData{
         cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, myPair.getPrivate());
 
+        JOptionPane.showMessageDialog(null, "Server is now running on IP" + serverAddress);
+
     }
 
     ServerData(String serverAddress) throws InvalidKeyException, NoSuchAlgorithmException, InterruptedException, NoSuchPaddingException {

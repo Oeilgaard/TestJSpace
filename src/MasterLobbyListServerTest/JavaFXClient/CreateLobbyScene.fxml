@@ -12,7 +12,7 @@
     <children>
         <TextField fx:id="lobbyName" layoutX="206.0" layoutY="129.0" onKeyPressed="#createLobbyViaEnterKey" />
         <Button fx:id="createLobbyButton" layoutX="370.0" layoutY="129.0" mnemonicParsing="false" onAction="#createLobby" text="Go" />
-        <Label layoutX="206.0" layoutY="105.0" text="Enter lobby name" />
+        <Label layoutX="206.0" layoutY="105.0" text="Enter Lobby name" />
         <Label fx:id="instructionsLobbyName" layoutX="206.0" layoutY="172.0" text="" />
     </children>
 </AnchorPane>

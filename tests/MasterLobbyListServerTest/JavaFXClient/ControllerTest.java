@@ -372,21 +372,23 @@ public class ControllerTest {
         modelPlayerOne.createUserLogic(userNameOne);
         modelPlayerTwo.createUserLogic(userNameTwo);
 
-        modelPlayerOne.createLobbyLogic("fun_lobby");
+        String lobbyName = "fun_lobby";
+        modelPlayerOne.createLobbyLogic(lobbyName);
 
         Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"),
                 new FormalField(String.class), new FormalField(UUID.class));
 
-        modelPlayerOne.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
-        modelPlayerTwo.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
+        modelPlayerOne.joinLobbyLogic(lobbyName, (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
+        modelPlayerTwo.joinLobbyLogic(lobbyName, (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
 
         modelPlayerOne.pressBeginLogic();
 
-        Thread.sleep(200); // TODO: a bit sloopy (due to race condition)
+        Thread.sleep(3000); // TODO: a bit sloopy (due to race condition)
 
         Object[] tuple2 = modelPlayerOne.getLobbyListSpace().queryp(new ActualField("Lobby"),
                 new FormalField(String.class), new FormalField(UUID.class));
         boolean c = (tuple2==null);
+
         Assert.assertTrue(c);
 //
 //        System.out.println("player 1: in game? " + modelPlayerOne.inGame + " in lobby: " + modelPlayerOne.inLobby);
