@@ -7,23 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="- Fixed case sensitive image names (images missing in .jar file)&#10;- Reformulated some text in the scenes&#10;- Renamed chr to r in Hand&#10;- Added extra pop-up in Server (should probably be removed)">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/background.jpeg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/baron.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/countess.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/guard.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/handmaid.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/king.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/list_of_cards.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/priest.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/prince.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resources/princess.jpg" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/Gson.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class" afterPath="$PROJECT_DIR$/out/production/TestJSpace/com/google/gson/JsonParser.class" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ClientGameUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/CreateLobbyScene.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/GameScene.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/JoinServerScene.fxml" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/JoinServerScene.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyScene.fxml" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyScene.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/UserNameScene.fxml" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/UserNameScene.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/ServerData.java" />
-      <change beforePath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" afterPath="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" />
-      <change beforePath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" afterPath="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +53,8 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="67" column="54" lean-forward="true" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
+            <state relative-caret-position="400">
+              <caret line="60" column="61" lean-forward="false" selection-start-line="60" selection-start-column="61" selection-end-line="60" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -289,8 +283,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-25" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="15" />
     <option name="y" value="22" />
     <option name="width" value="1920" />
     <option name="height" value="1174" />
@@ -347,13 +341,13 @@
             <path>
               <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
               <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TestJSpace" type="b2602c69:ProjectViewProjectNode" />
               <item name="TestJSpace" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -685,14 +679,7 @@
       <workItem from="1527492007406" duration="8480000" />
       <workItem from="1527597016463" duration="1488000" />
       <workItem from="1527675278022" duration="10329000" />
-      <workItem from="1527749995314" duration="1959000" />
-    </task>
-    <task id="LOCAL-00055" summary="Wrote Custom Msg's for different card events&#10;Server now send win messages">
-      <created>1521478010581</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1521478010581</updated>
+      <workItem from="1527749995314" duration="2704000" />
     </task>
     <task id="LOCAL-00056" summary="...">
       <created>1521479400924</created>
@@ -1030,7 +1017,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525700718490</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="- Fixed case sensitive image names (images missing in .jar file)&#10;- Reformulated some text in the scenes&#10;- Renamed chr to r in Hand&#10;- Added extra pop-up in Server (should probably be removed)">
+      <created>1527752511594</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1527752511595</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1066,7 +1060,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="442652000" />
+    <option name="totallyTimeSpent" value="443397000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1078,8 +1072,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-25" y="22" width="1920" height="1174" extended-state="0" />
-    <editor active="true" />
+    <frame x="-2" y="22" width="1920" height="1174" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940108" sideWeight="0.49166667" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35480943" sideWeight="0.43697917" order="6" side_tool="false" content_ui="tabs" />
@@ -1090,7 +1083,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35480943" sideWeight="0.5630208" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1176,7 +1169,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)" />
     <MESSAGE value="ACTION_DENIED cases implemented;&#10;- illegal card index&#10;- Countess rule&#10;- Unvalid raget&#10;- Guard guess unvalid index" />
     <MESSAGE value="- Increased size of game windows...&#10;- Game win messages created&#10;- Fixed some LMS-bugs" />
     <MESSAGE value="- Now clears actionHistory upon game-end and new round&#10;- Players have 30 s to 'pick up' game end tuple&#10;- Various other small fixes" />
@@ -1201,7 +1193,8 @@
     <MESSAGE value="- Fixed beginWithTooFewPlayersTest" />
     <MESSAGE value="- Renamed uniqueName to userID&#10;- Renamed leaderForCurrentLobby to isLeader&#10;- Added BG-image to GameScene&#10;- made flags in JavaFXClient/Model private&#10;- Started on a Lock for mutual exclusion, however, should likely be removed&#10;- Renamed Character to Role  &#10;- Started working on a timeMeasurements-system" />
     <MESSAGE value="- Renamed uniqueName to userID&#10;- Renamed leaderForCurrentLobby to isLeader&#10;- Added BG-image to GameScene&#10;- made flags in JavaFXClient/Model private&#10;- Started on a Lock for mutual exclusion, however, should likely be removed&#10;- Renamed Character to Role  &#10;- Started working on a timeMeasurements-system&#10;...&#10;- Merged Lobby.java with upstream" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Renamed uniqueName to userID&#10;- Renamed leaderForCurrentLobby to isLeader&#10;- Added BG-image to GameScene&#10;- made flags in JavaFXClient/Model private&#10;- Started on a Lock for mutual exclusion, however, should likely be removed&#10;- Renamed Character to Role  &#10;- Started working on a timeMeasurements-system&#10;...&#10;- Merged Lobby.java with upstream" />
+    <MESSAGE value="- Fixed case sensitive image names (images missing in .jar file)&#10;- Reformulated some text in the scenes&#10;- Renamed chr to r in Hand&#10;- Added extra pop-up in Server (should probably be removed)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed case sensitive image names (images missing in .jar file)&#10;- Reformulated some text in the scenes&#10;- Renamed chr to r in Hand&#10;- Added extra pop-up in Server (should probably be removed)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1611,8 +1604,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="67" column="54" lean-forward="true" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
+        <state relative-caret-position="400">
+          <caret line="60" column="61" lean-forward="false" selection-start-line="60" selection-start-column="61" selection-end-line="60" selection-end-column="61" />
           <folding />
         </state>
       </provider>
