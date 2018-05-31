@@ -57,13 +57,7 @@ public class LookForConnectionAccept implements Runnable {
                 }
             }
 
-        } catch (InterruptedException e) {
-            //e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (InterruptedException | IllegalBlockSizeException | IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

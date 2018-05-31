@@ -33,7 +33,7 @@ public class RequestHandlerThread implements Runnable {
 
                 String user = decryptedInfo.substring(decryptedInfo.indexOf('!') + 1, decryptedInfo.length());
 
-                if(!(serverData.currentNumberOfActiveThreads() < ServerData.MAXIMUM_LOBBIES)){
+                if(!(serverData.currentNumberOfActiveThreads() < ServerData.MAXIMUM_LOBBIES)) {
                     try{
                         SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?", clientCipher);
                         serverData.responseSpace.put(Server.RESPONSE_CODE, encryptedMessage);
@@ -94,13 +94,7 @@ public class RequestHandlerThread implements Runnable {
             }
 
 
-        } catch ( InterruptedException | IOException | IllegalBlockSizeException e){
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
+        } catch ( InterruptedException | IOException | IllegalBlockSizeException | NoSuchPaddingException | InvalidKeyException | NoSuchAlgorithmException e){
             e.printStackTrace();
         }
         System.out.println("Req. Thread is done ");

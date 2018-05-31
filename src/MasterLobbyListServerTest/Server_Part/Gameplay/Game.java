@@ -139,11 +139,7 @@ public class Game {
                                 // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4] message, [5] -
                                 SealedObject encryptedMessage = new SealedObject(Model.NEW_TURN + "!" + two.toString() + "?" + msg + "=", p.getPlayerCipher());
                                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (IllegalBlockSizeException e) {
+                            } catch (InterruptedException | IOException | IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
                         } else {
@@ -152,11 +148,7 @@ public class Game {
                                 // [0] Update, [1] update type, [2] receiver, [3] - , [4] msg, [5] -
                                 SealedObject encryptedMessage = new SealedObject(Model.NEW_TURN + "!?" + msg + "=", p.getPlayerCipher());
                                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (IllegalBlockSizeException e) {
+                            } catch (InterruptedException | IOException | IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
                         }

@@ -19,6 +19,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.UUID;
 
@@ -133,7 +134,7 @@ public class ClientGameUpdate implements Runnable{
                     model.cardsOnHand.add((String) field2);
 
                     ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                    card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                    card1.setImage(new Image(model.cardsOnHand.get(0).toLowerCase() + ".jpg"));
 
                     Label chatText = new Label((String) field3);
                     chatText.setWrapText(true);
@@ -169,7 +170,7 @@ public class ClientGameUpdate implements Runnable{
                                 model.cardsOnHand.remove(0);
                                 model.cardsOnHand.add((String) field4);
                                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                                card1.setImage(new Image(this.getClass().getResource("resources/" + model.cardsOnHand.get(0) + ".jpg").toString()));
                             }
                             break;
                         case "PRINCE":
@@ -177,7 +178,7 @@ public class ClientGameUpdate implements Runnable{
                                 model.cardsOnHand.remove(0);
                                 model.cardsOnHand.add((String) field4);
                                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                                card1.setImage(new Image(this.getClass().getResource("resources/" + model.cardsOnHand.get(0) + ".jpg").toString()));
                             }
                             break;
                     }

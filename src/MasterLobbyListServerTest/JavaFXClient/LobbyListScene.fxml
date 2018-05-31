@@ -7,8 +7,8 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MasterLobbyListServerTest.JavaFXClient.Controller">
    <children>
-      <Button fx:id="btn2" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" onAction="#queryServers" text="Refresh server list" />
-      <Label layoutX="108.0" layoutY="84.0" text="Server list" />
+      <Button fx:id="btn2" layoutX="108.0" layoutY="50.0" mnemonicParsing="false" onAction="#queryServers" text="Refresh lobby list" />
+      <Label layoutX="108.0" layoutY="84.0" text="Lobby list" />
       <ListView fx:id="lobbyList" layoutX="108.0" layoutY="109.0" onMouseClicked="#joinLobby" prefHeight="200.0" prefWidth="200.0" />
       <Button layoutX="414.0" layoutY="109.0" mnemonicParsing="false" onAction="#goToCreateLobbyScene" text="Create new Lobby" />
       <Label fx:id="usernameLabel" layoutX="523.0" layoutY="14.0" text="Username" />

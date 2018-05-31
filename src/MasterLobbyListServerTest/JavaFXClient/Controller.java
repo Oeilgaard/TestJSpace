@@ -189,7 +189,7 @@ public class Controller {
                 model.currentSceneIsGameScene = true;
 
                 ImageView card1 = ((ImageView) model.currentRoot.lookup("#cur_card"));
-                card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + model.cardsOnHand.get(0) + ".jpg"));
+                card1.setImage(new Image(getClass().getResource("resources/" + model.cardsOnHand.get(0) + ".jpg").toString()));
 
                 Label label = (Label)model.currentRoot.lookup("#usernameLabel");
                 label.setText(model.getUserName());
@@ -292,9 +292,9 @@ public class Controller {
 
     public static void loadHand(ArrayList<String> hand, Parent root) {
         ImageView card1 = ((ImageView) root.lookup("#card1"));
-        card1.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(0) + ".jpg"));
+        card1.setImage(new Image(Controller.class.getResource("resources/" + hand.get(0) + ".jpg").toString()));
         ImageView card2 = ((ImageView) root.lookup("#card2"));
-        card2.setImage(new Image("MasterLobbyListServerTest/JavaFXClient/resources/" + hand.get(1) + ".jpg"));
+        card2.setImage(new Image(Controller.class.getResource("resources/" + hand.get(1) + ".jpg").toString()));
     }
 
     @FXML

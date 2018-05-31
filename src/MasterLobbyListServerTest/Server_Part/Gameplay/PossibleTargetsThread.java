@@ -27,72 +27,66 @@ public class PossibleTargetsThread implements Runnable{
 
     @Override
     public void run() {
-        while(true) {
-            try {
+        while(true) try {
 
-                Object[] tuple = lobbySpace.get(new ActualField("TargetablePlayersRequest"), new FormalField(SealedObject.class));
+            Object[] tuple = lobbySpace.get(new ActualField("TargetablePlayersRequest"), new FormalField(SealedObject.class));
 
-                String[] targetsAndReceiver = {"","","","","",""};
-                
-                String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(cipher);
-                
-                String field1 = decryptedMessage.substring(0,decryptedMessage.indexOf('!'));
+            String[] targetsAndReceiver = {"", "", "", "", "", ""};
 
-                targetsAndReceiver[5] = field1;
+            String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(cipher);
 
-                String field2String = decryptedMessage.substring(decryptedMessage.indexOf('!')+1,decryptedMessage.length());
-                int field2 = Integer.parseInt(field2String);
+            String field1 = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
 
-                int index = 0;
+            targetsAndReceiver[5] = field1;
 
-                if ((Integer) field2 == 0) {
-                    for (Player p : model.players) {
-                        if (p.isInRound() && !p.isHandMaidProtected() && !p.isMe((String) field1)) {
-                            String s = p.getName();
-                            s = s.substring(0, s.indexOf("#"));
-                            targetsAndReceiver[index] = s;
-                        }
-                        index++;
+            String field2String = decryptedMessage.substring(decryptedMessage.indexOf('!') + 1, decryptedMessage.length());
+            int field2 = Integer.parseInt(field2String);
+
+            int index = 0;
+
+            if ((Integer) field2 == 0) {
+                for (Player p : model.players) {
+                    if (p.isInRound() && !p.isHandMaidProtected() && !p.isMe((String) field1)) {
+                        String s = p.getName();
+                        s = s.substring(0, s.indexOf("#"));
+                        targetsAndReceiver[index] = s;
                     }
-                } else if ((Integer) field2 == 1){
-                    for (Player p : model.players) {
-                        if (p.isInRound() && !p.isHandMaidProtected()) {
-                            String s = p.getName();
-                            s = s.substring(0, s.indexOf("#"));
-                            targetsAndReceiver[index] = s;
-                        }
-                        index++;
-                    }
-                } else if ((Integer) field2 == 2){
-                    for (Player p : model.players) {
-                        if (p.isInRound()){
-                            String s = p.getName();
-                            s = s.substring(0, s.indexOf("#"));
-                            targetsAndReceiver[index] = s + " : Alive";
-                        } else {
-                            String s = p.getName();
-                            s = s.substring(0, s.indexOf("#"));
-                            targetsAndReceiver[index] = s + " : K.O.";
-                        }
-                        index++;
-                    }
+                    index++;
                 }
-                SealedObject encryptedMessage = new SealedObject(targetsAndReceiver,model.getUserfromName(field1).getPlayerCipher());
-
-                lobbySpace.put("TargetablePlayersResponse", encryptedMessage, model.getUserfromName(field1).getPlayerIndex());
-
-            } catch (InterruptedException e) {
-                //e.printStackTrace();
-                break;
-            } catch (BadPaddingException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            } else if ((Integer) field2 == 1) {
+                for (Player p : model.players) {
+                    if (p.isInRound() && !p.isHandMaidProtected()) {
+                        String s = p.getName();
+                        s = s.substring(0, s.indexOf("#"));
+                        targetsAndReceiver[index] = s;
+                    }
+                    index++;
+                }
+            } else if ((Integer) field2 == 2) {
+                for (Player p : model.players) {
+                    if (p.isInRound()) {
+                        String s = p.getName();
+                        s = s.substring(0, s.indexOf("#"));
+                        targetsAndReceiver[index] = s + " : Alive";
+                    } else {
+                        String s = p.getName();
+                        s = s.substring(0, s.indexOf("#"));
+                        targetsAndReceiver[index] = s + " : K.O.";
+                    }
+                    index++;
+                }
             }
+            SealedObject encryptedMessage = new SealedObject(targetsAndReceiver, model.getUserfromName(field1).getPlayerCipher());
+
+            lobbySpace.put("TargetablePlayersResponse", encryptedMessage, model.getUserfromName(field1).getPlayerIndex());
+
+        } catch (InterruptedException e) {
+            //e.printStackTrace();
+            break;
+        } catch (BadPaddingException | IllegalBlockSizeException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

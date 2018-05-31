@@ -172,20 +172,13 @@ public class ClientUpdateAgent implements Runnable{
 
                                 model = null;
                                 root = null;
-                            } catch (IOException | InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (IllegalBlockSizeException e) {
-                                e.printStackTrace();
-                            } catch (BadPaddingException e) {
-                                e.printStackTrace();
-                            } catch (ClassNotFoundException e) {
+                            } catch (IOException | InterruptedException | ClassNotFoundException | BadPaddingException | IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
                         }
                     });
                     running = false;
                 } else if((int)tuple[1] == Model.NOT_ENOUGH_PLAYERS){
-                    System.out.println("187 NOT_ENOUGH_PLAYERS");
                     Platform.runLater(() -> {
 
                         Label chatText = new Label("You need 2-4 players to start the game.");
@@ -202,9 +195,7 @@ public class ClientUpdateAgent implements Runnable{
                 model = null;
                 root = null;
                 return;
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (IllegalBlockSizeException e) {
+            } catch (IOException | IllegalBlockSizeException e) {
                 e.printStackTrace();
             }
         }
