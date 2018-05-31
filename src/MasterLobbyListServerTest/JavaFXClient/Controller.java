@@ -551,7 +551,9 @@ public class Controller {
             if (mouseEvent.getClickCount() == 2) {
                 indexOfTarget = targetablePlayers.getSelectionModel().getSelectedIndex();
 
-                if(!playerEnableClick[indexOfTarget]){
+                System.out.println(indexOfTarget);
+
+                if(indexOfTarget == -1 || !playerEnableClick[indexOfTarget]){
                     return;
                 }
 
