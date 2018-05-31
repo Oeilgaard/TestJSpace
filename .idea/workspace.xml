@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="- added image files">
+    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="workspace.xml something...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -43,8 +43,8 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="770">
-              <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+            <state relative-caret-position="542">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -671,14 +671,7 @@
       <workItem from="1527675278022" duration="10329000" />
       <workItem from="1527749995314" duration="2962000" />
       <workItem from="1527754733714" duration="265000" />
-      <workItem from="1527772563539" duration="163000" />
-    </task>
-    <task id="LOCAL-00057" summary="...">
-      <created>1521479853987</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1521479853987</updated>
+      <workItem from="1527772563539" duration="323000" />
     </task>
     <task id="LOCAL-00058" summary="...">
       <created>1521479885113</created>
@@ -1016,7 +1009,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527754160347</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="workspace.xml something...">
+      <created>1527772741064</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1527772741065</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1052,7 +1052,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="444083000" />
+    <option name="totallyTimeSpent" value="444243000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1162,7 +1162,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Increased size of game windows...&#10;- Game win messages created&#10;- Fixed some LMS-bugs" />
     <MESSAGE value="- Now clears actionHistory upon game-end and new round&#10;- Players have 30 s to 'pick up' game end tuple&#10;- Various other small fixes" />
     <MESSAGE value="- Started Public Key Crypto (proof of concept with username and lobbyname, however, many missing" />
     <MESSAGE value="- Players can now disconnect during games (rest will get to lobby list scene)&#10;- inLobby flag moved from Controller to Model&#10;- The winning player now starts the next round (int latestWinnerIndex added to Game.class)" />
@@ -1187,7 +1186,8 @@
     <MESSAGE value="- Renamed uniqueName to userID&#10;- Renamed leaderForCurrentLobby to isLeader&#10;- Added BG-image to GameScene&#10;- made flags in JavaFXClient/Model private&#10;- Started on a Lock for mutual exclusion, however, should likely be removed&#10;- Renamed Character to Role  &#10;- Started working on a timeMeasurements-system&#10;...&#10;- Merged Lobby.java with upstream" />
     <MESSAGE value="- Fixed case sensitive image names (images missing in .jar file)&#10;- Reformulated some text in the scenes&#10;- Renamed chr to r in Hand&#10;- Added extra pop-up in Server (should probably be removed)" />
     <MESSAGE value="- added image files" />
-    <option name="LAST_COMMIT_MESSAGE" value="- added image files" />
+    <MESSAGE value="workspace.xml something..." />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml something..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1591,8 +1591,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+        <state relative-caret-position="542">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
