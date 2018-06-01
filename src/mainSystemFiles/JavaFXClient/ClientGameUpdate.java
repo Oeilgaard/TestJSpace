@@ -216,6 +216,7 @@ public class ClientGameUpdate implements Runnable{
 
                 } else if (field1 == Model.WIN) {
 
+                    String lastMessage = model.actionHistory.get(model.actionHistory.size()-1);
                     model.actionHistory.clear();
                     model.cardsOnHand.clear();
                     Label chatText = new Label((String) field2);
@@ -234,6 +235,7 @@ public class ClientGameUpdate implements Runnable{
                         ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 
+                        model.actionHistory.add(lastMessage);
                         model.actionHistory.add((String) field2);
 
                         if (model.currentSceneIsGameScene) {

@@ -464,10 +464,10 @@ public class Game {
             if(model.nearestToPrincess().size() == 1){
                 model.nearestToPrincess().get(0).incrementAffection();
 
-                String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + " won the round with the highest card!" +
+                String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + " won the round with the highest card! " +
                         model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + "'s affection is now " + model.nearestToPrincess().get(0).getAffection()
                         + ". Just " + (model.affectionGoal-model.nearestToPrincess().get(0).getAffection()) + " points away from winning!";;
-                String msgWinner = "The deck is empty! You won the round with the highest card!" +
+                String msgWinner = "The deck is empty! You won the round with the highest card! " +
                         "Your affection is now " + model.nearestToPrincess().get(0).getAffection()
                         + ". Just " + (model.affectionGoal-model.nearestToPrincess().get(0).getAffection()) + " points away from winning!";;
 

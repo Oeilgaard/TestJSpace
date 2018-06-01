@@ -236,9 +236,9 @@ public class Model {
         if(players.get(targetPlayersIndex).getHand().getCards().get(0).getRole() == guess) {
             knockOut(targetPlayersIndex);
 
-            String msgSender = "You guessed correct!";
+            String msgSender = "You used GUARD guessed correct with the guess " + guess.toString() + "!";
             String msgTarget = senderName + " uses GUARD on you and correctly guesses that you have a " + guess.toString();
-            String msgOthers = senderName + " uses GUARD on correctly guessed that " +
+            String msgOthers = senderName + " uses GUARD and correctly guessed that " +
                     targetName + " has a " + guess.toString();
 
             informPlayersAboutTargetedPlay(Role.GUARD.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
@@ -246,7 +246,7 @@ public class Model {
 //         players.get(sender).getDiscardPile().addToDiscardPile(players.get(sender).getHand().getCards().get(index));
 //         players.get(sender).getHand().getCards().remove(index);
         } else {
-            String msgSender = "Incorrect! You used Guard on " + targetName + " with the guess " + guess.toString();
+            String msgSender = "Incorrect! You used GUARD on " + targetName + " with the guess " + guess.toString();
             String msgTarget = senderName + " uses GUARD on you and incorrectly guesses that you have a " + guess.toString();
             String msgOthers = senderName + " uses GUARD on + " + targetName
                     + " and incorrectly guesses " + guess.toString();
@@ -286,24 +286,24 @@ public class Model {
         if(senderPlayerCharacter.getValue() > targetPlayerCharacter.getValue()){
             knockOut(targetPlayersIndex);
 
-            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You win the duel!";
-            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ".";
-            String msgOthers = senderName + " wins the duel.";
+            String msgSender = "You used BARON on " +targetName+" who has a " + targetPlayerCharacter.toString() + ". You win the duel with a " + senderPlayerCharacter.toString() + "!";
+            String msgTarget = senderName + " used BARON on you and has a " + senderPlayerCharacter.toString() + ". You lost the duel with a " + targetPlayerCharacter.toString() + "!";
+            String msgOthers = senderName + " used a baron on " + targetName + " and " + senderName + " won the duel.";
             informPlayersAboutTargetedPlay(Role.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
 
         } else if(senderPlayerCharacter.getValue() < targetPlayerCharacter.getValue()){
             knockOut(sendersIndex);
 
-            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". You lose the duel!";
-            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". You win the duel!";
-            String msgOthers = targetName + " wins the duel.";
+            String msgSender = "You used BARON on " +targetName+" who has a " + targetPlayerCharacter.toString() + ". You lost the duel with a " + senderPlayerCharacter.toString() + "!";
+            String msgTarget = senderName + " used BARON on you and has a " + senderPlayerCharacter.toString() + ". You won the duel with a " + targetPlayerCharacter.toString() + "!";
+            String msgOthers = senderName + " used a BARON on " + targetName + " and " + targetName + " won the duel.";
             informPlayersAboutTargetedPlay(Role.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
         } else {
             System.out.println("Tie! No one is knocked out...");
 
-            String msgSender = "Target player has a " + targetPlayerCharacter.toString() + ". It's a draw!";
-            String msgTarget = senderName + " has a " + senderPlayerCharacter.toString() + ". It's a draw!";
-            String msgOthers = "It's a draw! No one is knocked out!";
+            String msgSender = "You used BARON on " + targetName + ". You both have a " + targetPlayerCharacter.toString() + ". It's a draw!";
+            String msgTarget = senderName + " used BARON on you. You both have a " + targetPlayerCharacter.toString() + ". It's a draw!";
+            String msgOthers = senderName + "used BARON on " + targetName +". It's a draw! No one is knocked out!";
             informPlayersAboutTargetedPlay(Role.BARON.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");}
     }
 
@@ -352,10 +352,10 @@ public class Model {
                     }
                 }
             } else {
-                String msgSender = "You play PRINCE on " + targetName + " who discard the hand and draws a new card.";
+                String msgSender = "You play PRINCE on " + targetName + " who discards their hand and draws a new card.";
                 String msgTarget = senderName + " plays PRINCE on you. You discard" +
                         " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
-                String msgOthers = senderName + " played PRINCE on " + targetName + " who draw a new card.";
+                String msgOthers = senderName + " played PRINCE on " + targetName + " who drew a new card.";
 
                 informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString());
             }
@@ -385,7 +385,7 @@ public class Model {
                     }
                 }
             } else {
-                String msgSender = "You play PRINCE on " + targetName + " who discard their hand.";
+                String msgSender = "You play PRINCE on " + targetName + " who discards their hand.";
                 String msgTarget = senderName + " plays PRINCE on you. You discard your hand.";
                 String msgOthers = senderName + " played PRINCE on " + targetName;
 
@@ -397,7 +397,7 @@ public class Model {
 
             String msgSender = "You play PRINCE on " + targetName + " who draws the secret card.";
             String msgTarget = senderName + " plays PRINCE on you. You discard your hand and draw the secret card " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
-            String msgOthers = senderName + " played PRINCE on " + targetName + " who draw the secret card.";
+            String msgOthers = senderName + " played PRINCE on " + targetName + " who drew the secret card.";
             informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString());
         }
     }
