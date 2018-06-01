@@ -47,6 +47,9 @@ public class Model {
     //protected final static int GAMEPLAY_ACTION = 70;
     //protected final static int PLAY_CARD = 71;
 
+    protected final static int TARGETS_REQUEST = 85;
+    protected final static int TARGETS_RESPONSE = 86;
+
     protected final static int LOBBY_INFO = 90;
 
     // 'HTTP style'

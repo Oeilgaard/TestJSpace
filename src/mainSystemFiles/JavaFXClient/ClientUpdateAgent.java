@@ -151,8 +151,8 @@ public class ClientUpdateAgent implements Runnable{
 
                                 SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2, model.getLobbyCipher());
 
-                                model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                                model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
+                                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                                 ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
                                 ObservableList updItems = updatePlayerListView.getItems();

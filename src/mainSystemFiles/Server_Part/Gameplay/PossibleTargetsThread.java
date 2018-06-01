@@ -26,7 +26,7 @@ public class PossibleTargetsThread implements Runnable{
     public void run() {
         while(true) try {
 
-            Object[] tuple = lobbySpace.get(new ActualField("TargetablePlayersRequest"), new FormalField(SealedObject.class));
+            Object[] tuple = lobbySpace.get(new ActualField(Model.TARGETS_REQUEST), new FormalField(SealedObject.class));
 
             String[] targetsAndReceiver = {"", "", "", "", "", ""};
 
@@ -75,7 +75,7 @@ public class PossibleTargetsThread implements Runnable{
             }
             SealedObject encryptedMessage = new SealedObject(targetsAndReceiver, model.getUserfromName(field1).getPlayerCipher());
 
-            lobbySpace.put("TargetablePlayersResponse", encryptedMessage, model.getUserfromName(field1).getPlayerIndex());
+            lobbySpace.put(Model.TARGETS_RESPONSE, encryptedMessage, model.getUserfromName(field1).getPlayerIndex());
 
         } catch (InterruptedException e) {
             //e.printStackTrace();

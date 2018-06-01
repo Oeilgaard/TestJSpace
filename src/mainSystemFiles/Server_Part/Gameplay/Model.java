@@ -38,6 +38,8 @@ public class Model {
     public final static int GAME_ENDING = 18;
     public final static int GAME_DISCONNECT = 19;
 
+    public final static int TARGETS_REQUEST = 85;
+    public final static int TARGETS_RESPONSE = 86;
 
     public final static int SERVER_UPDATE = 20;
     //public final static int DISCARD = 21;

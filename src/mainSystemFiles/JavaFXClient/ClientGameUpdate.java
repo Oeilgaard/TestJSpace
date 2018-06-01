@@ -111,8 +111,8 @@ public class ClientGameUpdate implements Runnable{
 
                     SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
-                    model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                    model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 
@@ -191,8 +191,8 @@ public class ClientGameUpdate implements Runnable{
                     //chatText.prefWidth(184);
                     SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
-                    model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                    model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 
@@ -223,8 +223,8 @@ public class ClientGameUpdate implements Runnable{
                     //chatText.prefWidth(184);
 
                     SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
-                    model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                    model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 

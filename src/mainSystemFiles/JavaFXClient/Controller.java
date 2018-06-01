@@ -215,8 +215,8 @@ public class Controller {
 
                 SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
-                model.getLobbySpace().put("TargetablePlayersRequest",encryptedMessage);
-                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 String[] listOfNames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
@@ -239,9 +239,9 @@ public class Controller {
 
                 SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)), model.getLobbyCipher());
 
-                model.getLobbySpace().put("TargetablePlayersRequest", encryptedMessage);
+                model.getLobbySpace().put(Model.TARGETS_REQUEST, encryptedMessage);
 
-                Object[] tuple = model.getLobbySpace().get(new ActualField("TargetablePlayersResponse"), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 boolean noTargets = true;
 

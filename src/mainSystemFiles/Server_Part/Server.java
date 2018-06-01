@@ -21,6 +21,8 @@ public class Server {
     protected final static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
     protected final static int PONG_RESP = 24;
 
+
+
     // 'HTTP style'
     protected final static int OK = 200;
     protected final static int BAD_REQUEST = 400;
