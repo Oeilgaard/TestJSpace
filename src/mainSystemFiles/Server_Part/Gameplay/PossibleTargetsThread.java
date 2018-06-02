@@ -73,9 +73,9 @@ public class PossibleTargetsThread implements Runnable{
                     index++;
                 }
             }
-            SealedObject encryptedMessage = new SealedObject(targetsAndReceiver, model.getUserfromName(field1).getPlayerCipher());
+            SealedObject encryptedMessage = new SealedObject(targetsAndReceiver, model.getUserfromUserID(field1).getPlayerCipher());
 
-            lobbySpace.put(Model.TARGETS_RESPONSE, encryptedMessage, model.getUserfromName(field1).getPlayerIndex());
+            lobbySpace.put(Model.TARGETS_RESPONSE, encryptedMessage, model.getUserfromUserID(field1).getPlayerIndex());
 
         } catch (InterruptedException e) {
             //e.printStackTrace();

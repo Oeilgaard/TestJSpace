@@ -86,9 +86,9 @@ public class Model {
         }
     }
 
-    public Player getUserfromName(String name) {
+    public Player getUserfromUserID(String UserID) {
         for (Player user : players){
-            if(user.getuserID().equals(name)){
+            if(user.getuserID().equals(UserID)){
                 return user;
             }
         }
