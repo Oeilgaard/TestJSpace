@@ -224,7 +224,7 @@ public class Controller {
                 updatePlayerListView.getItems().clear();
                 for (int i = 0; i < 4; i++) {
                     if (!listOfNames[i].equals("")) {
-                        updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
+                        updatePlayerListView.getItems().add(i + 1 + ". " + listOfNames[i]);
                     }
                 }
 
@@ -249,7 +249,7 @@ public class Controller {
 
                 for (int i = 0; i < 4; i++) {
                     if (!listOfNames[i].equals("")) {
-                        targetablePlayers.getItems().add(i + ". " + listOfNames[i]);
+                        targetablePlayers.getItems().add(i + 1 + ". " + listOfNames[i]);
                         playerEnableClick[i] = true;
                         noTargets = false;
                     } else {

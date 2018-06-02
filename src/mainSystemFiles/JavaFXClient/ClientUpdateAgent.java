@@ -162,7 +162,7 @@ public class ClientUpdateAgent implements Runnable{
 
                                 for (int i = 0; i < 4; i++) {
                                     if (!listOfnames[i].equals(""))
-                                        updItems.add(i + ". " + listOfnames[i]);
+                                        updItems.add(i + 1 + ". " + listOfnames[i]);
                                 }
 
                                 Controller.gameAgent = new Thread(new ClientGameUpdate(model));

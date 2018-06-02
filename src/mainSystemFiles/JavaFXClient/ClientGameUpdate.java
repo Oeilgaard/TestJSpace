@@ -121,7 +121,7 @@ public class ClientGameUpdate implements Runnable{
                                 updatePlayerListView.getItems().clear();
                                 for (int i = 0; i < 4; i++) {
                                     if (!listOfNames[i].equals("")) {
-                                        updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
+                                        updatePlayerListView.getItems().add(i + 1 + ". " + listOfNames[i]);
                                     }
                                 }
                             }
@@ -208,7 +208,7 @@ public class ClientGameUpdate implements Runnable{
                             updatePlayerListView.getItems().clear();
                             for (int i = 0; i < 4; i++) {
                                 if (!listOfNames[i].equals("")) {
-                                    updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
+                                    updatePlayerListView.getItems().add(i + 1 + ". " + listOfNames[i]);
                                 }
                             }
                         }
@@ -243,7 +243,7 @@ public class ClientGameUpdate implements Runnable{
                             updatePlayerListView.getItems().clear();
                             for (int i = 0; i < 4; i++) {
                                 if (!listOfNames[i].equals("")) {
-                                    updatePlayerListView.getItems().add(i + ". " + listOfNames[i]);
+                                    updatePlayerListView.getItems().add(i + 1 + ". " + listOfNames[i]);
                                 }
                             }
                         }
