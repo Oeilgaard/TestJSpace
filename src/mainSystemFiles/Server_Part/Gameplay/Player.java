@@ -6,16 +6,16 @@ public class Player {
 
     private Hand hand;
     private int affection;
-    private String name;
+    private String userID;
     private DiscardPile discardPile;
     private boolean handmaidProtection;
     private boolean inRound;
     private int playerIndex;
     private Cipher playerCipher;
 
-    public Player(String name, int playerIndex, Cipher playerCipher) {
+    public Player(String userID, int playerIndex, Cipher playerCipher) {
         this.affection = 0;
-        this.name = name;
+        this.userID = userID;
         this.hand = new Hand();
         this.discardPile = new DiscardPile();
         this.handmaidProtection = false;
@@ -24,8 +24,8 @@ public class Player {
         this.playerCipher = playerCipher;
     }
 
-    public String getName() {
-        return name;
+    public String getuserID() {
+        return userID;
     }
 
     /*public void setName(String name) {
@@ -61,11 +61,11 @@ public class Player {
     }
 
     public boolean isMe(String name) {
-        return this.name.equals(name);
+        return this.userID.equals(name);
     }
 
     public void discardCard(int index) {
-        System.out.println(name + " discards " + hand.getCards().get(index).getRole() + Game.newLine);
+        System.out.println(userID + " discards " + hand.getCards().get(index).getRole() + Game.newLine);
         discardPile.addToDiscardPile(hand.getCards().get(index));
         discardPile.addToDiscardPile(hand.getCards().get(index));
         hand.getCards().remove(index);

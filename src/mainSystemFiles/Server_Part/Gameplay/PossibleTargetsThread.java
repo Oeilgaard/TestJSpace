@@ -44,7 +44,7 @@ public class PossibleTargetsThread implements Runnable{
             if ((Integer) field2 == 0) {
                 for (Player p : model.players) {
                     if (p.isInRound() && !p.isHandMaidProtected() && !p.isMe((String) field1)) {
-                        String s = p.getName();
+                        String s = p.getuserID();
                         s = s.substring(0, s.indexOf("#"));
                         targetsAndReceiver[index] = s;
                     }
@@ -53,7 +53,7 @@ public class PossibleTargetsThread implements Runnable{
             } else if ((Integer) field2 == 1) {
                 for (Player p : model.players) {
                     if (p.isInRound() && !p.isHandMaidProtected()) {
-                        String s = p.getName();
+                        String s = p.getuserID();
                         s = s.substring(0, s.indexOf("#"));
                         targetsAndReceiver[index] = s;
                     }
@@ -62,11 +62,11 @@ public class PossibleTargetsThread implements Runnable{
             } else if ((Integer) field2 == 2) {
                 for (Player p : model.players) {
                     if (p.isInRound()) {
-                        String s = p.getName();
+                        String s = p.getuserID();
                         s = s.substring(0, s.indexOf("#"));
                         targetsAndReceiver[index] = s + " : Alive";
                     } else {
-                        String s = p.getName();
+                        String s = p.getuserID();
                         s = s.substring(0, s.indexOf("#"));
                         targetsAndReceiver[index] = s + " : K.O.";
                     }

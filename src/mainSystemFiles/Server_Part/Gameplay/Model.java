@@ -64,7 +64,7 @@ public class Model {
         this.lobbySpace = lobbySpace;
         this.players = new ArrayList<Player>();
         for(LobbyUser user : users) {
-            this.players.add(new Player(user.name,user.userNr,user.personalCipher));
+            this.players.add(new Player(user.userID,user.userNr,user.personalCipher));
         }
     }
 
@@ -88,7 +88,7 @@ public class Model {
 
     public Player getUserfromName(String name) {
         for (Player user : players){
-            if(user.getName().equals(name)){
+            if(user.getuserID().equals(name)){
                 return user;
             }
         }
@@ -136,10 +136,10 @@ public class Model {
 
     public String getWinner(){
         for(Player p : players){
-            System.out.println(p.getName() + "'s affection is: " + p.getAffection());
+            System.out.println(p.getuserID() + "'s affection is: " + p.getAffection());
             System.out.println("The goal: " + affectionGoal);
             if(p.getAffection()==affectionGoal){
-                return p.getName();
+                return p.getuserID();
             }
         }
         return null;
@@ -228,8 +228,8 @@ public class Model {
 
     public void guardAction(int sendersIndex, int cardIndex, int targetPlayersIndex, Role guess){
 
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
-        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
+        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getuserID());
 
         players.get(sendersIndex).discardCard(cardIndex);
 
@@ -256,8 +256,8 @@ public class Model {
 
     public void priestAction(int sendersIndex, int cardIndex, int targetPlayersIndex) {
 
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
-        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
+        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getuserID());
 
         players.get(sendersIndex).discardCard(cardIndex);
 
@@ -270,8 +270,8 @@ public class Model {
 
     public void baronAction(int sendersIndex, int cardIndex, int targetPlayersIndex) {
 
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
-        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
+        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getuserID());
 
         players.get(sendersIndex).discardCard(cardIndex);
 
@@ -309,8 +309,8 @@ public class Model {
 
     public void princeAction(int sendersIndex, int cardIndex, int targetPlayersIndex) {
 
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
-        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
+        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getuserID());
         String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
 
         players.get(sendersIndex).discardCard(cardIndex);
@@ -335,7 +335,7 @@ public class Model {
                         + discardedCard.getRole().toString() + " and draws a new card";
 
                 for(Player p : players){
-                    if(p.getName().equals(players.get(sendersIndex).getName())){
+                    if(p.getuserID().equals(players.get(sendersIndex).getuserID())){
                         try {
                             SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgSender + "=" + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString(), p.getPlayerCipher());
                             lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
@@ -368,7 +368,7 @@ public class Model {
                         + discardedCard.getRole().toString();
 
                 for(Player p : players){
-                    if(p.getName().equals(players.get(sendersIndex).getName())){
+                    if(p.getuserID().equals(players.get(sendersIndex).getuserID())){
                         try {
                             SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + cardName + "?" + msgSender + "=", p.getPlayerCipher());
                             lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
@@ -404,8 +404,8 @@ public class Model {
 
     public void kingAction(int sendersIndex, int cardIndex, int targetPlayersIndex) {
 
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
-        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
+        String targetName = removeIDFromPlayername(players.get(targetPlayersIndex).getuserID());
 
         players.get(sendersIndex).discardCard(cardIndex);
 
@@ -430,7 +430,7 @@ public class Model {
     public void noAction(int sendersIndex, int cardIndex){
 
         String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
 
         String msgSender = "You played " + cardName + " with no effect (no available targets)";
         String msgOthers =  senderName  + " played " + cardName + " with no effect (no available targets)";
@@ -444,7 +444,7 @@ public class Model {
     public void handmaidAction(int sendersIndex, int cardIndex){
 
         String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
 
         players.get(sendersIndex).discardCard(cardIndex);
         players.get(sendersIndex).activateHandmaid();
@@ -458,7 +458,7 @@ public class Model {
     public void countessAction(int sendersIndex, int cardIndex){
 
         String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
 
         players.get(sendersIndex).discardCard(cardIndex);
 
@@ -470,7 +470,7 @@ public class Model {
     public void princessAction(int sendersIndex, int cardIndex) {
 
         String cardName = players.get(sendersIndex).getHand().getCards().get(cardIndex).getRole().toString();
-        String senderName = removeIDFromPlayername(players.get(sendersIndex).getName());
+        String senderName = removeIDFromPlayername(players.get(sendersIndex).getuserID());
 
         players.get(sendersIndex).discardCard(cardIndex);
         players.get(sendersIndex).setInRound(false);
@@ -486,16 +486,16 @@ public class Model {
 
     public void knockOut(int knockedOutIndex) {
         Player p = players.get(knockedOutIndex);
-        System.out.println("Player " + removeIDFromPlayername(p.getName()) + " is out of the round " + Game.newLine);
+        System.out.println("Player " + removeIDFromPlayername(p.getuserID()) + " is out of the round " + Game.newLine);
         p.discardHand();
         p.setInRound(false);
 
-        String msgOthers = "Player " + removeIDFromPlayername(p.getName()) + " is out of the round";
+        String msgOthers = "Player " + removeIDFromPlayername(p.getuserID()) + " is out of the round";
         String msgSender = "You are out of the round";
 
         for(Player rcpt : players) { // 'rcpt' for recipient
             // [0]: update, [1]: type, [2]: recipient name, [3]: knocked out player's name, [4]: Game-log message, [5]; -
-            if(rcpt.getName().equals(p.getName())){
+            if(rcpt.getuserID().equals(p.getuserID())){
                 try {
                     SealedObject encryptedMessage = new SealedObject(KNOCK_OUT + "!?" + msgSender + "=",rcpt.getPlayerCipher());
                     lobbySpace.put(CLIENT_UPDATE, encryptedMessage ,rcpt.getPlayerIndex());
@@ -517,14 +517,14 @@ public class Model {
                                                int receiverIndex, String kingCardToSender, String kingCardToTarget){
 
         for(Player p : players){
-            if(p.getName().equals(players.get(senderIndex).getName())){
+            if(p.getuserID().equals(players.get(senderIndex).getuserID())){
                 try {
                     SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgSender + "=" + kingCardToSender,p.getPlayerCipher());
                     lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                 } catch (InterruptedException | IOException | IllegalBlockSizeException e) {
                     e.printStackTrace();
                 }
-            } else if(p.getName().equals(players.get(receiverIndex).getName())){
+            } else if(p.getuserID().equals(players.get(receiverIndex).getuserID())){
                 try {
                     SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgTarget + "=" + kingCardToTarget,p.getPlayerCipher());
                     lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
@@ -544,7 +544,7 @@ public class Model {
 
     public void informPlayersAboutUntargetedPlay(String card, int senderIndex, String msgSender, String msgOthers){
         for(Player p : players){
-            if(!p.getName().equals(players.get(senderIndex).getName())){
+            if(!p.getuserID().equals(players.get(senderIndex).getuserID())){
                 try {
                     SealedObject encryptedMessage = new SealedObject(OUTCOME + "!" + card + "?" + msgOthers + "=",p.getPlayerCipher());
                     lobbySpace.put(CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());

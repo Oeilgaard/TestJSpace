@@ -4,13 +4,13 @@ import javax.crypto.Cipher;
 
 public class LobbyUser {
 
-    public String name;
+    public String userID;
     public int threadNr;
     public Cipher personalCipher;
     public int userNr;
 
-    LobbyUser (String name, int threadNr,Cipher personalCipher, int userNr){
-        this.name = name;
+    LobbyUser (String userID, int threadNr,Cipher personalCipher, int userNr){
+        this.userID = userID;
         this.threadNr = threadNr;
         this.personalCipher = personalCipher;
         this.userNr = userNr;

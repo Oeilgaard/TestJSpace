@@ -160,7 +160,7 @@ public class Lobby implements Runnable {
                         if (name.equals(lobbyLeader)) {
                             isThisPlayerLobbyLeader = true;
                         }
-                        SealedObject encryptedMessage = new SealedObject(name + "!" + isThisPlayerLobbyLeader + "?" + getUserfromName(name).userNr, cipher);
+                        SealedObject encryptedMessage = new SealedObject(name + "!" + isThisPlayerLobbyLeader + "?" + getUserfromuserID(name).userNr, cipher);
                         lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, encryptedMessage);
                         updatePlayers(name, CONNECT);
                     } else { // lobby full
@@ -177,8 +177,8 @@ public class Lobby implements Runnable {
                         updatePlayers(name, CLOSE);
                         break;
                     }
-                    int indexForPlayer = getUserfromName(name).userNr;
-                    users.remove(getUserfromName(name)); // remove player from players
+                    int indexForPlayer = getUserfromuserID(name).userNr;
+                    users.remove(getUserfromuserID(name)); // remove player from players
                     availableNrs.add(indexForPlayer);
                     noPlayers--;
                     updatePlayers(name, DISCONNECT);
@@ -202,11 +202,11 @@ public class Lobby implements Runnable {
 
                     ArrayList<String> userNames = new ArrayList<>();
                     for (LobbyUser user : users) {
-                        String s = user.name;
+                        String s = user.userID;
                         s = s.substring(0, s.indexOf("#"));
                         userNames.add(s);
                     }
-                    lobbySpace.put(LOBBY_RESP, userNames, getUserfromName(name).userNr);
+                    lobbySpace.put(LOBBY_RESP, userNames, getUserfromuserID(name).userNr);
                 } else {
                     System.out.println("Unknown request");
                     System.out.println(field1);
@@ -217,9 +217,9 @@ public class Lobby implements Runnable {
         }
     }
 
-    private LobbyUser getUserfromName(String name) {
+    private LobbyUser getUserfromuserID(String userID) {
         for (LobbyUser user : users){
-            if(user.name.equals(name)){
+            if(user.userID.equals(userID)){
                 return user;
             }
         }
@@ -236,7 +236,7 @@ public class Lobby implements Runnable {
             }
         } else {
             for(LobbyUser u : users) {
-                String p = u.name;
+                String p = u.userID;
                 if(!p.equals(actingPlayer)) {
                     lobbySpace.put(LOBBY_UPDATE, action, "", u.threadNr, u.userNr);
                 }

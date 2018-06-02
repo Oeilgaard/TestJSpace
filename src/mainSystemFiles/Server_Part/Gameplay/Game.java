@@ -114,7 +114,7 @@ public class Game {
                 if(currentPlayer.isInRound()) {
                     // States current player's turn
                     System.out.println("Round no. " + model.round + newLine + "Turn no. "
-                            + (model.turn) + newLine + currentPlayer.getName() + "'s turn" + newLine);
+                            + (model.turn) + newLine + currentPlayer.getuserID() + "'s turn" + newLine);
 
                     // 1. DEACTIVATE POTENTIAL HANDMAID EFFECT
                     if(currentPlayer.isHandMaidProtected()) {
@@ -124,16 +124,16 @@ public class Game {
                     // 2. DRAW
                     model.deck.drawCard(currentPlayer.getHand());
                     Card two = currentPlayer.getHand().getCards().get(1); // temp. variable for drawn card
-                    System.out.println(currentPlayer.getName() + " drew a " + two.getRole() + newLine);
+                    System.out.println(currentPlayer.getuserID() + " drew a " + two.getRole() + newLine);
 
-                    System.out.println(currentPlayer.getName() + "'s current hand: ");
+                    System.out.println(currentPlayer.getuserID() + "'s current hand: ");
                     currentPlayer.getHand().printHand();
                     System.out.print(newLine);
 
                     // Inform all players about the new turn, and also send the drawn card to current player's turn
                     for(Player p : model.players){
                         String msg = "Round " + model.round + ", " + "Turn " + model.turn + " - ";
-                        if(p.getName().equals(currentPlayer.getName())) {
+                        if(p.getuserID().equals(currentPlayer.getuserID())) {
                             try {
                                 msg += "Your turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4] message, [5] -
@@ -144,7 +144,7 @@ public class Game {
                             }
                         } else {
                             try {
-                                msg += model.removeIDFromPlayername(currentPlayer.getName()) + "'s turn";
+                                msg += model.removeIDFromPlayername(currentPlayer.getuserID()) + "'s turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] - , [4] msg, [5] -
                                 SealedObject encryptedMessage = new SealedObject(Model.NEW_TURN + "!?" + msg + "=", p.getPlayerCipher());
                                 lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
@@ -214,7 +214,7 @@ public class Game {
 
             if(Integer.parseInt(field1)== Model.DISCARD) {
                 // If we receive a tuple matching the pattern, however, the sender is not the current player, we do nothing
-                if(!(field2).equals(currentPlayer.getName())){
+                if(!(field2).equals(currentPlayer.getuserID())){
                     return;
                 }
 
@@ -256,7 +256,7 @@ public class Game {
 
                 // Notify everyone, except the disconnected user
                 for (Player p : model.players) {
-                    if (!p.getName().equals(field2)) {
+                    if (!p.getuserID().equals(field2)) {
                         SealedObject encryptedMessage = new SealedObject(Model.GAME_DISCONNECT + "!?=", p.getPlayerCipher());
                         lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
                     }
@@ -284,7 +284,7 @@ public class Game {
             if(role == Role.PRINCE){
                 return !target.isHandMaidProtected() && target.isInRound();
             } else {
-                return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getName());
+                return !target.isHandMaidProtected() && target.isInRound() && !target.isMe(currentPlayer.getuserID());
             }
         }
     }
@@ -345,7 +345,7 @@ public class Game {
 
     private void playUntargettedCard(Role chosenRole, Player currentPlayer, int cardIndex){
         if(chosenRole == Role.HANDMAID){
-            System.out.println(currentPlayer.getName() + " is handmaid protected until next turn...");
+            System.out.println(currentPlayer.getuserID() + " is handmaid protected until next turn...");
             model.handmaidAction(model.indexOfCurrentPlayersTurn(), cardIndex);
         } else if(chosenRole == Role.COUNTESS) {
             model.countessAction(model.indexOfCurrentPlayersTurn(), cardIndex);
@@ -388,8 +388,8 @@ public class Game {
                     legalPlay = true;
                 } else if(chosenRole == Role.KING) { // i.e. chosenRole == Role.KING
                     //currentPlayer.getHand().printHand();
-                    System.out.println(currentPlayer.getName() + " gets " + model.players.get(playerTargetIndexInt).getHand().getCards().get(0).getRole());
-                    System.out.println(model.players.get(playerTargetIndexInt).getName() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getRole());
+                    System.out.println(currentPlayer.getuserID() + " gets " + model.players.get(playerTargetIndexInt).getHand().getCards().get(0).getRole());
+                    System.out.println(model.players.get(playerTargetIndexInt).getuserID() + " gets " + currentPlayer.getHand().getCards().get(cardIndex%2).getRole());
                     model.kingAction(model.indexOfCurrentPlayersTurn(), cardIndex, playerTargetIndexInt);
                     legalPlay = true;
                 } else {
@@ -430,8 +430,8 @@ public class Game {
 
             model.lastMan().incrementAffection();
 
-            String msgOthers = model.removeIDFromPlayername(model.lastMan().getName()) + " won the round as last man standing! " +
-                    model.removeIDFromPlayername(model.lastMan().getName()) + "'s affection is now " + model.lastMan().getAffection()
+            String msgOthers = model.removeIDFromPlayername(model.lastMan().getuserID()) + " won the round as last man standing! " +
+                    model.removeIDFromPlayername(model.lastMan().getuserID()) + "'s affection is now " + model.lastMan().getAffection()
                     + ". Just " + (model.affectionGoal-model.lastMan().getAffection()) + " points away from winning!";
             String msgWinner = "You won the round as last man standing! Your affection is now " + model.lastMan().getAffection()
                     + ". Just " + (model.affectionGoal-model.lastMan().getAffection()) + " points away from winning!";
@@ -440,7 +440,7 @@ public class Game {
             latestWinnerIndex = model.playersIndex(model.lastMan());
 
             for(Player p : model.players){
-                if(p.getName().equals(model.lastMan().getName())){
+                if(p.getuserID().equals(model.lastMan().getuserID())){
                     try {
                         SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgWinner + "?=", p.getPlayerCipher());
 
@@ -464,8 +464,8 @@ public class Game {
             if(model.nearestToPrincess().size() == 1){
                 model.nearestToPrincess().get(0).incrementAffection();
 
-                String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + " won the round with the highest card! " +
-                        model.removeIDFromPlayername(model.nearestToPrincess().get(0).getName()) + "'s affection is now " + model.nearestToPrincess().get(0).getAffection()
+                String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.nearestToPrincess().get(0).getuserID()) + " won the round with the highest card! " +
+                        model.removeIDFromPlayername(model.nearestToPrincess().get(0).getuserID()) + "'s affection is now " + model.nearestToPrincess().get(0).getAffection()
                         + ". Just " + (model.affectionGoal-model.nearestToPrincess().get(0).getAffection()) + " points away from winning!";;
                 String msgWinner = "The deck is empty! You won the round with the highest card! " +
                         "Your affection is now " + model.nearestToPrincess().get(0).getAffection()
@@ -474,7 +474,7 @@ public class Game {
                 model.setRoundWon(true);
 
                 for(Player p : model.players){
-                    if(p.getName().equals(model.lastMan().getName())){
+                    if(p.getuserID().equals(model.lastMan().getuserID())){
                         try {
                             // [0] update [1] type [2] tuple recipient [3] Message for GameLog [4] winner's name [5] winner's affection
                             SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgWinner + "?=", p.getPlayerCipher());
@@ -497,9 +497,9 @@ public class Game {
                 if(model.compareHandWinners().size() == 1) {
                     model.compareHandWinners().get(0).incrementAffection();
 
-                    String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.compareHandWinners().get(0).getName()) +
+                    String msgOthers = "The deck is empty! " + model.removeIDFromPlayername(model.compareHandWinners().get(0).getuserID()) +
                             " won the round with the highest discard pile! " +
-                            model.removeIDFromPlayername(model.compareHandWinners().get(0).getName()) + "'s affection is now " +
+                            model.removeIDFromPlayername(model.compareHandWinners().get(0).getuserID()) + "'s affection is now " +
                             model.compareHandWinners().get(0).getAffection()
                             + ". Just " + (model.affectionGoal-model.compareHandWinners().get(0).getAffection()) + " points away from winning!";
                     String msgWinner = "The deck is empty! " + " You won the round with the highest discard pile! " +
@@ -508,7 +508,7 @@ public class Game {
                     model.setRoundWon(true);
 
                     for(Player p : model.players){
-                        if(p.getName().equals(model.lastMan().getName())) {
+                        if(p.getuserID().equals(model.lastMan().getuserID())) {
                             try {
                                 // [0] update [1] type [2] tuple recipient [3] Message for GameLog [4] winner's name [5] winner's affection
                                 SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgWinner + "?=", p.getPlayerCipher());
@@ -552,7 +552,7 @@ public class Game {
             return true;
         } else {
             for(Player p : model.players){
-                if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(currentPlayer.getName())){
+                if(p.isInRound() && !p.isHandMaidProtected() && !p.isMe(currentPlayer.getuserID())){
                     return true;
                 }
             }

@@ -29,7 +29,7 @@ public class LobbyChatAgent implements Runnable {
                 System.out.println("Receive chat update from : " + field1);
                 for (LobbyUser user : users) {
                     // [0] lobby code, [1] chat code, [2] name of the receiving player, [3] text message combined with sending username
-                    System.out.println("Sending chat message to " + user.name + " with thread id " + user.threadNr);
+                    System.out.println("Sending chat message to " + user.userID + " with thread id " + user.threadNr);
                     lobbySpace.put(Lobby.LOBBY_UPDATE, Lobby.CHAT_MESSAGE, field1, user.threadNr, user.userNr);
                 }
 
