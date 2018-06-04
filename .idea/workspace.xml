@@ -9,47 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/ChooseGuessScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/ConnectingToLobby.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/CreateLobbyScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/GameCommunicationAgent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/GameScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/HelperFunctions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/JoinServerScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyCommunicationAgent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyConnectionResponseSeeker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyConnectionTimer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyListScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyResponseMonitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/Model.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/PickPlayerScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/PlayCardScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/UserNameScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/VictoryScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Card.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Deck.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/DiscardPile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Hand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Model.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/PossibleTargetsThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Lobby.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/LobbyChatAgent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/LobbyUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/RequestHandlerThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/ServerData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/stress_testing/FilledLobbyTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/stress_testing/LobbychatTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/mainSystemFiles/client/ControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/mainSystemFiles/server/ServerTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -193,8 +152,8 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="50" column="47" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="47" />
+            <state relative-caret-position="203">
+              <caret line="55" column="40" lean-forward="true" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -446,6 +405,13 @@
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
+              <item name="client_simulation_testing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -454,7 +420,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="Gameplay" type="462c0819:PsiDirectoryNode" />
+              <item name="gameplay" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
@@ -546,12 +512,12 @@
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
     <configuration name="FilledLobbyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main_system_files.stress_testing.FilledLobbyTest" />
+      <option name="MAIN_CLASS_NAME" value="main_system_files.client_simulation_testing.FilledLobbyTest" />
       <module name="Love_Tuples" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main_system_files.stress_testing.*" />
+          <option name="PATTERN" value="main_system_files.client_simulation_testing.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -741,20 +707,6 @@
       <workItem from="1524471462541" duration="18123000" />
       <workItem from="1524572106354" duration="36000" />
       <workItem from="1524641070629" duration="6171000" />
-    </task>
-    <task id="LOCAL-00066" summary="- (hope) I implemented the possibility to play a targetted card w. no effect if no possible targets available.">
-      <created>1522143845663</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1522143845663</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Fixed a parsing error (with playerTargetIndexInt)">
-      <created>1522149685128</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1522149685128</updated>
     </task>
     <task id="LOCAL-00068" summary="Prince self-target works">
       <created>1522153887475</created>
@@ -1085,7 +1037,21 @@
       <option name="project" value="LOCAL" />
       <updated>1527946197122</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="- Refactoring of the class names and packages">
+      <created>1528103210027</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1528103210027</updated>
+    </task>
+    <task id="LOCAL-00116" summary="- Refactoring of the class names and packages">
+      <created>1528103990468</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1528103990468</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1145,7 +1111,7 @@
       <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.55417275" side_tool="true" weight="0.35367763" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36969253" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36969253" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48609078" weight="0.3286385" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1200,7 +1166,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Slight rearrangengement and clean-up of code.&#10;- Commenting of Gameplay (not done though)&#10;- Seperated joinServer into joinServerLogic and original method &#10;- Made first test for joinServerLogic &#10;- Added Ping-pong testing method&#10;- Added 'bloom' hover effect on cards" />
     <MESSAGE value="- Added tests (i.e. jUnit testin) to git&#10;- Renamed various variables&#10;- Seperated 'logic' from Controller to Model (NOT done)&#10;- Various jUnit-tests&#10;- Renamed connect to Lobby codes (i.e. from 0, 1, 2 to proper codes)" />
     <MESSAGE value="- Fixed double msg's in chat" />
     <MESSAGE value="- Changed a few ServerCiphers to LobbyCiphers" />
@@ -1225,7 +1190,8 @@
     <MESSAGE value="- Updated action messages" />
     <MESSAGE value="- Numbering on players ingame is now more sensible" />
     <MESSAGE value="- Refactoring of username to userID" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Refactoring of username to userID" />
+    <MESSAGE value="- Refactoring of the class names and packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Refactoring of the class names and packages" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1267,21 +1233,21 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/PossibleTargetsThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
@@ -1428,7 +1394,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/stress_testing/FilledLobbyTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2720">
           <caret line="173" column="26" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
@@ -1456,70 +1422,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/stress_testing/LobbychatTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/LobbyChatTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Card.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/DiscardPile.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/DiscardPile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Deck.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="238" column="25" lean-forward="true" selection-start-line="238" selection-start-column="25" selection-end-line="238" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Hand.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Hand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1445">
           <caret line="91" column="28" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/PossibleTargetsThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1173">
           <caret line="77" column="92" selection-start-line="77" selection-start-column="92" selection-end-line="77" selection-end-column="92" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
@@ -1612,8 +1578,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="50" column="47" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="47" />
+        <state relative-caret-position="203">
+          <caret line="55" column="40" lean-forward="true" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
         </state>
       </provider>
     </entry>
