@@ -6,17 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="- added MANIFEST.MF">
+    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/client/Controller.java" afterPath="$PROJECT_DIR$/src/main_system_files/client/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java" afterPath="$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/client/Model.java" afterPath="$PROJECT_DIR$/src/main_system_files/client/Model.java" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java" afterPath="$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/server/Server.java" afterPath="$PROJECT_DIR$/src/main_system_files/server/Server.java" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java" afterPath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" afterPath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" />
-      <change beforePath="$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java" afterPath="$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java" />
-      <change beforePath="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" afterPath="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,18 +40,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="386" column="39" lean-forward="true" selection-start-line="386" selection-start-column="39" selection-end-line="386" selection-end-column="39" />
+            <state relative-caret-position="997">
+              <caret line="384" column="39" lean-forward="false" selection-start-line="384" selection-start-column="39" selection-end-line="384" selection-end-column="39" />
               <folding>
-                <element signature="e#15416#15417#0" expanded="true" />
-                <element signature="e#15451#15452#0" expanded="true" />
-                <element signature="e#15497#15498#0" expanded="true" />
-                <element signature="e#15538#15539#0" expanded="true" />
-                <element signature="e#15804#15805#0" expanded="true" />
-                <element signature="e#15844#15845#0" expanded="true" />
+                <element signature="e#3386#3387#0" expanded="true" />
+                <element signature="e#3452#3453#0" expanded="true" />
+                <element signature="e#3647#3648#0" expanded="true" />
+                <element signature="e#3710#3711#0" expanded="true" />
+                <element signature="e#3759#3760#0" expanded="true" />
+                <element signature="e#3796#3797#0" expanded="true" />
+                <element signature="e#4456#4457#0" expanded="true" />
+                <element signature="e#4487#4488#0" expanded="true" />
+                <element signature="e#4526#4527#0" expanded="true" />
+                <element signature="e#4561#4562#0" expanded="true" />
+                <element signature="e#4663#4664#0" expanded="true" />
+                <element signature="e#4705#4706#0" expanded="true" />
+                <element signature="e#4751#4752#0" expanded="true" />
+                <element signature="e#4792#4793#0" expanded="true" />
+                <element signature="e#4836#4837#0" expanded="true" />
+                <element signature="e#4871#4872#0" expanded="true" />
+                <element signature="e#4913#4914#0" expanded="true" />
+                <element signature="e#4946#4947#0" expanded="true" />
+                <element signature="e#5449#5450#0" expanded="true" />
+                <element signature="e#5485#5486#0" expanded="true" />
+                <element signature="e#5518#5519#0" expanded="true" />
+                <element signature="e#5547#5548#0" expanded="true" />
+                <element signature="e#5591#5592#0" expanded="true" />
+                <element signature="e#5627#5628#0" expanded="true" />
+                <element signature="e#5689#5690#0" expanded="true" />
+                <element signature="e#5733#5734#0" expanded="true" />
+                <element signature="e#5799#5800#0" expanded="true" />
+                <element signature="e#5857#5858#0" expanded="true" />
+                <element signature="e#5898#5899#0" expanded="true" />
+                <element signature="e#5938#5939#0" expanded="true" />
+                <element signature="e#5974#5975#0" expanded="true" />
+                <element signature="e#6007#6008#0" expanded="true" />
+                <element signature="e#6052#6053#0" expanded="true" />
+                <element signature="e#6088#6089#0" expanded="true" />
+                <element signature="e#6123#6124#0" expanded="true" />
+                <element signature="e#6153#6154#0" expanded="true" />
+                <element signature="e#6200#6201#0" expanded="true" />
+                <element signature="e#6238#6239#0" expanded="true" />
+                <element signature="e#6365#6366#0" expanded="true" />
+                <element signature="e#6404#6405#0" expanded="true" />
+                <element signature="e#15434#15435#0" expanded="true" />
+                <element signature="e#15469#15470#0" expanded="true" />
+                <element signature="e#15515#15516#0" expanded="true" />
+                <element signature="e#15556#15557#0" expanded="true" />
+                <element signature="e#15822#15823#0" expanded="true" />
+                <element signature="e#15862#15863#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,16 +111,16 @@
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
-              <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="40" />
+              <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
+            <state relative-caret-position="494">
               <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
@@ -99,11 +130,11 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3306">
-              <caret line="186" column="24" lean-forward="true" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="24" />
+            <state relative-caret-position="3287">
+              <caret line="190" column="13" lean-forward="false" selection-start-line="190" selection-start-column="13" selection-end-line="190" selection-end-column="13" />
               <folding>
-                <element signature="e#29386#29387#0" expanded="true" />
-                <element signature="e#29435#29436#0" expanded="true" />
+                <element signature="e#29292#29293#0" expanded="true" />
+                <element signature="e#29341#29342#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,7 +164,7 @@
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -152,8 +183,8 @@
       <file leaf-file-name="RequestHandlerThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="781">
-              <caret line="70" column="99" lean-forward="false" selection-start-line="70" selection-start-column="99" selection-end-line="70" selection-end-column="99" />
+            <state relative-caret-position="800">
+              <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -201,8 +232,8 @@
       <find>prince</find>
       <find>yo</find>
       <find>discardedCard</find>
-      <find>S2C_CREATE_RESP</find>
       <find>game_ending</find>
+      <find>S2C_CREATE_RESP</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Ole\IdeaProjects\TestJSpace</dir>
@@ -410,7 +441,19 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/META-INF/MANIFEST.MF</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/Controller.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyCommunicationAgent.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionResponseSeeker.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/Model.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/Lobby.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/LobbyChatAgent.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/Server.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -418,46 +461,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/ChooseGuessScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/ConnectingToLobby.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/Controller.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/CreateLobbyScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/GameScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/HelperFunctions.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/JoinServerScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyCommunicationAgent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionResponseSeeker.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionTimer.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyListScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyResponseMonitor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/LobbyScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/Main.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/Model.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/PickPlayerScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/PlayCardScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/UserNameScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/VictoryScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyTest.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client_simulation_testing/LobbyChatTest.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/Lobby.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/LobbyChatAgent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/LobbyUser.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/META-INF/MANIFEST.MF</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/Server.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/ServerData.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Card.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Deck.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/DiscardPile.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Hand.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Player.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Role.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -465,46 +468,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ChooseGuessScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientGameUpdate.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientUpdateAgent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ConnectingToLobby.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Controller.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/CreateLobbyScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/GameScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/HelperFunctions.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/JoinServerScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LobbyListScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LobbyScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LookForConnectionAccept.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Main.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Model.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/PickPlayerScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/PlayCardScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ServerResponseMonitor.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/TimerForLobbyJoining.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/UserNameScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/VictoryScene.fxml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Card.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Deck.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/DiscardPile.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Game.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Hand.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Player.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Role.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Lobby.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyChatAgent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyUser.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/META-INF/MANIFEST.MF</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/RequestHandlerThread.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Server.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/Server_Part/ServerData.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/StressTesting/FilledLobbyTest.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/mainSystemFiles/StressTesting/LobbychatTest.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/mainSystemFiles/Server_Part/ServerTest.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -866,14 +829,7 @@
       <workItem from="1527851011912" duration="2639000" />
       <workItem from="1527945092170" duration="3217000" />
       <workItem from="1528016108136" duration="2276000" />
-      <workItem from="1528101743894" duration="8841000" />
-    </task>
-    <task id="LOCAL-00061" summary="Fixed turn numbering&#10;Fixed ID of 'Round x, Turn y, Alice's turn&quot;&#10;Perhaps older things I have forgotton about unfortunately">
-      <created>1522070585227</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1522070585227</updated>
+      <workItem from="1528101743894" duration="10031000" />
     </task>
     <task id="LOCAL-00062" summary="Worked on KNOCK_OUT">
       <created>1522074781778</created>
@@ -1211,7 +1167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528106411798</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="- added spacing to instructionsUserName&#10;- &quot;You won the game&quot; fix&#10;- Renamed some codes to new names&#10;- Hvis lobbyCipher er null sender vi ikke disconnect tuple (som gav null pointer exception før)">
+      <created>1528118884024</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1528118884024</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1247,7 +1210,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="463608000" />
+    <option name="totallyTimeSpent" value="464798000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1260,7 +1223,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="22" width="1920" height="1174" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940108" sideWeight="0.49166667" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35480943" sideWeight="0.43489584" order="6" side_tool="false" content_ui="tabs" />
@@ -1268,7 +1230,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35480943" sideWeight="0.5651042" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35480943" sideWeight="0.5651042" order="10" side_tool="true" content_ui="tabs" x="19" y="675" width="1916" height="354" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17291667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1357,7 +1319,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Started Public Key Crypto (proof of concept with username and lobbyname, however, many missing" />
     <MESSAGE value="- Players can now disconnect during games (rest will get to lobby list scene)&#10;- inLobby flag moved from Controller to Model&#10;- The winning player now starts the next round (int latestWinnerIndex added to Game.class)" />
     <MESSAGE value="- started on jUnit 4" />
     <MESSAGE value="- A bit of refactoring&#10;- Introduced a new ExecutorService for RequestThreads" />
@@ -1382,7 +1343,8 @@
     <MESSAGE value="- added image files" />
     <MESSAGE value="workspace.xml something..." />
     <MESSAGE value="- added MANIFEST.MF" />
-    <option name="LAST_COMMIT_MESSAGE" value="- added MANIFEST.MF" />
+    <MESSAGE value="- added spacing to instructionsUserName&#10;- &quot;You won the game&quot; fix&#10;- Renamed some codes to new names&#10;- Hvis lobbyCipher er null sender vi ikke disconnect tuple (som gav null pointer exception før)" />
+    <option name="LAST_COMMIT_MESSAGE" value="- added spacing to instructionsUserName&#10;- &quot;You won the game&quot; fix&#10;- Renamed some codes to new names&#10;- Hvis lobbyCipher er null sender vi ikke disconnect tuple (som gav null pointer exception før)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1612,14 +1574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="686">
@@ -1630,8 +1584,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="70" column="99" lean-forward="false" selection-start-line="70" selection-start-column="99" selection-end-line="70" selection-end-column="99" />
+        <state relative-caret-position="800">
+          <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1646,11 +1600,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3306">
-          <caret line="186" column="24" lean-forward="true" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="24" />
+        <state relative-caret-position="3287">
+          <caret line="190" column="13" lean-forward="false" selection-start-line="190" selection-start-column="13" selection-end-line="190" selection-end-column="13" />
           <folding>
-            <element signature="e#29386#29387#0" expanded="true" />
-            <element signature="e#29435#29436#0" expanded="true" />
+            <element signature="e#29292#29293#0" expanded="true" />
+            <element signature="e#29341#29342#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1658,7 +1612,7 @@
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1679,26 +1633,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="997">
+          <caret line="384" column="39" lean-forward="false" selection-start-line="384" selection-start-column="39" selection-end-line="384" selection-end-column="39" />
+          <folding>
+            <element signature="e#3386#3387#0" expanded="true" />
+            <element signature="e#3452#3453#0" expanded="true" />
+            <element signature="e#3647#3648#0" expanded="true" />
+            <element signature="e#3710#3711#0" expanded="true" />
+            <element signature="e#3759#3760#0" expanded="true" />
+            <element signature="e#3796#3797#0" expanded="true" />
+            <element signature="e#4456#4457#0" expanded="true" />
+            <element signature="e#4487#4488#0" expanded="true" />
+            <element signature="e#4526#4527#0" expanded="true" />
+            <element signature="e#4561#4562#0" expanded="true" />
+            <element signature="e#4663#4664#0" expanded="true" />
+            <element signature="e#4705#4706#0" expanded="true" />
+            <element signature="e#4751#4752#0" expanded="true" />
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4836#4837#0" expanded="true" />
+            <element signature="e#4871#4872#0" expanded="true" />
+            <element signature="e#4913#4914#0" expanded="true" />
+            <element signature="e#4946#4947#0" expanded="true" />
+            <element signature="e#5449#5450#0" expanded="true" />
+            <element signature="e#5485#5486#0" expanded="true" />
+            <element signature="e#5518#5519#0" expanded="true" />
+            <element signature="e#5547#5548#0" expanded="true" />
+            <element signature="e#5591#5592#0" expanded="true" />
+            <element signature="e#5627#5628#0" expanded="true" />
+            <element signature="e#5689#5690#0" expanded="true" />
+            <element signature="e#5733#5734#0" expanded="true" />
+            <element signature="e#5799#5800#0" expanded="true" />
+            <element signature="e#5857#5858#0" expanded="true" />
+            <element signature="e#5898#5899#0" expanded="true" />
+            <element signature="e#5938#5939#0" expanded="true" />
+            <element signature="e#5974#5975#0" expanded="true" />
+            <element signature="e#6007#6008#0" expanded="true" />
+            <element signature="e#6052#6053#0" expanded="true" />
+            <element signature="e#6088#6089#0" expanded="true" />
+            <element signature="e#6123#6124#0" expanded="true" />
+            <element signature="e#6153#6154#0" expanded="true" />
+            <element signature="e#6200#6201#0" expanded="true" />
+            <element signature="e#6238#6239#0" expanded="true" />
+            <element signature="e#6365#6366#0" expanded="true" />
+            <element signature="e#6404#6405#0" expanded="true" />
+            <element signature="e#15434#15435#0" expanded="true" />
+            <element signature="e#15469#15470#0" expanded="true" />
+            <element signature="e#15515#15516#0" expanded="true" />
+            <element signature="e#15556#15557#0" expanded="true" />
+            <element signature="e#15822#15823#0" expanded="true" />
+            <element signature="e#15862#15863#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="386" column="39" lean-forward="true" selection-start-line="386" selection-start-column="39" selection-end-line="386" selection-end-column="39" />
-          <folding>
-            <element signature="e#15416#15417#0" expanded="true" />
-            <element signature="e#15451#15452#0" expanded="true" />
-            <element signature="e#15497#15498#0" expanded="true" />
-            <element signature="e#15538#15539#0" expanded="true" />
-            <element signature="e#15804#15805#0" expanded="true" />
-            <element signature="e#15844#15845#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="494">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
