@@ -1,4 +1,4 @@
-package main_system_files.stress_testing;
+package main_system_files.client_simulation_testing;
 
 import org.jspace.ActualField;
 import org.jspace.FormalField;

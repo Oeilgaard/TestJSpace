@@ -1,4 +1,4 @@
-package main_system_files.stress_testing;
+package main_system_files.client_simulation_testing;
 
 import org.jspace.ActualField;
 import org.jspace.FormalField;
@@ -13,7 +13,7 @@ import java.security.PublicKey;
 import java.util.List;
 import java.util.UUID;
 
-public class LobbychatTest {
+public class LobbyChatTest {
     public static int nrOfClients = 196;
 
     public static int nrOfLobbies;
