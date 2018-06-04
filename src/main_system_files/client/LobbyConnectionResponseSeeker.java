@@ -20,7 +20,7 @@ public class LobbyConnectionResponseSeeker implements Runnable {
     public void run() {
         try {
             while(true) {
-                Object[] tuple = model.getLobbySpace().query(new ActualField(Model.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+                Object[] tuple = model.getLobbySpace().query(new ActualField(Model.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
                 if (tuple != null) {
 
@@ -34,7 +34,7 @@ public class LobbyConnectionResponseSeeker implements Runnable {
 
                         if (field1.equals(model.getUserID())) {
 
-                            model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+                            model.getLobbySpace().get(new ActualField(Model.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
                             if (tuple[1].equals(Model.CONNECT_ACCEPTED)) {
                                 LobbyConnectionTimer.lobbyConnectionSuccess(Model.OK);

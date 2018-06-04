@@ -215,8 +215,8 @@ public class Controller {
 
                 SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
-                model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                model.getLobbySpace().put(Model.C2S_TARGETS_REQ,encryptedMessage);
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 String[] listOfNames = (String[]) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
@@ -239,9 +239,9 @@ public class Controller {
 
                 SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)), model.getLobbyCipher());
 
-                model.getLobbySpace().put(Model.TARGETS_REQUEST, encryptedMessage);
+                model.getLobbySpace().put(Model.C2S_TARGETS_REQ, encryptedMessage);
 
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 boolean noTargets = true;
 
@@ -358,7 +358,7 @@ public class Controller {
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, model.getLobbyCipher());
             SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-            model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage,filler); // Send the action to the server
+            model.getLobbySpace().put(Model.C2S_LOBBY_GAME, encryptedMessage,filler); // Send the action to the server
         }
 
     }
@@ -376,7 +376,7 @@ public class Controller {
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
             SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-            model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
+            model.getLobbySpace().put(Model.C2S_LOBBY_GAME, encryptedMessage, filler); // Send the action to the server
 
         }
     }
@@ -565,7 +565,7 @@ public class Controller {
                     SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
                     SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-                    model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
+                    model.getLobbySpace().put(Model.C2S_LOBBY_GAME, encryptedMessage, filler); // Send the action to the server
 
                     pickedCard = 2;
                     indexOfTarget = -1;
@@ -586,7 +586,7 @@ public class Controller {
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
         SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-        model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
+        model.getLobbySpace().put(Model.C2S_LOBBY_GAME, encryptedMessage, filler); // Send the action to the server
 
         pickedCard = 2;
         indexOfTarget = -1;
@@ -609,7 +609,7 @@ public class Controller {
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
         SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-        model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler); // Send the action to the server
+        model.getLobbySpace().put(Model.C2S_LOBBY_GAME, encryptedMessage, filler); // Send the action to the server
 
         pickedCard = 2;
         indexOfTarget = -1;

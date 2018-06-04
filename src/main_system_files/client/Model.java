@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class Model {
 
-    protected final static int CREATE_REQUEST = 1;
+    protected final static int C2S_CREATE_REQ = 1;
     protected final static int CREATE_LOBBY_REQ = 11;
     protected final static int CREATE_USERNAME_REQ = 12;
     protected final static int PING_REQ = 14;
@@ -32,11 +32,13 @@ public class Model {
     protected final static int BEGIN = 33;
     protected final static int CLOSE = 34;
 
-    protected final static int LOBBY_RESP = 40;
+    public final static int S2C_CONNECT_RESP = 40;
     protected final static int CONNECT_DENIED = 41;
     protected final static int CONNECT_ACCEPTED = 42;
+    public final static int S2C_GET_PLAYERLIST_RESP = 43;
 
-    protected final static int LOBBY_UPDATE = 50;
+
+    protected final static int S2C_LOBBY = 50;
     protected final static int CHAT_MESSAGE = 51;
     protected final static int NOT_ENOUGH_PLAYERS = 52;
 
@@ -48,8 +50,8 @@ public class Model {
     //protected final static int GAMEPLAY_ACTION = 70;
     //protected final static int PLAY_CARD = 71;
 
-    protected final static int TARGETS_REQUEST = 85;
-    protected final static int TARGETS_RESPONSE = 86;
+    protected final static int C2S_TARGETS_REQ = 85;
+    protected final static int S2C_TARGETS_RESP = 86;
 
     protected final static int LOBBY_INFO = 90;
 
@@ -59,7 +61,7 @@ public class Model {
     protected final static int NO_RESPONSE = 444;
 
     // gameplay tuples
-    public final static int CLIENT_UPDATE = 10;
+    public final static int S2C_GAME = 10;
     public final static int NEW_TURN = 11;
     public final static int DISCARD = 12;
     public final static int OUTCOME = 13;
@@ -70,7 +72,7 @@ public class Model {
     public final static int GAME_ENDING = 18;
     public final static int GAME_DISCONNECT = 19;
 
-    public final static int SERVER_UPDATE = 20;
+    public final static int C2S_LOBBY_GAME = 20;
 
     private static RemoteSpace requestSpace, lobbyOverviewSpace, lobbySpace, responseSpace;
     private static String serverIp;
@@ -116,16 +118,12 @@ public class Model {
         currentThreadNumber++;
     }
 
-    public void addIpToRemoteSpaces(String ip) {
+    public void addIpToRemoteSpaces(String ip) throws IOException {
 
-        try {
-            requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
-            lobbyOverviewSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
-            serverIp = ip;
-            responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
-        } catch (IOException e) {
-
-        }
+        requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
+        lobbyOverviewSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
+        serverIp = ip;
+        responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
 
     }
 
@@ -243,7 +241,7 @@ public class Model {
 
             SealedObject encryptedKey = new SealedObject(key, serverCipher);
 
-            requestSpace.put(Model.CREATE_REQUEST, Model.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKey);
+            requestSpace.put(Model.C2S_CREATE_REQ, Model.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKey);
 
             Object[] tuple = null;
             int field1;
@@ -300,7 +298,7 @@ public class Model {
 
             SealedObject encryptedKey = new SealedObject(key, serverCipher);
 
-            requestSpace.put(Model.CREATE_REQUEST, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKey);
+            requestSpace.put(Model.C2S_CREATE_REQ, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKey);
 
             // Wait for server to be created
             int field1;
@@ -357,7 +355,7 @@ public class Model {
 
             SealedObject encryptedKey = new SealedObject(key, lobbyCipher);
 
-            lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage, encryptedKey);
+            lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
             Thread tryToJoinLobby = new Thread(new LobbyConnectionTimer(this));
             tryToJoinLobby.start();
@@ -379,12 +377,13 @@ public class Model {
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
             SealedObject filler = new SealedObject("filler", lobbyCipher);
 
-            lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage, filler);
+            lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, filler);
             inLobby = false;
         }
     }
 
     public void pressBeginLogic() throws IOException, IllegalBlockSizeException, InterruptedException {
+
         if (isLeader) {
             //System.out.println("Yes");
 
@@ -393,8 +392,9 @@ public class Model {
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
             SealedObject filler = new SealedObject("filler", lobbyCipher);
 
-            lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage, filler);
+            lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, filler);
         }
+
     }
 
     public ArrayList<String> updatePlayerLobbyListLogic() throws IOException, IllegalBlockSizeException, InterruptedException {
@@ -406,10 +406,10 @@ public class Model {
 
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
-        lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage, filler);
+        lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, filler);
 
         // [0] response code [1] list of playernames [2] username
-        Object[] tuple = lobbySpace.get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new FormalField(Integer.class)); //ændret fra new ActualField(model.indexInLobby), har vist også ændret det et andet sted
+        Object[] tuple = lobbySpace.get(new ActualField(Model.S2C_GET_PLAYERLIST_RESP), new FormalField(ArrayList.class), new FormalField(Integer.class)); //ændret fra new ActualField(model.indexInLobby), har vist også ændret det et andet sted
 
         return (ArrayList<String>) tuple[1];
     }

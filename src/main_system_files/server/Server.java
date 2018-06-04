@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Server {
 
-    protected static int CREATE_REQUEST = 1;
+    protected static int C2S_CREATE_REQ = 1;
     protected static int CREATE_LOBBY_REQ = 11;
     protected static int CREATE_USERNAME_REQ = 12;
     protected static int JOIN_LOBBY_REQ = 13;
@@ -36,7 +36,7 @@ public class Server {
 
             // [0] request code,[1] request type, [2] if USER_NAME_REQ -> username to request/null, if CREATE_LOBBY_REQ -> name of lobby/username for lobby owner [3] the client's key
 
-            Object[] tuple = serverData.requestSpace.get(new ActualField(CREATE_REQUEST), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
+            Object[] tuple = serverData.requestSpace.get(new ActualField(C2S_CREATE_REQ), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
             SealedObject encryptedKey = (SealedObject) tuple[3];
             Key key = (Key) encryptedKey.getObject(serverData.cipher);

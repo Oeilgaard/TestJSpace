@@ -87,7 +87,7 @@ public class Game {
             try {
                 SealedObject encryptedMessage = new SealedObject(Model.GAME_START_UPDATE + "!" + p.getHand().getCards().get(0).getRole().toString() + "?" + msg + "=", p.getPlayerCipher());
 
-                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
             } catch (InterruptedException | IOException | IllegalBlockSizeException e) {
                 e.printStackTrace();
             }
@@ -138,7 +138,7 @@ public class Game {
                                 msg += "Your turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] Drawn card, [4] message, [5] -
                                 SealedObject encryptedMessage = new SealedObject(Model.NEW_TURN + "!" + two.toString() + "?" + msg + "=", p.getPlayerCipher());
-                                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                                lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                             } catch (InterruptedException | IOException | IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
@@ -147,7 +147,7 @@ public class Game {
                                 msg += model.removeIDFromPlayername(currentPlayer.getuserID()) + "'s turn";
                                 // [0] Update, [1] update type, [2] receiver, [3] - , [4] msg, [5] -
                                 SealedObject encryptedMessage = new SealedObject(Model.NEW_TURN + "!?" + msg + "=", p.getPlayerCipher());
-                                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                                lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                             } catch (InterruptedException | IOException | IllegalBlockSizeException e) {
                                 e.printStackTrace();
                             }
@@ -182,11 +182,11 @@ public class Game {
             for (Player p : model.players) {
                 if(p.getuserID()==winner){
                     SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + "You" + "?=", p.getPlayerCipher());
-                    lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                    lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
 
                 } else {
                     SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + winnerNickname + "?=", p.getPlayerCipher());
-                    lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                    lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                 }
             }
         }
@@ -199,7 +199,7 @@ public class Game {
     private void waitForDiscard() throws InterruptedException, IllegalBlockSizeException {
         try {
             // [0] Update, [1] update type, [2] sender, [3] card pick index, [4] target (situational) , [5] guess (situational)
-            Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
+            Object[] tuple = lobbySpace.get(new ActualField(Model.C2S_LOBBY_GAME), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
             String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(cipher);
 
@@ -240,7 +240,7 @@ public class Game {
                                     currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
                                     currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
-                            lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                            lobbySpace.put(Model.S2C_GAME, encryptedMessage, currentPlayer.getPlayerIndex());
                         }
                     } else {
                         playCard(currentPlayer, decryptedTuple);
@@ -253,7 +253,7 @@ public class Game {
                             currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
                             currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
-                    lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                    lobbySpace.put(Model.S2C_GAME, encryptedMessage, currentPlayer.getPlayerIndex());
                 }
 
             } else if(Integer.parseInt(field1)== Lobby.DISCONNECT) {
@@ -263,7 +263,7 @@ public class Game {
                 for (Player p : model.players) {
                     if (!p.getuserID().equals(field2)) {
                         SealedObject encryptedMessage = new SealedObject(Model.GAME_DISCONNECT + "!?=", p.getPlayerCipher());
-                        lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                        lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                     }
                 }
 
@@ -302,7 +302,7 @@ public class Game {
                         currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
                         currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
-                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                lobbySpace.put(Model.S2C_GAME, encryptedMessage, currentPlayer.getPlayerIndex());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -315,7 +315,7 @@ public class Game {
                         currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
                         currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
-                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                lobbySpace.put(Model.S2C_GAME, encryptedMessage, currentPlayer.getPlayerIndex());
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -405,7 +405,7 @@ public class Game {
                                 currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
                                 currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
-                        lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                        lobbySpace.put(Model.S2C_GAME, encryptedMessage, currentPlayer.getPlayerIndex());
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -420,7 +420,7 @@ public class Game {
                             currentPlayer.getHand().getCards().get(0).getRole().toString() + "=" +
                             currentPlayer.getHand().getCards().get(1).getRole().toString(), currentPlayer.getPlayerCipher());
 
-                    lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, currentPlayer.getPlayerIndex());
+                    lobbySpace.put(Model.S2C_GAME, encryptedMessage, currentPlayer.getPlayerIndex());
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -449,7 +449,7 @@ public class Game {
                     try {
                         SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgWinner + "?=", p.getPlayerCipher());
 
-                        lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                        lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -458,7 +458,7 @@ public class Game {
                         // [0] update [1] type [2] tuple recipient [3] Game Log msg [4] winner's name [5] winner's affection
                         SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgOthers + "?=", p.getPlayerCipher());
 
-                        lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                        lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -484,7 +484,7 @@ public class Game {
                             // [0] update [1] type [2] tuple recipient [3] Message for GameLog [4] winner's name [5] winner's affection
                             SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgWinner + "?=", p.getPlayerCipher());
 
-                            lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                            lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -492,7 +492,7 @@ public class Game {
                         try {
                             SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgOthers + "?=", p.getPlayerCipher());
 
-                            lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                            lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -518,7 +518,7 @@ public class Game {
                                 // [0] update [1] type [2] tuple recipient [3] Message for GameLog [4] winner's name [5] winner's affection
                                 SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgWinner + "?=", p.getPlayerCipher());
 
-                                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                                lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -527,7 +527,7 @@ public class Game {
                             try {
                                 SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msgOthers + "?=", p.getPlayerCipher());
 
-                                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                                lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -541,7 +541,7 @@ public class Game {
                             // [0] update [1] type [2] tuple recipient [3] Game log msg [4] - [5] -
                             SealedObject encryptedMessage = new SealedObject(Model.WIN + "!" + msg + "?=", p.getPlayerCipher());
 
-                            lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                            lobbySpace.put(Model.S2C_GAME, encryptedMessage, p.getPlayerIndex());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
