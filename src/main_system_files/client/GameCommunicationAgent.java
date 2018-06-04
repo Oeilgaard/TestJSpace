@@ -219,8 +219,11 @@ public class GameCommunicationAgent implements Runnable{
                     String lastMessage = model.actionHistory.get(model.actionHistory.size()-1);
                     model.actionHistory.clear();
                     model.cardsOnHand.clear();
+                    Label lastMessageText = new Label(lastMessage);
+                    lastMessageText.setWrapText(true);
                     Label chatText = new Label((String) field2);
                     chatText.setWrapText(true);
+                    chatText.setTextFill(Color.web("#0F487F"));
                     //chatText.prefWidth(184);
 
                     SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
@@ -232,6 +235,7 @@ public class GameCommunicationAgent implements Runnable{
                     Platform.runLater(() -> {
                         //Update GUI to tell who has been knocked out
                         ((VBox) model.currentRoot.lookup("#vb1")).getChildren().clear();
+                        ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(lastMessageText);
                         ((VBox) model.currentRoot.lookup("#vb1")).getChildren().add(chatText);
                         ((ScrollPane) model.currentRoot.lookup("#scroll")).setVvalue(1.0);
 

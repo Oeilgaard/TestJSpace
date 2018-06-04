@@ -8,9 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/client/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/client/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/client/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/client/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,8 +118,8 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="345" column="29" lean-forward="true" selection-start-line="345" selection-start-column="29" selection-end-line="345" selection-end-column="29" />
+            <state relative-caret-position="371">
+              <caret line="345" column="29" selection-start-line="345" selection-start-column="29" selection-end-line="345" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -128,60 +128,66 @@
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1343">
-              <caret line="238" column="25" lean-forward="true" selection-start-line="238" selection-start-column="25" selection-end-line="238" selection-end-column="25" />
+              <caret line="243" column="25" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameCommunicationAgent.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameCommunicationAgent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1514">
-              <caret line="114" column="105" selection-start-line="114" selection-start-column="105" selection-end-line="114" selection-end-column="105" />
+            <state relative-caret-position="215">
+              <caret line="225" column="28" selection-start-line="225" selection-start-column="28" selection-end-line="225" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6341">
-              <caret line="391" selection-start-line="391" selection-end-line="391" />
+            <state relative-caret-position="112">
+              <caret line="110" column="49" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="49" />
               <folding>
-                <element signature="e#4510#4511#0" expanded="true" />
-                <element signature="e#4541#4542#0" expanded="true" />
-                <element signature="e#4580#4581#0" expanded="true" />
-                <element signature="e#4615#4616#0" expanded="true" />
-                <element signature="e#4717#4718#0" expanded="true" />
-                <element signature="e#4759#4760#0" expanded="true" />
-                <element signature="e#4805#4806#0" expanded="true" />
-                <element signature="e#4846#4847#0" expanded="true" />
-                <element signature="e#4890#4891#0" expanded="true" />
-                <element signature="e#4925#4926#0" expanded="true" />
-                <element signature="e#4967#4968#0" expanded="true" />
+                <element signature="e#3386#3387#0" expanded="true" />
+                <element signature="e#3452#3453#0" expanded="true" />
+                <element signature="e#3647#3648#0" expanded="true" />
+                <element signature="e#3710#3711#0" expanded="true" />
+                <element signature="e#3759#3760#0" expanded="true" />
+                <element signature="e#3796#3797#0" expanded="true" />
+                <element signature="e#4585#4586#0" expanded="true" />
+                <element signature="e#4616#4617#0" expanded="true" />
+                <element signature="e#4655#4656#0" expanded="true" />
+                <element signature="e#4690#4691#0" expanded="true" />
+                <element signature="e#4792#4793#0" expanded="true" />
+                <element signature="e#4834#4835#0" expanded="true" />
+                <element signature="e#4880#4881#0" expanded="true" />
+                <element signature="e#4921#4922#0" expanded="true" />
+                <element signature="e#4965#4966#0" expanded="true" />
                 <element signature="e#5000#5001#0" expanded="true" />
-                <element signature="e#5503#5504#0" expanded="true" />
-                <element signature="e#5539#5540#0" expanded="true" />
-                <element signature="e#5572#5573#0" expanded="true" />
-                <element signature="e#5601#5602#0" expanded="true" />
-                <element signature="e#5645#5646#0" expanded="true" />
-                <element signature="e#5681#5682#0" expanded="true" />
-                <element signature="e#5743#5744#0" expanded="true" />
-                <element signature="e#5787#5788#0" expanded="true" />
-                <element signature="e#5853#5854#0" expanded="true" />
-                <element signature="e#5911#5912#0" expanded="true" />
-                <element signature="e#5952#5953#0" expanded="true" />
-                <element signature="e#5992#5993#0" expanded="true" />
-                <element signature="e#6028#6029#0" expanded="true" />
-                <element signature="e#6061#6062#0" expanded="true" />
-                <element signature="e#6106#6107#0" expanded="true" />
-                <element signature="e#6142#6143#0" expanded="true" />
-                <element signature="e#6177#6178#0" expanded="true" />
-                <element signature="e#6207#6208#0" expanded="true" />
-                <element signature="e#6254#6255#0" expanded="true" />
-                <element signature="e#6292#6293#0" expanded="true" />
-                <element signature="e#6419#6420#0" expanded="true" />
-                <element signature="e#6458#6459#0" expanded="true" />
+                <element signature="e#5042#5043#0" expanded="true" />
+                <element signature="e#5075#5076#0" expanded="true" />
+                <element signature="e#5578#5579#0" expanded="true" />
+                <element signature="e#5614#5615#0" expanded="true" />
+                <element signature="e#5647#5648#0" expanded="true" />
+                <element signature="e#5676#5677#0" expanded="true" />
+                <element signature="e#5720#5721#0" expanded="true" />
+                <element signature="e#5756#5757#0" expanded="true" />
+                <element signature="e#5818#5819#0" expanded="true" />
+                <element signature="e#5862#5863#0" expanded="true" />
+                <element signature="e#5928#5929#0" expanded="true" />
+                <element signature="e#5986#5987#0" expanded="true" />
+                <element signature="e#6027#6028#0" expanded="true" />
+                <element signature="e#6067#6068#0" expanded="true" />
+                <element signature="e#6103#6104#0" expanded="true" />
+                <element signature="e#6136#6137#0" expanded="true" />
+                <element signature="e#6181#6182#0" expanded="true" />
+                <element signature="e#6217#6218#0" expanded="true" />
+                <element signature="e#6252#6253#0" expanded="true" />
+                <element signature="e#6282#6283#0" expanded="true" />
+                <element signature="e#6329#6330#0" expanded="true" />
+                <element signature="e#6367#6368#0" expanded="true" />
+                <element signature="e#6494#6495#0" expanded="true" />
+                <element signature="e#6533#6534#0" expanded="true" />
                 <element signature="e#15717#15718#0" expanded="true" />
                 <element signature="e#15752#15753#0" expanded="true" />
                 <element signature="e#15798#15799#0" expanded="true" />
@@ -196,8 +202,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="339" column="19" selection-start-line="339" selection-start-column="19" selection-end-line="339" selection-end-column="19" />
+            <state relative-caret-position="265">
+              <caret line="204" column="67" lean-forward="true" selection-start-line="204" selection-start-column="32" selection-end-line="204" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -205,7 +211,7 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-204">
+            <state>
               <caret line="13" column="39" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="39" />
             </state>
           </provider>
@@ -214,8 +220,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="353">
+              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -223,14 +229,11 @@
       <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="271" column="56" selection-start-line="271" selection-start-column="42" selection-end-line="271" selection-end-column="56" />
+            <state relative-caret-position="2332">
+              <caret line="271" column="56" selection-start-line="271" selection-start-column="56" selection-end-line="271" selection-end-column="56" />
               <folding>
                 <element signature="method#initialize#0;class#ServerTest#0" />
                 <element signature="method#createLobbyTest#0;class#ServerTest#0" />
-                <element signature="method#runRequestHandler#0;class#ServerTest#0" />
-                <element signature="method#createUserTest#0;class#ServerTest#0" />
-                <element signature="method#createMoreLobbiesThanAllowed#0;class#ServerTest#0" />
               </folding>
             </state>
           </provider>
@@ -240,7 +243,7 @@
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1258">
-              <caret line="80" column="69" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="69" />
+              <caret line="80" column="69" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -268,12 +271,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>noTarget</find>
-      <find>playCard</find>
-      <find>tuple[1]</find>
-      <find>put</find>
-      <find>field2</find>
-      <find>field3</find>
       <find>field4</find>
       <find>field5</find>
       <find>get(</find>
@@ -298,6 +295,12 @@
       <find>RESPONSE_CODE</find>
       <find>LOBBY_RESP), new FormalField(Integer.class)</find>
       <find>GET_PLAYERLIST</find>
+      <find>disconn</find>
+      <find>clear</find>
+      <find>actionHistory.clear();</find>
+      <find>Change</find>
+      <find>scene</find>
+      <find>Scene</find>
     </findStrings>
     <replaceStrings>
       <replace>Role</replace>
@@ -329,7 +332,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/MasterLobbyListServerTest/JavaFXClient/ServerTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Deck.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/DiscardPile.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Hand.java" />
@@ -378,8 +380,9 @@
         <option value="$PROJECT_DIR$/src/main_system_files/client/LobbyCommunicationAgent.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionResponseSeeker.java" />
         <option value="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" />
-        <option value="$PROJECT_DIR$/src/main_system_files/client/Controller.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client/Model.java" />
+        <option value="$PROJECT_DIR$/src/main_system_files/client/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java" />
       </list>
     </option>
   </component>
@@ -508,7 +511,7 @@
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/tests/MasterLobbyListServerTest" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
@@ -539,6 +542,125 @@
       <recent name="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay" />
       <recent name="C:\Users\Ole\IdeaProjects\TestJSpace\src\MasterLobbyListServerTest" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/Controller.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/client/Model.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/Server.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -752,13 +874,6 @@
       <workItem from="1524471462541" duration="18123000" />
       <workItem from="1524572106354" duration="36000" />
       <workItem from="1524641070629" duration="6171000" />
-    </task>
-    <task id="LOCAL-00072" summary="Custom fill deck (to test countess rule)&#10;waitForDiscard-method&#10;loop for discard (legalPlay flag introduced)">
-      <created>1522236601690</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1522236601690</updated>
     </task>
     <task id="LOCAL-00073" summary="ACTION_DENIED cases implemented;&#10;- illegal card index&#10;- Countess rule&#10;- Unvalid raget&#10;- Guard guess unvalid index">
       <created>1522239075578</created>
@@ -1096,7 +1211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528115513434</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="- Fix error if trying to join a unreachable server">
+      <created>1528119934543</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1528119934543</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1145,6 +1267,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.49926794" weight="0.3286385" />
@@ -1153,7 +1276,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5549048" side_tool="true" weight="0.35367763" />
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49791667" weight="0.32979852" />
-      <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.55417275" side_tool="true" weight="0.35367763" />
+      <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.55417275" side_tool="true" visible="true" weight="0.35367763" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19765739" />
@@ -1210,7 +1333,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Fixed double msg's in chat" />
     <MESSAGE value="- Changed a few ServerCiphers to LobbyCiphers" />
     <MESSAGE value="- ..." />
     <MESSAGE value="- Not enough players to start the game tuple-response" />
@@ -1235,7 +1357,8 @@
     <MESSAGE value="- Refactoring of username to userID" />
     <MESSAGE value="- Refactoring of the class names and packages" />
     <MESSAGE value="- Refactoring of code names" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Refactoring of code names" />
+    <MESSAGE value="- Fix error if trying to join a unreachable server" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fix error if trying to join a unreachable server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1528,7 +1651,7 @@
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1258">
-          <caret line="80" column="69" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="69" />
+          <caret line="80" column="69" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -1541,99 +1664,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="271" column="56" selection-start-line="271" selection-start-column="42" selection-end-line="271" selection-end-column="56" />
+        <state relative-caret-position="2332">
+          <caret line="271" column="56" selection-start-line="271" selection-start-column="56" selection-end-line="271" selection-end-column="56" />
           <folding>
             <element signature="method#initialize#0;class#ServerTest#0" />
             <element signature="method#createLobbyTest#0;class#ServerTest#0" />
-            <element signature="method#runRequestHandler#0;class#ServerTest#0" />
-            <element signature="method#createUserTest#0;class#ServerTest#0" />
-            <element signature="method#createMoreLobbiesThanAllowed#0;class#ServerTest#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="13" column="39" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="345" column="29" lean-forward="true" selection-start-line="345" selection-start-column="29" selection-end-line="345" selection-end-column="29" />
+        <state relative-caret-position="371">
+          <caret line="345" column="29" selection-start-line="345" selection-start-column="29" selection-end-line="345" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
-          <caret line="238" column="25" lean-forward="true" selection-start-line="238" selection-start-column="25" selection-end-line="238" selection-end-column="25" />
+          <caret line="243" column="25" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1514">
-          <caret line="114" column="105" selection-start-line="114" selection-start-column="105" selection-end-line="114" selection-end-column="105" />
+        <state>
+          <caret line="13" column="39" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="339" column="19" selection-start-line="339" selection-start-column="19" selection-end-line="339" selection-end-column="19" />
+        <state relative-caret-position="353">
+          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6341">
-          <caret line="391" selection-start-line="391" selection-end-line="391" />
+        <state relative-caret-position="112">
+          <caret line="110" column="49" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="49" />
           <folding>
-            <element signature="e#4510#4511#0" expanded="true" />
-            <element signature="e#4541#4542#0" expanded="true" />
-            <element signature="e#4580#4581#0" expanded="true" />
-            <element signature="e#4615#4616#0" expanded="true" />
-            <element signature="e#4717#4718#0" expanded="true" />
-            <element signature="e#4759#4760#0" expanded="true" />
-            <element signature="e#4805#4806#0" expanded="true" />
-            <element signature="e#4846#4847#0" expanded="true" />
-            <element signature="e#4890#4891#0" expanded="true" />
-            <element signature="e#4925#4926#0" expanded="true" />
-            <element signature="e#4967#4968#0" expanded="true" />
+            <element signature="e#3386#3387#0" expanded="true" />
+            <element signature="e#3452#3453#0" expanded="true" />
+            <element signature="e#3647#3648#0" expanded="true" />
+            <element signature="e#3710#3711#0" expanded="true" />
+            <element signature="e#3759#3760#0" expanded="true" />
+            <element signature="e#3796#3797#0" expanded="true" />
+            <element signature="e#4585#4586#0" expanded="true" />
+            <element signature="e#4616#4617#0" expanded="true" />
+            <element signature="e#4655#4656#0" expanded="true" />
+            <element signature="e#4690#4691#0" expanded="true" />
+            <element signature="e#4792#4793#0" expanded="true" />
+            <element signature="e#4834#4835#0" expanded="true" />
+            <element signature="e#4880#4881#0" expanded="true" />
+            <element signature="e#4921#4922#0" expanded="true" />
+            <element signature="e#4965#4966#0" expanded="true" />
             <element signature="e#5000#5001#0" expanded="true" />
-            <element signature="e#5503#5504#0" expanded="true" />
-            <element signature="e#5539#5540#0" expanded="true" />
-            <element signature="e#5572#5573#0" expanded="true" />
-            <element signature="e#5601#5602#0" expanded="true" />
-            <element signature="e#5645#5646#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5743#5744#0" expanded="true" />
-            <element signature="e#5787#5788#0" expanded="true" />
-            <element signature="e#5853#5854#0" expanded="true" />
-            <element signature="e#5911#5912#0" expanded="true" />
-            <element signature="e#5952#5953#0" expanded="true" />
-            <element signature="e#5992#5993#0" expanded="true" />
-            <element signature="e#6028#6029#0" expanded="true" />
-            <element signature="e#6061#6062#0" expanded="true" />
-            <element signature="e#6106#6107#0" expanded="true" />
-            <element signature="e#6142#6143#0" expanded="true" />
-            <element signature="e#6177#6178#0" expanded="true" />
-            <element signature="e#6207#6208#0" expanded="true" />
-            <element signature="e#6254#6255#0" expanded="true" />
-            <element signature="e#6292#6293#0" expanded="true" />
-            <element signature="e#6419#6420#0" expanded="true" />
-            <element signature="e#6458#6459#0" expanded="true" />
+            <element signature="e#5042#5043#0" expanded="true" />
+            <element signature="e#5075#5076#0" expanded="true" />
+            <element signature="e#5578#5579#0" expanded="true" />
+            <element signature="e#5614#5615#0" expanded="true" />
+            <element signature="e#5647#5648#0" expanded="true" />
+            <element signature="e#5676#5677#0" expanded="true" />
+            <element signature="e#5720#5721#0" expanded="true" />
+            <element signature="e#5756#5757#0" expanded="true" />
+            <element signature="e#5818#5819#0" expanded="true" />
+            <element signature="e#5862#5863#0" expanded="true" />
+            <element signature="e#5928#5929#0" expanded="true" />
+            <element signature="e#5986#5987#0" expanded="true" />
+            <element signature="e#6027#6028#0" expanded="true" />
+            <element signature="e#6067#6068#0" expanded="true" />
+            <element signature="e#6103#6104#0" expanded="true" />
+            <element signature="e#6136#6137#0" expanded="true" />
+            <element signature="e#6181#6182#0" expanded="true" />
+            <element signature="e#6217#6218#0" expanded="true" />
+            <element signature="e#6252#6253#0" expanded="true" />
+            <element signature="e#6282#6283#0" expanded="true" />
+            <element signature="e#6329#6330#0" expanded="true" />
+            <element signature="e#6367#6368#0" expanded="true" />
+            <element signature="e#6494#6495#0" expanded="true" />
+            <element signature="e#6533#6534#0" expanded="true" />
             <element signature="e#15717#15718#0" expanded="true" />
             <element signature="e#15752#15753#0" expanded="true" />
             <element signature="e#15798#15799#0" expanded="true" />
@@ -1641,6 +1753,20 @@
             <element signature="e#16105#16106#0" expanded="true" />
             <element signature="e#16145#16146#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="204" column="67" lean-forward="true" selection-start-line="204" selection-start-column="32" selection-end-line="204" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="225" column="28" selection-start-line="225" selection-start-column="28" selection-end-line="225" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1655,7 +1781,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
