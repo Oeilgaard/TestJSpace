@@ -121,10 +121,14 @@ public class Model {
 
     public void addIpToRemoteSpaces(String ip) throws IOException {
 
-        requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
-        lobbyOverviewSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
-        serverIp = ip;
-        responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
+        try {
+            requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
+            lobbyOverviewSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
+            serverIp = ip;
+            responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
+        } catch (IOException e){
+            System.out.println("Couldnt reach server");
+        }
 
     }
 
@@ -214,18 +218,28 @@ public class Model {
         return currentLobbyName;
     }
 
-    public void joinServerLogic(String urlForRemoteSpace) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IOException, InterruptedException {
+    public boolean joinServerLogic(String urlForRemoteSpace) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, IOException, InterruptedException {
         KeyGenerator kg = KeyGenerator.getInstance("AES");
         Key key = kg.generateKey();
         this.key = key;
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, key);
         this.personalCipher = cipher;
-        this.addIpToRemoteSpaces(urlForRemoteSpace);
+        Object[] tuple;
+        try {
+            this.addIpToRemoteSpaces(urlForRemoteSpace);
 
+            if(requestSpace == null){
+                return false;
+            }
         // (Blocking) query of the server's public key and set it in client's model
-        Object[] tuple = requestSpace.query(new FormalField(PublicKey.class));
+            tuple = requestSpace.query(new FormalField(PublicKey.class));
+        } catch (IOException e){
+            System.out.println("Couldnt reach server");
+            return false;
+        }
         this.setPublicKey((PublicKey) tuple[0]);
+        return true;
     }
 
     // Given an arbitrary string, returns true if the user-id is correctly created and picked up by the client

@@ -335,7 +335,10 @@ public class Controller {
     public void joinServer() throws IOException, InterruptedException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
         String urlForRemoteSpace = IP.getText();
         model = new Model();
-        model.joinServerLogic(urlForRemoteSpace);
+        boolean ok = model.joinServerLogic(urlForRemoteSpace);
+        if(ok == false){
+            return;
+        }
         lobbyIds = new ArrayList<>();
         changeScene(USER_NAME_SCENE);
     }
