@@ -7,7 +7,50 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="" />
+    <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/ChooseGuessScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/ConnectingToLobby.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/CreateLobbyScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/GameCommunicationAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/GameScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/HelperFunctions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/JoinServerScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyCommunicationAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyConnectionResponseSeeker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyConnectionTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyListScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyResponseMonitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/LobbyScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/PickPlayerScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/PlayCardScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/UserNameScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/client/VictoryScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Deck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/DiscardPile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Hand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/PossibleTargetsThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Gameplay/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Lobby.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/LobbyChatAgent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/LobbyUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/RequestHandlerThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/server/ServerData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/stress_testing/FilledLobbyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mainSystemFiles/stress_testing/LobbychatTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/mainSystemFiles/client/ControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/mainSystemFiles/server/ServerTest.java" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -111,104 +154,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="66" column="51" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
-              <folding>
-                <element signature="e#3203#3204#0" expanded="true" />
-                <element signature="e#3233#3234#0" expanded="true" />
-                <element signature="e#3304#3305#0" expanded="true" />
-                <element signature="e#3327#3328#0" expanded="true" />
-                <element signature="e#3568#3569#0" expanded="true" />
-                <element signature="e#3621#3622#0" expanded="true" />
-                <element signature="e#5699#5700#0" expanded="true" />
-                <element signature="e#5739#5740#0" expanded="true" />
-                <element signature="e#6690#6691#0" expanded="true" />
-                <element signature="e#6757#6758#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LobbyUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyUser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Server.java">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="374">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ServerData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/ServerData.java">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/server/ServerData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="289">
+              <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LobbyCommunicationAgent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyCommunicationAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2159">
+              <caret line="154" column="113" selection-start-line="154" selection-start-column="97" selection-end-line="154" selection-end-column="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LobbyResponseMonitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyResponseMonitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="50" column="47" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="243" column="97" selection-start-line="243" selection-start-column="81" selection-end-line="243" selection-end-column="97" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameCommunicationAgent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LobbyConnectionResponseSeeker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionResponseSeeker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="53" column="44" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LobbyConnectionTimer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionTimer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="RequestHandlerThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/RequestHandlerThread.java">
+        <entry file="file://$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-391">
+            <state relative-caret-position="986">
               <caret line="64" column="97" selection-start-line="64" selection-start-column="97" selection-end-line="64" selection-end-column="97" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Hand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lobby.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Lobby.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="238" column="35" selection-start-line="238" selection-start-column="35" selection-end-line="238" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LobbyChatAgent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyChatAgent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PossibleTargetsThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Role.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Role.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -287,11 +318,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/LobbyConnectionManager.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/animations/LampAnimations.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/Gameplay/Main.java" />
-        <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/PickPlayerScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ChooseGuessScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/test/testTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/ControllerTest.java" />
@@ -333,11 +359,16 @@
         <option value="$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Controller.java" />
         <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Player.java" />
         <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Game.java" />
-        <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java" />
         <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyChatAgent.java" />
         <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyUser.java" />
         <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Lobby.java" />
         <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java" />
+        <option value="$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java" />
+        <option value="$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LobbyConnectionTimer.java" />
+        <option value="$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LobbyConnectionResponseSeeker.java" />
+        <option value="$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LobbyResponseMonitor.java" />
+        <option value="$PROJECT_DIR$/src/mainSystemFiles/client/Model.java" />
+        <option value="$PROJECT_DIR$/src/main_system_files/client/Model.java" />
       </list>
     </option>
   </component>
@@ -384,7 +415,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -395,59 +426,66 @@
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mainSystemFiles" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mainSystemFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaFXClient" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mainSystemFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="Server_Part" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mainSystemFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="Server_Part" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="Gameplay" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mainSystemFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="StressTesting" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -508,34 +546,34 @@
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
     <configuration name="FilledLobbyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.StressTesting.FilledLobbyTest" />
+      <option name="MAIN_CLASS_NAME" value="main_system_files.stress_testing.FilledLobbyTest" />
       <module name="Love_Tuples" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mainSystemFiles.StressTesting.*" />
+          <option name="PATTERN" value="main_system_files.stress_testing.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.JavaFXClient.Main" />
+      <option name="MAIN_CLASS_NAME" value="main_system_files.client.Main" />
       <module name="Love_Tuples" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mainSystemFiles.JavaFXClient.*" />
+          <option name="PATTERN" value="main_system_files.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.Server_Part.Server" />
+      <option name="MAIN_CLASS_NAME" value="main_system_files.server.Server" />
       <module name="Love_Tuples" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mainSystemFiles.Server_Part.*" />
+          <option name="PATTERN" value="main_system_files.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -547,14 +585,14 @@
       <module name="Love_Tuples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mainSystemFiles.Server_Part.*" />
+          <option name="PATTERN" value="main_system_files.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="mainSystemFiles.Server_Part" />
-      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.Server_Part.ServerTest" />
+      <option name="PACKAGE_NAME" value="main_system_files.server" />
+      <option name="MAIN_CLASS_NAME" value="main_system_files.server.ServerTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -570,14 +608,14 @@
       <module name="Love_Tuples" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mainSystemFiles.Server_Part.*" />
+          <option name="PATTERN" value="main_system_files.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="mainSystemFiles.Server_Part" />
-      <option name="MAIN_CLASS_NAME" value="mainSystemFiles.Server_Part.ServerTest" />
+      <option name="PACKAGE_NAME" value="main_system_files.server" />
+      <option name="MAIN_CLASS_NAME" value="main_system_files.server.ServerTest" />
       <option name="METHOD_NAME" value="noActionCard" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -703,13 +741,6 @@
       <workItem from="1524471462541" duration="18123000" />
       <workItem from="1524572106354" duration="36000" />
       <workItem from="1524641070629" duration="6171000" />
-    </task>
-    <task id="LOCAL-00065" summary="- Worked further on KNOCK_OUT&#10;- Changed knockOut-method's input to int&#10;- Refactored variable names of card actions (e.g. sender -&gt; sendersIndex)&#10;- Added all card .jpg's">
-      <created>1522141899524</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1522141899524</updated>
     </task>
     <task id="LOCAL-00066" summary="- (hope) I implemented the possibility to play a targetted card w. no effect if no possible targets available.">
       <created>1522143845663</created>
@@ -1047,7 +1078,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527945918369</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="- Refactoring of username to userID">
+      <created>1527946197118</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1527946197122</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1096,10 +1134,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.49926794" weight="0.3286385" />
-      <window_info anchor="bottom" id="Messages" order="6" sideWeight="0.44582725" weight="0.35367763" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" />
@@ -1107,7 +1145,8 @@
       <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.55417275" side_tool="true" weight="0.35367763" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15300146" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36969253" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48609078" weight="0.3286385" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -1120,12 +1159,12 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="6" sideWeight="0.44582725" weight="0.35367763" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info id="Capture Tool" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48609078" weight="0.3286385" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1192,33 +1231,33 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java</url>
           <line>438</line>
           <properties />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java</url>
           <line>324</line>
           <properties />
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java</url>
           <line>224</line>
           <properties />
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/Server_Part/ServerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java</url>
           <line>1239</line>
           <properties />
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java</url>
           <line>241</line>
-          <properties class="mainSystemFiles.JavaFXClient.ControllerTest" method="disconnectFromOwnLobbyTest">
+          <properties class="main_system_files.client.ControllerTest" method="disconnectFromOwnLobbyTest">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="54" />
@@ -1228,49 +1267,49 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/PossibleTargetsThread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="19" selection-start-column="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientGameUpdate.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2363">
           <caret line="139" column="54" lean-forward="true" selection-start-line="139" selection-start-column="54" selection-end-line="139" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2924">
           <caret line="231" column="8" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="94" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/ServerData.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/ServerData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
@@ -1292,7 +1331,7 @@
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/test/testTest.java" />
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/GameplayDummy.java" />
     <entry file="file://$PROJECT_DIR$/src/MasterLobbyListServerTest/Server_Part/testing.java" />
-    <entry file="file://$PROJECT_DIR$/tests/mainSystemFiles/JavaFXClient/ControllerTest.java">
+    <entry file="file://$PROJECT_DIR$/tests/main_system_files/client/ControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="35" column="20" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="20" />
@@ -1322,7 +1361,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/mainSystemFiles/Server_Part/ServerTest.java">
+    <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="720" selection-start-line="720" selection-end-line="720" />
@@ -1389,7 +1428,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/StressTesting/FilledLobbyTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/stress_testing/FilledLobbyTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2720">
           <caret line="173" column="26" selection-start-line="173" selection-start-column="26" selection-end-line="173" selection-end-column="26" />
@@ -1403,194 +1442,178 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/HelperFunctions.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/HelperFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ServerResponseMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/TimerForLobbyJoining.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/LookForConnectionAccept.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="53" column="44" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-61">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="243" column="97" selection-start-line="243" selection-start-column="81" selection-end-line="243" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientUpdateAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="154" column="113" selection-start-line="154" selection-start-column="97" selection-end-line="154" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="50" column="47" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/StressTesting/LobbychatTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/stress_testing/LobbychatTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/JavaFXClient/ClientGameUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
-          <folding>
-            <element signature="e#733#734#0" expanded="true" />
-            <element signature="e#760#761#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Card.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/DiscardPile.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/DiscardPile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="238" column="25" lean-forward="true" selection-start-line="238" selection-start-column="25" selection-end-line="238" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Hand.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Hand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/PossibleTargetsThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+        <state relative-caret-position="1445">
+          <caret line="91" column="28" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Role.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="833">
+          <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/PossibleTargetsThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="77" column="92" selection-start-line="77" selection-start-column="92" selection-end-line="77" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Gameplay/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
           <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyChatAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Lobby.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="26" column="50" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+        <state relative-caret-position="3859">
+          <caret line="238" column="35" selection-start-line="238" selection-start-column="35" selection-end-line="238" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/LobbyUser.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/LobbyChatAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/LobbyUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Lobby.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/RequestHandlerThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="238" column="35" selection-start-line="238" selection-start-column="35" selection-end-line="238" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/RequestHandlerThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
+        <state relative-caret-position="986">
           <caret line="64" column="97" selection-start-line="64" selection-start-column="97" selection-end-line="64" selection-end-column="97" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="374">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/ServerData.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/ServerData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="289">
+          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mainSystemFiles/Server_Part/Gameplay/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="66" column="51" selection-start-line="66" selection-start-column="51" selection-end-line="66" selection-end-column="51" />
-          <folding>
-            <element signature="e#3203#3204#0" expanded="true" />
-            <element signature="e#3233#3234#0" expanded="true" />
-            <element signature="e#3304#3305#0" expanded="true" />
-            <element signature="e#3327#3328#0" expanded="true" />
-            <element signature="e#3568#3569#0" expanded="true" />
-            <element signature="e#3621#3622#0" expanded="true" />
-            <element signature="e#5699#5700#0" expanded="true" />
-            <element signature="e#5739#5740#0" expanded="true" />
-            <element signature="e#6690#6691#0" expanded="true" />
-            <element signature="e#6757#6758#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="243" column="97" selection-start-line="243" selection-start-column="81" selection-end-line="243" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyCommunicationAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2159">
+          <caret line="154" column="113" selection-start-line="154" selection-start-column="97" selection-end-line="154" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionResponseSeeker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="53" column="44" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyResponseMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="50" column="47" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="47" />
         </state>
       </provider>
     </entry>
