@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main_system_files.client.Controller">
+    <children>
+        <Label layoutX="248.0" layoutY="28.0" text="Pick a target (Double click)" textAlignment="CENTER" />
+      <ListView fx:id="targetablePlayers" layoutX="65.0" layoutY="62.0" onMouseClicked="#clickTarget" orientation="HORIZONTAL" prefHeight="231.0" prefWidth="469.0" />
+       <Label fx:id="usernameLabel" layoutX="523.0" layoutY="14.0" text="Username" />
+      <Button fx:id="playNoTarget" layoutX="367.0" layoutY="330.0" mnemonicParsing="false" onAction="#playCardWithNoTargets" text="Play card with no target" />
+      <Button layoutX="97.0" layoutY="330.0" mnemonicParsing="false" onAction="#returnToPickingCard" text="Play another card" />
+   </children>
+
+</AnchorPane>
