@@ -309,7 +309,7 @@ public class Model {
                     Object[] tuple = responseSpace.query(new ActualField(Model.RESPONSE_CODE),new ActualField(LOBBY_CREATION_RESPONSE), new FormalField(SealedObject.class));
                     if (tuple != null) {
 
-                        String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(personalCipher);
+                        String decryptedMessage = (String) ((SealedObject) tuple[2]).getObject(personalCipher);
 
                         String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
                         field1 = Integer.parseInt(field1text);
