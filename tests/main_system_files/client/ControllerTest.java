@@ -63,7 +63,7 @@ public class ControllerTest {
         // Create tuple and send PING_REQ
         SealedObject so1 = new SealedObject("dummy", m.getServerCipher());
         SealedObject so2 = new SealedObject(m.key, m.getServerCipher());
-        m.getRequestSpace().put(m.REQUEST_CODE, m.PING_REQ, so1, so2);
+        m.getRequestSpace().put(m.C2S_CREATE_REQ, m.PING_REQ, so1, so2);
 
         // Wait for PONG_RESP
         Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(m.RESPONSE_CODE), new ActualField(m.PONG_RESP));
@@ -265,7 +265,7 @@ public class ControllerTest {
         modelPlayerOne.sendDisconnectTuple();
         Assert.assertFalse(modelPlayerOne.getInLobby());
 
-        Object[] tuple2 = modelPlayerTwo.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class),
+        Object[] tuple2 = modelPlayerTwo.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class),
                new FormalField(String.class),new ActualField(modelPlayerTwo.getCurrentThreadNumber()), new ActualField(modelPlayerTwo.getIndexInLobby()));
 
         Assert.assertEquals(Model.CLOSE, tuple2[1]);
@@ -307,7 +307,7 @@ public class ControllerTest {
         modelPlayerTwo.sendDisconnectTuple();
         Assert.assertFalse(modelPlayerTwo.getInLobby());
 
-        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.LOBBY_DISCONNECT),
+        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new ActualField(Model.LOBBY_DISCONNECT),
                 new FormalField(String.class),new ActualField(modelPlayerOne.getCurrentThreadNumber()), new ActualField(modelPlayerOne.getIndexInLobby()));
 
         Assert.assertEquals(Model.LOBBY_DISCONNECT, tuple2[1]);
@@ -329,9 +329,9 @@ public class ControllerTest {
         Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
 
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
         modelPlayerOne.pressBeginLogic();
-        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
         Assert.assertEquals((int) tuple2[1], Model.NOT_ENOUGH_PLAYERS);
     }
 
@@ -462,7 +462,7 @@ public class ControllerTest {
         String msg = "Hi Bob and Charles";
         modelPlayerOne.textToChatLogic(msg);
 
-        Object[] tuple4 = modelPlayerTwo.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.CHAT_MESSAGE),
+        Object[] tuple4 = modelPlayerTwo.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new ActualField(Model.CHAT_MESSAGE),
                 new FormalField(String.class),new ActualField(modelPlayerTwo.getCurrentThreadNumber()),
                 new ActualField(modelPlayerTwo.getIndexInLobby()));
 
@@ -473,7 +473,7 @@ public class ControllerTest {
         System.out.println("Actual: " + actual);
         Assert.assertEquals(expected,actual);
 
-        Object[] tuple5 = modelPlayerThree.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.CHAT_MESSAGE),
+        Object[] tuple5 = modelPlayerThree.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new ActualField(Model.CHAT_MESSAGE),
                 new FormalField(String.class),new ActualField(modelPlayerThree.getCurrentThreadNumber()),
                 new ActualField(modelPlayerThree.getIndexInLobby()));
 
@@ -494,10 +494,10 @@ public class ControllerTest {
         modelPlayerOne.joinLobbyLogic("LobbyTest", (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
         modelPlayerTwo.joinLobbyLogic("LobbyTest", (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
 
-        modelPlayerOne.getLobbySpace().getAll(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+        modelPlayerOne.getLobbySpace().getAll(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
 
         modelPlayerOne.pressBeginLogic();
-        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new ActualField(Model.BEGIN), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
+        Object[] tuple2 = modelPlayerOne.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new ActualField(Model.BEGIN), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
 
         //Tag skiftevis træk for hver spiller.
         int nrOfMovesToTest = 5;

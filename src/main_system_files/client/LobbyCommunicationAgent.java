@@ -41,7 +41,7 @@ public class LobbyCommunicationAgent implements Runnable{
             try {
 
                 // [0] update code [1] type of update [2] name of user [3] chat text combined with username (situational) [4] thread id [5] index in lobby
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.LOBBY_UPDATE), new FormalField(Integer.class), new FormalField(String.class),new ActualField(threadId), new ActualField(model.getIndexInLobby()));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class), new FormalField(String.class),new ActualField(threadId), new ActualField(model.getIndexInLobby()));
                 System.out.println("got the tuple!: " + tuple[1]);
 
                 if ((int)tuple[1] == Model.CHAT_MESSAGE) {
@@ -62,14 +62,14 @@ public class LobbyCommunicationAgent implements Runnable{
                     SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,model.getLobbyCipher());
                     SealedObject filler = new SealedObject("filler",model.getLobbyCipher());
 
-                    model.getLobbySpace().put(Model.SERVER_UPDATE, encryptedMessage, filler);
+                    model.getLobbySpace().put(Model.C2S_LOBBY_GAME, encryptedMessage, filler);
 
                     Platform.runLater(() -> {
                         Object[] tuple2;
                         try {
 
                             // [0] response code [1] list of playernames [2] username
-                            tuple2 = model.getLobbySpace().get(new ActualField(Model.LOBBY_RESP), new FormalField(ArrayList.class), new ActualField(model.getIndexInLobby()));
+                            tuple2 = model.getLobbySpace().get(new ActualField(Model.S2C_GET_PLAYERLIST_RESP), new FormalField(ArrayList.class), new ActualField(model.getIndexInLobby()));
 
                             ListView updatePlayerListView = ((ListView) root.lookup("#listOfPlayers"));
                             ObservableList updItems = updatePlayerListView.getItems();
@@ -151,8 +151,8 @@ public class LobbyCommunicationAgent implements Runnable{
 
                                 SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2, model.getLobbyCipher());
 
-                                model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
-                                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                                model.getLobbySpace().put(Model.C2S_TARGETS_REQ,encryptedMessage);
+                                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                                 ListView updatePlayerListView = ((ListView) model.currentRoot.lookup("#listOfPlayers"));
                                 ObservableList updItems = updatePlayerListView.getItems();

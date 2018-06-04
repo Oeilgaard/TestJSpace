@@ -36,7 +36,7 @@ public class GameCommunicationAgent implements Runnable{
         while (true) {
 
             try {
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.CLIENT_UPDATE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                 String decryptedMessage = (String) ((SealedObject)tuple[1]).getObject(model.personalCipher);
 
@@ -111,8 +111,8 @@ public class GameCommunicationAgent implements Runnable{
 
                     SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
-                    model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                    model.getLobbySpace().put(Model.C2S_TARGETS_REQ,encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 
@@ -191,8 +191,8 @@ public class GameCommunicationAgent implements Runnable{
                     //chatText.prefWidth(184);
                     SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
 
-                    model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                    model.getLobbySpace().put(Model.C2S_TARGETS_REQ,encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 
@@ -224,8 +224,8 @@ public class GameCommunicationAgent implements Runnable{
                     //chatText.prefWidth(184);
 
                     SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + 2,model.getLobbyCipher());
-                    model.getLobbySpace().put(Model.TARGETS_REQUEST,encryptedMessage);
-                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.TARGETS_RESPONSE), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
+                    model.getLobbySpace().put(Model.C2S_TARGETS_REQ,encryptedMessage);
+                    Object[] tuplename = model.getLobbySpace().get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new ActualField(model.getIndexInLobby()));
 
                     String[] listOfNames = (String[]) ((SealedObject)tuplename[1]).getObject(model.personalCipher);
 

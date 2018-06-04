@@ -21,11 +21,12 @@ public class Lobby implements Runnable {
     public final static int BEGIN = 33;
     public final static int CLOSE = 34;
 
-    public final static int LOBBY_RESP = 40;
+    public final static int S2C_CONNECT_RESP = 40;
     public final static int CONNECT_DENIED = 41;
     public final static int CONNECT_ACCEPTED = 42;
+    public final static int S2C_GET_PLAYERLIST_RESP = 43;
 
-    public final static int LOBBY_UPDATE = 50;
+    public final static int S2C_LOBBY = 50;
     public final static int CHAT_MESSAGE = 51;
     public final static int NOT_ENOUGH_PLAYERS = 52;
 
@@ -135,7 +136,7 @@ public class Lobby implements Runnable {
             try {
                 // Wait for a new LOBBY_REQ tuple
                 // [0] LOBBY-tuple code, [1] (int)LOBBY action code, [2] (String)User name (for some tuples) [3] (int)thread nr for the specific user
-                Object[] tuple = lobbySpace.get(new ActualField(Model.SERVER_UPDATE), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
+                Object[] tuple = lobbySpace.get(new ActualField(Model.C2S_LOBBY_GAME), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
                 System.out.println("Received a lobby request");
 
                 // Decrypting the LOBBY_REQ tuple
@@ -161,11 +162,11 @@ public class Lobby implements Runnable {
                             isThisPlayerLobbyLeader = true;
                         }
                         SealedObject encryptedMessage = new SealedObject(name + "!" + isThisPlayerLobbyLeader + "?" + getUserfromuserID(name).userNr, cipher);
-                        lobbySpace.put(LOBBY_RESP, CONNECT_ACCEPTED, encryptedMessage);
+                        lobbySpace.put(S2C_CONNECT_RESP, CONNECT_ACCEPTED, encryptedMessage);
                         updatePlayers(name, CONNECT);
                     } else { // lobby full
                         SealedObject encryptedMessage = new SealedObject(name + "!false?" + -1, cipher);
-                        lobbySpace.put(LOBBY_RESP, CONNECT_DENIED, encryptedMessage);
+                        lobbySpace.put(S2C_CONNECT_RESP, CONNECT_DENIED, encryptedMessage);
                     }
                     System.out.println("Connect response handled " + connectedInt);
                     connectedInt++;
@@ -206,7 +207,7 @@ public class Lobby implements Runnable {
                         s = s.substring(0, s.indexOf("#"));
                         userNames.add(s);
                     }
-                    lobbySpace.put(LOBBY_RESP, userNames, getUserfromuserID(name).userNr);
+                    lobbySpace.put(S2C_GET_PLAYERLIST_RESP, userNames, getUserfromuserID(name).userNr);
                 } else {
                     System.out.println("Unknown request");
                     System.out.println(field1);
@@ -232,13 +233,13 @@ public class Lobby implements Runnable {
                 //String p = u.name;
                 // burde 'responded' også stå her?
                 //System.out.println("Informing : " + p + " that the game has started");
-                lobbySpace.put(LOBBY_UPDATE,action, "", u.threadNr, u.userNr);
+                lobbySpace.put(S2C_LOBBY,action, "", u.threadNr, u.userNr);
             }
         } else {
             for(LobbyUser u : users) {
                 String p = u.userID;
                 if(!p.equals(actingPlayer)) {
-                    lobbySpace.put(LOBBY_UPDATE, action, "", u.threadNr, u.userNr);
+                    lobbySpace.put(S2C_LOBBY, action, "", u.threadNr, u.userNr);
                 }
             }
         }
