@@ -207,7 +207,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         String decryptedMessage = (String) ((SealedObject) tuple2[2]).getObject(clientCipher);
 
@@ -245,7 +245,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
 
@@ -255,7 +255,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         String messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient2#123?" + -1 + "=";
         SealedObject encryptedMessage2 = new SealedObject(messageToBeEncrypted2, lobbyCipher);
@@ -306,7 +306,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         String messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient#123?" + -1 + "=";
         SealedObject encryptedMessage2 = new SealedObject(messageToBeEncrypted2, lobbyCipher);
@@ -350,7 +350,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         String textToSend = "TestClient : test";
 
@@ -391,7 +391,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
         
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=" + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -433,7 +433,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -441,7 +441,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -485,7 +485,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -493,7 +493,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -575,7 +575,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -583,7 +583,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -652,7 +652,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -660,7 +660,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -729,7 +729,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -737,7 +737,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -806,7 +806,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -814,7 +814,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -880,7 +880,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -888,7 +888,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -956,7 +956,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -964,7 +964,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1030,7 +1030,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1038,7 +1038,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1108,7 +1108,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1116,7 +1116,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1185,7 +1185,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1193,7 +1193,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1262,7 +1262,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1270,7 +1270,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1356,7 +1356,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1364,7 +1364,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1465,7 +1465,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
 
@@ -1473,7 +1473,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1551,7 +1551,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
 
@@ -1559,7 +1559,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1652,7 +1652,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
 
@@ -1660,7 +1660,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1744,7 +1744,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1752,7 +1752,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1817,7 +1817,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1825,7 +1825,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1893,7 +1893,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1901,7 +1901,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -1971,7 +1971,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -1979,7 +1979,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -2048,7 +2048,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -2056,7 +2056,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -2125,7 +2125,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -2133,7 +2133,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -2202,7 +2202,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
 
@@ -2210,7 +2210,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -2303,7 +2303,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
 
@@ -2311,7 +2311,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -2404,7 +2404,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -2412,7 +2412,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -2480,7 +2480,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
 
@@ -2488,7 +2488,7 @@ public class ServerTest {
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
 
-        tuple2 = lobbySpace.get(new ActualField(Lobby.LOBBY_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+        tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
         messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
