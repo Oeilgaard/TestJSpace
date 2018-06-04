@@ -18,12 +18,10 @@ public class Server {
     protected static int PING_REQ = 14;
     protected static int LOBBY_INFO = 90;
 
-    protected static int RESPONSE_CODE = 2;
-    protected final static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
+    protected static int S2C_CREATE_RESP = 2;
+    protected final static int CREATE_USERID_RESP = 23;
     protected final static int PONG_RESP = 24;
-    protected final static int LOBBY_CREATION_RESPONSE = 25;
-
-
+    protected final static int CREATE_LOBBY_RESP = 25;
 
     // 'HTTP style'
     protected final static int OK = 200;

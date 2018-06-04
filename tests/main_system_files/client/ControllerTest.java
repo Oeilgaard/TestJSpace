@@ -66,7 +66,7 @@ public class ControllerTest {
         m.getRequestSpace().put(m.C2S_CREATE_REQ, m.PING_REQ, so1, so2);
 
         // Wait for PONG_RESP
-        Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(m.RESPONSE_CODE), new ActualField(m.PONG_RESP));
+        Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(m.S2C_CREATE_RESP), new ActualField(m.PONG_RESP));
 //        long endTime = System.currentTimeMillis();
 //        System.out.println("Time: " + (endTime-startTime));
         int expected = m.PONG_RESP;

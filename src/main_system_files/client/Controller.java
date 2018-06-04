@@ -398,7 +398,7 @@ public class Controller {
                 }
             } else  {
                 // should ideally never happen, however can happen if the sanity check is bypassed client-side
-                instructionsUserName.setText("Server denied username. Please try again. Please only apply alphabetic characters (between 2-15 characters)");
+                instructionsUserName.setText("Server denied username. Please try again.\nTip: only apply alphanumeric characters\n(between 2-15 characters).");
                 createUserNameButton.setDisable(false);
             }
     }

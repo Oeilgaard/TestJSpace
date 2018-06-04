@@ -36,7 +36,7 @@ public class RequestHandlerThread implements Runnable {
                 if(!(serverData.currentNumberOfActiveThreads() < ServerData.MAXIMUM_LOBBIES)) {
                     try{
                         SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?", clientCipher);
-                        serverData.responseSpace.put(Server.RESPONSE_CODE,Server.LOBBY_CREATION_RESPONSE, encryptedMessage);
+                        serverData.responseSpace.put(Server.S2C_CREATE_RESP, Server.CREATE_LOBBY_RESP, encryptedMessage);
                         System.out.println("Putted the BAD_REQ tuple");
                     } catch (InterruptedException e){
                         System.out.println("Error");
@@ -59,7 +59,7 @@ public class RequestHandlerThread implements Runnable {
 
                     SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + user + "?" + idForLobby, clientCipher);
 
-                    serverData.responseSpace.put(Server.RESPONSE_CODE,Server.LOBBY_CREATION_RESPONSE, encryptedMessage);
+                    serverData.responseSpace.put(Server.S2C_CREATE_RESP, Server.CREATE_LOBBY_RESP, encryptedMessage);
 
                     //Add Server information to lobbyOverviewSpace
                     serverData.lobbyOverviewSpace.put(Server.LOBBY_INFO, serverName, idForLobby);
@@ -68,7 +68,7 @@ public class RequestHandlerThread implements Runnable {
                     SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?", clientCipher);
                     //SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + user + "?" + idForLobby, cipher);
 
-                    serverData.responseSpace.put(Server.RESPONSE_CODE,Server.LOBBY_CREATION_RESPONSE, encryptedMessage);
+                    serverData.responseSpace.put(Server.S2C_CREATE_RESP, Server.CREATE_LOBBY_RESP, encryptedMessage);
                 }
             } else if ((int) tuple[1] == Server.CREATE_USERNAME_REQ) {
 
@@ -78,15 +78,15 @@ public class RequestHandlerThread implements Runnable {
                     String uniqueName = assignUserID(userName);
                     SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + userName + "?" + uniqueName, clientCipher);
 
-                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, encryptedMessage);
+                    serverData.responseSpace.put(Server.S2C_CREATE_RESP, Server.CREATE_USERID_RESP, encryptedMessage);
 
                 } else {
 
                     SealedObject encryptedMessage = new SealedObject(Server.BAD_REQUEST + "!" + userName + "?", clientCipher);
-                    serverData.responseSpace.put(Server.RESPONSE_CODE, Server.ASSIGN_UNIQUE_USERNAME_RESP, encryptedMessage);
+                    serverData.responseSpace.put(Server.S2C_CREATE_RESP, Server.CREATE_USERID_RESP, encryptedMessage);
                 }
             } else if ((int) tuple[1] == Server.PING_REQ) {
-                serverData.responseSpace.put(Server.RESPONSE_CODE, Server.PONG_RESP);
+                serverData.responseSpace.put(Server.S2C_CREATE_RESP, Server.PONG_RESP);
             } else {
                 System.out.println("Too many lobbies at once \n Deny request");
             }
