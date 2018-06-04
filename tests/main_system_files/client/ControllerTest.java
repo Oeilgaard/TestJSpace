@@ -63,10 +63,10 @@ public class ControllerTest {
         // Create tuple and send PING_REQ
         SealedObject so1 = new SealedObject("dummy", m.getServerCipher());
         SealedObject so2 = new SealedObject(m.key, m.getServerCipher());
-        m.getRequestSpace().put(m.REQUEST_CODE, m.PING_REQ, so1, so2);
+        m.getRequestSpace().put(m.CREATE_REQUEST, m.PING_REQ, so1, so2);
 
         // Wait for PONG_RESP
-        Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(m.RESPONSE_CODE), new ActualField(m.PONG_RESP));
+        Object[] tuple = modelPlayerOne.getResponseSpace().get(new ActualField(m.S2C_CREATE_RESP), new ActualField(m.PONG_RESP));
 //        long endTime = System.currentTimeMillis();
 //        System.out.println("Time: " + (endTime-startTime));
         int expected = m.PONG_RESP;

@@ -59,7 +59,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobby",tuple[1]);
 
@@ -73,7 +73,7 @@ public class ServerTest {
         tuple = serverData.lobbyOverviewSpace.getp(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertNull(tuple);
 
-        tuple = serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
 
         String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(clientCipher);
 
@@ -110,7 +110,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        Object[] tuple = serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE),new ActualField(Server.ASSIGN_UNIQUE_USERNAME_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP),new ActualField(Server.CREATE_USERID_RESP), new FormalField(SealedObject.class));
 
         String decryptedMessage = (String) ((SealedObject) tuple[2]).getObject(clientCipher);
 
@@ -127,7 +127,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        tuple = serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE),new ActualField(Server.ASSIGN_UNIQUE_USERNAME_RESP), new FormalField(SealedObject.class));
+        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP),new ActualField(Server.CREATE_USERID_RESP), new FormalField(SealedObject.class));
 
         decryptedMessage = (String) ((SealedObject) tuple[2 ]).getObject(clientCipher);
 
@@ -149,7 +149,7 @@ public class ServerTest {
 
             runRequestHandler();
 
-            serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+            serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
             Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
             Assert.assertEquals("TestLobby" + i, tuple[1]);
         }
@@ -164,7 +164,7 @@ public class ServerTest {
         Object[] tuple = serverData.lobbyOverviewSpace.getp(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertNull(tuple);
 
-        tuple = serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
 
         String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(clientCipher);
 
@@ -186,7 +186,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobbyCon", tuple[1]);
 
@@ -225,7 +225,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -286,7 +286,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -330,7 +330,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -371,7 +371,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -413,7 +413,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -465,7 +465,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -555,7 +555,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -632,7 +632,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -709,7 +709,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -786,7 +786,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -860,7 +860,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -936,7 +936,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1010,7 +1010,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1088,7 +1088,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1165,7 +1165,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1242,7 +1242,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1336,7 +1336,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
@@ -1445,7 +1445,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
@@ -1531,7 +1531,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
@@ -1632,7 +1632,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
@@ -1724,7 +1724,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1795,7 +1795,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1873,7 +1873,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -1951,7 +1951,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -2028,7 +2028,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -2105,7 +2105,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -2182,7 +2182,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -2283,7 +2283,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -2384,7 +2384,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -2460,7 +2460,7 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.RESPONSE_CODE), new FormalField(SealedObject.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
         Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");

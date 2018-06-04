@@ -255,7 +255,7 @@ public class GameCommunicationAgent implements Runnable{
 
                     model.setInGame(false);
 
-                    JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + field2 + " has won the game"  );
+                    JOptionPane.showMessageDialog(new JFrame(),"The game is over! \n" + field2 + " won the game"  );
 
                     Platform.runLater(() -> {
 

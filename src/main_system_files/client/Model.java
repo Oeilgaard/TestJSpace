@@ -16,14 +16,15 @@ import java.util.UUID;
 
 public class Model {
 
-    protected final static int REQUEST_CODE = 1;
+    protected final static int CREATE_REQUEST = 1;
     protected final static int CREATE_LOBBY_REQ = 11;
     protected final static int CREATE_USERNAME_REQ = 12;
     protected final static int PING_REQ = 14;
 
-    protected final static int RESPONSE_CODE = 2;
-    protected final static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
+    protected final static int S2C_CREATE_RESP = 2;
+    protected final static int CREATE_USERID_RESP = 23;
     protected final static int PONG_RESP = 24;
+    protected final static int CREATE_LOBBY_RESP = 25;
 
     protected final static int LOBBY_REQ = 30;
     protected final static int CONNECT = 31;
@@ -115,12 +116,16 @@ public class Model {
         currentThreadNumber++;
     }
 
-    public void addIpToRemoteSpaces(String ip) throws IOException {
+    public void addIpToRemoteSpaces(String ip) {
 
-        requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
-        lobbyOverviewSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
-        serverIp = ip;
-        responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
+        try {
+            requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
+            lobbyOverviewSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
+            serverIp = ip;
+            responseSpace = new RemoteSpace("tcp://" + ip + ":25565/responseSpace?keep");
+        } catch (IOException e) {
+
+        }
 
     }
 
@@ -238,7 +243,7 @@ public class Model {
 
             SealedObject encryptedKey = new SealedObject(key, serverCipher);
 
-            requestSpace.put(Model.REQUEST_CODE, Model.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKey);
+            requestSpace.put(Model.CREATE_REQUEST, Model.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKey);
 
             Object[] tuple = null;
             int field1;
@@ -248,7 +253,7 @@ public class Model {
                 // Blocks until user receives unique username (due to 'query')
                 // [0] response code [1] Response [2] Ok or error [3] Username of receiver [4] Username with ID
                 try {
-                    tuple = responseSpace.get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
+                    tuple = responseSpace.get(new ActualField(Model.S2C_CREATE_RESP), new ActualField(Model.CREATE_USERID_RESP),
                             new FormalField(SealedObject.class));
 
                     if (tuple != null) {
@@ -260,7 +265,7 @@ public class Model {
                         field3 = decryptedMessage.substring(decryptedMessage.indexOf('?') + 1, decryptedMessage.length());
 
                         //KLARET: kan man ikke komme til at fjerne en ANDEN tuple en den man lige har samlet op?
-                        //responseSpace.get(new ActualField(Model.RESPONSE_CODE), new ActualField(Model.ASSIGN_UNIQUE_USERNAME_RESP),
+                        //responseSpace.get(new ActualField(Model.S2C_CREATE_RESP), new ActualField(Model.CREATE_USERID_RESP),
                         //        new FormalField(SealedObject.class));
 
                         break;
@@ -295,22 +300,22 @@ public class Model {
 
             SealedObject encryptedKey = new SealedObject(key, serverCipher);
 
-            requestSpace.put(Model.REQUEST_CODE, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKey);
+            requestSpace.put(Model.CREATE_REQUEST, Model.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKey);
 
             // Wait for server to be created
             int field1;
             while (true) {
                 try {
                     // [0] response code [1] Ok or deny [2] username of receiver [3] ID for lobby
-                    Object[] tuple = responseSpace.query(new ActualField(Model.RESPONSE_CODE), new FormalField(SealedObject.class));
+                    Object[] tuple = responseSpace.query(new ActualField(Model.S2C_CREATE_RESP), new ActualField(Model.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
                     if (tuple != null) {
 
-                        String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(personalCipher);
+                        String decryptedMessage = (String) ((SealedObject) tuple[2]).getObject(personalCipher);
 
                         String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
                         field1 = Integer.parseInt(field1text);
 
-                        responseSpace.get(new ActualField(Model.RESPONSE_CODE), new FormalField(SealedObject.class));
+                        responseSpace.get(new ActualField(Model.S2C_CREATE_RESP), new ActualField(Model.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
 
                         break;
                     }
@@ -367,8 +372,8 @@ public class Model {
     }
 
     public void sendDisconnectTuple() throws InterruptedException, IOException, IllegalBlockSizeException {
-
-        // Checks whether the player is leaving during a game or in a lobby
+        if(lobbyCipher!=null){
+            // Checks whether the player is leaving during a game or in a lobby
             //Tuple 1 - 3 sealed object
             String messageToBeEncrypted = "" + Model.LOBBY_DISCONNECT + "!" + userID + "?" + -1 + "=*¤";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
@@ -376,10 +381,10 @@ public class Model {
 
             lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage, filler);
             inLobby = false;
+        }
     }
 
     public void pressBeginLogic() throws IOException, IllegalBlockSizeException, InterruptedException {
-
         if (isLeader) {
             //System.out.println("Yes");
 
@@ -390,7 +395,6 @@ public class Model {
 
             lobbySpace.put(Model.SERVER_UPDATE, encryptedMessage, filler);
         }
-
     }
 
     public ArrayList<String> updatePlayerLobbyListLogic() throws IOException, IllegalBlockSizeException, InterruptedException {

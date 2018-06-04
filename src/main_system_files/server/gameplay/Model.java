@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class Model {
 
-    public final static int AFFECTION_GOAL_TWO_PLAYERS = 7;
+    public final static int AFFECTION_GOAL_TWO_PLAYERS = 2;
     public final static int AFFECTION_GOAL_THREE_PLAYERS = 5;
-    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 60;
+    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 4;
 
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
 
@@ -352,10 +352,10 @@ public class Model {
                     }
                 }
             } else {
-                String msgSender = "You play PRINCE on " + targetName + " who discards their hand and draws a new card.";
+                String msgSender = "You play PRINCE on " + targetName + " who discards " + discardedCard.getRole().toString() + " and draws a new card.";
                 String msgTarget = senderName + " plays PRINCE on you. You discard" +
-                        " your hand and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
-                String msgOthers = senderName + " played PRINCE on " + targetName + " who drew a new card.";
+                        discardedCard.getRole().toString() + " and draw a " + players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString();
+                String msgOthers = senderName + " played PRINCE on " + targetName + " who discards " + discardedCard.getRole().toString() + " and draw a new card.";
 
                 informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", players.get(targetPlayersIndex).getHand().getCards().get(0).getRole().toString());
             }
@@ -385,9 +385,9 @@ public class Model {
                     }
                 }
             } else {
-                String msgSender = "You play PRINCE on " + targetName + " who discards their hand.";
-                String msgTarget = senderName + " plays PRINCE on you. You discard your hand.";
-                String msgOthers = senderName + " played PRINCE on " + targetName;
+                String msgSender = "You play PRINCE on " + targetName + " who discards "  + discardedCard.getRole().toString() + " and draw a new card.";
+                String msgTarget = senderName + " plays PRINCE on you. You discard " + discardedCard.getRole().toString() + " and draw a new card";
+                String msgOthers = senderName + " played PRINCE on " + targetName + " who discards "  + discardedCard.getRole().toString() + " and draw a new card.";
 
                 informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
             }

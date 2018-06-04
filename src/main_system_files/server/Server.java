@@ -11,17 +11,17 @@ import java.security.NoSuchAlgorithmException;
 
 public class Server {
 
+    protected static int CREATE_REQUEST = 1;
     protected static int CREATE_LOBBY_REQ = 11;
     protected static int CREATE_USERNAME_REQ = 12;
     protected static int JOIN_LOBBY_REQ = 13;
     protected static int PING_REQ = 14;
     protected static int LOBBY_INFO = 90;
 
-    protected static int RESPONSE_CODE = 2;
-    protected final static int ASSIGN_UNIQUE_USERNAME_RESP = 23;
+    protected static int S2C_CREATE_RESP = 2;
+    protected final static int CREATE_USERID_RESP = 23;
     protected final static int PONG_RESP = 24;
-
-
+    protected final static int CREATE_LOBBY_RESP = 25;
 
     // 'HTTP style'
     protected final static int OK = 200;
@@ -35,8 +35,8 @@ public class Server {
         while (true) {
 
             // [0] request code,[1] request type, [2] if USER_NAME_REQ -> username to request/null, if CREATE_LOBBY_REQ -> name of lobby/username for lobby owner [3] the client's key
-            int REQUEST_CODE = 1;
-            Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
+
+            Object[] tuple = serverData.requestSpace.get(new ActualField(CREATE_REQUEST), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
             SealedObject encryptedKey = (SealedObject) tuple[3];
             Key key = (Key) encryptedKey.getObject(serverData.cipher);

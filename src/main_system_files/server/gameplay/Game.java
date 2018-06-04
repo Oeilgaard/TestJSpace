@@ -177,12 +177,17 @@ public class Game {
 
         if (!disconnection) {
             String winner = model.getWinner();
-            winner = winner.substring(0, winner.indexOf("#"));
+            String winnerNickname = winner.substring(0, winner.indexOf("#"));
 
             for (Player p : model.players) {
-                SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + winner + "?=", p.getPlayerCipher());
+                if(p.getuserID()==winner){
+                    SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + "You" + "?=", p.getPlayerCipher());
+                    lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
 
-                lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                } else {
+                    SealedObject encryptedMessage = new SealedObject(Model.GAME_ENDING + "!" + winnerNickname + "?=", p.getPlayerCipher());
+                    lobbySpace.put(Model.CLIENT_UPDATE, encryptedMessage, p.getPlayerIndex());
+                }
             }
         }
 
