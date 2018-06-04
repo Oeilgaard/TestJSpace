@@ -282,7 +282,7 @@ public class Model {
 
     public boolean createLobbyLogic(String lobbyNameString) throws IOException, IllegalBlockSizeException, InterruptedException {
 
-        System.out.println("The user's id: " + userID);
+        System.out.println("The user's ID: " + userID);
 
         SealedObject encryptedLobbyNameString = new SealedObject(lobbyNameString + "!" + userID, serverCipher);
 
