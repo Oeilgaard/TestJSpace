@@ -17,9 +17,9 @@ import java.util.UUID;
 
 public class FilledLobbyTest {
 
-    public static String ip = "10.68.171.47"; //212.237.129.195
+    public static String ip = "192.168.0.23"; //212.237.129.195
 
-    public static int nrOfClients = 40;
+    public static int nrOfClients = 200;
 
     public static int nrOfLobbies;
 
@@ -85,14 +85,14 @@ public class FilledLobbyTest {
 
         System.out.println("1) Cleaning the responses");
         for (int i = 0; i < nrOfLobbies; i++) {
-            responseSpace.get(new ActualField(2), new FormalField(SealedObject.class));
+            responseSpace.get(new ActualField(2), new ActualField(25), new FormalField(SealedObject.class));
         }
 
         System.out.println("2) Waiting for the lobbies to start on the server");
         Thread.sleep(120 * nrOfClients);
 
         System.out.println("3) Making connection to the lobbies now");
-        List<Object[]> tuplelist = lobbyListSpace.queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        List<Object[]> tuplelist = lobbyListSpace.queryAll(new ActualField(90), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace[] lobbySpaces = new RemoteSpace[tuplelist.size()];
         Cipher[] lobbyCiphers = new Cipher[tuplelist.size()];
@@ -216,7 +216,7 @@ public class FilledLobbyTest {
         }
         finalPlaytimes = finalPlaytimes / timesForPlays.size();
 
-        System.out.println("The results from the timers");
+        System.out.println("The results from the timers with " + nrOfClients + " number of clients");
         System.out.println("Username times : " + usernametimesfinal + " and Connect times : " + connectiontimesfinal + " and play time : " + finalPlaytimes + " with a size of " + timesForPlays.size());
         System.out.println("");
         endTimeMaster = System.currentTimeMillis();
