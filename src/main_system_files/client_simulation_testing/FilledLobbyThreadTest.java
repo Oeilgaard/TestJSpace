@@ -15,22 +15,29 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-public class FilledLobbyTest {
-
+public class FilledLobbyThreadTest {
     public static String ip = "localhost"; //212.237.129.195
 
-    public static int nrOfClients = 40;
+    public static int nrOfClients = 200;
 
     public static int nrOfLobbies;
 
-    public static ArrayList<Long> timesForPlays = new ArrayList<Long>();
+    public static int counter;
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
+        FilledLobbyThreadTest fltt = new FilledLobbyThreadTest();
+        fltt.stressTest();
+    }
 
+    synchronized void stressTest() throws IOException, InterruptedException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException {
         long startTime;
         long endTime;
         long startTimeMaster;
         long endTimeMaster;
+        long startTimeInitiation;
+        long endTimeInitiation;
+        long startTimeGameplay;
+        long endTimeGameplay;
         long[] usernametimes = new long[nrOfClients];
         long[] connecttimes = new long[nrOfClients];
 
@@ -38,6 +45,7 @@ public class FilledLobbyTest {
 
         System.out.println("Testing the server with : " + nrOfClients + " clients and " + nrOfLobbies + " lobbies");
         startTimeMaster = System.currentTimeMillis();
+        startTimeInitiation = startTimeMaster;
 
         RemoteSpace requestSpace = new RemoteSpace("tcp://" + ip + ":25565/requestSpace?keep");
         RemoteSpace lobbyListSpace = new RemoteSpace("tcp://" + ip + ":25565/lobbyOverviewSpace?keep");
@@ -155,52 +163,37 @@ public class FilledLobbyTest {
             lobbySpaces[i].put(20, encryptedBeginMsg[i], fillers[i]);
         }
 
-        boolean[] lobbyStoppedRunning = new boolean[nrOfLobbies];
-
         Cipher clientCipher = Cipher.getInstance("AES");
         clientCipher.init(Cipher.DECRYPT_MODE,clientKey);
 
         System.out.println("8) Running gameplay for clients");
 
-        playingLoop:
-        while (true) {
-            //Recognise who has the turn tuple
-            System.out.println("Playing the game...");
-            for (int i = 0; i < nrOfLobbies; i++) {
-                if (!lobbyStoppedRunning[i]) {
-                    clientLoop:
-                    for (int k = 0; k < 4; k++) {
-                        Object[] tupleForClient;
-                        //TODO sæt et flag og klar trækket efter alles tupler er tjekket
-                        while (true) {
-                            tupleForClient = lobbySpaces[i].get(new ActualField(10), new FormalField(SealedObject.class), new ActualField(k));
-                            String decryptedNewRound = (String) ((SealedObject) tupleForClient[1]).getObject(clientCipher);
-                            String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
-                            int field1 = Integer.parseInt(field1text);
-                            String field2 = decryptedNewRound.substring(decryptedNewRound.indexOf('!') + 1, decryptedNewRound.indexOf('?'));
-                            if (field1 == 11) {
-                                if (!field2.equals("")) {
-                                    lobbySpaces[i].getAll(new ActualField(10), new FormalField(SealedObject.class), new FormalField(Integer.class));
-                                    //This players turn
-                                    takeAction(lobbySpaces[i], "testClient" + (i * 4 + k), k, lobbyCiphers[i], clientCipher);
-                                    break clientLoop;
-                                }
-                                break;
-                            } else if (field1 == 18) {
-                                //Game is ending
-                                lobbyStoppedRunning[i] = true;
-                                nrOfRunningLobbies--;
-                                System.out.println("Lobby closed. Nr. of lobbies is now : " + nrOfRunningLobbies);
-                                if(nrOfRunningLobbies == 0){
-                                    break playingLoop;
-                                }
-                                break clientLoop;
-                            }
-                        }
-                    }
-                }
-            }
+        ArrayList<Thread> listOfThreads = new ArrayList<>();
+        ArrayList<gameStressThread> stressObjects = new ArrayList<>();
+        //Recognise who has the turn tuple
+        System.out.println("Playing the game...");
+        endTimeInitiation = System.currentTimeMillis();
+        startTimeGameplay = endTimeInitiation;
+
+        for (int i = 0; i < nrOfLobbies; i++) {
+            stressObjects.add(new gameStressThread(this,clientCipher,lobbySpaces[i],lobbyCiphers[i],i));
+            listOfThreads.add(new Thread(stressObjects.get(i)));
         }
+
+        for (Thread thread : listOfThreads){
+            thread.start();
+        }
+
+        counter = nrOfLobbies;
+        //
+        // LAV NOGET VENTE TING TING HER
+        while(counter > 0) {
+            System.out.println("Lobby counter is now : " + counter);
+            wait();
+        }
+        //
+        endTimeGameplay = System.currentTimeMillis();
+
         long usernametimesfinal = 0;
         long connectiontimesfinal = 0;
         for (int i = 0; i < nrOfClients;i++){
@@ -210,53 +203,35 @@ public class FilledLobbyTest {
         usernametimesfinal = usernametimesfinal / nrOfClients;
         connectiontimesfinal = connectiontimesfinal / nrOfClients;
 
-        long finalPlaytimes = 0;
-        for (int i = 0; i < timesForPlays.size();i++){
-            finalPlaytimes += timesForPlays.get(i);
+        ArrayList<Long> totaltimesForPlays = new ArrayList<>();
+
+        for (int i = 0;i < nrOfLobbies;i++){
+            totaltimesForPlays.addAll(stressObjects.get(i).getTimeList());
         }
-        finalPlaytimes = finalPlaytimes / timesForPlays.size();
+
+        long finalPlaytimes = 0;
+        for (int i = 0; i < totaltimesForPlays.size();i++){
+            finalPlaytimes += totaltimesForPlays.get(i);
+        }
+        finalPlaytimes = finalPlaytimes / totaltimesForPlays.size();
 
         System.out.println("The results from the timers with " + nrOfClients + " number of clients");
-        System.out.println("Username times : " + usernametimesfinal + " and Connect times : " + connectiontimesfinal + " and play time : " + finalPlaytimes + " with a size of " + timesForPlays.size());
+        System.out.println("Username times : " + usernametimesfinal + "ms and Connect times : " + connectiontimesfinal + "ms and play time : " + finalPlaytimes + "ms with a size of " + totaltimesForPlays.size());
         System.out.println("");
         endTimeMaster = System.currentTimeMillis();
+        System.out.println("Initiation time: " + (endTimeInitiation-startTimeInitiation) + " ms");
+        System.out.println("Gameplay time: " + (endTimeGameplay-startTimeGameplay) + " ms");
         System.out.println("Total time: " + (endTimeMaster-startTimeMaster) + " ms");
         System.out.println("DONE");
         System.exit(1);
     }
 
-    public static void takeAction(RemoteSpace lobbyspace, String clientName, int clientNr, Cipher lobbyCipher, Cipher clientCipher) throws IOException, IllegalBlockSizeException, InterruptedException, BadPaddingException, ClassNotFoundException {
-        Random rn = new Random();
-        outerloop:
-        while(true){
-            int playedCard = rn.nextInt(2);
-            int target = rn.nextInt(4);
-            int guessNr = rn.nextInt(7) + 1;
+    synchronized void sync(){
+        counter--;
+        notify();
+    }
 
-            String messageToBeEncrypted = "12!" + clientName + "#123" + "?" + playedCard + "=" + target + "*" + guessNr + "¤";
-            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
-            SealedObject filler = new SealedObject("filler",lobbyCipher);
-
-            long startTime = System.currentTimeMillis();
-            lobbyspace.put(20, encryptedMessage, filler); // Send the action to the server
-
-            innerloop:
-            while(true) {
-                Object[] tuple = lobbyspace.get(new ActualField(10), new FormalField(SealedObject.class), new ActualField(clientNr));
-
-                String decryptedNewRound = (String) ((SealedObject) tuple[1]).getObject(clientCipher);
-                String field1text = decryptedNewRound.substring(0, decryptedNewRound.indexOf('!'));
-
-                if (field1text.equals("13")) {
-                    long endTime = System.currentTimeMillis();
-                    timesForPlays.add(endTime - startTime);
-                    break outerloop;
-                } else if (field1text.equals("17")) {
-                    long endTime = System.currentTimeMillis();
-                    timesForPlays.add(endTime - startTime);
-                    break innerloop;
-                }
-            }
-        }
+    synchronized void pause(){
+        System.out.println("TESTEN");
     }
 }

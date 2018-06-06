@@ -42,7 +42,7 @@ public class Lobby implements Runnable {
 
     private UUID lobbyID;
     private Boolean beginFlag;
-    private String lobbyLeader;
+    public String lobbyLeader;
     private int noPlayers;
     private ArrayList<LobbyUser> users;
     private ArrayList<Integer> availableNrs;
@@ -164,12 +164,13 @@ public class Lobby implements Runnable {
                         SealedObject encryptedMessage = new SealedObject(name + "!" + isThisPlayerLobbyLeader + "?" + getUserfromuserID(name).userNr, cipher);
                         lobbySpace.put(S2C_CONNECT_RESP, CONNECT_ACCEPTED, encryptedMessage);
                         updatePlayers(name, CONNECT);
+                        connectedInt++;
+
                     } else { // lobby full
                         SealedObject encryptedMessage = new SealedObject(name + "!false?" + -1, cipher);
                         lobbySpace.put(S2C_CONNECT_RESP, CONNECT_DENIED, encryptedMessage);
                     }
-                    System.out.println("Connect response handled " + connectedInt);
-                    connectedInt++;
+                    System.out.println("Connect response handled");
 
                 } else if (req == DISCONNECT) { // A client in the lobby disconnects
                     if (name.equals(lobbyLeader)) {

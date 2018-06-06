@@ -59,8 +59,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobby",tuple[1]);
 
         encryptedLobbyNameString = new SealedObject("TestLobbySillyName&%#" + "!" + "TestClient#123", cipherForEncryptingServer);
@@ -70,12 +70,12 @@ public class ServerTest {
 
         runRequestHandler();
 
-        tuple = serverData.lobbyOverviewSpace.getp(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        tuple = serverData.lobbyOverviewSpace.getp(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertNull(tuple);
 
-        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
+        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
 
-        String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(clientCipher);
+        String decryptedMessage = (String) ((SealedObject) tuple[2]).getObject(clientCipher);
 
         String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
         int field1 = Integer.parseInt(field1text);
@@ -85,6 +85,52 @@ public class ServerTest {
         Assert.assertEquals(field2, "TestClient#123");
     }
 
+    @Test
+    public void createSeveralLobbiesTest() throws InterruptedException, ClassNotFoundException, BadPaddingException, IllegalBlockSizeException, IOException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
+
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+        Assert.assertEquals("TestLobby",tuple[1]);
+
+        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#123");
+
+        encryptedLobbyNameString = new SealedObject("TestLobby2" + "!" + "TestClient#123", cipherForEncryptingServer);
+        encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+        Assert.assertEquals("TestLobby2",tuple[1]);
+
+        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#123");
+
+        encryptedLobbyNameString = new SealedObject("TestLobby3" + "!" + "TestClient#123", cipherForEncryptingServer);
+        encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+        Assert.assertEquals("TestLobby3",tuple[1]);
+
+        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#123");
+
+
+    }
+
+    @Test
     public void runRequestHandler() throws InterruptedException, ClassNotFoundException, BadPaddingException, IllegalBlockSizeException, IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
@@ -140,7 +186,7 @@ public class ServerTest {
     }
 
     @Test
-    public void createMoreLobbiesThanAllowed() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
+    public void createMoreLobbiesThanAllowedTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
         for (int i = 0; i < serverData.MAXIMUM_LOBBIES;i++) {
             SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + i + "!" + "TestClient#123", cipherForEncryptingServer);
             SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
@@ -149,8 +195,8 @@ public class ServerTest {
 
             runRequestHandler();
 
-            serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-            Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+            serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+            Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
             Assert.assertEquals("TestLobby" + i, tuple[1]);
         }
 
@@ -161,12 +207,12 @@ public class ServerTest {
 
         runRequestHandler();
 
-        Object[] tuple = serverData.lobbyOverviewSpace.getp(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.getp(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertNull(tuple);
 
-        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
+        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
 
-        String decryptedMessage = (String) ((SealedObject) tuple[1]).getObject(clientCipher);
+        String decryptedMessage = (String) ((SealedObject) tuple[2]).getObject(clientCipher);
 
         String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
         int field1 = Integer.parseInt(field1text);
@@ -178,7 +224,7 @@ public class ServerTest {
     }
 
     @Test
-    public void connectionToLobby() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
+    public void connectionToLobbyTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -186,8 +232,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobbyCon", tuple[1]);
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
@@ -217,16 +263,76 @@ public class ServerTest {
     }
 
     @Test
-    public void disconnectionFromLobby() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+    public void tooManyConnectionsToLobbyTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient1#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+        Assert.assertEquals("TestLobbyCon", tuple[1]);
+
+        RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
+
+        Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
+
+        PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
+
+        Cipher lobbyCipher = Cipher.getInstance("RSA");
+        lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
+
+        for(int i = 1; i < 5;i++) {
+
+            String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient" + i +"#123?0=";
+
+            SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+            SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+            lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
+
+            Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+            String decryptedMessage = (String) ((SealedObject) tuple2[2]).getObject(clientCipher);
+
+            Assert.assertEquals("TestClient" + i + "#123", decryptedMessage.substring(0, decryptedMessage.indexOf('!')));
+
+            Assert.assertEquals(Lobby.CONNECT_ACCEPTED, tuple2[1]);
+        }
+
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient5#123?0=";
+
+        SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
+
+        SealedObject encryptedKey = new SealedObject(clientKey, lobbyCipher);
+
+        lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, encryptedKey);
+
+        Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
+
+        String decryptedMessage = (String) ((SealedObject) tuple2[2]).getObject(clientCipher);
+
+        Assert.assertEquals("TestClient5#123", decryptedMessage.substring(0, decryptedMessage.indexOf('!')));
+
+        Assert.assertEquals(Lobby.CONNECT_DENIED, tuple2[1]);
+
+
+    }
+
+    @Test
+    public void disconnectionFromLobbyTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient1#123", cipherForEncryptingServer);
+        SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -265,7 +371,7 @@ public class ServerTest {
 
         Thread.sleep(2000);
 
-        Object[] lobby = serverData.lobbyOverviewSpace.queryp(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        Object[] lobby = serverData.lobbyOverviewSpace.queryp(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         Assert.assertEquals("TestLobbyCon", lobby[1]);
 
@@ -275,10 +381,22 @@ public class ServerTest {
         filler = new SealedObject("filler",lobbyCipher);
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, filler);
+
+        messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient1#123?" + -1 + "=";
+        encryptedMessage2 = new SealedObject(messageToBeEncrypted2, lobbyCipher);
+        filler = new SealedObject("filler", lobbyCipher);
+
+        lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage2, filler);
+
+        Thread.sleep(2000);
+
+        lobby = serverData.lobbyOverviewSpace.queryp(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+
+        Assert.assertNull(lobby);
     }
 
     @Test
-    public void lobbyLeaderDisconnectionFromLobby() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void lobbyLeaderDisconnectionFromLobbyTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -286,8 +404,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -316,13 +434,13 @@ public class ServerTest {
 
         Thread.sleep(2000);
 
-        Object[] lobby = serverData.lobbyOverviewSpace.queryp(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        Object[] lobby = serverData.lobbyOverviewSpace.queryp(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         Assert.assertNull(lobby);
     }
 
     @Test
-    public void chatInLobby() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void chatInLobbyTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -330,8 +448,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -363,7 +481,7 @@ public class ServerTest {
     }
 
     @Test
-    public void beginWithoutEnoughPlayers() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void beginWithoutEnoughPlayersTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -371,8 +489,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -405,7 +523,7 @@ public class ServerTest {
     }
 
     @Test
-    public void beginGame() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void beginGameTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -413,8 +531,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -457,7 +575,7 @@ public class ServerTest {
     }
 
     @Test
-    public void countessRule() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void countessRuleTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -465,8 +583,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -547,7 +665,7 @@ public class ServerTest {
     }
 
     @Test
-    public void invalidCardIndex() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void invalidCardIndexTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -555,8 +673,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -624,7 +742,7 @@ public class ServerTest {
     }
 
     @Test
-    public void invalidTargetIndex() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void invalidTargetIndexTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -632,8 +750,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -701,7 +819,7 @@ public class ServerTest {
     }
 
     @Test
-    public void invalidGuess() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void invalidGuessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -709,8 +827,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -778,7 +896,7 @@ public class ServerTest {
     }
 
     @Test
-    public void playHandmaid() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void playHandmaidTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -786,8 +904,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -852,7 +970,7 @@ public class ServerTest {
     }
 
     @Test
-    public void playGuard() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void playGuardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -860,8 +978,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -928,7 +1046,7 @@ public class ServerTest {
     }
 
     @Test
-    public void playPriest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void playPriestTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -936,8 +1054,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1002,7 +1120,7 @@ public class ServerTest {
     }
 
     @Test
-    public void playBaron() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void playBaronTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1010,8 +1128,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1080,7 +1198,7 @@ public class ServerTest {
     }
 
     @Test
-    public void playPrince() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void playPrinceTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1088,8 +1206,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1157,7 +1275,7 @@ public class ServerTest {
     }
 
     @Test
-    public void playKing() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void playKingTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1165,8 +1283,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1234,7 +1352,7 @@ public class ServerTest {
     }
 
     @Test
-    public void winARound() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void winARoundTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1242,8 +1360,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1328,7 +1446,7 @@ public class ServerTest {
     }
 
     @Test
-    public void winTheGame() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void winTheGameTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1336,8 +1454,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
 
@@ -1437,7 +1555,7 @@ public class ServerTest {
     }
 
     @Test
-    public void noCardsLeftInDeck() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void noCardsLeftInDeckTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1445,8 +1563,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
 
@@ -1523,7 +1641,7 @@ public class ServerTest {
     }
 
     @Test
-    public void noCardsLeftTie() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void noCardsLeftTieTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1531,8 +1649,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
 
@@ -1624,7 +1742,7 @@ public class ServerTest {
     }
 
     @Test
-    public void tieDiscardPileAndCard() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void tieDiscardPileAndCardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1632,8 +1750,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
 
@@ -1716,7 +1834,7 @@ public class ServerTest {
     }
 
     @Test
-    public void disconnectIngame() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void disconnectIngameTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1724,8 +1842,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1787,7 +1905,7 @@ public class ServerTest {
     }
 
     @Test
-    public void guardGuessRight() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void guardGuessRightTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1795,8 +1913,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1865,7 +1983,7 @@ public class ServerTest {
     }
 
     @Test
-    public void baronlooseDuel() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void baronlooseDuelTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1873,8 +1991,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -1943,7 +2061,7 @@ public class ServerTest {
     }
 
     @Test
-    public void princeOnSelf() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void princeOnSelfTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -1951,8 +2069,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -2020,7 +2138,7 @@ public class ServerTest {
     }
 
     @Test
-    public void princeOnSelfWithPrincess() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void princeOnSelfWithPrincessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -2028,8 +2146,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -2097,7 +2215,7 @@ public class ServerTest {
     }
 
     @Test
-    public void princeOnOtherWithPrincess() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void princeOnOtherWithPrincessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -2105,8 +2223,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -2174,7 +2292,7 @@ public class ServerTest {
     }
 
     @Test
-    public void princeIntoSecretCard() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void princeIntoSecretCardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -2182,8 +2300,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -2275,7 +2393,7 @@ public class ServerTest {
     }
 
     @Test
-    public void noActionCard() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void noActionCardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -2283,8 +2401,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -2376,7 +2494,7 @@ public class ServerTest {
     }
 
     @Test
-    public void playPrincess() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void playPrincessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -2384,8 +2502,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
@@ -2452,7 +2570,7 @@ public class ServerTest {
     }
 
     @Test
-    public void targetcalls() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+    public void targetcallsTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
@@ -2460,8 +2578,8 @@ public class ServerTest {
 
         runRequestHandler();
 
-        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new FormalField(SealedObject.class));
-        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP), new ActualField(Server.CREATE_LOBBY_RESP), new FormalField(SealedObject.class));
+        Object[] tuple = serverData.lobbyOverviewSpace.query(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/"+ tuple[2].toString() + "?keep");
 
