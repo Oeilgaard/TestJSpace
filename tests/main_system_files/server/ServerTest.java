@@ -742,7 +742,7 @@ public class ServerTest {
     }
 
     @Test
-    public void invalidTargetIndexTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
+     public void invalidTargetIndexTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
         SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
