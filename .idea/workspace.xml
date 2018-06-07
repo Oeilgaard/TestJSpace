@@ -7,13 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyThreadTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/server/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/server/Lobby.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyThreadTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyThreadTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,10 +115,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="17">
               <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
             </state>
           </provider>
@@ -130,21 +127,19 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="81">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilledLobbyThreadTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FilledLobbyThreadTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyThreadTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="880">
-              <caret line="157" column="63" selection-start-line="157" selection-start-column="51" selection-end-line="157" selection-end-column="63" />
+            <state relative-caret-position="2903">
+              <caret line="190" column="56" selection-start-line="190" selection-start-column="56" selection-end-line="190" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9622#9623#0" expanded="true" />
-                <element signature="e#9666#9667#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,7 +148,7 @@
       <file leaf-file-name="LobbyChatTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/LobbyChatTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1713">
+            <state relative-caret-position="68">
               <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
             </state>
           </provider>
@@ -162,7 +157,7 @@
       <file leaf-file-name="PossibleTargetsThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
+            <state relative-caret-position="1173">
               <caret line="77" column="92" selection-start-line="77" selection-start-column="92" selection-end-line="77" selection-end-column="92" />
             </state>
           </provider>
@@ -171,17 +166,8 @@
       <file leaf-file-name="FilledLobbyTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LobbyConnectionTimer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyConnectionTimer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-225">
-              <caret line="4" column="59" selection-start-line="4" selection-start-column="59" selection-end-line="4" selection-end-column="59" />
+            <state relative-caret-position="391">
+              <caret line="187" column="37" selection-start-line="187" selection-start-column="32" selection-end-line="187" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -195,52 +181,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Model.java">
+      <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="80" column="21" lean-forward="true" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+            <state relative-caret-position="731">
+              <caret line="107" selection-start-line="107" selection-end-line="107" />
               <folding>
-                <element signature="e#3386#3387#0" expanded="true" />
-                <element signature="e#3452#3453#0" expanded="true" />
-                <element signature="e#3647#3648#0" expanded="true" />
-                <element signature="e#3710#3711#0" expanded="true" />
-                <element signature="e#3759#3760#0" expanded="true" />
-                <element signature="e#3796#3797#0" expanded="true" />
-                <element signature="e#4585#4586#0" expanded="true" />
-                <element signature="e#4616#4617#0" expanded="true" />
-                <element signature="e#4655#4656#0" expanded="true" />
-                <element signature="e#4690#4691#0" expanded="true" />
-                <element signature="e#4792#4793#0" expanded="true" />
-                <element signature="e#4834#4835#0" expanded="true" />
-                <element signature="e#4880#4881#0" expanded="true" />
-                <element signature="e#4921#4922#0" expanded="true" />
-                <element signature="e#4965#4966#0" expanded="true" />
-                <element signature="e#5000#5001#0" expanded="true" />
-                <element signature="e#5042#5043#0" expanded="true" />
-                <element signature="e#5075#5076#0" expanded="true" />
-                <element signature="e#5578#5579#0" expanded="true" />
-                <element signature="e#5614#5615#0" expanded="true" />
-                <element signature="e#5647#5648#0" expanded="true" />
-                <element signature="e#5676#5677#0" expanded="true" />
-                <element signature="e#5720#5721#0" expanded="true" />
-                <element signature="e#5756#5757#0" expanded="true" />
-                <element signature="e#5818#5819#0" expanded="true" />
-                <element signature="e#5862#5863#0" expanded="true" />
-                <element signature="e#5928#5929#0" expanded="true" />
-                <element signature="e#5986#5987#0" expanded="true" />
-                <element signature="e#6027#6028#0" expanded="true" />
-                <element signature="e#6067#6068#0" expanded="true" />
-                <element signature="e#6103#6104#0" expanded="true" />
-                <element signature="e#6136#6137#0" expanded="true" />
-                <element signature="e#6181#6182#0" expanded="true" />
-                <element signature="e#6217#6218#0" expanded="true" />
-                <element signature="e#6252#6253#0" expanded="true" />
-                <element signature="e#6282#6283#0" expanded="true" />
-                <element signature="e#6329#6330#0" expanded="true" />
-                <element signature="e#6367#6368#0" expanded="true" />
-                <element signature="e#6494#6495#0" expanded="true" />
-                <element signature="e#6533#6534#0" expanded="true" />
+                <element signature="e#795#1489#0" />
+                <element signature="e#1579#3749#0" />
+                <element signature="e#6478#7461#0" />
+                <element signature="e#7467#9558#0" />
+                <element signature="e#9564#11890#0" />
+                <element signature="e#11896#14015#0" />
+                <element signature="e#14021#17008#0" />
+                <element signature="e#17014#20639#0" />
+                <element signature="e#20645#23018#0" />
+                <element signature="e#23024#25265#0" />
+                <element signature="e#25271#27632#0" />
+                <element signature="e#27638#30507#0" />
+                <element signature="e#30513#35344#0" />
+                <element signature="e#35350#39496#0" />
               </folding>
             </state>
           </provider>
@@ -249,13 +209,12 @@
       <file leaf-file-name="gameStressThread.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1070">
-              <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+            <state relative-caret-position="-854">
+              <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#takeAction#0;class#gameStressThread#0" />
-                <element signature="e#4921#4922#0" expanded="true" />
-                <element signature="e#4957#4958#0" expanded="true" />
+                <element signature="e#6234#6235#0" expanded="true" />
+                <element signature="e#6270#6271#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -339,7 +298,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/MasterLobbyListServerTest/Server_Part/ServerTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/StressTesting/FilledLobbyTest.java" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LobbyListScene.fxml" />
         <option value="$PROJECT_DIR$/src/MasterLobbyListServerTest/JavaFXClient/LookForConnectionAccept.java" />
@@ -383,13 +341,14 @@
         <option value="$PROJECT_DIR$/src/main_system_files/client/Model.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client/Controller.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client/GameCommunicationAgent.java" />
-        <option value="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/server/Lobby.java" />
-        <option value="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/nrOfRunningLobbiesMonitor.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyTest.java" />
-        <option value="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java" />
+        <option value="$PROJECT_DIR$/src/main_system_files/client/LobbyListScene.fxml" />
+        <option value="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyThreadTest.java" />
+        <option value="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java" />
+        <option value="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" />
       </list>
     </option>
   </component>
@@ -436,7 +395,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -454,13 +413,6 @@
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
@@ -513,7 +465,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -769,20 +721,6 @@
       <workItem from="1524471462541" duration="18123000" />
       <workItem from="1524572106354" duration="36000" />
       <workItem from="1524641070629" duration="6171000" />
-    </task>
-    <task id="LOCAL-00075" summary="- Increased size of game windows...&#10;- Game win messages created&#10;- Fixed some LMS-bugs">
-      <created>1522251433128</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1522251433129</updated>
-    </task>
-    <task id="LOCAL-00076" summary="- Now clears actionHistory upon game-end and new round&#10;- Players have 30 s to 'pick up' game end tuple&#10;- Various other small fixes">
-      <created>1522661016939</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1522661016941</updated>
     </task>
     <task id="LOCAL-00077" summary="- Started Public Key Crypto (proof of concept with username and lobbyname, however, many missing">
       <created>1522668793728</created>
@@ -1113,7 +1051,21 @@
       <option name="project" value="LOCAL" />
       <updated>1528207898907</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="- New stress test with thread handling">
+      <created>1528294383344</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1528294383344</updated>
+    </task>
+    <task id="LOCAL-00125" summary="...">
+      <created>1528299679827</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1528299679827</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1162,6 +1114,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.49926794" weight="0.3286385" />
@@ -1170,10 +1123,10 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5549048" side_tool="true" weight="0.35367763" />
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49791667" weight="0.32979852" />
-      <window_info anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.55417275" side_tool="true" weight="0.76212835" />
+      <window_info active="true" anchor="bottom" x="19" y="675" width="1916" height="354" id="Run" order="10" sideWeight="0.55417275" side_tool="true" visible="true" weight="0.52738655" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19765739" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19765739" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -1227,7 +1180,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Not enough players to start the game tuple-response" />
     <MESSAGE value="- Added a HashMap of &lt;UUID, Lobby&gt;&#10;- Minor stuff" />
     <MESSAGE value="- Futher work on testing" />
     <MESSAGE value="- Changed to model.getIndexInLobby()&#10;- Further work on testing" />
@@ -1251,6 +1203,7 @@
     <MESSAGE value="- Refactoring of code names" />
     <MESSAGE value="- Fix error if trying to join a unreachable server" />
     <MESSAGE value="- Fixed winning text" />
+    <MESSAGE value="- New stress test with thread handling" />
     <MESSAGE value="..." />
     <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
@@ -1290,14 +1243,30 @@
           <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="90" />
+      <option name="time" value="91" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/client/Main.java">
+    <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+        <state relative-caret-position="1819">
+          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="e#795#1489#0" />
+            <element signature="e#1579#3749#0" />
+            <element signature="e#6478#7461#0" />
+            <element signature="e#7467#9558#0" />
+            <element signature="e#9564#11890#0" />
+            <element signature="e#11896#14015#0" />
+            <element signature="e#14021#17008#0" />
+            <element signature="e#17014#20639#0" />
+            <element signature="e#20645#23018#0" />
+            <element signature="e#23024#25265#0" />
+            <element signature="e#25271#27632#0" />
+            <element signature="e#27638#30507#0" />
+            <element signature="e#30513#35344#0" />
+            <element signature="e#35350#39496#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1514,53 +1483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-799">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
-          <folding>
-            <element signature="method#initialize#0;class#ServerTest#0" />
-            <element signature="method#createLobbyTest#0;class#ServerTest#0" />
-            <element signature="e#3759#5929#0" />
-            <element signature="method#runRequestHandler#0;class#ServerTest#0" />
-            <element signature="method#createUserTest#0;class#ServerTest#0" />
-            <element signature="method#createMoreLobbiesThanAllowed#0;class#ServerTest#0" />
-            <element signature="method#connectionToLobby#0;class#ServerTest#0" />
-            <element signature="method#tooManyConnectionsToLobby#0;class#ServerTest#0" />
-            <element signature="method#disconnectionFromLobby#0;class#ServerTest#0" />
-            <element signature="e#20649#23022#0" />
-            <element signature="e#23028#25269#0" />
-            <element signature="method#beginWithoutEnoughPlayers#0;class#ServerTest#0" />
-            <element signature="method#beginGame#0;class#ServerTest#0" />
-            <element signature="method#countessRule#0;class#ServerTest#0" />
-            <element signature="method#invalidCardIndex#0;class#ServerTest#0" />
-            <element signature="method#invalidTargetIndex#0;class#ServerTest#0" />
-            <element signature="method#invalidGuess#0;class#ServerTest#0" />
-            <element signature="method#playHandmaid#0;class#ServerTest#0" />
-            <element signature="method#playGuard#0;class#ServerTest#0" />
-            <element signature="method#playPriest#0;class#ServerTest#0" />
-            <element signature="e#59839#63927#0" />
-            <element signature="method#playPrince#0;class#ServerTest#0" />
-            <element signature="method#playKing#0;class#ServerTest#0" />
-            <element signature="method#winARound#0;class#ServerTest#0" />
-            <element signature="method#winTheGame#0;class#ServerTest#0" />
-            <element signature="method#noCardsLeftInDeck#0;class#ServerTest#0" />
-            <element signature="method#noCardsLeftTie#0;class#ServerTest#0" />
-            <element signature="method#tieDiscardPileAndCard#0;class#ServerTest#0" />
-            <element signature="method#disconnectIngame#0;class#ServerTest#0" />
-            <element signature="method#guardGuessRight#0;class#ServerTest#0" />
-            <element signature="method#baronlooseDuel#0;class#ServerTest#0" />
-            <element signature="method#princeOnSelf#0;class#ServerTest#0" />
-            <element signature="method#princeOnSelfWithPrincess#0;class#ServerTest#0" />
-            <element signature="method#princeOnOtherWithPrincess#0;class#ServerTest#0" />
-            <element signature="method#princeIntoSecretCard#0;class#ServerTest#0" />
-            <element signature="method#noActionCard#0;class#ServerTest#0" />
-            <element signature="method#playPrincess#0;class#ServerTest#0" />
-            <element signature="e#135119#138397#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/ServerData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1631,20 +1553,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/nrOfRunningLobbiesMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/nrOfRunningLobbiesMonitor.java" />
     <entry file="file://$PROJECT_DIR$/src/main_system_files/client/LobbyResponseMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1654,54 +1563,81 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
+        <state relative-caret-position="1173">
           <caret line="77" column="92" selection-start-line="77" selection-start-column="92" selection-end-line="77" selection-end-column="92" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/LobbyChatTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1713">
+        <state relative-caret-position="68">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="e#795#1489#0" />
+            <element signature="e#1579#3749#0" />
+            <element signature="e#6478#7461#0" />
+            <element signature="e#7467#9558#0" />
+            <element signature="e#9564#11890#0" />
+            <element signature="e#11896#14015#0" />
+            <element signature="e#14021#17008#0" />
+            <element signature="e#17014#20639#0" />
+            <element signature="e#20645#23018#0" />
+            <element signature="e#23024#25265#0" />
+            <element signature="e#25271#27632#0" />
+            <element signature="e#27638#30507#0" />
+            <element signature="e#30513#35344#0" />
+            <element signature="e#35350#39496#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1070">
-          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#takeAction#0;class#gameStressThread#0" />
-            <element signature="e#4921#4922#0" expanded="true" />
-            <element signature="e#4957#4958#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="391">
+          <caret line="187" column="37" selection-start-line="187" selection-start-column="32" selection-end-line="187" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="81">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyThreadTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="157" column="63" selection-start-line="157" selection-start-column="51" selection-end-line="157" selection-end-column="63" />
+        <state relative-caret-position="2903">
+          <caret line="190" column="56" selection-start-line="190" selection-start-column="56" selection-end-line="190" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9622#9623#0" expanded="true" />
-            <element signature="e#9666#9667#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-854">
+          <caret line="66" column="44" lean-forward="true" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6234#6235#0" expanded="true" />
+            <element signature="e#6270#6271#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
         </state>
       </provider>
     </entry>

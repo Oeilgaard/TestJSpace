@@ -188,9 +188,12 @@ public class FilledLobbyThreadTest {
         //
         // LAV NOGET VENTE TING TING HER
         while(counter > 0) {
-            System.out.println("Lobby counter is now : " + counter);
+            //System.out.println("Lobby counter is now : " + counter);
             wait();
+            //Thread.sleep(4000);
         }
+
+        System.out.println("UDE AF WAIT LOOPET");
         //
         endTimeGameplay = System.currentTimeMillis();
 
@@ -228,10 +231,7 @@ public class FilledLobbyThreadTest {
 
     synchronized void sync(){
         counter--;
+        System.out.println("Counter is now : " + counter);
         notify();
-    }
-
-    synchronized void pause(){
-        System.out.println("TESTEN");
     }
 }
