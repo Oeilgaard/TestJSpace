@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class HelperFunctions {
+public class HelperFunctionsClient {
     static final String legalCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
     static SecureRandom rnd = new SecureRandom();
 

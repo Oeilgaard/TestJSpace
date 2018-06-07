@@ -52,7 +52,7 @@ public class ServerTest {
     @Test
     public void createLobbyTest() throws InterruptedException, ClassNotFoundException, BadPaddingException, IllegalBlockSizeException, IOException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
 
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -63,7 +63,7 @@ public class ServerTest {
         Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobby",tuple[1]);
 
-        encryptedLobbyNameString = new SealedObject("TestLobbySillyName&%#" + "!" + "TestClient#123", cipherForEncryptingServer);
+        encryptedLobbyNameString = new SealedObject("TestLobbySillyName&%#" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -82,13 +82,13 @@ public class ServerTest {
         String field2 = decryptedMessage.substring(decryptedMessage.indexOf("!")+1,decryptedMessage.indexOf("?"));
 
         Assert.assertEquals(field1, Server.BAD_REQUEST);
-        Assert.assertEquals(field2, "TestClient#123");
+        Assert.assertEquals(field2, "TestClient#12345678-1234-1234-1234-123456789012");
     }
 
     @Test
     public void createSeveralLobbiesTest() throws InterruptedException, ClassNotFoundException, BadPaddingException, IllegalBlockSizeException, IOException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException {
 
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -99,9 +99,9 @@ public class ServerTest {
         Object[] tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobby",tuple[1]);
 
-        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#123");
+        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#12345678-1234-1234-1234-123456789012");
 
-        encryptedLobbyNameString = new SealedObject("TestLobby2" + "!" + "TestClient#123", cipherForEncryptingServer);
+        encryptedLobbyNameString = new SealedObject("TestLobby2" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -112,9 +112,9 @@ public class ServerTest {
         tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobby2",tuple[1]);
 
-        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#123");
+        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#12345678-1234-1234-1234-123456789012");
 
-        encryptedLobbyNameString = new SealedObject("TestLobby3" + "!" + "TestClient#123", cipherForEncryptingServer);
+        encryptedLobbyNameString = new SealedObject("TestLobby3" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -125,12 +125,11 @@ public class ServerTest {
         tuple = serverData.lobbyOverviewSpace.get(new ActualField(Server.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         Assert.assertEquals("TestLobby3",tuple[1]);
 
-        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#123");
+        Assert.assertEquals(serverData.lobbyMap.get(tuple[2]).lobbyLeader, "TestClient#12345678-1234-1234-1234-123456789012");
 
 
     }
 
-    @Test
     public void runRequestHandler() throws InterruptedException, ClassNotFoundException, BadPaddingException, IllegalBlockSizeException, IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Object[] tuple = serverData.requestSpace.get(new ActualField(REQUEST_CODE), new FormalField(Integer.class), new FormalField(SealedObject.class), new FormalField(SealedObject.class));
 
@@ -183,12 +182,46 @@ public class ServerTest {
 
         Assert.assertEquals(field1,Server.BAD_REQUEST);
         Assert.assertEquals(field2,"TestClient#¤%&");
+
+        encryptedUserNameString = new SealedObject("T" + "!", cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP),new ActualField(Server.CREATE_USERID_RESP), new FormalField(SealedObject.class));
+
+        decryptedMessage = (String) ((SealedObject) tuple[2 ]).getObject(clientCipher);
+
+        field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        field1 = Integer.parseInt(field1text);
+        field2 = decryptedMessage.substring(decryptedMessage.indexOf("!")+1,decryptedMessage.indexOf("?"));
+
+        Assert.assertEquals(field1,Server.BAD_REQUEST);
+        Assert.assertEquals(field2,"T");
+
+        encryptedUserNameString = new SealedObject("TestClientWithAReallyLongName" + "!", cipherForEncryptingServer);
+
+        serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKeySending);
+
+        runRequestHandler();
+
+        tuple = serverData.responseSpace.get(new ActualField(Server.S2C_CREATE_RESP),new ActualField(Server.CREATE_USERID_RESP), new FormalField(SealedObject.class));
+
+        decryptedMessage = (String) ((SealedObject) tuple[2 ]).getObject(clientCipher);
+
+        field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+        field1 = Integer.parseInt(field1text);
+        field2 = decryptedMessage.substring(decryptedMessage.indexOf("!")+1,decryptedMessage.indexOf("?"));
+
+        Assert.assertEquals(field1,Server.BAD_REQUEST);
+        Assert.assertEquals(field2,"TestClientWithAReallyLongName");
     }
 
     @Test
     public void createMoreLobbiesThanAllowedTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
         for (int i = 0; i < serverData.MAXIMUM_LOBBIES;i++) {
-            SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + i + "!" + "TestClient#123", cipherForEncryptingServer);
+            SealedObject encryptedLobbyNameString = new SealedObject("TestLobby" + i + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
             SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
             serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -200,7 +233,7 @@ public class ServerTest {
             Assert.assertEquals("TestLobby" + i, tuple[1]);
         }
 
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyOverMax" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyOverMax" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -219,13 +252,13 @@ public class ServerTest {
         String field2 = decryptedMessage.substring(decryptedMessage.indexOf("!")+1,decryptedMessage.indexOf("?"));
 
         Assert.assertEquals(field1, Server.BAD_REQUEST);
-        Assert.assertEquals(field2, "TestClient#123");
+        Assert.assertEquals(field2, "TestClient#12345678-1234-1234-1234-123456789012");
 
     }
 
     @Test
     public void connectionToLobbyTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -245,7 +278,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -257,14 +290,14 @@ public class ServerTest {
 
         String decryptedMessage = (String) ((SealedObject) tuple2[2]).getObject(clientCipher);
 
-        Assert.assertEquals("TestClient#123",decryptedMessage.substring(0,decryptedMessage.indexOf('!')));
+        Assert.assertEquals("TestClient#12345678-1234-1234-1234-123456789012",decryptedMessage.substring(0,decryptedMessage.indexOf('!')));
 
         Assert.assertEquals(Lobby.CONNECT_ACCEPTED,tuple2[1]);
     }
 
     @Test
     public void tooManyConnectionsToLobbyTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient1#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient1#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -286,7 +319,7 @@ public class ServerTest {
 
         for(int i = 1; i < 5;i++) {
 
-            String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient" + i +"#123?0=";
+            String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient" + i +"#12345678-1234-1234-1234-123456789012?0=";
 
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -298,12 +331,12 @@ public class ServerTest {
 
             String decryptedMessage = (String) ((SealedObject) tuple2[2]).getObject(clientCipher);
 
-            Assert.assertEquals("TestClient" + i + "#123", decryptedMessage.substring(0, decryptedMessage.indexOf('!')));
+            Assert.assertEquals("TestClient" + i + "#12345678-1234-1234-1234-123456789012", decryptedMessage.substring(0, decryptedMessage.indexOf('!')));
 
             Assert.assertEquals(Lobby.CONNECT_ACCEPTED, tuple2[1]);
         }
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient5#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient5#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -315,7 +348,7 @@ public class ServerTest {
 
         String decryptedMessage = (String) ((SealedObject) tuple2[2]).getObject(clientCipher);
 
-        Assert.assertEquals("TestClient5#123", decryptedMessage.substring(0, decryptedMessage.indexOf('!')));
+        Assert.assertEquals("TestClient5#12345678-1234-1234-1234-123456789012", decryptedMessage.substring(0, decryptedMessage.indexOf('!')));
 
         Assert.assertEquals(Lobby.CONNECT_DENIED, tuple2[1]);
 
@@ -324,7 +357,7 @@ public class ServerTest {
 
     @Test
     public void disconnectionFromLobbyTest() throws IOException, IllegalBlockSizeException, InterruptedException, ClassNotFoundException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient1#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient1#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -343,7 +376,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -353,7 +386,7 @@ public class ServerTest {
 
         lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -363,7 +396,7 @@ public class ServerTest {
 
         lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        String messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient2#123?" + -1 + "=";
+        String messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         SealedObject encryptedMessage2 = new SealedObject(messageToBeEncrypted2, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -375,14 +408,14 @@ public class ServerTest {
 
         Assert.assertEquals("TestLobbyCon", lobby[1]);
 
-        messageToBeEncrypted = "" + Lobby.GET_PLAYERLIST + "!TestClient1#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.GET_PLAYERLIST + "!TestClient1#12345678-1234-1234-1234-123456789012?" + -1 + "=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
         filler = new SealedObject("filler",lobbyCipher);
 
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, filler);
 
-        messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient1#123?" + -1 + "=";
+        messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient1#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage2 = new SealedObject(messageToBeEncrypted2, lobbyCipher);
         filler = new SealedObject("filler", lobbyCipher);
 
@@ -397,7 +430,7 @@ public class ServerTest {
 
     @Test
     public void lobbyLeaderDisconnectionFromLobbyTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -416,7 +449,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -426,7 +459,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        String messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient#123?" + -1 + "=";
+        String messageToBeEncrypted2 = "" + Lobby.DISCONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         SealedObject encryptedMessage2 = new SealedObject(messageToBeEncrypted2, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -441,7 +474,7 @@ public class ServerTest {
 
     @Test
     public void chatInLobbyTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -460,7 +493,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -482,7 +515,7 @@ public class ServerTest {
 
     @Test
     public void beginWithoutEnoughPlayersTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -501,7 +534,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -511,7 +544,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
         
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=" + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=" + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -524,7 +557,7 @@ public class ServerTest {
 
     @Test
     public void beginGameTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -543,7 +576,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -553,7 +586,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -561,7 +594,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -576,7 +609,7 @@ public class ServerTest {
 
     @Test
     public void countessRuleTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -595,7 +628,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -605,7 +638,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -613,7 +646,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -632,7 +665,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.COUNTESS);
         players.get(0).getHand().setCards(1,Role.KING);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 1 + "=" + 1 + "*¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 1 + "=" + 1 + "*¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -650,7 +683,7 @@ public class ServerTest {
         Assert.assertEquals(field1, Model.ACTION_DENIED);
         Assert.assertEquals(field2, "Countess rule is in play");
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, filler); // Send the action to the server
 
@@ -666,7 +699,7 @@ public class ServerTest {
 
     @Test
     public void invalidCardIndexTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -685,7 +718,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -695,7 +728,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -703,7 +736,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -722,7 +755,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.HANDMAID);
         players.get(0).getHand().setCards(1,Role.KING);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 2 + "=" + 1 + "*¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 2 + "=" + 1 + "*¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -743,7 +776,7 @@ public class ServerTest {
 
     @Test
      public void invalidTargetIndexTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -762,7 +795,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -772,7 +805,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -780,7 +813,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -799,7 +832,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.HANDMAID);
         players.get(0).getHand().setCards(1,Role.KING);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 1 + "=" + 2 + "*¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 1 + "=" + 2 + "*¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -820,7 +853,7 @@ public class ServerTest {
 
     @Test
     public void invalidGuessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -839,7 +872,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -849,7 +882,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -857,7 +890,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -876,7 +909,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.GUARD);
         players.get(0).getHand().setCards(1,Role.KING);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -897,7 +930,7 @@ public class ServerTest {
 
     @Test
     public void playHandmaidTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -916,7 +949,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -926,7 +959,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -934,7 +967,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -951,7 +984,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.HANDMAID);
         players.get(0).getHand().setCards(1,Role.KING);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -971,7 +1004,7 @@ public class ServerTest {
 
     @Test
     public void playGuardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -990,7 +1023,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1000,7 +1033,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1008,7 +1041,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1027,7 +1060,7 @@ public class ServerTest {
 
         players.get(1).getHand().setCards(0,Role.GUARD);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*1¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*1¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1047,7 +1080,7 @@ public class ServerTest {
 
     @Test
     public void playPriestTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1066,7 +1099,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1076,7 +1109,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1084,7 +1117,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1101,7 +1134,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.PRIEST);
         players.get(0).getHand().setCards(1,Role.KING);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1121,7 +1154,7 @@ public class ServerTest {
 
     @Test
     public void playBaronTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1140,7 +1173,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1150,7 +1183,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1158,7 +1191,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1178,7 +1211,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.KING);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1199,7 +1232,7 @@ public class ServerTest {
 
     @Test
     public void playPrinceTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1218,7 +1251,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1228,7 +1261,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1236,7 +1269,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1256,7 +1289,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.KING);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1276,7 +1309,7 @@ public class ServerTest {
 
     @Test
     public void playKingTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1295,7 +1328,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1305,7 +1338,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1313,7 +1346,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1333,7 +1366,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.KING);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1353,7 +1386,7 @@ public class ServerTest {
 
     @Test
     public void winARoundTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1372,7 +1405,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1382,7 +1415,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1390,7 +1423,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1410,7 +1443,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.GUARD);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1447,7 +1480,7 @@ public class ServerTest {
 
     @Test
     public void winTheGameTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1466,7 +1499,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1476,7 +1509,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1484,7 +1517,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1504,7 +1537,7 @@ public class ServerTest {
 
             players.get(1).getHand().setCards(0, Role.GUARD);
 
-            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
             lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1556,7 +1589,7 @@ public class ServerTest {
 
     @Test
     public void noCardsLeftInDeckTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1575,7 +1608,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1585,7 +1618,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1593,7 +1626,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1612,7 +1645,7 @@ public class ServerTest {
         for(int i = 0;i < 10;i++){
             players.get(i%2).getHand().setCards(0, Role.HANDMAID);
 
-            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0¤";
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
             lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1642,7 +1675,7 @@ public class ServerTest {
 
     @Test
     public void noCardsLeftTieTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1661,7 +1694,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1671,7 +1704,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1679,7 +1712,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1698,7 +1731,7 @@ public class ServerTest {
         for(int i = 0;i < 9;i++){
             players.get(i%2).getHand().setCards(0, Role.HANDMAID);
 
-            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0¤";
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
             lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(i%2));
@@ -1712,7 +1745,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.HANDMAID);
         players.get(1).getHand().setCards(1,Role.HANDMAID);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + 1 + "#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + 1 + "#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(1));
@@ -1743,7 +1776,7 @@ public class ServerTest {
 
     @Test
     public void tieDiscardPileAndCardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1762,7 +1795,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE, lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1772,7 +1805,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1780,7 +1813,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1805,7 +1838,7 @@ public class ServerTest {
                 lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
             }
 
-            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + 1 + "*0¤";
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
             lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(i%2));
@@ -1835,7 +1868,7 @@ public class ServerTest {
 
     @Test
     public void disconnectIngameTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1854,7 +1887,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1864,7 +1897,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1872,7 +1905,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1888,7 +1921,7 @@ public class ServerTest {
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(1));
 
-        messageToBeEncrypted = "" + Lobby.DISCONNECT + "!TestClient#123?0=*¤";
+        messageToBeEncrypted = "" + Lobby.DISCONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=*¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         lobbySpace.put(Model.C2S_LOBBY_GAME, encryptedMessage, filler); // Send the action to the server
 
@@ -1906,7 +1939,7 @@ public class ServerTest {
 
     @Test
     public void guardGuessRightTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -1927,7 +1960,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1937,7 +1970,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -1945,7 +1978,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -1964,7 +1997,7 @@ public class ServerTest {
 
         players.get(1).getHand().setCards(0,Role.PRINCESS);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*7¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*7¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -1984,7 +2017,7 @@ public class ServerTest {
 
     @Test
     public void baronlooseDuelTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2003,7 +2036,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2013,7 +2046,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2021,7 +2054,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2041,7 +2074,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.PRINCESS);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2062,7 +2095,7 @@ public class ServerTest {
 
     @Test
     public void princeOnSelfTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2081,7 +2114,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2091,7 +2124,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2099,7 +2132,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2119,7 +2152,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.KING);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 0 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 0 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2139,7 +2172,7 @@ public class ServerTest {
 
     @Test
     public void princeOnSelfWithPrincessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2158,7 +2191,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2168,7 +2201,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2176,7 +2209,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2196,7 +2229,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.KING);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 0 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 0 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2216,7 +2249,7 @@ public class ServerTest {
 
     @Test
     public void princeOnOtherWithPrincessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2235,7 +2268,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2245,7 +2278,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2253,7 +2286,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2273,7 +2306,7 @@ public class ServerTest {
         players.get(1).getHand().setCards(0,Role.PRINCESS);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2293,7 +2326,7 @@ public class ServerTest {
 
     @Test
     public void princeIntoSecretCardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2312,7 +2345,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2322,7 +2355,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2330,7 +2363,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2349,7 +2382,7 @@ public class ServerTest {
             players.get(1).getHand().setCards(0, Role.PRIEST);
 
 
-            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + ((i%2)+1)%2 + "*0¤";
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#12345678-1234-1234-1234-123456789012?" + 0 + "=" + ((i%2)+1)%2 + "*0¤";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
             lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2374,7 +2407,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.KING);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient1#123?" + 0 + "=" + 0 + "*0¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient1#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 0 + "*0¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2394,7 +2427,7 @@ public class ServerTest {
 
     @Test
     public void noActionCardTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient0#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2413,7 +2446,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient0#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2423,7 +2456,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient1#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2431,7 +2464,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient0#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2450,7 +2483,7 @@ public class ServerTest {
             players.get(1).getHand().setCards(0, Role.HANDMAID);
 
 
-            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#123?" + 0 + "=" + ((i%2)+1)%2 + "*0¤";
+            messageToBeEncrypted = "" + Model.DISCARD + "!TestClient" + i%2 + "#12345678-1234-1234-1234-123456789012?" + 0 + "=" + ((i%2)+1)%2 + "*0¤";
             encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
             lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2475,7 +2508,7 @@ public class ServerTest {
         players.get(0).getHand().setCards(0,Role.KING);
 
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient1#123?" + 1 + "=0*¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient1#12345678-1234-1234-1234-123456789012?" + 1 + "=0*¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2495,7 +2528,7 @@ public class ServerTest {
 
     @Test
     public void playPrincessTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2514,7 +2547,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2524,7 +2557,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2532,7 +2565,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2551,7 +2584,7 @@ public class ServerTest {
 
         players.get(1).getHand().setCards(0,Role.GUARD);
 
-        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#123?" + 0 + "=" + 1 + "*1¤";
+        messageToBeEncrypted = "" + Model.DISCARD + "!TestClient#12345678-1234-1234-1234-123456789012?" + 0 + "=" + 1 + "*1¤";
         encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
 
         lobbySpace.getAll(new ActualField(Model.S2C_GAME), new FormalField(SealedObject.class), new ActualField(0));
@@ -2571,7 +2604,7 @@ public class ServerTest {
 
     @Test
     public void targetcallsTest() throws BadPaddingException, InterruptedException, NoSuchAlgorithmException, IllegalBlockSizeException, IOException, NoSuchPaddingException, InvalidKeyException, ClassNotFoundException {
-        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#123", cipherForEncryptingServer);
+        SealedObject encryptedLobbyNameString = new SealedObject("TestLobbyCon" + "!" + "TestClient#12345678-1234-1234-1234-123456789012", cipherForEncryptingServer);
         SealedObject encryptedKeySending = new SealedObject(clientKey, cipherForEncryptingServer);
 
         serverData.requestSpace.put(REQUEST_CODE, Server.CREATE_LOBBY_REQ, encryptedLobbyNameString, encryptedKeySending);
@@ -2590,7 +2623,7 @@ public class ServerTest {
         Cipher lobbyCipher = Cipher.getInstance("RSA");
         lobbyCipher.init(Cipher.ENCRYPT_MODE,lobbyPublicKey);
 
-        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#123?0=";
+        String messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient#12345678-1234-1234-1234-123456789012?0=";
 
         SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2600,7 +2633,7 @@ public class ServerTest {
 
         Object[] tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#123?0=";
+        messageToBeEncrypted = "" + Lobby.CONNECT + "!TestClient2#12345678-1234-1234-1234-123456789012?0=";
 
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
 
@@ -2608,7 +2641,7 @@ public class ServerTest {
 
         tuple2 = lobbySpace.get(new ActualField(Lobby.S2C_CONNECT_RESP), new FormalField(Integer.class), new FormalField(SealedObject.class));
 
-        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#123?" + -1 + "=";
+        messageToBeEncrypted = "" + Lobby.BEGIN + "!TestClient#12345678-1234-1234-1234-123456789012?" + -1 + "=";
         encryptedMessage = new SealedObject(messageToBeEncrypted, lobbyCipher);
         SealedObject filler = new SealedObject("filler", lobbyCipher);
 
@@ -2620,15 +2653,15 @@ public class ServerTest {
 
         Thread.sleep(3000);
 
-        encryptedMessage = new SealedObject("TestClient#123!" + 2,lobbyCipher);
+        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-12345678901!" + 2,lobbyCipher);
 
         lobbySpace.put("TargetablePlayersRequest",encryptedMessage);
 
-        encryptedMessage = new SealedObject("TestClient#123!" + 1,lobbyCipher);
+        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-12345678901!" + 1,lobbyCipher);
 
         lobbySpace.put("TargetablePlayersRequest",encryptedMessage);
 
-        encryptedMessage = new SealedObject("TestClient#123!" + 0,lobbyCipher);
+        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-12345678901!" + 0,lobbyCipher);
 
         lobbySpace.put("TargetablePlayersRequest",encryptedMessage);
     }

@@ -153,7 +153,7 @@ public class Lobby implements Runnable {
                     Cipher cipher = Cipher.getInstance("AES");
                     cipher.init(Cipher.ENCRYPT_MODE, key);
 
-                    if (noPlayers < MAX_PLAYER_PR_LOBBY) {
+                    if ((noPlayers < MAX_PLAYER_PR_LOBBY) && userHasLegalUserID(name)) {
                         users.add(new LobbyUser(name, Integer.parseInt(field3), cipher, availableNrs.get(0)));
                         availableNrs.remove(0);
                         noPlayers++;
@@ -166,7 +166,7 @@ public class Lobby implements Runnable {
                         updatePlayers(name, CONNECT);
                         connectedInt++;
 
-                    } else { // lobby full
+                    } else { // lobby full or illegal userID
                         SealedObject encryptedMessage = new SealedObject(name + "!false?" + -1, cipher);
                         lobbySpace.put(S2C_CONNECT_RESP, CONNECT_DENIED, encryptedMessage);
                     }
@@ -246,12 +246,22 @@ public class Lobby implements Runnable {
         }
     }
 
-    /*public UUID getLobbyID(){
-        return lobbyID;
+    public boolean userHasLegalUserID(String s){
+        for (LobbyUser u : users){
+            if (u.userID == s){
+                return false;
+            }
+        }
+        if(s.indexOf('#') != -1){
+            String subS1 = s.substring(0,s.indexOf('#'));
+            String subS2 = s.substring(s.indexOf('#')+1,s.length());
+            return (HelperFunctionsServer.stringMatchesUUIDPattern(subS2) && HelperFunctionsServer.validName(subS1));
+        } else {
+            return false;
+        }
     }
 
     public String getLobbyLeader(){ return lobbyLeader; }
-    */
     public boolean gameBegun(){
         return beginFlag;
     }

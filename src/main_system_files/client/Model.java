@@ -248,7 +248,7 @@ public class Model {
 
         SealedObject encryptedUserNameString = new SealedObject(userName + "!", serverCipher);
 
-        if (HelperFunctions.validName(userName)) {
+        if (HelperFunctionsClient.validName(userName)) {
 
             //createUserNameButton.setDisable(true);
             //instructionsUserName.setText("");
@@ -301,7 +301,7 @@ public class Model {
 
         SealedObject encryptedLobbyNameString = new SealedObject(lobbyNameString + "!" + userID, serverCipher);
 
-        if (HelperFunctions.validName(lobbyNameString)) {
+        if (HelperFunctionsClient.validName(lobbyNameString)) {
             //createLobbyButton.setDisable(true);
             //instructionsLobbyName.setText("");
 
@@ -432,7 +432,7 @@ public class Model {
     }
 
     public void textToChatLogic(String text) throws InterruptedException {
-        String textToSend = HelperFunctions.removeUUIDFromUserName(userID) + " : " + text;
+        String textToSend = HelperFunctionsClient.removeUUIDFromUserName(userID) + " : " + text;
         lobbySpace.put("Chat", textToSend);
     }
 
