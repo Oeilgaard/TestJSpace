@@ -15,6 +15,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.io.IOException;
 import java.util.*;
+import static main_system_files.client.HelperFunctionsClient.randomLegalName;
 
 /* IMPORTANT NOTE:
 * These test are essentially testing is from the perspective of a client and treating the server as a black box.
@@ -80,12 +81,9 @@ public class ControllerTest {
 
     @Test
     public void createUserLegalNameTest() throws InterruptedException, IOException, IllegalBlockSizeException {
-        String user = HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength());
-        long startTime = System.currentTimeMillis();
+        String user = randomLegalName(HelperFunctionsClient.randomLegalNameLength());
+
         boolean success = modelPlayerOne.createUserLogic(user);
-        long endTime = System.currentTimeMillis();
-        System.out.println("Approximate milliseconds for respond: " + (endTime-startTime));
-        //timeMeasurements.add((endTime-startTime));
 
         // Assert that it was a success to create the user name
         Assert.assertTrue(success);
@@ -142,9 +140,8 @@ public class ControllerTest {
         boolean outcome = modelPlayerOne.createLobbyLogic(lobbyName);
         Assert.assertTrue(outcome);
 
-
         // Query the lobby information from Lobby List Space and assert that the lobby has an UUID
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new ActualField(lobbyName), new FormalField(UUID.class));
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new ActualField(lobbyName), new FormalField(UUID.class));
         UUID lobbyID = (UUID) tuple[2];
         Assert.assertTrue(HelperFunctionsClient.stringMatchesUUIDPattern(lobbyID.toString()));
     }
@@ -181,7 +178,7 @@ public class ControllerTest {
         modelPlayerOne.createUserLogic("Alice");
 
         // Clearing potential existing lobbies
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         // Alice creates three arbitrary lobbies
         String lobbyOne = HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength());
@@ -198,7 +195,7 @@ public class ControllerTest {
         lobbyNames.add(lobbyThree);
 
         // Query all lobby-tuples (could be seperated to a function in modelPlayerOne moved to a function)
-        List<Object[]> tuples = modelPlayerOne.getLobbyListSpace().queryAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        List<Object[]> tuples = modelPlayerOne.getLobbyListSpace().queryAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         // Assert that 3 lobby-tuples are found
         int expected = 3;
@@ -221,17 +218,62 @@ public class ControllerTest {
     }
 
     @Test
+    public void queryLobbiesUpdateTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+        // Assign an user-id for the acting client, Alice
+        modelPlayerOne.createUserLogic("Alice");
+        modelPlayerTwo.createUserLogic("Bob");
+
+        // Clearing potential existing lobbies
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+
+        // Alice creates three arbitrary lobbies
+        String lobbyOne = randomLegalName(HelperFunctionsClient.randomLegalNameLength());
+        String lobbyTwo = randomLegalName(HelperFunctionsClient.randomLegalNameLength());
+        String lobbyThree = randomLegalName(HelperFunctionsClient.randomLegalNameLength());
+        modelPlayerOne.createLobbyLogic(lobbyTwo);
+        modelPlayerOne.createLobbyLogic(lobbyOne);
+        modelPlayerOne.createLobbyLogic(lobbyThree);
+
+        // Add the names to a temp. set
+        HashSet<String> lobbyNames = new HashSet<>();
+        lobbyNames.add(lobbyOne);
+        lobbyNames.add(lobbyTwo);
+        lobbyNames.add(lobbyThree);
+
+        // Query all lobby-tuples (could be seperated to a function in modelPlayerOne moved to a function)
+        List<Object[]> tuples = modelPlayerOne.getLobbyListSpace().queryAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+
+        // Assert that 3 lobby-tuples are found
+        int expected = 3;
+        int actual = tuples.size();
+        Assert.assertEquals(expected, actual);
+
+        modelPlayerOne.joinLobbyLogic((String) tuples.get(1)[1], (UUID) tuples.get(1)[2], modelPlayerOne.getCurrentThreadNumber());
+        modelPlayerTwo.joinLobbyLogic((String) tuples.get(1)[1], (UUID) tuples.get(1)[2], modelPlayerTwo.getCurrentThreadNumber());
+
+        modelPlayerOne.pressBeginLogic();
+
+        Thread.sleep(3000); // TODO: a bit sloopy (due to race condition)
+
+        List<Object[]> tuplesNew = modelPlayerOne.getLobbyListSpace().queryAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+        int expectedNew = 2;
+        int actualNew = tuplesNew.size();
+        Assert.assertEquals(expectedNew, actualNew);
+    }
+
+    @Test
     public void joinLobbyTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         Assert.assertFalse(modelPlayerOne.getInLobby());
 
         // Clearing potential existing lobbies
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(Model.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         modelPlayerOne.createUserLogic(HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength()));
+
 
         String lobbyOne = HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength());
         modelPlayerOne.createLobbyLogic(lobbyOne);
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
 
@@ -244,18 +286,15 @@ public class ControllerTest {
         Assert.assertFalse(modelPlayerTwo.getInLobby());
 
         // Clearing potential existing lobbies
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+
         modelPlayerOne.createUserLogic("Alice");
         modelPlayerTwo.createUserLogic("Bob");
 
         String lobbyOne = HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength());
         modelPlayerOne.createLobbyLogic(lobbyOne);
-        System.out.println("248");
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
-        System.out.println("250");
-//        System.out.println("Is it null? " + tuple.equals(null));
-//        System.out.println("Same name? " + tuple[1].equals(lobbyOne));
-//        System.out.println("name: " + tuple[1] + " uuid: " + tuple[2]);
+
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
         modelPlayerTwo.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
@@ -269,14 +308,13 @@ public class ControllerTest {
                new FormalField(String.class),new ActualField(modelPlayerTwo.getCurrentThreadNumber()), new ActualField(modelPlayerTwo.getIndexInLobby()));
 
         Assert.assertEquals(Model.CLOSE, tuple2[1]);
-        modelPlayerTwo.setInLobby(false);
-        modelPlayerTwo.resetLobbyInfo();
-        Assert.assertFalse(modelPlayerTwo.getInLobby());
+
+        //modelPlayerTwo.setInLobby(false);
+        //modelPlayerTwo.resetLobbyInfo();
+        //Assert.assertFalse(modelPlayerTwo.getInLobby());
 
         //TODO: a bit sketchy? maybe there is a better solution.
         Thread.sleep(200);
-
-        Assert.assertFalse(modelPlayerTwo.getInLobby());
 
         int expected = Model.NO_RESPONSE;
         int actual = modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
@@ -287,7 +325,7 @@ public class ControllerTest {
     public void disconnectFromOthersLobbyTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
 
         // Clearing potential existing lobbies
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         modelPlayerOne.createUserLogic("Alice");
         modelPlayerTwo.createUserLogic("Bob");
 
@@ -297,7 +335,7 @@ public class ControllerTest {
         String lobbyOne = HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength());
         modelPlayerOne.createLobbyLogic(lobbyOne);
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
         modelPlayerTwo.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
@@ -321,12 +359,16 @@ public class ControllerTest {
 
     @Test
     public void beginWithTooFewPlayersTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+
+        //String lobbyName = HelperFunctionsClient.randomLegalName(HelperFunctions.randomLegalNameLength());
         //String lobbyName = HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength());
         modelPlayerOne.createUserLogic(HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength()));
         modelPlayerOne.createLobbyLogic(HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength()));
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        //modelPlayerOne.getLobbyListSpace().getAll(new ActualField(Model.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
+
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
 
         modelPlayerOne.getLobbyListSpace().getAll(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
@@ -338,7 +380,7 @@ public class ControllerTest {
     @Test
     public void queryPlayerNamesTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
 
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         String userNameOne = "Alice";
         String userNameTwo = "Bob";
@@ -350,7 +392,7 @@ public class ControllerTest {
 
         modelPlayerOne.createLobbyLogic("fun_lobby");
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"),
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO),
                 new FormalField(String.class), new FormalField(UUID.class));
 
         modelPlayerOne.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
@@ -364,8 +406,8 @@ public class ControllerTest {
     }
 
     @Test
-    public void startGameTest() throws InterruptedException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, IOException {
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+    public void beginGameTest() throws InterruptedException, NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, IOException {
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         String userNameOne = "Alice";
         String userNameTwo = "Bob";
@@ -375,7 +417,7 @@ public class ControllerTest {
         String lobbyName = "fun_lobby";
         modelPlayerOne.createLobbyLogic(lobbyName);
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"),
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO),
                 new FormalField(String.class), new FormalField(UUID.class));
 
         modelPlayerOne.joinLobbyLogic(lobbyName, (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
@@ -385,10 +427,9 @@ public class ControllerTest {
 
         Thread.sleep(3000); // TODO: a bit sloopy (due to race condition)
 
-        Object[] tuple2 = modelPlayerOne.getLobbyListSpace().queryp(new ActualField("Lobby"),
+        Object[] tuple2 = modelPlayerOne.getLobbyListSpace().queryp(new ActualField(modelPlayerOne.LOBBY_INFO),
                 new FormalField(String.class), new FormalField(UUID.class));
         boolean c = (tuple2==null);
-
         Assert.assertTrue(c);
 //
 //        System.out.println("player 1: in game? " + modelPlayerOne.inGame + " in lobby: " + modelPlayerOne.inLobby);
@@ -397,14 +438,12 @@ public class ControllerTest {
 //        Assert.assertFalse(modelPlayerTwo.inLobby);
 //        Assert.assertTrue(modelPlayerOne.inGame);
 //        Assert.assertFalse(modelPlayerOne.inLobby);
-
         // TODO fejler fordi flagene bliver sat i LobbyCommunicationAgent linie 126-128 som er blandet sammen med GUI..
     }
 
-    //TODO burde vi kun liste lobbies der er joinable når der queries?
     @Test
     public void joinDeniedDueToFullLobby() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
 
         String userNameOne = "Alice";
         String userNameTwo = "Bob";
@@ -419,7 +458,7 @@ public class ControllerTest {
 
         modelPlayerOne.createLobbyLogic("fun_lobby");
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"),
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO),
                 new FormalField(String.class), new FormalField(UUID.class));
         int actualOne = modelPlayerOne.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
         int actualTwo = modelPlayerTwo.joinLobbyLogic("fun_lobby", (UUID) tuple[2], modelPlayerTwo.getCurrentThreadNumber());
@@ -437,9 +476,9 @@ public class ControllerTest {
     }
 
     @Test
-    public void chatTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+    public void chatInLobbyTest() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
         // Clearing potential existing lobbies
-        modelPlayerOne.getLobbyListSpace().getAll(new ActualField("Lobby"), new FormalField(String.class), new FormalField(UUID.class));
+        modelPlayerOne.getLobbyListSpace().getAll(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class), new FormalField(UUID.class));
         String nicknameOne = "Alice";
         String nicknameTwo = "Bob";
         String nicknameThree = "Charles";
@@ -449,13 +488,13 @@ public class ControllerTest {
 
         modelPlayerOne.createLobbyLogic("fun_lobby");
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class),
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class),
                 new FormalField(UUID.class));
         modelPlayerOne.joinLobbyLogic((String) tuple[1], (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
-        Object[] tuple2 = modelPlayerTwo.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class),
+        Object[] tuple2 = modelPlayerTwo.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class),
                 new FormalField(UUID.class));
         modelPlayerTwo.joinLobbyLogic((String) tuple2[1], (UUID) tuple2[2], modelPlayerTwo.getCurrentThreadNumber());
-        Object[] tuple3 = modelPlayerThree.getLobbyListSpace().query(new ActualField("Lobby"), new FormalField(String.class),
+        Object[] tuple3 = modelPlayerThree.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO), new FormalField(String.class),
                 new FormalField(UUID.class));
         modelPlayerThree.joinLobbyLogic((String) tuple3[1], (UUID) tuple3[2], modelPlayerThree.getCurrentThreadNumber());
 
@@ -481,6 +520,7 @@ public class ControllerTest {
         Assert.assertEquals(expected,actual2);
     }
 
+    // See ServerTest.java
     @Ignore
     public void takeActionsIngame() throws InterruptedException, IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, ClassNotFoundException {
         modelPlayerOne.createUserLogic(HelperFunctionsClient.randomLegalName(HelperFunctionsClient.randomLegalNameLength()));
@@ -488,7 +528,7 @@ public class ControllerTest {
 
         modelPlayerOne.createLobbyLogic("LobbyTest");
 
-        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField("Lobby"),
+        Object[] tuple = modelPlayerOne.getLobbyListSpace().query(new ActualField(modelPlayerOne.LOBBY_INFO),
                 new FormalField(String.class), new FormalField(UUID.class));
 
         modelPlayerOne.joinLobbyLogic("LobbyTest", (UUID) tuple[2], modelPlayerOne.getCurrentThreadNumber());
