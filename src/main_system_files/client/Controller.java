@@ -237,7 +237,7 @@ public class Controller {
                 ListView targetablePlayers = ((ListView) root.lookup("#targetablePlayers"));
                 targetablePlayers.getItems().clear();
 
-                SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + HelperFunctions.isPrince(model.cardsOnHand.get(pickedCard)), model.getLobbyCipher());
+                SealedObject encryptedMessage = new SealedObject(model.getUserID() + "!" + HelperFunctionsClient.isPrince(model.cardsOnHand.get(pickedCard)), model.getLobbyCipher());
 
                 model.getLobbySpace().put(Model.C2S_TARGETS_REQ, encryptedMessage);
 
@@ -348,10 +348,10 @@ public class Controller {
 
     public void pickCardOne() throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
 
-        if (HelperFunctions.isTargeted(model.cardsOnHand.get(0))) {
+        if (HelperFunctionsClient.isTargeted(model.cardsOnHand.get(0))) {
             pickedCard = 0;
             changeScene(PICK_PLAYER_SCENE);
-            selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(0));
+            selectCardIsGuard = HelperFunctionsClient.isGuard(model.cardsOnHand.get(0));
         } else {
             model.cardsOnHand.remove(0);
             changeScene(GAME_SCENE);
@@ -367,10 +367,10 @@ public class Controller {
     }
 
     public void pickCardTwo() throws IOException, InterruptedException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException {
-        if (HelperFunctions.isTargeted(model.cardsOnHand.get(1))) {
+        if (HelperFunctionsClient.isTargeted(model.cardsOnHand.get(1))) {
             pickedCard = 1;
             changeScene(PICK_PLAYER_SCENE);
-            selectCardIsGuard = HelperFunctions.isGuard(model.cardsOnHand.get(1));
+            selectCardIsGuard = HelperFunctionsClient.isGuard(model.cardsOnHand.get(1));
         } else {
             model.cardsOnHand.remove(1);
             changeScene(GAME_SCENE);

@@ -1,7 +1,5 @@
 package main_system_files.server;
 
-import main_system_files.client.HelperFunctions;
-
 import javax.crypto.*;
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -44,9 +42,9 @@ public class RequestHandlerThread implements Runnable {
                     return;
                 }
 
-                System.out.println("valid server name: " + HelperFunctions.validName(serverName));
+                System.out.println("valid server name: " + HelperFunctionsServer.validName(serverName));
 
-                if(HelperFunctions.validName(serverName)) {
+                if(HelperFunctionsServer.validName(serverName)) {
 
                     //Add Thread to lobbyThreads
 
@@ -74,7 +72,7 @@ public class RequestHandlerThread implements Runnable {
 
                 String userName = decryptedInfo.substring(0, decryptedInfo.indexOf('!'));
 
-                if (HelperFunctions.validName(userName)) {
+                if (HelperFunctionsServer.validName(userName)) {
                     String uniqueName = assignUserID(userName);
                     SealedObject encryptedMessage = new SealedObject(Server.OK + "!" + userName + "?" + uniqueName, clientCipher);
 
