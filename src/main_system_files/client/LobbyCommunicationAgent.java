@@ -24,12 +24,12 @@ public class LobbyCommunicationAgent implements Runnable{
 
     private Model model;
     private Parent root;
-    private int threadId;
+    private int lobbyAgentNo;
 
-    LobbyCommunicationAgent(Model model, Parent root, int threadId){
+    LobbyCommunicationAgent(Model model, Parent root, int lobbyAgentNo){
         this.model = model;
         this.root = root;
-        this.threadId = threadId;
+        this.lobbyAgentNo = lobbyAgentNo;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class LobbyCommunicationAgent implements Runnable{
             try {
 
                 // [0] update code [1] type of update [2] name of user [3] chat text combined with username (situational) [4] thread id [5] index in lobby
-                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class), new FormalField(String.class),new ActualField(threadId), new ActualField(model.getIndexInLobby()));
+                Object[] tuple = model.getLobbySpace().get(new ActualField(Model.S2C_LOBBY), new FormalField(Integer.class), new FormalField(String.class),new ActualField(lobbyAgentNo), new ActualField(model.getIndexInLobby()));
                 System.out.println("got the tuple!: " + tuple[1]);
 
                 if ((int)tuple[1] == Model.CHAT_MESSAGE) {

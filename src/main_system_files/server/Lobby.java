@@ -234,13 +234,13 @@ public class Lobby implements Runnable {
                 //String p = u.name;
                 // burde 'responded' også stå her?
                 //System.out.println("Informing : " + p + " that the game has started");
-                lobbySpace.put(S2C_LOBBY,action, "", u.threadNr, u.userNr);
+                lobbySpace.put(S2C_LOBBY,action, "", u.lobbyAgentNo, u.userNr);
             }
         } else {
             for(LobbyUser u : users) {
                 String p = u.userID;
                 if(!p.equals(actingPlayer)) {
-                    lobbySpace.put(S2C_LOBBY, action, "", u.threadNr, u.userNr);
+                    lobbySpace.put(S2C_LOBBY, action, "", u.lobbyAgentNo, u.userNr);
                 }
             }
         }

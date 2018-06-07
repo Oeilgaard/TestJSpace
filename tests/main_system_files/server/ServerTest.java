@@ -510,7 +510,7 @@ public class ServerTest {
         Object[] message = lobbySpace.get(new ActualField(Lobby.S2C_LOBBY), new ActualField(Lobby.CHAT_MESSAGE), new FormalField(String.class), new FormalField(Integer.class), new FormalField(Integer.class));
 
         Assert.assertEquals(message[2],textToSend);
-        //(Model.C2S_LOBBY_GAME, Lobby.CHAT_MESSAGE, field1, user.threadNr, user.userNr);
+        //(Model.C2S_LOBBY_GAME, Lobby.CHAT_MESSAGE, field1, user.lobbyAgentNo, user.userNr);
     }
 
     @Test

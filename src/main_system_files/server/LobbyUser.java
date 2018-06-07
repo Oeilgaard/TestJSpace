@@ -5,13 +5,13 @@ import javax.crypto.Cipher;
 public class LobbyUser {
 
     public String userID;
-    public int threadNr;
+    public int lobbyAgentNo;
     public Cipher personalCipher;
     public int userNr;
 
-    LobbyUser (String userID, int threadNr,Cipher personalCipher, int userNr){
+    LobbyUser (String userID, int lobbyAgentNo, Cipher personalCipher, int userNr){
         this.userID = userID;
-        this.threadNr = threadNr;
+        this.lobbyAgentNo = lobbyAgentNo;
         this.personalCipher = personalCipher;
         this.userNr = userNr;
     }
