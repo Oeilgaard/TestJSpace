@@ -81,7 +81,7 @@ public class FilledLobbyThreadTest {
         SealedObject[] encryptedLobbyNames = new SealedObject[nrOfLobbies];
 
         for (int i = 0; i < nrOfLobbies; i++) {
-            String name = "lobbyname" + i + "!testClient" + i * 4 + "#123";
+            String name = "lobbyname" + i + "!testClient" + i * 4 + "#12345678-1234-1234-1234-123456789012";
             encryptedLobbyNames[i] = new SealedObject(name, serverCipher);
         }
 
@@ -128,7 +128,7 @@ public class FilledLobbyThreadTest {
                 if ((i * 4) + k == connectEncryption.length) {
                     break outerpart;
                 }
-                connectEncryption[((i * 4) + k)] = new SealedObject("31!testClient" + ((i * 4) + k) + "#123?" + 0 + "=*¤", lobbyCiphers[i]);
+                connectEncryption[((i * 4) + k)] = new SealedObject("31!testClient" + ((i * 4) + k) + "#12345678-1234-1234-1234-123456789012?" + 0 + "=*¤", lobbyCiphers[i]);
             }
         }
 
@@ -156,7 +156,7 @@ public class FilledLobbyThreadTest {
 
         for (int i = 0; i < nrOfLobbies; i++){
             fillers[i] = new SealedObject("filler",lobbyCiphers[i]);
-            encryptedBeginMsg[i] = new SealedObject("33!testClient" + i*4 + "#123?-1=*¤", lobbyCiphers[i]);
+            encryptedBeginMsg[i] = new SealedObject("33!testClient" + i*4 + "#12345678-1234-1234-1234-123456789012?-1=*¤", lobbyCiphers[i]);
         }
 
         for (int i = 0; i < nrOfLobbies;i++){
