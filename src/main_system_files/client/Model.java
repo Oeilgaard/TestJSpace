@@ -258,8 +258,8 @@ public class Model {
             requestSpace.put(Model.C2S_CREATE_REQ, Model.CREATE_USERNAME_REQ, encryptedUserNameString, encryptedKey);
 
             Object[] tuple = null;
-            int field1;
-            String field3;
+            int field1Response;
+            String field3UserID;
 
             while (true) {
                 // Blocks until user receives unique username (due to 'query')
@@ -272,13 +272,9 @@ public class Model {
 
                         String decryptedMessage = (String) ((SealedObject) tuple[2]).getObject(personalCipher);
 
-                        String field1text = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
-                        field1 = Integer.parseInt(field1text);
-                        field3 = decryptedMessage.substring(decryptedMessage.indexOf('?') + 1, decryptedMessage.length());
-
-                        //KLARET: kan man ikke komme til at fjerne en ANDEN tuple en den man lige har samlet op?
-                        //responseSpace.get(new ActualField(Model.S2C_CREATE_RESP), new ActualField(Model.CREATE_USERID_RESP),
-                        //        new FormalField(SealedObject.class));
+                        String field1ResponseText = decryptedMessage.substring(0, decryptedMessage.indexOf('!'));
+                        field1Response = Integer.parseInt(field1ResponseText);
+                        field3UserID = decryptedMessage.substring(decryptedMessage.indexOf('?') + 1, decryptedMessage.length());
 
                         break;
                     }
@@ -289,11 +285,10 @@ public class Model {
                     responseSpace.put(tuple[0],tuple[1],tuple[2]);
                 }
             }
-
-            if ((int) field1 == Model.OK) {
-                setUserID((String) field3); // Setting the user's name
+            if ((int) field1Response == Model.OK) {
+                setUserID((String) field3UserID); // Setting the user's name
                 return true;
-            } else if ((int) field1 == Model.BAD_REQUEST) {
+            } else if ((int) field1Response == Model.BAD_REQUEST) {
                 return false;
             }
         }

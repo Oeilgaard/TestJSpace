@@ -19,7 +19,7 @@ public class FilledLobbyTest {
 
     public static String ip = "localhost"; //212.237.129.195
 
-    public static int nrOfClients = 40;
+    public static int nrOfClients = 200;
 
     public static int nrOfLobbies;
 
