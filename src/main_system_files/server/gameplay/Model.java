@@ -12,7 +12,7 @@ public class Model {
 
     public final static int AFFECTION_GOAL_TWO_PLAYERS = 7;
     public final static int AFFECTION_GOAL_THREE_PLAYERS = 5;
-    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 70;
+    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 60;
 
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
 

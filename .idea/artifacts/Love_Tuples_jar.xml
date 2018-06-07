@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Love_Tuples_jar</output-path>
     <root id="archive" name="Love_Tuples.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/../testingResources/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/../testingResources/recourses/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="Love_Tuples" />
       <element id="file-copy" path="$APPLICATION_HOME_DIR$/lib/junit-4.12.jar" />

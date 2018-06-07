@@ -104,7 +104,7 @@ public class gameStressThread implements Runnable{
             int target = rn.nextInt(4);
             int guessNr = rn.nextInt(7) + 1;
 
-            String messageToBeEncrypted = "12!" + clientName + "#123" + "?" + playedCard + "=" + target + "*" + guessNr + "¤";
+            String messageToBeEncrypted = "12!" + clientName + "#12345678-1234-1234-1234-123456789012" + "?" + playedCard + "=" + target + "*" + guessNr + "¤";
             SealedObject encryptedMessage = new SealedObject(messageToBeEncrypted,lobbyCipher);
             SealedObject filler = new SealedObject("filler",lobbyCipher);
 
