@@ -12,7 +12,7 @@ public class Model {
 
     public final static int AFFECTION_GOAL_TWO_PLAYERS = 7;
     public final static int AFFECTION_GOAL_THREE_PLAYERS = 5;
-    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 60;
+    public final static int AFFECTION_GOAL_FOUR_PLAYERS = 4;
 
     public final static int REVEALED_CARDS_TWO_PLAYER = 3;
 
@@ -236,7 +236,7 @@ public class Model {
         if(players.get(targetPlayersIndex).getHand().getCards().get(0).getRole() == guess) {
             knockOut(targetPlayersIndex);
 
-            String msgSender = "You used GUARD guessed correct with the guess " + guess.toString() + "!";
+            String msgSender = "You used GUARD on " + targetName + " and guessed correct with the guess " + guess.toString() + "!";
             String msgTarget = senderName + " uses GUARD on you and correctly guesses that you have a " + guess.toString();
             String msgOthers = senderName + " uses GUARD and correctly guessed that " +
                     targetName + " has a " + guess.toString();

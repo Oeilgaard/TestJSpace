@@ -1492,6 +1492,8 @@ public class ServerTest {
 
         RemoteSpace lobbySpace = new RemoteSpace("tcp://localhost:25565/" + tuple[2].toString() + "?keep");
 
+        Thread.sleep(2000);
+
         Object[] lobbyKey = lobbySpace.query(new FormalField(PublicKey.class));
 
         PublicKey lobbyPublicKey = (PublicKey) lobbyKey[0];
@@ -2653,16 +2655,22 @@ public class ServerTest {
 
         Thread.sleep(3000);
 
-        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-12345678901!" + 2,lobbyCipher);
+        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-123456789012!" + 2,lobbyCipher);
 
-        lobbySpace.put("TargetablePlayersRequest",encryptedMessage);
+        lobbySpace.put(Model.C2S_TARGETS_REQ,encryptedMessage);
 
-        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-12345678901!" + 1,lobbyCipher);
+        lobbySpace.get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new FormalField(Integer.class));
 
-        lobbySpace.put("TargetablePlayersRequest",encryptedMessage);
+        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-123456789012!" + 1,lobbyCipher);
 
-        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-12345678901!" + 0,lobbyCipher);
+        lobbySpace.put(Model.C2S_TARGETS_REQ,encryptedMessage);
 
-        lobbySpace.put("TargetablePlayersRequest",encryptedMessage);
+        lobbySpace.get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new FormalField(Integer.class));
+
+        encryptedMessage = new SealedObject("TestClient#12345678-1234-1234-1234-123456789012!" + 0,lobbyCipher);
+
+        lobbySpace.put(Model.C2S_TARGETS_REQ,encryptedMessage);
+
+        lobbySpace.get(new ActualField(Model.S2C_TARGETS_RESP), new FormalField(SealedObject.class), new FormalField(Integer.class));
     }
 }

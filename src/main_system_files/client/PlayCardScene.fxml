@@ -9,29 +9,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main_system_files.client.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="750" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main_system_files.client.Controller">
     <children>
-        <Label layoutX="343.0" layoutY="33.0" text="Play a card" textAlignment="CENTER" />
+        <Label layoutX="489.0" layoutY="25.0" text="Play a card" textAlignment="CENTER" />
         <Label fx:id="instructionsUserName" layoutX="206.0" layoutY="172.0" text="" />
-        <Label fx:id="usernameLabel" layoutX="557.0" layoutY="33.0" text="Username" />
+        <Label fx:id="usernameLabel" layoutX="664.0" layoutY="25.0" text="Username" />
 
-        <ImageView fx:id="card1" fitHeight="229.0" fitWidth="155.0" layoutX="302.0" layoutY="129.0" onMouseClicked="#pickCardOne" onMouseEntered="#hoverCardOne" onMouseExited="#unhoverCardOne" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="card2" fitHeight="229.0" fitWidth="155.0" layoutX="472.0" layoutY="130.0" onMouseClicked="#pickCardTwo" onMouseEntered="#hoverCardTwo" onMouseExited="#unhoverCardTwo" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="329.0" layoutY="455.0" mnemonicParsing="false" onAction="#showCardList" text="List of Cards" />
-      <Pane fx:id="cardListPane" layoutX="274.0" layoutY="185.0" mouseTransparent="true" prefHeight="261.0" prefWidth="211.0" visible="false">
-         <children>
-            <ImageView fitHeight="259.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@/resources/list_of_cards.jpg" />
-               </image>
-            </ImageView>
-            <Button layoutX="76.0" layoutY="220.0" mnemonicParsing="false" onAction="#hideCardList" text="Close" />
-         </children>
-      </Pane>
+        <ImageView fx:id="card1" fitHeight="312.0" fitWidth="211.0" layoutX="298.0" layoutY="58.0" onMouseClicked="#pickCardOne" onMouseEntered="#hoverCardOne" onMouseExited="#unhoverCardOne" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="card2" fitHeight="312.0" fitWidth="211.0" layoutX="518.0" layoutY="58.0" onMouseClicked="#pickCardTwo" onMouseEntered="#hoverCardTwo" onMouseExited="#unhoverCardTwo" pickOnBounds="true" preserveRatio="true" />
+        <Button layoutX="329.0" layoutY="455.0" mnemonicParsing="false" onAction="#showCardList" text="List of Cards" />
+        <Pane fx:id="cardListPane" layoutX="274.0" layoutY="185.0" mouseTransparent="true" prefHeight="261.0" prefWidth="211.0" visible="false">
+            <children>
+                <ImageView fitHeight="259.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@/resources/list_of_cards.jpg" />
+                    </image>
+                </ImageView>
+                <Button layoutX="76.0" layoutY="220.0" mnemonicParsing="false" onAction="#hideCardList" text="Close" />
+            </children>
+        </Pane>
         <ScrollPane fx:id="scrollplaycard" layoutX="27.0" layoutY="61.0" pannable="true" prefHeight="366.0" prefWidth="255.0" vbarPolicy="ALWAYS" vvalue="1.0">
-         <content>
+            <content>
                 <VBox fx:id="vb1playcard" maxHeight="999999.0" prefWidth="230.0" />
-         </content>
+            </content>
         </ScrollPane>
 
     </children>
