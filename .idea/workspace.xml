@@ -8,8 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62e960c4-3a57-4304-85de-085c170fbfd9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -117,16 +115,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="51">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
@@ -351,8 +349,8 @@
         <option value="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/FilledLobbyThreadTest.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/client_simulation_testing/gameStressThread.java" />
         <option value="$PROJECT_DIR$/src/main_system_files/server/gameplay/PossibleTargetsThread.java" />
-        <option value="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" />
         <option value="$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java" />
+        <option value="$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java" />
       </list>
     </option>
   </component>
@@ -363,10 +361,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1386" />
-    <option name="height" value="788" />
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -422,35 +419,6 @@
             <path>
               <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-              <item name="client_simulation_testing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="gameplay" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -458,20 +426,6 @@
               <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Love_Tuples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Love_Tuples" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="main_system_files" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -487,7 +441,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/tests/MasterLobbyListServerTest" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Love_Tuples_Client" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -757,13 +711,6 @@
       <workItem from="1524471462541" duration="18123000" />
       <workItem from="1524572106354" duration="36000" />
       <workItem from="1524641070629" duration="6171000" />
-    </task>
-    <task id="LOCAL-00083" summary="- Slight rearrangengement and clean-up of code.">
-      <created>1523456903181</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1523456903181</updated>
     </task>
     <task id="LOCAL-00084" summary="- Slight rearrangengement and clean-up of code.&#10;- Commenting of Gameplay (not done though)&#10;- Seperated joinServer into joinServerLogic and original method &#10;- Made first test for joinServerLogic &#10;- Added Ping-pong testing method&#10;- Added 'bloom' hover effect on cards">
       <created>1523871040577</created>
@@ -1101,7 +1048,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528392292867</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="...">
+      <created>1528459340783</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1528459340783</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1150,7 +1104,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="5" sideWeight="0.49926794" weight="0.3286385" />
@@ -1163,7 +1116,7 @@
       <window_info anchor="right" id="Coverage" order="7" side_tool="true" visible="true" weight="0.073938504" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="6" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2035139" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2035139" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -1638,13 +1591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/main_system_files/server/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1654,6 +1600,13 @@
             <element signature="e#1579#3848#0" />
             <element signature="e#3854#6769#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main_system_files/server/gameplay/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
