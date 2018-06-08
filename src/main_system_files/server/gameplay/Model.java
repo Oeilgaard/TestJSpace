@@ -392,7 +392,7 @@ public class Model {
                 informPlayersAboutTargetedPlay(Role.PRINCE.toString(), msgSender, msgTarget, msgOthers, sendersIndex, targetPlayersIndex, "", "");
             }
         } else {
-            //TODO self-target scenario
+
             drawSecretCard(players.get(targetPlayersIndex).getHand());
 
             String msgSender = "You play PRINCE on " + targetName + " who draws the secret card.";

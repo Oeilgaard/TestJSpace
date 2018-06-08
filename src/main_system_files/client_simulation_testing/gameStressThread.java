@@ -40,7 +40,7 @@ public class gameStressThread implements Runnable{
             /*forLOOP:
             for (int k = 0; k < 4; k++) {
                 Object[] tupleForClient;
-                //TODO sæt et flag og klar trækket efter alles tupler er tjekket
+
                 clientLoop:
                 while (true) {
                     try {

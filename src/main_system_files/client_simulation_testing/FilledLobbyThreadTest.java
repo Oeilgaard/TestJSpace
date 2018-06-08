@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.UUID;
 
 public class FilledLobbyThreadTest {
-    public static String ip = "192.168.0.23"; //212.237.129.195
+    public static String ip = "212.237.129.195"; //212.237.129.195
 
     public static int nrOfClients = 200;
 

@@ -230,7 +230,7 @@ public class Game {
                     Role r = currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getRole();
 
                     if(r.isTargeted()) {
-                        //TODO: no possible target case could automatically launch 'noAction' (currently double checking in playCard)
+
                         if (!possibleTargets(r) || (validTarget(Integer.parseInt(field4),
                                 currentPlayer.getHand().getCards().get(Integer.parseInt(field3)).getRole()))) {
                             playCard(currentPlayer, decryptedTuple);
